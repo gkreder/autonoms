@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<views>
+  <view name="MetaboliteReportCustom" rowsource="pwiz.Skyline.Model.Databinding.Entities.Transition" sublist="Results!*" uimode="small_molecules">
+    <column name="Precursor.Peptide.Protein.Name" />
+    <column name="Precursor.Peptide.MoleculeName" />
+    <column name="Precursor.Peptide.MoleculeFormula" />
+    <column name="Precursor.IonFormula" />
+    <column name="Precursor.NeutralFormula" />
+    <column name="Precursor.Adduct" />
+    <column name="Results!*.Value.PrecursorResult.PeptideResult.ResultFile.Replicate.Name" />
+    <column name="Precursor.Mz" />
+    <column name="Precursor.Charge" />
+    <column name="Results!*.Value.PrecursorResult.PeptideResult.ResultFile.TicArea" />
+    <column name="Results!*.Value.PrecursorResult.PeptideResult.ResultFile.MedianPeakArea" />
+    <column name="Results!*.Value.PrecursorResult.TotalArea" />
+    <column name="Results!*.Value.PrecursorResult.TotalAreaMs1" />
+    <column name="Results!*.Value.PrecursorResult.TotalBackground" />
+    <column name="Results!*.Value.PrecursorResult.TotalBackgroundMs1" />
+    <column name="Results!*.Value.PrecursorResult.TotalAreaRatio" />
+    <column name="Results!*.Value.PrecursorResult.RatioDotProduct" />
+    <column name="Results!*.Value.PrecursorResult.TotalAreaNormalized" />
+    <column name="Results!*.Value.PrecursorResult.MaxHeight" />
+    <column name="Results!*.Value.PrecursorResult.CountTruncated" />
+    <column name="Results!*.Value.PrecursorResult.CollisionalCrossSection" />
+    <column name="Results!*.Value.PrecursorResult.IonMobilityMS1" />
+    <column name="Results!*.Value.PrecursorResult.IonMobilityUnits" />
+    <column name="Precursor.ResultSummary.TotalArea" />
+    <column name="Results!*.Value.PrecursorResult.PeptideResult.Quantification.NormalizedArea" />
+    <column name="Results!*.Value.Area" />
+    <column name="Results!*.Value.Background" />
+    <column name="ResultSummary.Area" />
+    <column name="Results!*.Value.PrecursorResult.PeptideResult.ResultFile.SampleId" />
+    <column name="Results!*.Value.Height" />
+    <column name="Precursor.ResultSummary.MaxHeight" />
+    <column name="Precursor.Peptide.ExplicitRetentionTime" />
+    <column name="Precursor.Peptide.ExplicitRetentionTimeWindow" />
+    <column name="ProductMz" />
+    <column name="ProductCharge" />
+    <column name="ProductIonFormula" />
+    <column name="ProductNeutralFormula" />
+    <column name="ProductAdduct" />
+    <column name="Results!*.Value.PrecursorResult.PeptideResult.ProteinResult.Abundance" />
+  </view>
+</views>

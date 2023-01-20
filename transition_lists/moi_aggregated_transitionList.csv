@@ -1,0 +1,296 @@
+Molecule List Name,Precursor Name,Precursor Formula,Precursor Adduct,Precursor Charge,Product m/z,Product Charge
+moi,Succinyl CoA,C25H40N7O19P3S,[M+H]+,1,868.1385303,1
+moi,Succinyl CoA,C25H40N7O19P3S,[M+Na]+,1,890.1204723,1
+moi,Succinyl CoA,C25H40N7O19P3S,[M+NH4]+,1,885.1650773,1
+moi,Succinyl CoA,C25H40N7O19P3S,[M-H]-,-1,866.1239783,-1
+moi,Succinyl CoA,C25H40N7O19P3S,[M+Na-2H]-,-1,888.1059203,-1
+moi,Succinate,C4H6O4,[M+H]+,1,119.0338847,1
+moi,Succinate,C4H6O4,[M+Na]+,1,141.0158267,1
+moi,Succinate,C4H6O4,[M+NH4]+,1,136.0604317,1
+moi,Succinate,C4H6O4,[M-H]-,-1,117.0193327,-1
+moi,Succinate,C4H6O4,[M+Na-2H]-,-1,139.0012747,-1
+moi,Sphingosine,C18H37NO2,[M+H]+,1,300.2897054,1
+moi,Sphingosine,C18H37NO2,[M+Na]+,1,322.2716474,1
+moi,Sphingosine,C18H37NO2,[M+NH4]+,1,317.3162524,1
+moi,Sphingosine,C18H37NO2,[M-H]-,-1,298.2751534,-1
+moi,Sphingosine,C18H37NO2,[M+Na-2H]-,-1,320.2570954,-1
+moi,Spermine,C10H26N4,[M+H]+,1,203.2230229,1
+moi,Spermine,C10H26N4,[M+Na]+,1,225.2049649,1
+moi,Spermine,C10H26N4,[M+NH4]+,1,220.2495699,1
+moi,Spermine,C10H26N4,[M-H]-,-1,201.2084709,-1
+moi,Spermine,C10H26N4,[M+Na-2H]-,-1,223.1904129,-1
+moi,Spermidine,C7H19N3,[M+H]+,1,146.1651736,1
+moi,Spermidine,C7H19N3,[M+Na]+,1,168.1471156,1
+moi,Spermidine,C7H19N3,[M+NH4]+,1,163.1917206,1
+moi,Spermidine,C7H19N3,[M-H]-,-1,144.1506216,-1
+moi,Spermidine,C7H19N3,[M+Na-2H]-,-1,166.1325636,-1
+moi,Pyruvate,C3H4O3,[M+H]+,1,89.02331999,1
+moi,Pyruvate,C3H4O3,[M+Na]+,1,111.005262,1
+moi,Pyruvate,C3H4O3,[M+NH4]+,1,106.049867,1
+moi,Pyruvate,C3H4O3,[M-H]-,-1,87.00876799,-1
+moi,Pyruvate,C3H4O3,[M+Na-2H]-,-1,108.99071,-1
+moi,Phytosphingosine,C18H39NO3,[M+H]+,1,318.3002701,1
+moi,Phytosphingosine,C18H39NO3,[M+Na]+,1,340.2822121,1
+moi,Phytosphingosine,C18H39NO3,[M+NH4]+,1,335.3268171,1
+moi,Phytosphingosine,C18H39NO3,[M-H]-,-1,316.2857181,-1
+moi,Phytosphingosine,C18H39NO3,[M+Na-2H]-,-1,338.2676601,-1
+moi,Phosphoenolpyruvate,C3H5O6P,[M+H]+,1,168.9896509,1
+moi,Phosphoenolpyruvate,C3H5O6P,[M+Na]+,1,190.9715929,1
+moi,Phosphoenolpyruvate,C3H5O6P,[M+NH4]+,1,186.0161979,1
+moi,Phosphoenolpyruvate,C3H5O6P,[M-H]-,-1,166.9750989,-1
+moi,Phosphoenolpyruvate,C3H5O6P,[M+Na-2H]-,-1,188.9570409,-1
+moi,Oxalosuccinate,C6H6O7,[M+H]+,1,191.0186285,1
+moi,Oxalosuccinate,C6H6O7,[M+Na]+,1,213.0005705,1
+moi,Oxalosuccinate,C6H6O7,[M+NH4]+,1,208.0451755,1
+moi,Oxalosuccinate,C6H6O7,[M-H]-,-1,189.0040765,-1
+moi,Oxalosuccinate,C6H6O7,[M+Na-2H]-,-1,210.9860185,-1
+moi,Oxaloacetate,C4H4O5,[M+H]+,1,133.0131492,1
+moi,Oxaloacetate,C4H4O5,[M+Na]+,1,154.9950912,1
+moi,Oxaloacetate,C4H4O5,[M+NH4]+,1,150.0396962,1
+moi,Oxaloacetate,C4H4O5,[M-H]-,-1,130.9985972,-1
+moi,Oxaloacetate,C4H4O5,[M+Na-2H]-,-1,152.9805392,-1
+moi,NADPH,C21H30N7O17P3,[M+H]+,1,746.0984,1
+moi,NADPH,C21H30N7O17P3,[M+H-H2O]+,1,728.0878,1
+moi,NADPH,C21H30N7O17P3,[M+NH4]+,1,763.125,1
+moi,NADPH,C21H30N7O17P3,[M+Na]+,1,768.0804,1
+moi,NADPH,C21H30N7O17P3,[M-H]-,-1,744.0838,-1
+moi,NADPH,C21H30N7O17P3,[M+Na-2H]-,-1,766.0658,-1
+moi,NADPH,C21H30N7O17P3,[M+HCOO]-,-1,790.0893,-1
+moi,NADP+,C21H29N7O17P3,[M+H]+,1,745.0906,1
+moi,NADP+,C21H29N7O17P4,[M+H-H2O]+,1,727.08,1
+moi,NADP+,C21H29N7O17P5,[M+NH4]+,1,762.1172,1
+moi,NADP+,C21H29N7O17P6,[M+Na]+,1,767.0726,1
+moi,NADP+,C21H29N7O17P7,[M-H]-,-1,743.076,-1
+moi,NADP+,C21H29N7O17P8,[M+Na-2H]-,-1,765.058,-1
+moi,NADP+,C21H29N7O17P9,[M+HCOO]-,-1,789.0815,-1
+moi,NADH,C21H27N7O14P2,[M+H]+,1,664.1163986,1
+moi,NADH,C21H27N7O14P2,[M+Na]+,1,686.0983406,1
+moi,NADH,C21H27N7O14P2,[M+NH4]+,1,681.1429456,1
+moi,NADH,C21H27N7O14P2,[M-H]-,-1,662.1018466,-1
+moi,NADH,C21H27N7O14P2,[M+Na-2H]-,-1,684.0837886,-1
+moi,NAD+,C21H28N7O14P2,[M+H]+,1,665.1242236,1
+moi,NAD+,C21H28N7O14P2,[M+Na]+,1,687.1061656,1
+moi,NAD+,C21H28N7O14P2,[M+NH4]+,1,682.1507706,1
+moi,NAD+,C21H28N7O14P2,[M-H]-,-1,663.1096716,-1
+moi,NAD+,C21H28N7O14P2,[M+Na-2H]-,-1,685.0916136,-1
+moi,Malate,C4H6O5,[M+H]+,1,135.0287993,1
+moi,Malate,C4H6O5,[M+Na]+,1,157.0107413,1
+moi,Malate,C4H6O5,[M+NH4]+,1,152.0553463,1
+moi,Malate,C4H6O5,[M-H]-,-1,133.0142473,-1
+moi,Malate,C4H6O5,[M+Na-2H]-,-1,154.9961893,-1
+moi,L-Valine,C5H11NO2,[M+H]+,1,118.0862546,1
+moi,L-Valine,C5H11NO2,[M+Na]+,1,140.0681966,1
+moi,L-Valine,C5H11NO2,[M+NH4]+,1,135.1128016,1
+moi,L-Valine,C5H11NO2,[M-H]-,-1,116.0717026,-1
+moi,L-Valine,C5H11NO2,[M+Na-2H]-,-1,138.0536446,-1
+moi,L-Tyrosine,C9H11NO3,[M+H]+,1,182.0811692,1
+moi,L-Tyrosine,C9H11NO3,[M+H]+,1,182.0811692,1
+moi,L-Tyrosine,C9H11NO3,[M+Na]+,1,204.0631112,1
+moi,L-Tyrosine,C9H11NO3,[M+NH4]+,1,199.1077162,1
+moi,L-Tyrosine,C9H11NO3,[M-H]-,-1,180.0666172,-1
+moi,L-Tyrosine,C9H11NO3,[M-H]-,-1,180.0666172,-1
+moi,L-Tyrosine,C9H11NO3,[M+Na-2H]-,-1,202.0485592,-1
+moi,L-Tryptophan,C11H12N2O2,[M+H]+,1,205.0971536,1
+moi,L-Tryptophan,C11H12N2O2,[M+Na]+,1,227.0790956,1
+moi,L-Tryptophan,C11H12N2O2,[M+NH4]+,1,222.1237006,1
+moi,L-Tryptophan,C11H12N2O2,[M-H]-,-1,203.0826016,-1
+moi,L-Tryptophan,C11H12N2O2,[M+Na-2H]-,-1,225.0645436,-1
+moi,L-Threonine,C4H9NO3,[M+H]+,1,120.0655192,1
+moi,L-Threonine,C4H9NO3,[M+Na]+,1,142.0474612,1
+moi,L-Threonine,C4H9NO3,[M+NH4]+,1,137.0920662,1
+moi,L-Threonine,C4H9NO3,[M-H]-,-1,118.0509672,-1
+moi,L-Threonine,C4H9NO3,[M+Na-2H]-,-1,140.0329092,-1
+moi,L-Serine,C3H7NO3,[M+H]+,1,106.0498691,1
+moi,L-Serine,C3H7NO3,[M+Na]+,1,128.0318111,1
+moi,L-Serine,C3H7NO3,[M+NH4]+,1,123.0764161,1
+moi,L-Serine,C3H7NO3,[M-H]-,-1,104.0353171,-1
+moi,L-Serine,C3H7NO3,[M+Na-2H]-,-1,126.0172591,-1
+moi,L-Proline,C5H9NO2,[M+H]+,1,116.0706045,1
+moi,L-Proline,C5H9NO2,[M+H]+,1,116.0706045,1
+moi,L-Proline,C5H9NO2,[M+Na]+,1,138.0525465,1
+moi,L-Proline,C5H9NO2,[M+NH4]+,1,133.0971515,1
+moi,L-Proline,C5H9NO2,[M-H]-,-1,114.0560525,-1
+moi,L-Proline,C5H9NO2,[M+Na-2H]-,-1,136.0379945,-1
+moi,L-Phenylalanine,C9H11NO2,[M+H]+,1,166.0862546,1
+moi,L-Phenylalanine,C9H11NO2,[M+H]+,1,166.0862546,1
+moi,L-Phenylalanine,C9H11NO2,[M+Na]+,1,188.0681966,1
+moi,L-Phenylalanine,C9H11NO2,[M+NH4]+,1,183.1128016,1
+moi,L-Phenylalanine,C9H11NO2,[M-H]-,-1,164.0717026,-1
+moi,L-Phenylalanine,C9H11NO2,[M-H]-,-1,164.0717026,-1
+moi,L-Phenylalanine,C9H11NO2,[M+Na-2H]-,-1,186.0536446,-1
+moi,L-Methionine,C5H11NO2S,[M+H]+,1,150.0583258,1
+moi,L-Methionine,C5H11NO2S,[M+H]+,1,150.0583258,1
+moi,L-Methionine,C5H11NO2S,[M+Na]+,1,172.0402678,1
+moi,L-Methionine,C5H11NO2S,[M+NH4]+,1,167.0848728,1
+moi,L-Methionine,C5H11NO2S,[M-H]-,-1,148.0437738,-1
+moi,L-Methionine,C5H11NO2S,[M+Na-2H]-,-1,170.0257158,-1
+moi,L-Leucine,C6H13NO2,[M+H]+,1,132.1019047,1
+moi,L-Leucine,C6H13NO2,[M+H]+,1,132.1019047,1
+moi,L-Leucine,C6H13NO2,[M+Na]+,1,154.0838467,1
+moi,L-Leucine,C6H13NO2,[M+NH4]+,1,149.1284517,1
+moi,L-Leucine,C6H13NO2,[M-H]-,-1,130.0873527,-1
+moi,L-Leucine,C6H13NO2,[M-H]-,-1,130.0873527,-1
+moi,L-Leucine,C6H13NO2,[M+Na-2H]-,-1,152.0692947,-1
+moi,L-Kynurenine,C10H12N2O3,[M+H]+,1,209.0920683,1
+moi,L-Kynurenine,C10H12N2O3,[M+Na]+,1,231.0740103,1
+moi,L-Kynurenine,C10H12N2O3,[M+NH4]+,1,226.1186153,1
+moi,L-Kynurenine,C10H12N2O3,[M-H]-,-1,207.0775163,-1
+moi,L-Kynurenine,C10H12N2O3,[M+Na-2H]-,-1,229.0594583,-1
+moi,L-Histidine,C6H9N3O2,[M+H]+,1,156.0767525,1
+moi,L-Histidine,C6H9N3O2,[M+H]+,1,156.0767525,1
+moi,L-Histidine,C6H9N3O2,[M+Na]+,1,178.0586945,1
+moi,L-Histidine,C6H9N3O2,[M+Na]+,1,178.0586945,1
+moi,L-Histidine,C6H9N3O2,[M+NH4]+,1,173.1032995,1
+moi,L-Histidine,C6H9N3O2,[M-H]-,-1,154.0622005,-1
+moi,L-Histidine,C6H9N3O2,[M-H]-,-1,154.0622005,-1
+moi,L-Histidine,C6H9N3O2,[M+Na-2H]-,-1,176.0441425,-1
+moi,L-Glycine,C2H5NO2,[M+H]+,1,76.0393044,1
+moi,L-Glycine,C2H5NO2,[M+Na]+,1,98.0212464,1
+moi,L-Glycine,C2H5NO2,[M+NH4]+,1,93.0658514,1
+moi,L-Glycine,C2H5NO2,[M-H]-,-1,74.0247524,-1
+moi,L-Glycine,C2H5NO2,[M+Na-2H]-,-1,96.0066944,-1
+moi,L-Glutamine,C5H10N2O3,[M+H]+,1,147.0764182,1
+moi,L-Glutamine,C5H10N2O3,[M+Na]+,1,169.0583602,1
+moi,L-Glutamine,C5H10N2O3,[M+NH4]+,1,164.1029652,1
+moi,L-Glutamine,C5H10N2O3,[M-H]-,-1,145.0618662,-1
+moi,L-Glutamine,C5H10N2O3,[M+Na-2H]-,-1,167.0438082,-1
+moi,L-Glutamic acid,C5H9NO4,[M+H]+,1,148.0604338,1
+moi,L-Glutamic acid,C5H9NO4,[M+Na]+,1,170.0423758,1
+moi,L-Glutamic acid,C5H9NO4,[M+K]+,1,186.0163158,1
+moi,L-Glutamic acid,C5H9NO4,[M+NH4]+,1,165.0869808,1
+moi,L-Glutamic acid,C5H9NO4,[M-H]-,-1,146.0458818,-1
+moi,L-Glutamic acid,C5H9NO4,[M-H]-,-1,146.0458818,-1
+moi,L-Glutamic acid,C5H9NO4,[M+Na-2H]-,-1,168.0278238,-1
+moi,L-Cysteine,C3H7NO2S,[M+H]+,1,122.0270256,1
+moi,L-Cysteine,C3H7NO2S,[M+Na]+,1,144.0089676,1
+moi,L-Cysteine,C3H7NO2S,[M+NH4]+,1,139.0535726,1
+moi,L-Cysteine,C3H7NO2S,[M-H]-,-1,120.0124736,-1
+moi,L-Cysteine,C3H7NO2S,[M+Na-2H]-,-1,141.9944156,-1
+moi,L-Aspartic Acid,C4H7NO4,[M+H]+,1,134.0447837,1
+moi,L-Aspartic Acid,C4H7NO4,[M+Na]+,1,156.0267257,1
+moi,L-Aspartic Acid,C4H7NO4,[M+NH4]+,1,151.0713307,1
+moi,L-Aspartic Acid,C4H7NO4,[M-H]-,-1,132.0302317,-1
+moi,L-Aspartic Acid,C4H7NO4,[M-H]-,-1,132.0302317,-1
+moi,L-Aspartic Acid,C4H7NO4,[M+Na-2H]-,-1,154.0121737,-1
+moi,L-Asparagine,C4H8N2O3,[M+H]+,1,133.0607681,1
+moi,L-Asparagine,C4H8N2O3,[M+Na]+,1,155.0427101,1
+moi,L-Asparagine,C4H8N2O3,[M+NH4]+,1,150.0873151,1
+moi,L-Asparagine,C4H8N2O3,[M-H]-,-1,131.0462161,-1
+moi,L-Asparagine,C4H8N2O3,[M+Na-2H]-,-1,153.0281581,-1
+moi,L-Arginine,C6H14N4O2,[M+H]+,1,175.1189517,1
+moi,L-Arginine,C6H14N4O2,[M+H]+,1,175.1189517,1
+moi,L-Arginine,C6H14N4O2,[M+Na]+,1,197.1008937,1
+moi,L-Arginine,C6H14N4O2,[M+NH4]+,1,192.1454987,1
+moi,L-Arginine,C6H14N4O2,[M-H]-,-1,173.1043997,-1
+moi,L-Arginine,C6H14N4O2,[M-H]-,-1,173.1043997,-1
+moi,L-Arginine,C6H14N4O2,[M+Na-2H]-,-1,195.0863417,-1
+moi,L-Alanine,C3H7NO2,[M+H]+,1,90.05495447,1
+moi,L-Alanine,C3H7NO2,[M+Na]+,1,112.0368965,1
+moi,L-Alanine,C3H7NO2,[M+NH4]+,1,107.0815015,1
+moi,L-Alanine,C3H7NO2,[M-H]-,-1,88.04040247,-1
+moi,L-Alanine,C3H7NO2,[M+Na-2H]-,-1,110.0223445,-1
+moi,Isocitrate,C6H8O7,[M+H]+,1,193.0342786,1
+moi,Isocitrate,C6H8O7,[M+Na]+,1,215.0162206,1
+moi,Isocitrate,C6H8O7,[M+NH4]+,1,210.0608256,1
+moi,Isocitrate,C6H8O7,[M-H]-,-1,191.0197266,-1
+moi,Isocitrate,C6H8O7,[M+Na-2H]-,-1,213.0016686,-1
+moi,Glyoxylate,C2H2O3,[M+H]+,1,75.00766992,1
+moi,Glyoxylate,C2H2O3,[M+Na]+,1,96.98961192,1
+moi,Glyoxylate,C2H2O3,[M+NH4]+,1,92.03421692,1
+moi,Glyoxylate,C2H2O3,[M-H]-,-1,72.99311792,-1
+moi,Glyoxylate,C2H2O3,[M+Na-2H]-,-1,94.97505992,-1
+moi,Glycerol 3-Phosphate,C3H9O6P,[M+H]+,1,173.020951,1
+moi,Glycerol 3-Phosphate,C3H9O6P,[M+Na]+,1,195.002893,1
+moi,Glycerol 3-Phosphate,C3H9O6P,[M+NH4]+,1,190.047498,1
+moi,Glycerol 3-Phosphate,C3H9O6P,[M-H]-,-1,171.006399,-1
+moi,Glycerol 3-Phosphate,C3H9O6P,[M+Na-2H]-,-1,192.988341,-1
+moi,Glycerol,C3H8O3,[M+H]+,1,93.05462012,1
+moi,Glycerol,C3H8O3,[M+Na]+,1,115.0365621,1
+moi,Glycerol,C3H8O3,[M+NH4]+,1,110.0811671,1
+moi,Glycerol,C3H8O3,[M-H]-,-1,91.04006812,-1
+moi,Glycerol,C3H8O3,[M+Na-2H]-,-1,113.0220101,-1
+moi,Glyceraldehyde 3-Phosphate,C3H7O6P,[M+H]+,1,171.0053009,1
+moi,Glyceraldehyde 3-Phosphate,C3H7O6P,[M+Na]+,1,192.9872429,1
+moi,Glyceraldehyde 3-Phosphate,C3H7O6P,[M+NH4]+,1,188.0318479,1
+moi,Glyceraldehyde 3-Phosphate,C3H7O6P,[M-H]-,-1,168.9907489,-1
+moi,Glyceraldehyde 3-Phosphate,C3H7O6P,[M+Na-2H]-,-1,190.9726909,-1
+moi,Glutathione,C10H17N3O6S,[M+H]+,1,308.0910825,1
+moi,Glutathione,C10H17N3O6S,[M+Na]+,1,330.0730245,1
+moi,Glutathione,C10H17N3O6S,[M+NH4]+,1,325.1176295,1
+moi,Glutathione,C10H17N3O6S,[M-H]-,-1,306.0765305,-1
+moi,Glutathione,C10H17N3O6S,[M+Na-2H]-,-1,328.0584725,-1
+moi,Glucose-6-Phosphate,C6H13O9P,[M+H]+,1,261.036995,1
+moi,Glucose-6-Phosphate,C6H13O9P,[M+Na]+,1,283.018937,1
+moi,Glucose-6-Phosphate,C6H13O9P,[M+NH4]+,1,278.063542,1
+moi,Glucose-6-Phosphate,C6H13O9P,[M-H]-,-1,259.022443,-1
+moi,Glucose-6-Phosphate,C6H13O9P,[M+Na-2H]-,-1,281.004385,-1
+moi,Glucose,C6H12O6,[M+H]+,1,181.0706641,1
+moi,Glucose,C6H12O6,[M+Na]+,1,203.0526061,1
+moi,Glucose,C6H12O6,[M+NH4]+,1,198.0972111,1
+moi,Glucose,C6H12O6,[M-H]-,-1,179.0561121,-1
+moi,Glucose,C6H12O6,[M+Na-2H]-,-1,201.0380541,-1
+moi,Fumarate,C4H4O4,[M+H]+,1,117.0182346,1
+moi,Fumarate,C4H4O4,[M+Na]+,1,139.0001766,1
+moi,Fumarate,C4H4O4,[M+NH4]+,1,134.0447816,1
+moi,Fumarate,C4H4O4,[M-H]-,-1,115.0036826,-1
+moi,Fumarate,C4H4O4,[M+Na-2H]-,-1,136.9856246,-1
+moi,Fructose-6-Phosphate,C6H13O9P,[M+H]+,1,261.036995,1
+moi,Fructose-6-Phosphate,C6H13O9P,[M+Na]+,1,283.018937,1
+moi,Fructose-6-Phosphate,C6H13O9P,[M+NH4]+,1,278.063542,1
+moi,Fructose-6-Phosphate,C6H13O9P,[M-H]-,-1,259.022443,-1
+moi,Fructose-6-Phosphate,C6H13O9P,[M+Na-2H]-,-1,281.004385,-1
+moi,Dihydroxyacetone Phosphate,C3H7O6P,[M+H]+,1,171.0053009,1
+moi,Dihydroxyacetone Phosphate,C3H7O6P,[M+Na]+,1,192.9872429,1
+moi,Dihydroxyacetone Phosphate,C3H7O6P,[M+NH4]+,1,188.0318479,1
+moi,Dihydroxyacetone Phosphate,C3H7O6P,[M-H]-,-1,168.9907489,-1
+moi,Dihydroxyacetone Phosphate,C3H7O6P,[M+Na-2H]-,-1,190.9726909,-1
+moi,Dihydrosphingosine,C18H39NO2,[M+H]+,1,302.3053555,1
+moi,Dihydrosphingosine,C18H39NO2,[M+Na]+,1,324.2872975,1
+moi,Dihydrosphingosine,C18H39NO2,[M+NH4]+,1,319.3319025,1
+moi,Dihydrosphingosine,C18H39NO2,[M-H]-,-1,300.2908035,-1
+moi,Dihydrosphingosine,C18H39NO2,[M+Na-2H]-,-1,322.2727455,-1
+moi,Citrate,C6H8O7,[M+H]+,1,193.0342786,1
+moi,Citrate,C6H8O7,[M+Na]+,1,215.0162206,1
+moi,Citrate,C6H8O7,[M+NH4]+,1,210.0608256,1
+moi,Citrate,C6H8O7,[M-H]-,-1,191.0197266,-1
+moi,Citrate,C6H8O7,[M+Na-2H]-,-1,213.0016686,-1
+moi,cis-Aconitate,C6H6O6,[M+H]+,1,175.0237139,1
+moi,cis-Aconitate,C6H6O6,[M+Na]+,1,197.0056559,1
+moi,cis-Aconitate,C6H6O6,[M+NH4]+,1,192.0502609,1
+moi,cis-Aconitate,C6H6O6,[M-H]-,-1,173.0091619,-1
+moi,cis-Aconitate,C6H6O6,[M+Na-2H]-,-1,194.9911039,-1
+moi,ATP,C10H16N5O13P3,[M+H]+,1,508.0030226,1
+moi,ATP,C10H16N5O13P3,[M+Na]+,1,529.9849646,1
+moi,ATP,C10H16N5O13P3,[M+NH4]+,1,525.0295696,1
+moi,ATP,C10H16N5O13P3,[M-H]-,-1,505.9884706,-1
+moi,ATP,C10H16N5O13P3,[M+Na-2H]-,-1,527.9704126,-1
+moi,alpha-Ketoglutarate,C5H6O5,[M+H]+,1,147.0287993,1
+moi,alpha-Ketoglutarate,C5H6O5,[M+Na]+,1,169.0107413,1
+moi,alpha-Ketoglutarate,C5H6O5,[M+NH4]+,1,164.0553463,1
+moi,alpha-Ketoglutarate,C5H6O5,[M-H]-,-1,145.0142473,-1
+moi,alpha-Ketoglutarate,C5H6O5,[M+Na-2H]-,-1,166.9961893,-1
+moi,ADP,C10H15N5O10P2,[M+H]+,1,428.0366917,1
+moi,ADP,C10H15N5O10P2,[M+Na]+,1,450.0186337,1
+moi,ADP,C10H15N5O10P2,[M+NH4]+,1,445.0632387,1
+moi,ADP,C10H15N5O10P2,[M-H]-,-1,426.0221397,-1
+moi,ADP,C10H15N5O10P2,[M+Na-2H]-,-1,448.0040817,-1
+moi,Acetyl CoA,C23H38N7O17P3S,[M+H]+,1,810.133051,1
+moi,Acetyl CoA,C23H38N7O17P3S,[M+Na]+,1,832.114993,1
+moi,Acetyl CoA,C23H38N7O17P3S,[M+NH4]+,1,827.159598,1
+moi,Acetyl CoA,C23H38N7O17P3S,[M-H]-,-1,808.118499,-1
+moi,Acetyl CoA,C23H38N7O17P3S,[M+Na-2H]-,-1,830.100441,-1
+moi,3-Phosphoglycerate,C3H7O7P,[M+H]+,1,187.0002156,1
+moi,3-Phosphoglycerate,C3H7O7P,[M+Na]+,1,208.9821576,1
+moi,3-Phosphoglycerate,C3H7O7P,[M+NH4]+,1,204.0267626,1
+moi,3-Phosphoglycerate,C3H7O7P,[M-H]-,-1,184.9856636,-1
+moi,3-Phosphoglycerate,C3H7O7P,[M+Na-2H]-,-1,206.9676056,-1
+moi,2-Phosphoglycerate,C3H7O7P,[M+H]+,1,187.0002156,1
+moi,2-Phosphoglycerate,C3H7O7P,[M+Na]+,1,208.9821576,1
+moi,2-Phosphoglycerate,C3H7O7P,[M+NH4]+,1,204.0267626,1
+moi,2-Phosphoglycerate,C3H7O7P,[M-H]-,-1,184.9856636,-1
+moi,2-Phosphoglycerate,C3H7O7P,[M+Na-2H]-,-1,206.9676056,-1
+moi,"1,3-Bisphosphoglycerate",C3H8O10P2,[M+H]+,1,266.9665465,1
+moi,"1,3-Bisphosphoglycerate",C3H8O10P2,[M+Na]+,1,288.9484885,1
+moi,"1,3-Bisphosphoglycerate",C3H8O10P2,[M+NH4]+,1,283.9930935,1
+moi,"1,3-Bisphosphoglycerate",C3H8O10P2,[M-H]-,-1,264.9519945,-1
+moi,"1,3-Bisphosphoglycerate",C3H8O10P2,[M+Na-2H]-,-1,286.9339365,-1
