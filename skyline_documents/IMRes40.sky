@@ -22,11 +22,11 @@
         <measured_ion name="N-terminal to Proline" cut="P" sense="N" min_length="3" />
       </transition_filter>
       <ion_mobility_filtering window_width_calc_type="resolving_power" resolving_power="40">
-        <ion_mobility_library name="moiAggregated" database_path="D:\gkreder\moiAggregated.imsdb" />
+        <ion_mobility_library name="moiAggregated" database_path="D:\gkreder\RapidSky\skyline_documents\moiAggregated.imsdb" />
       </ion_mobility_filtering>
       <transition_libraries ion_match_tolerance="0.5" min_ion_count="0" ion_count="3" pick_from="all" />
       <transition_integration integrate_all="true" />
-      <transition_instrument min_mz="50" max_mz="1500" mz_match_tolerance="0.05" />
+      <transition_instrument min_mz="10" max_mz="1700" mz_match_tolerance="0.05" />
       <transition_full_scan precursor_isotopes="Count" precursor_isotope_filter="1" precursor_mass_analyzer="tof" precursor_res="30000">
         <isotope_enrichments name="Default">
           <atom_percent_enrichment symbol="H'">0.98</atom_percent_enrichment>

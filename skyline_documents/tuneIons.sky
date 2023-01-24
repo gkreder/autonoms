@@ -1,0 +1,120 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<srm_settings format_version="22.2" software_version="Skyline (64-bit) 22.2.0.351 (28f9b9301)">
+  <settings_summary name="Default">
+    <peptide_settings>
+      <enzyme name="Trypsin" cut="KR" no_cut="P" sense="C" />
+      <digest_settings max_missed_cleavages="0" />
+      <peptide_prediction use_measured_rts="false" measured_rt_window="2" />
+      <peptide_filter start="25" min_length="8" max_length="25" auto_select="true">
+        <peptide_exclusions />
+      </peptide_filter>
+      <peptide_libraries pick="library" />
+      <peptide_modifications max_variable_mods="3" max_neutral_losses="1" internal_standard="none">
+        <static_modifications>
+          <static_modification name="Carbamidomethyl (C)" aminoacid="C" formula="H3C2NO" unimod_id="4" short_name="CAM" />
+        </static_modifications>
+        <heavy_modifications />
+      </peptide_modifications>
+    </peptide_settings>
+    <transition_settings>
+      <transition_prediction precursor_mass_type="Monoisotopic" fragment_mass_type="Monoisotopic" optimize_by="None" />
+      <transition_filter precursor_charges="2" product_charges="1" precursor_adducts="[M+H]" product_adducts="[M+]" fragment_types="y,p" small_molecule_fragment_types="f,p" fragment_range_first="m/z &gt; precursor" fragment_range_last="3 ions" precursor_mz_window="0" auto_select="true">
+        <measured_ion name="N-terminal to Proline" cut="P" sense="N" min_length="3" />
+      </transition_filter>
+      <ion_mobility_filtering>
+        <ion_mobility_library name="moiAggregated" database_path="D:\gkreder\RapidSky\skyline_documents\moiAggregated.imsdb" />
+      </ion_mobility_filtering>
+      <transition_libraries ion_match_tolerance="0.5" min_ion_count="0" ion_count="3" pick_from="all" />
+      <transition_integration integrate_all="true" />
+      <transition_instrument min_mz="50" max_mz="1700" mz_match_tolerance="0.05" />
+      <transition_full_scan precursor_isotopes="Count" precursor_isotope_filter="1" precursor_mass_analyzer="tof" precursor_res="30000">
+        <isotope_enrichments name="Default">
+          <atom_percent_enrichment symbol="H'">0.98</atom_percent_enrichment>
+          <atom_percent_enrichment symbol="C'">0.995</atom_percent_enrichment>
+          <atom_percent_enrichment symbol="N'">0.995</atom_percent_enrichment>
+          <atom_percent_enrichment symbol="O&quot;">0.99</atom_percent_enrichment>
+          <atom_percent_enrichment symbol="O'">0.99</atom_percent_enrichment>
+          <atom_percent_enrichment symbol="Cl'">0.99</atom_percent_enrichment>
+          <atom_percent_enrichment symbol="Br'">0.99</atom_percent_enrichment>
+        </isotope_enrichments>
+      </transition_full_scan>
+    </transition_settings>
+    <data_settings document_guid="8023420d-b183-4253-bbe7-e68ca19be738" audit_logging="true" />
+  </settings_summary>
+  <peptide_list label_name="tuneIons_pos" label_description="" websearch_status="X">
+    <molecule neutral_mass_average="621.02168399999994" neutral_mass_monoisotopic="621.02168399999994" custom_ion_name="622.02896">
+      <precursor charge="1" precursor_mz="622.02896" collision_energy="0" ion_formula="[M+H]" neutral_mass_average="621.02168399999994" neutral_mass_monoisotopic="621.02168399999994" custom_ion_name="622.02896">
+        <transition fragment_type="precursor" ion_formula="[M+H]" neutral_mass_average="621.02168399999994" neutral_mass_monoisotopic="621.02168399999994" custom_ion_name="622.02896">
+          <precursor_mz>622.02896</precursor_mz>
+          <product_mz>622.02896</product_mz>
+          <collision_energy>0</collision_energy>
+        </transition>
+      </precursor>
+    </molecule>
+    <molecule neutral_mass_average="921.002522" neutral_mass_monoisotopic="921.002522" custom_ion_name="922.009798">
+      <precursor charge="1" precursor_mz="922.009798" collision_energy="0" ion_formula="[M+H]" neutral_mass_average="921.002522" neutral_mass_monoisotopic="921.002522" custom_ion_name="922.009798">
+        <transition fragment_type="precursor" ion_formula="[M+H]" neutral_mass_average="921.002522" neutral_mass_monoisotopic="921.002522" custom_ion_name="922.009798">
+          <precursor_mz>922.009798</precursor_mz>
+          <product_mz>922.009798</product_mz>
+          <collision_energy>0</collision_energy>
+        </transition>
+      </precursor>
+    </molecule>
+    <molecule neutral_mass_average="1220.983361" neutral_mass_monoisotopic="1220.983361" custom_ion_name="1221.990637">
+      <precursor charge="1" precursor_mz="1221.990637" collision_energy="0" ion_formula="[M+H]" neutral_mass_average="1220.983361" neutral_mass_monoisotopic="1220.983361" custom_ion_name="1221.990637">
+        <transition fragment_type="precursor" ion_formula="[M+H]" neutral_mass_average="1220.983361" neutral_mass_monoisotopic="1220.983361" custom_ion_name="1221.990637">
+          <precursor_mz>1221.990637</precursor_mz>
+          <product_mz>1221.990637</product_mz>
+          <collision_energy>0</collision_energy>
+        </transition>
+      </precursor>
+    </molecule>
+    <molecule neutral_mass_average="1520.964199" neutral_mass_monoisotopic="1520.964199" custom_ion_name="1521.971475">
+      <precursor charge="1" precursor_mz="1521.971475" collision_energy="0" ion_formula="[M+H]" neutral_mass_average="1520.964199" neutral_mass_monoisotopic="1520.964199" custom_ion_name="1521.971475">
+        <transition fragment_type="precursor" ion_formula="[M+H]" neutral_mass_average="1520.964199" neutral_mass_monoisotopic="1520.964199" custom_ion_name="1521.971475">
+          <precursor_mz>1521.971475</precursor_mz>
+          <product_mz>1521.971475</product_mz>
+          <collision_energy>0</collision_energy>
+        </transition>
+      </precursor>
+    </molecule>
+  </peptide_list>
+  <peptide_list label_name="tuneIons_neg" label_description="" websearch_status="X">
+    <molecule neutral_mass_average="602.986253" neutral_mass_monoisotopic="602.986253" custom_ion_name="601.978977">
+      <precursor charge="-1" precursor_mz="601.978977" collision_energy="0" ion_formula="[M-H]" neutral_mass_average="602.986253" neutral_mass_monoisotopic="602.986253" custom_ion_name="601.978977">
+        <transition fragment_type="precursor" ion_formula="[M-H]" neutral_mass_average="602.986253" neutral_mass_monoisotopic="602.986253" custom_ion_name="601.978977">
+          <precursor_mz>601.978977</precursor_mz>
+          <product_mz>601.978977</product_mz>
+          <collision_energy>0</collision_energy>
+        </transition>
+      </precursor>
+    </molecule>
+    <molecule neutral_mass_average="1034.995385" neutral_mass_monoisotopic="1034.995385" custom_ion_name="1033.988109">
+      <precursor charge="-1" precursor_mz="1033.988109" collision_energy="0" ion_formula="[M-H]" neutral_mass_average="1034.995385" neutral_mass_monoisotopic="1034.995385" custom_ion_name="1033.988109">
+        <transition fragment_type="precursor" ion_formula="[M-H]" neutral_mass_average="1034.995385" neutral_mass_monoisotopic="1034.995385" custom_ion_name="1033.988109">
+          <precursor_mz>1033.988109</precursor_mz>
+          <product_mz>1033.988109</product_mz>
+          <collision_energy>0</collision_energy>
+        </transition>
+      </precursor>
+    </molecule>
+    <molecule neutral_mass_average="1334.9762230000001" neutral_mass_monoisotopic="1334.9762230000001" custom_ion_name="1333.968947">
+      <precursor charge="-1" precursor_mz="1333.968947" collision_energy="0" ion_formula="[M-H]" neutral_mass_average="1334.9762230000001" neutral_mass_monoisotopic="1334.9762230000001" custom_ion_name="1333.968947">
+        <transition fragment_type="precursor" ion_formula="[M-H]" neutral_mass_average="1334.9762230000001" neutral_mass_monoisotopic="1334.9762230000001" custom_ion_name="1333.968947">
+          <precursor_mz>1333.968947</precursor_mz>
+          <product_mz>1333.968947</product_mz>
+          <collision_energy>0</collision_energy>
+        </transition>
+      </precursor>
+    </molecule>
+    <molecule neutral_mass_average="1634.957062" neutral_mass_monoisotopic="1634.957062" custom_ion_name="1633.949786">
+      <precursor charge="-1" precursor_mz="1633.949786" collision_energy="0" ion_formula="[M-H]" neutral_mass_average="1634.957062" neutral_mass_monoisotopic="1634.957062" custom_ion_name="1633.949786">
+        <transition fragment_type="precursor" ion_formula="[M-H]" neutral_mass_average="1634.957062" neutral_mass_monoisotopic="1634.957062" custom_ion_name="1633.949786">
+          <precursor_mz>1633.949786</precursor_mz>
+          <product_mz>1633.949786</product_mz>
+          <collision_energy>0</collision_energy>
+        </transition>
+      </precursor>
+    </molecule>
+  </peptide_list>
+</srm_settings>
