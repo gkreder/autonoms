@@ -16,6 +16,12 @@ Unix
 ``` bash
 docker run -it --rm -e WINEDEBUG=-all -v /dataLocation:/data chambm/pwiz-skyline-i-agree-to-the-vendor-licenses wine SkylineCmd --in=RapidSky/skyline_documents/IMRes40.sky --import-transition-list=RapidSky/transition_lists/moi_aggregated_transitionList.csv --import-all-files=/data/d_files_directory/ --report-conflict-resolution=overwrite --report-add=RapidSky/MoleculeReportCustom.skyr --report-name=MetaboliteReportCustom --report-format=tsv --report-file=<outputReport.tsv> --out=<outputSkylineDoc.sky>
 ```
+Unix - Same as above, but with working example filepaths. `.d` files in `sample_d_files` directory in top-level `RapidSky` dir. Output files will be saved in top-level `RapidSky` dir. (Note path to `RapidSky` repo)
+
+```bash
+docker run -it --rm -e WINEDEBUG=-all -v /home/filip/RapidSky:/data chambm/pwiz-skyline-i-agree-to-the-vendor-licenses wine SkylineCmd --in=skyline_documents/IMRes40.sky --import-transition-list=transition_lists/moi_aggregated_transitionList.csv --import-all-files=/data/sample_d_files/ --report-conflict-resolution=overwrite --report-add=report_templates/MoleculeReportCustom.skyr --report-name=MetaboliteReportCustom --report-format=tsv --report-file=outputReport.tsv --out=outputSkylineDoc.sky
+```
+
 
 Windows (deprecated for now)
 ``` bash
