@@ -128,9 +128,10 @@ RUN xvfb-run winetricks -q vcrun2008 dotnet48 \
 
   ADD splitter /home/xclient/.wine/drive_c/splitter
 
-  ADD pwiz/pwiz /home/xclient/.wine/drive_c/pwiz
+  # ADD pwiz/pwiz /home/xclient/.wine/drive_c/pwiz
 
-  ENV WINEPATH "C:\pwiz"
+  # ENV WINEPATH "C:\pwiz"
+  ENV WINEPATH "C:\splitter"
 
   # Set up working directory and permissions to let user xclient save data
   USER root
