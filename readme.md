@@ -27,3 +27,10 @@ Windows (deprecated for now)
 ``` bash
 C:\Users\admin\Desktop\SkylineCmd.exe.lnk --in=D:\gkreder\RapidSky\skyline_documents\IMRes40.sky --import-transition-list=D:\gkreder\RapidSky\transition_lists\moi_aggregated_transitionList.csv --import-all-files=D:\Projects\Default\Data\RapidFire\2023\January\18\004\testSkylineCmd\sample_d_files/   --report-conflict-resolution=overwrite --report-format=tsv --report-add=D:\gkreder\RapidSky\report_templates\MoleculeReportCustom.skyr --report-name=MetaboliteReportCustom --report-file=D:\Projects\Default\Data\RapidFire\2023\January\18\004\testSkylineCmd\testOutWindows.tsv --out=D:\Projects\Default\Data\RapidFire\2023\January\18\004\testSkylineCmd\testOut.sky
 ```
+
+# Nextflow
+Make sure Nextflow is installed, below it is assumed it is executable as `nextflow` from the this directory. It is also assumed a conda environment called `deimos` with the `CCSCal` dependencies is available in `$HOME/miniconda3/envs/deimos`, and the `.d` files are located in a directory called `sample_d_files` in this directory (add instructions on how to pass conda env and `.d` location as parameter). Run pipeline as
+
+``` bash
+nextflow ms-pipeline.nf
+```
