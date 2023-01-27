@@ -53,3 +53,4 @@ for s in sampleInfoD:
     if outSuf != None:
         print(f"{outSuf}.d", startTime_adjusted, endTime_adjusted)
 
+#### REMEMBER - when you actually call the file splitter, remove any existing output .d files that already exist
