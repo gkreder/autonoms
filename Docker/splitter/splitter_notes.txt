@@ -1,0 +1,8 @@
+MHFileSplitter.exe M:\Projects\Default\Data\Rapidfire\2023\January\25\009\testFileSplitter\sequence1.d M:\Projects\Default\Data\Rapidfire\2023\January\25\009\testFileSplitter\out3.d 10 13 0 0 "test.log"
+
+
+second 0 flag sets no mass hunter delay. 1 sets for delay. -1 does nothing. 
+
+
+
+wine /home/xclient/.wine/drive_c/splitter/MHFileSplitter.exe /home/gkreder/convex-landing/sample_d_files/sequence1.d /home/gkreder/convex-landing/sample_d_files/out.d 2 10 0 0 /home/gkreder/convex-landing/test.log
