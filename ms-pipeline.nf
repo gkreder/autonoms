@@ -3,7 +3,6 @@ nextflow.enable.dsl=2
 params.dfiles_dir = "$baseDir/sample_d_files/"
 params.dfiles = params.dfiles_dir + "*.d"
 params.conda = "$HOME/miniconda3/envs/deimos"
-params.mzfile = "/home/filip/RapidSky/sample_d_files/s1.mzml"
 
 workflow {
   Channel.fromPath(params.dfiles, type: 'dir') | convertCalibrate | collect | run_processing | view{it}
