@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 ####################################################################################
 import sys
 import os
@@ -47,10 +48,15 @@ def getSampleInfo(s):
     return(outSuf, startTime_adjusted, endTime_adjusted)
     print(f"{outSuf}.d", startTime_adjusted, endTime_adjusted)
 
-
+list_output = []
 for s in sampleInfoD:
     outSuf, startTime_adjusted, endTime_adjusted = getSampleInfo(s)
     if outSuf != None:
-        print(f"{outSuf}.d", startTime_adjusted, endTime_adjusted)
+        # print(f'["{args.dFile}", "{outSuf}.d", {startTime_adjusted}, {endTime_adjusted}]')
+        print(f'{args.dFile} {outSuf}.d {startTime_adjusted} {endTime_adjusted}')
+        # print([args.dFile, f"{outSuf}.d", startTime_adjusted, endTime_adjusted])
+        list_output.append([args.dFile, f"{outSuf}.d", startTime_adjusted, endTime_adjusted])
+
+# print(list_output)
 
 #### REMEMBER - when you actually call the file splitter, remove any existing output .d files that already exist
