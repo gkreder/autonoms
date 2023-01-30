@@ -1,0 +1,1761 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<audit_log_root format_version="22.2">
+  <document_hash>pvRtm7x8YDa3vk5LkPFbmb2aPdo=</document_hash>
+  <root_hash>syMYT9uOTA4nhQ1CizGBSe0QVAg=</root_hash>
+  <audit_log>
+    <audit_log_entry skyline_version="22.2.0.351-28f9b9301 (64-Bit)" time_stamp="2023-01-23T11:48:46+01:00" user="DESKTOP-QGFMQJM\admin" mode="m">
+      <undo_redo>
+        <type>changed</type>
+        <name>{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_IonMobilityFiltering}</name>
+        <en_expanded>Transition Settings -- Ion mobility changed</en_expanded>
+      </undo_redo>
+      <summary>
+        <type>changed</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_IonMobilityFiltering}</name>
+        <en_expanded>Settings &gt; Transition Settings -- Ion mobility changed</en_expanded>
+      </summary>
+      <all_info>
+        <type>changed_from_to</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_IonMobilityFiltering}{2:PropertySeparator}{0:IonMobilityWindowWidthCalculator_WindowWidthMode}</name>
+        <name>"{6:IonMobilityWindowWidthType_resolving_power}"</name>
+        <name>"{6:IonMobilityWindowWidthType_none}"</name>
+        <en_expanded>Settings &gt; Transition Settings -- Ion mobility &gt; Ion mobility filter window width calculation type changed from "Resolving power" to "None"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>changed_from_to</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_IonMobilityFiltering}{2:PropertySeparator}{0:IonMobilityWindowWidthCalculator_ResolvingPower}</name>
+        <name>{3:40}</name>
+        <name>{3:0}</name>
+        <en_expanded>Settings &gt; Transition Settings -- Ion mobility &gt; Resolving power changed from "40" to "0"</en_expanded>
+      </all_info>
+      <hash>QMCdTS8d+bYAyHGeWBvySkPpt8E=</hash>
+    </audit_log_entry>
+    <audit_log_entry skyline_version="22.2.0.351-28f9b9301 (64-Bit)" time_stamp="2023-01-23T11:48:03+01:00" user="DESKTOP-QGFMQJM\admin" mode="m">
+      <extra_info>8 transitions added</extra_info>
+      <undo_redo>
+        <type>imported_transition_list_from_file</type>
+        <name>{4:D:\gkreder\RapidSky\transition_lists\agilentTuneHighMass_transitionList.csv}</name>
+        <en_expanded>Imported a transition list from "agilentTuneHighMass_transitionList.csv"</en_expanded>
+      </undo_redo>
+      <summary>
+        <type>imported_transition_list_from_file</type>
+        <name>{4:D:\gkreder\RapidSky\transition_lists\agilentTuneHighMass_transitionList.csv}</name>
+        <en_expanded>Imported a transition list from "agilentTuneHighMass_transitionList.csv"</en_expanded>
+      </summary>
+      <hash>GXbnTI9rJ9yQj5oc+oOsMh6hxTM=</hash>
+    </audit_log_entry>
+    <audit_log_entry skyline_version="22.2.0.351-28f9b9301 (64-Bit)" time_stamp="2023-01-23T11:47:58+01:00" user="DESKTOP-QGFMQJM\admin" mode="m">
+      <undo_redo>
+        <type>deleted_targets</type>
+        <name>3</name>
+        <en_expanded>Deleted 3 targets</en_expanded>
+      </undo_redo>
+      <summary>
+        <type>deleted_targets</type>
+        <name>3</name>
+        <en_expanded>Deleted 3 targets</en_expanded>
+      </summary>
+      <all_info>
+        <type>removed_all</type>
+        <name>{0:Targets}</name>
+        <en_expanded>Targets: removed all</en_expanded>
+      </all_info>
+      <hash>NKFh/JD6KzouM9jf/FDVTem3+V0=</hash>
+    </audit_log_entry>
+    <audit_log_entry skyline_version="22.2.0.351-28f9b9301 (64-Bit)" time_stamp="2023-01-23T11:47:45+01:00" user="DESKTOP-QGFMQJM\admin" mode="m">
+      <extra_info>8 transitions added</extra_info>
+      <undo_redo>
+        <type>imported_transition_list_from_file</type>
+        <name>{4:D:\gkreder\RapidSky\transition_lists\agilentTuneHighMass_transitionList.csv}</name>
+        <en_expanded>Imported a transition list from "agilentTuneHighMass_transitionList.csv"</en_expanded>
+      </undo_redo>
+      <summary>
+        <type>imported_transition_list_from_file</type>
+        <name>{4:D:\gkreder\RapidSky\transition_lists\agilentTuneHighMass_transitionList.csv}</name>
+        <en_expanded>Imported a transition list from "agilentTuneHighMass_transitionList.csv"</en_expanded>
+      </summary>
+      <hash>tanEnJGKfi6VP1ck5c1sr7dgsbk=</hash>
+    </audit_log_entry>
+    <audit_log_entry skyline_version="22.2.0.351-28f9b9301 (64-Bit)" time_stamp="2023-01-23T10:55:06+01:00" user="DESKTOP-QGFMQJM\admin" mode="m">
+      <undo_redo>
+        <type>changed</type>
+        <name>{0:SrmSettings_TransitionSettings}</name>
+        <en_expanded>Transition Settings changed</en_expanded>
+      </undo_redo>
+      <summary>
+        <type>changed</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}</name>
+        <en_expanded>Settings &gt; Transition Settings changed</en_expanded>
+      </summary>
+      <all_info>
+        <type>changed_from_to</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_Instrument}{2:PropertySeparator}{0:TransitionInstrument_MaxMz}</name>
+        <name>{3:1500}</name>
+        <name>{3:1700}</name>
+        <en_expanded>Settings &gt; Transition Settings -- Instrument &gt; Max m/z changed from "1500" to "1700"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>changed_from_to</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_IonMobilityFiltering}{2:PropertySeparator}{0:TransitionIonMobilityFiltering_IonMobilityLibrary}{2:PropertySeparator}{0:IonMobilityLibrary_FilePathAuditLog}</name>
+        <name>"{4:D:\gkreder\moiAggregated.imsdb}"</name>
+        <name>"{4:D:\gkreder\RapidSky\skyline_documents\moiAggregated.imsdb}"</name>
+        <en_expanded>Settings &gt; Transition Settings -- Ion mobility &gt; Ion mobility library &gt; File path changed from "D:\gkreder\moiAggregated.imsdb" to "D:\gkreder\RapidSky\skyline_documents\moiAggregated.imsdb"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>changed_from_to</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_IonMobilityFiltering}{2:PropertySeparator}{0:TransitionIonMobilityFiltering_IonMobilityLibrary}{2:PropertySeparator}{0:IonMobilityLibrary_Status}{2:PropertySeparator}{0:IonMobilityLibraryChange_Added}</name>
+        <name>{3:0}</name>
+        <name>{3:280}</name>
+        <en_expanded>Settings &gt; Transition Settings -- Ion mobility &gt; Ion mobility library &gt; Contents changed &gt; Items added changed from "0" to "280"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>changed_from_to</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_IonMobilityFiltering}{2:PropertySeparator}{0:TransitionIonMobilityFiltering_IonMobilityLibrary}{2:PropertySeparator}{0:IonMobilityLibrary_Status}{2:PropertySeparator}{0:IonMobilityLibraryChange_LSID}</name>
+        <name>""</name>
+        <name>"urn:lsid:proteome.gs.washington.edu:ion_mobility_library:skyline:moiAggregated:6658ba50-a178-4443-b0f6-835b3032befc:1.1"</name>
+        <en_expanded>Settings &gt; Transition Settings -- Ion mobility &gt; Ion mobility library &gt; Contents changed &gt; LSID changed from "" to "urn:lsid:proteome.gs.washington.edu:ion_mobility_library:skyline:moiAggregated:6658ba50-a178-4443-b0f6-835b3032befc:1.1"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>changed_from_to</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_IonMobilityFiltering}{2:PropertySeparator}{0:TransitionIonMobilityFiltering_IonMobilityLibrary}{2:PropertySeparator}{0:IonMobilityLibrary_Status}{2:PropertySeparator}{0:IonMobilityLibraryChange_CreationTime}</name>
+        <name>{2:Missing}</name>
+        <name>"2023-01-20T12:01:45+01:00"</name>
+        <en_expanded>Settings &gt; Transition Settings -- Ion mobility &gt; Ion mobility library &gt; Contents changed &gt; Timestamp changed from Missing to "2023-01-20T12:01:45+01:00"</en_expanded>
+      </all_info>
+      <hash>/tEYcJQZtyEKu1oqBd7usBPV528=</hash>
+    </audit_log_entry>
+    <audit_log_entry skyline_version="22.2.0.351-28f9b9301 (64-Bit)" time_stamp="2023-01-20T11:34:46+01:00" user="DESKTOP-QGFMQJM\admin" mode="m">
+      <undo_redo>
+        <type>changed</type>
+        <name>{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_IonMobilityFiltering}</name>
+        <en_expanded>Transition Settings -- Ion mobility changed</en_expanded>
+      </undo_redo>
+      <summary>
+        <type>changed</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_IonMobilityFiltering}</name>
+        <en_expanded>Settings &gt; Transition Settings -- Ion mobility changed</en_expanded>
+      </summary>
+      <all_info>
+        <type>changed_from_to</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_IonMobilityFiltering}{2:PropertySeparator}{0:IonMobilityWindowWidthCalculator_WindowWidthMode}</name>
+        <name>"{6:IonMobilityWindowWidthType_fixed_width}"</name>
+        <name>"{6:IonMobilityWindowWidthType_resolving_power}"</name>
+        <en_expanded>Settings &gt; Transition Settings -- Ion mobility &gt; Ion mobility filter window width calculation type changed from "Fixed width" to "Resolving power"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>changed_from_to</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_IonMobilityFiltering}{2:PropertySeparator}{0:IonMobilityWindowWidthCalculator_ResolvingPower}</name>
+        <name>{3:0}</name>
+        <name>{3:40}</name>
+        <en_expanded>Settings &gt; Transition Settings -- Ion mobility &gt; Resolving power changed from "0" to "40"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>changed_from_to</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_IonMobilityFiltering}{2:PropertySeparator}{0:IonMobilityWindowWidthCalculator_FixedWindowWidth}</name>
+        <name>{3:0.5}</name>
+        <name>{3:0}</name>
+        <en_expanded>Settings &gt; Transition Settings -- Ion mobility &gt; Ion mobility filter window fixed width value changed from "0.5" to "0"</en_expanded>
+      </all_info>
+      <hash>7OpDl52BE7mlTYmZm2vBLRjpHow=</hash>
+    </audit_log_entry>
+    <audit_log_entry skyline_version="22.2.0.351-28f9b9301 (64-Bit)" time_stamp="2023-01-20T11:33:29+01:00" user="DESKTOP-QGFMQJM\admin">
+      <undo_redo>
+        <type>managed_results</type>
+        <en_expanded>Managed results</en_expanded>
+      </undo_redo>
+      <summary>
+        <type>managed_results</type>
+        <en_expanded>Managed results</en_expanded>
+      </summary>
+      <all_info>
+        <type>removed_all_replicates</type>
+        <en_expanded>Removed all replicates</en_expanded>
+      </all_info>
+      <hash>AXxfIUcu3QUAESY+7jn62lLAfhc=</hash>
+    </audit_log_entry>
+    <audit_log_entry skyline_version="21.2.0.536-dbaf6ccd2 (64-Bit)" time_stamp="2023-01-18T16:54:59+01:00" user="DESKTOP-QGFMQJM\admin" mode="m">
+      <undo_redo>
+        <type>changed</type>
+        <name>{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_IonMobilityFiltering}</name>
+        <en_expanded>Transition Settings -- Ion mobility changed</en_expanded>
+      </undo_redo>
+      <summary>
+        <type>changed</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_IonMobilityFiltering}</name>
+        <en_expanded>Settings &gt; Transition Settings -- Ion mobility changed</en_expanded>
+      </summary>
+      <all_info>
+        <type>changed_from_to</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_IonMobilityFiltering}{2:PropertySeparator}{0:IonMobilityWindowWidthCalculator_WindowWidthMode}</name>
+        <name>"{6:IonMobilityWindowWidthType_resolving_power}"</name>
+        <name>"{6:IonMobilityWindowWidthType_fixed_width}"</name>
+        <en_expanded>Settings &gt; Transition Settings -- Ion mobility &gt; Ion mobility filter window width calculation type changed from "Resolving power" to "Fixed width"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>changed_from_to</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_IonMobilityFiltering}{2:PropertySeparator}{0:IonMobilityWindowWidthCalculator_ResolvingPower}</name>
+        <name>{3:30}</name>
+        <name>{3:0}</name>
+        <en_expanded>Settings &gt; Transition Settings -- Ion mobility &gt; Resolving power changed from "30" to "0"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>changed_from_to</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_IonMobilityFiltering}{2:PropertySeparator}{0:IonMobilityWindowWidthCalculator_FixedWindowWidth}</name>
+        <name>{3:0}</name>
+        <name>{3:0.5}</name>
+        <en_expanded>Settings &gt; Transition Settings -- Ion mobility &gt; Ion mobility filter window fixed width value changed from "0" to "0.5"</en_expanded>
+      </all_info>
+      <hash>2nHMT0F/rsF/WPJaU21RP9QiTro=</hash>
+    </audit_log_entry>
+    <audit_log_entry skyline_version="21.2.0.536-dbaf6ccd2 (64-Bit)" time_stamp="2023-01-18T16:53:10+01:00" user="DESKTOP-QGFMQJM\admin" mode="m">
+      <undo_redo>
+        <type>changed</type>
+        <name>{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_IonMobilityFiltering}</name>
+        <en_expanded>Transition Settings -- Ion mobility changed</en_expanded>
+      </undo_redo>
+      <summary>
+        <type>changed</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_IonMobilityFiltering}</name>
+        <en_expanded>Settings &gt; Transition Settings -- Ion mobility changed</en_expanded>
+      </summary>
+      <all_info>
+        <type>changed_from_to</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_IonMobilityFiltering}{2:PropertySeparator}{0:IonMobilityWindowWidthCalculator_WindowWidthMode}</name>
+        <name>"{6:IonMobilityWindowWidthType_fixed_width}"</name>
+        <name>"{6:IonMobilityWindowWidthType_resolving_power}"</name>
+        <en_expanded>Settings &gt; Transition Settings -- Ion mobility &gt; Ion mobility filter window width calculation type changed from "Fixed width" to "Resolving power"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>changed_from_to</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_IonMobilityFiltering}{2:PropertySeparator}{0:IonMobilityWindowWidthCalculator_ResolvingPower}</name>
+        <name>{3:0}</name>
+        <name>{3:30}</name>
+        <en_expanded>Settings &gt; Transition Settings -- Ion mobility &gt; Resolving power changed from "0" to "30"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>changed_from_to</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_IonMobilityFiltering}{2:PropertySeparator}{0:IonMobilityWindowWidthCalculator_FixedWindowWidth}</name>
+        <name>{3:5}</name>
+        <name>{3:0}</name>
+        <en_expanded>Settings &gt; Transition Settings -- Ion mobility &gt; Ion mobility filter window fixed width value changed from "5" to "0"</en_expanded>
+      </all_info>
+      <hash>a7ERzWYqk470XDQUkFptfGdh+2Q=</hash>
+    </audit_log_entry>
+    <audit_log_entry skyline_version="21.2.0.536-dbaf6ccd2 (64-Bit)" time_stamp="2023-01-18T16:52:30+01:00" user="DESKTOP-QGFMQJM\admin" mode="m">
+      <undo_redo>
+        <type>changed</type>
+        <name>{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_IonMobilityFiltering}{2:PropertySeparator}{0:TransitionIonMobilityFiltering_IonMobilityLibrary}{2:PropertySeparator}{0:IonMobilityLibrary_Status}</name>
+        <en_expanded>Transition Settings -- Ion mobility &gt; Ion mobility library &gt; Contents changed changed</en_expanded>
+      </undo_redo>
+      <summary>
+        <type>changed</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_IonMobilityFiltering}{2:PropertySeparator}{0:TransitionIonMobilityFiltering_IonMobilityLibrary}{2:PropertySeparator}{0:IonMobilityLibrary_Status}</name>
+        <en_expanded>Settings &gt; Transition Settings -- Ion mobility &gt; Ion mobility library &gt; Contents changed changed</en_expanded>
+      </summary>
+      <all_info>
+        <type>changed_from_to</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_IonMobilityFiltering}{2:PropertySeparator}{0:TransitionIonMobilityFiltering_IonMobilityLibrary}{2:PropertySeparator}{0:IonMobilityLibrary_Status}{2:PropertySeparator}{0:IonMobilityLibraryChange_Added}</name>
+        <name>{3:0}</name>
+        <name>{3:280}</name>
+        <en_expanded>Settings &gt; Transition Settings -- Ion mobility &gt; Ion mobility library &gt; Contents changed &gt; Items added changed from "0" to "280"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>changed_from_to</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_IonMobilityFiltering}{2:PropertySeparator}{0:TransitionIonMobilityFiltering_IonMobilityLibrary}{2:PropertySeparator}{0:IonMobilityLibrary_Status}{2:PropertySeparator}{0:IonMobilityLibraryChange_LSID}</name>
+        <name>""</name>
+        <name>"urn:lsid:proteome.gs.washington.edu:ion_mobility_library:skyline:moiAggregated:563850d6-5c15-4a9a-b902-2a2b56179adb:1.1"</name>
+        <en_expanded>Settings &gt; Transition Settings -- Ion mobility &gt; Ion mobility library &gt; Contents changed &gt; LSID changed from "" to "urn:lsid:proteome.gs.washington.edu:ion_mobility_library:skyline:moiAggregated:563850d6-5c15-4a9a-b902-2a2b56179adb:1.1"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>changed_from_to</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_IonMobilityFiltering}{2:PropertySeparator}{0:TransitionIonMobilityFiltering_IonMobilityLibrary}{2:PropertySeparator}{0:IonMobilityLibrary_Status}{2:PropertySeparator}{0:IonMobilityLibraryChange_CreationTime}</name>
+        <name>{2:Missing}</name>
+        <name>"2023-01-18T16:52:27+01:00"</name>
+        <en_expanded>Settings &gt; Transition Settings -- Ion mobility &gt; Ion mobility library &gt; Contents changed &gt; Timestamp changed from Missing to "2023-01-18T16:52:27+01:00"</en_expanded>
+      </all_info>
+      <hash>w6IAvQIdVbeuHJsIG1boX8TmRto=</hash>
+    </audit_log_entry>
+    <audit_log_entry skyline_version="21.2.0.536-dbaf6ccd2 (64-Bit)" time_stamp="2023-01-18T16:50:12+01:00" user="DESKTOP-QGFMQJM\admin" mode="m">
+      <undo_redo>
+        <type>changed</type>
+        <name>{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_IonMobilityFiltering}</name>
+        <en_expanded>Transition Settings -- Ion mobility changed</en_expanded>
+      </undo_redo>
+      <summary>
+        <type>changed</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_IonMobilityFiltering}</name>
+        <en_expanded>Settings &gt; Transition Settings -- Ion mobility changed</en_expanded>
+      </summary>
+      <all_info>
+        <type>changed_from_to</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_IonMobilityFiltering}{2:PropertySeparator}{0:IonMobilityWindowWidthCalculator_WindowWidthMode}</name>
+        <name>"{6:IonMobilityWindowWidthType_resolving_power}"</name>
+        <name>"{6:IonMobilityWindowWidthType_fixed_width}"</name>
+        <en_expanded>Settings &gt; Transition Settings -- Ion mobility &gt; Ion mobility filter window width calculation type changed from "Resolving power" to "Fixed width"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>changed_from_to</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_IonMobilityFiltering}{2:PropertySeparator}{0:IonMobilityWindowWidthCalculator_ResolvingPower}</name>
+        <name>{3:30}</name>
+        <name>{3:0}</name>
+        <en_expanded>Settings &gt; Transition Settings -- Ion mobility &gt; Resolving power changed from "30" to "0"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>changed_from_to</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_IonMobilityFiltering}{2:PropertySeparator}{0:IonMobilityWindowWidthCalculator_FixedWindowWidth}</name>
+        <name>{3:0}</name>
+        <name>{3:5}</name>
+        <en_expanded>Settings &gt; Transition Settings -- Ion mobility &gt; Ion mobility filter window fixed width value changed from "0" to "5"</en_expanded>
+      </all_info>
+      <hash>eugQnSgH5x5Sg7ZFcBTNpVSYSBA=</hash>
+    </audit_log_entry>
+    <audit_log_entry skyline_version="21.2.0.536-dbaf6ccd2 (64-Bit)" time_stamp="2023-01-18T16:49:55+01:00" user="DESKTOP-QGFMQJM\admin" mode="m">
+      <extra_info>{0:ImportResultsSettings_FileNames} = 
+[
+    "{4:D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence1.d}",
+    "{4:D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence2.d}",
+    "{4:D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence3.d}",
+    "{4:D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence4.d}",
+    "{4:D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence5.d}",
+    "{4:D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence6.d}"
+],
+{0:ImportResultsSettings_SingleInjectionReplicates} = {3:True},
+{0:ImportResultsSettings_FileImportOption} = "{6:ImportResultsSimultaneousFileOptions_many}",
+{0:ImportResultsSettings_Prefix} = "sequence"</extra_info>
+      <undo_redo>
+        <type>imported_results</type>
+        <name>6</name>
+        <en_expanded>Imported results from 6 files</en_expanded>
+      </undo_redo>
+      <summary>
+        <type>imported_results</type>
+        <name>6</name>
+        <en_expanded>Imported results from 6 files</en_expanded>
+      </summary>
+      <all_info>
+        <type>contains</type>
+        <name>{0:ImportResultsSettings}{2:PropertySeparator}{0:ImportResultsSettings_FileNames}</name>
+        <name>"{4:D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence1.d}"</name>
+        <en_expanded>Import results settings &gt; File names : contains "D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence1.d"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>contains</type>
+        <name>{0:ImportResultsSettings}{2:PropertySeparator}{0:ImportResultsSettings_FileNames}</name>
+        <name>"{4:D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence2.d}"</name>
+        <en_expanded>Import results settings &gt; File names : contains "D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence2.d"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>contains</type>
+        <name>{0:ImportResultsSettings}{2:PropertySeparator}{0:ImportResultsSettings_FileNames}</name>
+        <name>"{4:D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence3.d}"</name>
+        <en_expanded>Import results settings &gt; File names : contains "D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence3.d"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>contains</type>
+        <name>{0:ImportResultsSettings}{2:PropertySeparator}{0:ImportResultsSettings_FileNames}</name>
+        <name>"{4:D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence4.d}"</name>
+        <en_expanded>Import results settings &gt; File names : contains "D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence4.d"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>contains</type>
+        <name>{0:ImportResultsSettings}{2:PropertySeparator}{0:ImportResultsSettings_FileNames}</name>
+        <name>"{4:D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence5.d}"</name>
+        <en_expanded>Import results settings &gt; File names : contains "D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence5.d"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>contains</type>
+        <name>{0:ImportResultsSettings}{2:PropertySeparator}{0:ImportResultsSettings_FileNames}</name>
+        <name>"{4:D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence6.d}"</name>
+        <en_expanded>Import results settings &gt; File names : contains "D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence6.d"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>is_</type>
+        <name>{0:ImportResultsSettings}{2:PropertySeparator}{0:ImportResultsSettings_SingleInjectionReplicates}</name>
+        <name>{3:True}</name>
+        <en_expanded>Import results settings &gt; Add single-injection replicates in files is True</en_expanded>
+      </all_info>
+      <all_info>
+        <type>is_</type>
+        <name>{0:ImportResultsSettings}{2:PropertySeparator}{0:ImportResultsSettings_FileImportOption}</name>
+        <name>"{6:ImportResultsSimultaneousFileOptions_many}"</name>
+        <en_expanded>Import results settings &gt; Files to import simultaneously is "Many"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>is_</type>
+        <name>{0:ImportResultsSettings}{2:PropertySeparator}{0:ImportResultsSettings_Prefix}</name>
+        <name>"sequence"</name>
+        <en_expanded>Import results settings &gt; Removed prefix is "sequence"</en_expanded>
+      </all_info>
+      <en_extra_info>File names = 
+[
+    "D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence1.d",
+    "D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence2.d",
+    "D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence3.d",
+    "D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence4.d",
+    "D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence5.d",
+    "D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence6.d"
+],
+Add single-injection replicates in files = True,
+Files to import simultaneously = "Many",
+Removed prefix = "sequence"</en_extra_info>
+      <hash>stP1a34kIpO9BXi5KZjd2Vx/Chg=</hash>
+    </audit_log_entry>
+    <audit_log_entry skyline_version="21.2.0.536-dbaf6ccd2 (64-Bit)" time_stamp="2023-01-18T16:49:32+01:00" user="DESKTOP-QGFMQJM\admin">
+      <undo_redo>
+        <type>managed_results</type>
+        <en_expanded>Managed results</en_expanded>
+      </undo_redo>
+      <summary>
+        <type>managed_results</type>
+        <en_expanded>Managed results</en_expanded>
+      </summary>
+      <all_info>
+        <type>removed_all_replicates</type>
+        <en_expanded>Removed all replicates</en_expanded>
+      </all_info>
+      <hash>auEUSDU1aO6+mUFA0NhuuYZ4QEE=</hash>
+    </audit_log_entry>
+    <audit_log_entry skyline_version="21.2.0.536-dbaf6ccd2 (64-Bit)" time_stamp="2023-01-18T16:49:27+01:00" user="DESKTOP-QGFMQJM\admin" mode="m">
+      <undo_redo>
+        <type>changed_to</type>
+        <name>{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_IonMobilityFiltering}{2:PropertySeparator}{0:IonMobilityWindowWidthCalculator_ResolvingPower}</name>
+        <name>{3:30}</name>
+        <en_expanded>Transition Settings -- Ion mobility &gt; Resolving power changed to "30"</en_expanded>
+      </undo_redo>
+      <summary>
+        <type>changed_to</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_IonMobilityFiltering}{2:PropertySeparator}{0:IonMobilityWindowWidthCalculator_ResolvingPower}</name>
+        <name>{3:30}</name>
+        <en_expanded>Settings &gt; Transition Settings -- Ion mobility &gt; Resolving power changed to "30"</en_expanded>
+      </summary>
+      <all_info>
+        <type>changed_from_to</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_IonMobilityFiltering}{2:PropertySeparator}{0:IonMobilityWindowWidthCalculator_ResolvingPower}</name>
+        <name>{3:40}</name>
+        <name>{3:30}</name>
+        <en_expanded>Settings &gt; Transition Settings -- Ion mobility &gt; Resolving power changed from "40" to "30"</en_expanded>
+      </all_info>
+      <hash>wVoUAklpLWAmEHJ7XiPWPDeuy0Y=</hash>
+    </audit_log_entry>
+    <audit_log_entry skyline_version="21.2.0.536-dbaf6ccd2 (64-Bit)" time_stamp="2023-01-18T16:44:58+01:00" user="DESKTOP-QGFMQJM\admin" mode="m">
+      <extra_info>{0:ImportResultsSettings_FileNames} = 
+[
+    "{4:D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence1.d}",
+    "{4:D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence2.d}",
+    "{4:D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence3.d}",
+    "{4:D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence4.d}",
+    "{4:D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence5.d}",
+    "{4:D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence6.d}"
+],
+{0:ImportResultsSettings_SingleInjectionReplicates} = {3:True},
+{0:ImportResultsSettings_FileImportOption} = "{6:ImportResultsSimultaneousFileOptions_many}",
+{0:ImportResultsSettings_Prefix} = "sequence"</extra_info>
+      <undo_redo>
+        <type>imported_results</type>
+        <name>6</name>
+        <en_expanded>Imported results from 6 files</en_expanded>
+      </undo_redo>
+      <summary>
+        <type>imported_results</type>
+        <name>6</name>
+        <en_expanded>Imported results from 6 files</en_expanded>
+      </summary>
+      <all_info>
+        <type>contains</type>
+        <name>{0:ImportResultsSettings}{2:PropertySeparator}{0:ImportResultsSettings_FileNames}</name>
+        <name>"{4:D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence1.d}"</name>
+        <en_expanded>Import results settings &gt; File names : contains "D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence1.d"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>contains</type>
+        <name>{0:ImportResultsSettings}{2:PropertySeparator}{0:ImportResultsSettings_FileNames}</name>
+        <name>"{4:D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence2.d}"</name>
+        <en_expanded>Import results settings &gt; File names : contains "D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence2.d"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>contains</type>
+        <name>{0:ImportResultsSettings}{2:PropertySeparator}{0:ImportResultsSettings_FileNames}</name>
+        <name>"{4:D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence3.d}"</name>
+        <en_expanded>Import results settings &gt; File names : contains "D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence3.d"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>contains</type>
+        <name>{0:ImportResultsSettings}{2:PropertySeparator}{0:ImportResultsSettings_FileNames}</name>
+        <name>"{4:D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence4.d}"</name>
+        <en_expanded>Import results settings &gt; File names : contains "D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence4.d"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>contains</type>
+        <name>{0:ImportResultsSettings}{2:PropertySeparator}{0:ImportResultsSettings_FileNames}</name>
+        <name>"{4:D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence5.d}"</name>
+        <en_expanded>Import results settings &gt; File names : contains "D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence5.d"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>contains</type>
+        <name>{0:ImportResultsSettings}{2:PropertySeparator}{0:ImportResultsSettings_FileNames}</name>
+        <name>"{4:D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence6.d}"</name>
+        <en_expanded>Import results settings &gt; File names : contains "D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence6.d"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>is_</type>
+        <name>{0:ImportResultsSettings}{2:PropertySeparator}{0:ImportResultsSettings_SingleInjectionReplicates}</name>
+        <name>{3:True}</name>
+        <en_expanded>Import results settings &gt; Add single-injection replicates in files is True</en_expanded>
+      </all_info>
+      <all_info>
+        <type>is_</type>
+        <name>{0:ImportResultsSettings}{2:PropertySeparator}{0:ImportResultsSettings_FileImportOption}</name>
+        <name>"{6:ImportResultsSimultaneousFileOptions_many}"</name>
+        <en_expanded>Import results settings &gt; Files to import simultaneously is "Many"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>is_</type>
+        <name>{0:ImportResultsSettings}{2:PropertySeparator}{0:ImportResultsSettings_Prefix}</name>
+        <name>"sequence"</name>
+        <en_expanded>Import results settings &gt; Removed prefix is "sequence"</en_expanded>
+      </all_info>
+      <en_extra_info>File names = 
+[
+    "D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence1.d",
+    "D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence2.d",
+    "D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence3.d",
+    "D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence4.d",
+    "D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence5.d",
+    "D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence6.d"
+],
+Add single-injection replicates in files = True,
+Files to import simultaneously = "Many",
+Removed prefix = "sequence"</en_extra_info>
+      <hash>khmqUQPHo1yYFfQ69G59ZR+hEvA=</hash>
+    </audit_log_entry>
+    <audit_log_entry skyline_version="21.2.0.536-dbaf6ccd2 (64-Bit)" time_stamp="2023-01-18T16:44:45+01:00" user="DESKTOP-QGFMQJM\admin">
+      <undo_redo>
+        <type>managed_results</type>
+        <en_expanded>Managed results</en_expanded>
+      </undo_redo>
+      <summary>
+        <type>managed_results</type>
+        <en_expanded>Managed results</en_expanded>
+      </summary>
+      <all_info>
+        <type>removed_all_replicates</type>
+        <en_expanded>Removed all replicates</en_expanded>
+      </all_info>
+      <hash>59i4dnvtg+QKUB1fLg11e07Lwms=</hash>
+    </audit_log_entry>
+    <audit_log_entry skyline_version="21.2.0.536-dbaf6ccd2 (64-Bit)" time_stamp="2023-01-18T16:34:22+01:00" user="DESKTOP-QGFMQJM\admin">
+      <undo_redo>
+        <type>managed_results</type>
+        <en_expanded>Managed results</en_expanded>
+      </undo_redo>
+      <summary>
+        <type>managed_results</type>
+        <en_expanded>Managed results</en_expanded>
+      </summary>
+      <all_info>
+        <type>renamed_replicate</type>
+        <name>sequence5</name>
+        <name>5</name>
+        <en_expanded>Renamed replicate sequence5 to 5</en_expanded>
+      </all_info>
+      <hash>e3gEzonqke2acWib1hErx/ipM0Q=</hash>
+    </audit_log_entry>
+    <audit_log_entry skyline_version="21.2.0.536-dbaf6ccd2 (64-Bit)" time_stamp="2023-01-18T16:34:05+01:00" user="DESKTOP-QGFMQJM\admin" mode="m">
+      <extra_info>{0:ImportResultsSettings_FileNames} = 
+[
+    "{4:D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence5.d}"
+],
+{0:ImportResultsSettings_SingleInjectionReplicates} = {3:True},
+{0:ImportResultsSettings_FileImportOption} = "{6:ImportResultsSimultaneousFileOptions_many}"</extra_info>
+      <undo_redo>
+        <type>imported_result</type>
+        <name>{4:D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence5.d}</name>
+        <en_expanded>Imported results from "sequence5.d"</en_expanded>
+      </undo_redo>
+      <summary>
+        <type>imported_result</type>
+        <name>{4:D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence5.d}</name>
+        <en_expanded>Imported results from "sequence5.d"</en_expanded>
+      </summary>
+      <all_info>
+        <type>contains</type>
+        <name>{0:ImportResultsSettings}{2:PropertySeparator}{0:ImportResultsSettings_FileNames}</name>
+        <name>"{4:D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence5.d}"</name>
+        <en_expanded>Import results settings &gt; File names : contains "D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence5.d"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>is_</type>
+        <name>{0:ImportResultsSettings}{2:PropertySeparator}{0:ImportResultsSettings_SingleInjectionReplicates}</name>
+        <name>{3:True}</name>
+        <en_expanded>Import results settings &gt; Add single-injection replicates in files is True</en_expanded>
+      </all_info>
+      <all_info>
+        <type>is_</type>
+        <name>{0:ImportResultsSettings}{2:PropertySeparator}{0:ImportResultsSettings_FileImportOption}</name>
+        <name>"{6:ImportResultsSimultaneousFileOptions_many}"</name>
+        <en_expanded>Import results settings &gt; Files to import simultaneously is "Many"</en_expanded>
+      </all_info>
+      <en_extra_info>File names = 
+[
+    "D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence5.d"
+],
+Add single-injection replicates in files = True,
+Files to import simultaneously = "Many"</en_extra_info>
+      <hash>5EXfmrzMp5YsiYeoF937H5uS0lI=</hash>
+    </audit_log_entry>
+    <audit_log_entry skyline_version="21.2.0.536-dbaf6ccd2 (64-Bit)" time_stamp="2023-01-18T16:33:29+01:00" user="DESKTOP-QGFMQJM\admin">
+      <undo_redo>
+        <type>managed_results</type>
+        <en_expanded>Managed results</en_expanded>
+      </undo_redo>
+      <summary>
+        <type>managed_results</type>
+        <en_expanded>Managed results</en_expanded>
+      </summary>
+      <all_info>
+        <type>removed_replicate</type>
+        <name>5</name>
+        <en_expanded>Removed replicate 5</en_expanded>
+      </all_info>
+      <hash>dTBnuHLjkyLNHV70o0mb4scZ7VU=</hash>
+    </audit_log_entry>
+    <audit_log_entry skyline_version="21.2.0.536-dbaf6ccd2 (64-Bit)" time_stamp="2023-01-18T12:00:32+01:00" user="DESKTOP-QGFMQJM\admin" mode="m">
+      <undo_redo>
+        <type>changed_peak_end_all</type>
+        <name>moi{2:PropertySeparator}Glutathione (C10H17N3O6S){2:PropertySeparator}308.0911[M+H]</name>
+        <name>6</name>
+        <name>0.62</name>
+        <name>0.66</name>
+        <en_expanded>Changed end time of all peaks of moi &gt; Glutathione (C10H17N3O6S) &gt; 308.0911[M+H] in "6" from 0.62 to 0.66</en_expanded>
+      </undo_redo>
+      <summary>
+        <type>changed_peak_end_all</type>
+        <name>moi{2:PropertySeparator}Glutathione (C10H17N3O6S){2:PropertySeparator}308.0911[M+H]</name>
+        <name>6</name>
+        <name>0.62</name>
+        <name>0.66</name>
+        <en_expanded>Changed end time of all peaks of moi &gt; Glutathione (C10H17N3O6S) &gt; 308.0911[M+H] in "6" from 0.62 to 0.66</en_expanded>
+      </summary>
+      <hash>chvLjyUC3IaNWNabBQxmFbzBhrY=</hash>
+    </audit_log_entry>
+    <audit_log_entry skyline_version="21.2.0.536-dbaf6ccd2 (64-Bit)" time_stamp="2023-01-18T12:00:31+01:00" user="DESKTOP-QGFMQJM\admin" mode="m">
+      <undo_redo>
+        <type>changed_peak_end_all</type>
+        <name>moi{2:PropertySeparator}Glutathione (C10H17N3O6S){2:PropertySeparator}308.0911[M+H]</name>
+        <name>6</name>
+        <name>0.66</name>
+        <name>0.62</name>
+        <en_expanded>Changed end time of all peaks of moi &gt; Glutathione (C10H17N3O6S) &gt; 308.0911[M+H] in "6" from 0.66 to 0.62</en_expanded>
+      </undo_redo>
+      <summary>
+        <type>changed_peak_end_all</type>
+        <name>moi{2:PropertySeparator}Glutathione (C10H17N3O6S){2:PropertySeparator}308.0911[M+H]</name>
+        <name>6</name>
+        <name>0.66</name>
+        <name>0.62</name>
+        <en_expanded>Changed end time of all peaks of moi &gt; Glutathione (C10H17N3O6S) &gt; 308.0911[M+H] in "6" from 0.66 to 0.62</en_expanded>
+      </summary>
+      <hash>igLxsgFXvNSMjnyFe/PRO4Heprw=</hash>
+    </audit_log_entry>
+    <audit_log_entry skyline_version="21.2.0.536-dbaf6ccd2 (64-Bit)" time_stamp="2023-01-18T12:00:30+01:00" user="DESKTOP-QGFMQJM\admin" mode="m">
+      <undo_redo>
+        <type>changed_peak_end_all</type>
+        <name>moi{2:PropertySeparator}Glutathione (C10H17N3O6S){2:PropertySeparator}308.0911[M+H]</name>
+        <name>6</name>
+        <name>0.69</name>
+        <name>0.66</name>
+        <en_expanded>Changed end time of all peaks of moi &gt; Glutathione (C10H17N3O6S) &gt; 308.0911[M+H] in "6" from 0.69 to 0.66</en_expanded>
+      </undo_redo>
+      <summary>
+        <type>changed_peak_end_all</type>
+        <name>moi{2:PropertySeparator}Glutathione (C10H17N3O6S){2:PropertySeparator}308.0911[M+H]</name>
+        <name>6</name>
+        <name>0.69</name>
+        <name>0.66</name>
+        <en_expanded>Changed end time of all peaks of moi &gt; Glutathione (C10H17N3O6S) &gt; 308.0911[M+H] in "6" from 0.69 to 0.66</en_expanded>
+      </summary>
+      <hash>dLURb4j0jJC0ZjrhcH1rXYfVIYs=</hash>
+    </audit_log_entry>
+    <audit_log_entry skyline_version="21.2.0.536-dbaf6ccd2 (64-Bit)" time_stamp="2023-01-18T12:00:29+01:00" user="DESKTOP-QGFMQJM\admin" mode="m">
+      <undo_redo>
+        <type>changed_peak_end_all</type>
+        <name>moi{2:PropertySeparator}Glutathione (C10H17N3O6S){2:PropertySeparator}308.0911[M+H]</name>
+        <name>6</name>
+        <name>0.62</name>
+        <name>0.69</name>
+        <en_expanded>Changed end time of all peaks of moi &gt; Glutathione (C10H17N3O6S) &gt; 308.0911[M+H] in "6" from 0.62 to 0.69</en_expanded>
+      </undo_redo>
+      <summary>
+        <type>changed_peak_end_all</type>
+        <name>moi{2:PropertySeparator}Glutathione (C10H17N3O6S){2:PropertySeparator}308.0911[M+H]</name>
+        <name>6</name>
+        <name>0.62</name>
+        <name>0.69</name>
+        <en_expanded>Changed end time of all peaks of moi &gt; Glutathione (C10H17N3O6S) &gt; 308.0911[M+H] in "6" from 0.62 to 0.69</en_expanded>
+      </summary>
+      <hash>h1vpy8meIjO3eQ7S567OBiEtn7E=</hash>
+    </audit_log_entry>
+    <audit_log_entry skyline_version="21.2.0.536-dbaf6ccd2 (64-Bit)" time_stamp="2023-01-18T11:57:23+01:00" user="DESKTOP-QGFMQJM\admin" mode="m">
+      <undo_redo>
+        <type>changed</type>
+        <name>{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_IonMobilityFiltering}</name>
+        <en_expanded>Transition Settings -- Ion mobility changed</en_expanded>
+      </undo_redo>
+      <summary>
+        <type>changed</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_IonMobilityFiltering}</name>
+        <en_expanded>Settings &gt; Transition Settings -- Ion mobility changed</en_expanded>
+      </summary>
+      <all_info>
+        <type>changed_from_to</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_IonMobilityFiltering}{2:PropertySeparator}{0:IonMobilityWindowWidthCalculator_WindowWidthMode}</name>
+        <name>"{6:IonMobilityWindowWidthType_none}"</name>
+        <name>"{6:IonMobilityWindowWidthType_resolving_power}"</name>
+        <en_expanded>Settings &gt; Transition Settings -- Ion mobility &gt; Ion mobility filter window width calculation type changed from "None" to "Resolving power"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>changed_from_to</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_IonMobilityFiltering}{2:PropertySeparator}{0:IonMobilityWindowWidthCalculator_ResolvingPower}</name>
+        <name>{3:0}</name>
+        <name>{3:40}</name>
+        <en_expanded>Settings &gt; Transition Settings -- Ion mobility &gt; Resolving power changed from "0" to "40"</en_expanded>
+      </all_info>
+      <hash>Bo5QlKIE+w95nHmkB8tQvO8Gcws=</hash>
+    </audit_log_entry>
+    <audit_log_entry skyline_version="21.2.0.536-dbaf6ccd2 (64-Bit)" time_stamp="2023-01-18T11:49:40+01:00" user="DESKTOP-QGFMQJM\admin" mode="m">
+      <undo_redo>
+        <type>changed</type>
+        <name>{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_IonMobilityFiltering}</name>
+        <en_expanded>Transition Settings -- Ion mobility changed</en_expanded>
+      </undo_redo>
+      <summary>
+        <type>changed</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_IonMobilityFiltering}</name>
+        <en_expanded>Settings &gt; Transition Settings -- Ion mobility changed</en_expanded>
+      </summary>
+      <all_info>
+        <type>changed_from_to</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_IonMobilityFiltering}{2:PropertySeparator}{0:IonMobilityWindowWidthCalculator_WindowWidthMode}</name>
+        <name>"{6:IonMobilityWindowWidthType_fixed_width}"</name>
+        <name>"{6:IonMobilityWindowWidthType_none}"</name>
+        <en_expanded>Settings &gt; Transition Settings -- Ion mobility &gt; Ion mobility filter window width calculation type changed from "Fixed width" to "None"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>changed_from_to</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_IonMobilityFiltering}{2:PropertySeparator}{0:IonMobilityWindowWidthCalculator_FixedWindowWidth}</name>
+        <name>{3:1}</name>
+        <name>{3:0}</name>
+        <en_expanded>Settings &gt; Transition Settings -- Ion mobility &gt; Ion mobility filter window fixed width value changed from "1" to "0"</en_expanded>
+      </all_info>
+      <hash>ro8cWEeH74enBVID2OueIPwqo0E=</hash>
+    </audit_log_entry>
+    <audit_log_entry skyline_version="21.2.0.536-dbaf6ccd2 (64-Bit)" time_stamp="2023-01-18T11:48:44+01:00" user="DESKTOP-QGFMQJM\admin" mode="m">
+      <extra_info>{0:ImportResultsSettings_FileNames} = 
+[
+    "{4:D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence1.d}",
+    "{4:D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence2.d}",
+    "{4:D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence3.d}",
+    "{4:D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence4.d}",
+    "{4:D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence5.d}",
+    "{4:D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence6.d}"
+],
+{0:ImportResultsSettings_SingleInjectionReplicates} = {3:True},
+{0:ImportResultsSettings_FileImportOption} = "{6:ImportResultsSimultaneousFileOptions_many}",
+{0:ImportResultsSettings_Prefix} = "sequence"</extra_info>
+      <undo_redo>
+        <type>imported_results</type>
+        <name>6</name>
+        <en_expanded>Imported results from 6 files</en_expanded>
+      </undo_redo>
+      <summary>
+        <type>imported_results</type>
+        <name>6</name>
+        <en_expanded>Imported results from 6 files</en_expanded>
+      </summary>
+      <all_info>
+        <type>contains</type>
+        <name>{0:ImportResultsSettings}{2:PropertySeparator}{0:ImportResultsSettings_FileNames}</name>
+        <name>"{4:D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence1.d}"</name>
+        <en_expanded>Import results settings &gt; File names : contains "D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence1.d"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>contains</type>
+        <name>{0:ImportResultsSettings}{2:PropertySeparator}{0:ImportResultsSettings_FileNames}</name>
+        <name>"{4:D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence2.d}"</name>
+        <en_expanded>Import results settings &gt; File names : contains "D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence2.d"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>contains</type>
+        <name>{0:ImportResultsSettings}{2:PropertySeparator}{0:ImportResultsSettings_FileNames}</name>
+        <name>"{4:D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence3.d}"</name>
+        <en_expanded>Import results settings &gt; File names : contains "D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence3.d"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>contains</type>
+        <name>{0:ImportResultsSettings}{2:PropertySeparator}{0:ImportResultsSettings_FileNames}</name>
+        <name>"{4:D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence4.d}"</name>
+        <en_expanded>Import results settings &gt; File names : contains "D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence4.d"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>contains</type>
+        <name>{0:ImportResultsSettings}{2:PropertySeparator}{0:ImportResultsSettings_FileNames}</name>
+        <name>"{4:D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence5.d}"</name>
+        <en_expanded>Import results settings &gt; File names : contains "D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence5.d"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>contains</type>
+        <name>{0:ImportResultsSettings}{2:PropertySeparator}{0:ImportResultsSettings_FileNames}</name>
+        <name>"{4:D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence6.d}"</name>
+        <en_expanded>Import results settings &gt; File names : contains "D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence6.d"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>is_</type>
+        <name>{0:ImportResultsSettings}{2:PropertySeparator}{0:ImportResultsSettings_SingleInjectionReplicates}</name>
+        <name>{3:True}</name>
+        <en_expanded>Import results settings &gt; Add single-injection replicates in files is True</en_expanded>
+      </all_info>
+      <all_info>
+        <type>is_</type>
+        <name>{0:ImportResultsSettings}{2:PropertySeparator}{0:ImportResultsSettings_FileImportOption}</name>
+        <name>"{6:ImportResultsSimultaneousFileOptions_many}"</name>
+        <en_expanded>Import results settings &gt; Files to import simultaneously is "Many"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>is_</type>
+        <name>{0:ImportResultsSettings}{2:PropertySeparator}{0:ImportResultsSettings_Prefix}</name>
+        <name>"sequence"</name>
+        <en_expanded>Import results settings &gt; Removed prefix is "sequence"</en_expanded>
+      </all_info>
+      <en_extra_info>File names = 
+[
+    "D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence1.d",
+    "D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence2.d",
+    "D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence3.d",
+    "D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence4.d",
+    "D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence5.d",
+    "D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence6.d"
+],
+Add single-injection replicates in files = True,
+Files to import simultaneously = "Many",
+Removed prefix = "sequence"</en_extra_info>
+      <hash>nDxZIgLgasCVW5KhvFNI+y34Crc=</hash>
+    </audit_log_entry>
+    <audit_log_entry skyline_version="21.2.0.536-dbaf6ccd2 (64-Bit)" time_stamp="2023-01-18T11:48:34+01:00" user="DESKTOP-QGFMQJM\admin">
+      <undo_redo>
+        <type>managed_results</type>
+        <en_expanded>Managed results</en_expanded>
+      </undo_redo>
+      <summary>
+        <type>managed_results</type>
+        <en_expanded>Managed results</en_expanded>
+      </summary>
+      <all_info>
+        <type>removed_all_replicates</type>
+        <en_expanded>Removed all replicates</en_expanded>
+      </all_info>
+      <hash>K1ZmA0sfD9ZMy/QZ2+Sifb5YXnQ=</hash>
+    </audit_log_entry>
+    <audit_log_entry skyline_version="21.2.0.536-dbaf6ccd2 (64-Bit)" time_stamp="2023-01-18T11:44:37+01:00" user="DESKTOP-QGFMQJM\admin" mode="m">
+      <extra_info>{0:ImportResultsSettings_FileNames} = 
+[
+    "{4:D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence1.d}",
+    "{4:D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence2.d}",
+    "{4:D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence3.d}",
+    "{4:D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence4.d}",
+    "{4:D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence5.d}",
+    "{4:D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence6.d}"
+],
+{0:ImportResultsSettings_SingleInjectionReplicates} = {3:True},
+{0:ImportResultsSettings_FileImportOption} = "{6:ImportResultsSimultaneousFileOptions_many}",
+{0:ImportResultsSettings_Prefix} = "sequence"</extra_info>
+      <undo_redo>
+        <type>imported_results</type>
+        <name>6</name>
+        <en_expanded>Imported results from 6 files</en_expanded>
+      </undo_redo>
+      <summary>
+        <type>imported_results</type>
+        <name>6</name>
+        <en_expanded>Imported results from 6 files</en_expanded>
+      </summary>
+      <all_info>
+        <type>contains</type>
+        <name>{0:ImportResultsSettings}{2:PropertySeparator}{0:ImportResultsSettings_FileNames}</name>
+        <name>"{4:D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence1.d}"</name>
+        <en_expanded>Import results settings &gt; File names : contains "D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence1.d"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>contains</type>
+        <name>{0:ImportResultsSettings}{2:PropertySeparator}{0:ImportResultsSettings_FileNames}</name>
+        <name>"{4:D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence2.d}"</name>
+        <en_expanded>Import results settings &gt; File names : contains "D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence2.d"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>contains</type>
+        <name>{0:ImportResultsSettings}{2:PropertySeparator}{0:ImportResultsSettings_FileNames}</name>
+        <name>"{4:D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence3.d}"</name>
+        <en_expanded>Import results settings &gt; File names : contains "D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence3.d"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>contains</type>
+        <name>{0:ImportResultsSettings}{2:PropertySeparator}{0:ImportResultsSettings_FileNames}</name>
+        <name>"{4:D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence4.d}"</name>
+        <en_expanded>Import results settings &gt; File names : contains "D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence4.d"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>contains</type>
+        <name>{0:ImportResultsSettings}{2:PropertySeparator}{0:ImportResultsSettings_FileNames}</name>
+        <name>"{4:D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence5.d}"</name>
+        <en_expanded>Import results settings &gt; File names : contains "D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence5.d"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>contains</type>
+        <name>{0:ImportResultsSettings}{2:PropertySeparator}{0:ImportResultsSettings_FileNames}</name>
+        <name>"{4:D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence6.d}"</name>
+        <en_expanded>Import results settings &gt; File names : contains "D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence6.d"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>is_</type>
+        <name>{0:ImportResultsSettings}{2:PropertySeparator}{0:ImportResultsSettings_SingleInjectionReplicates}</name>
+        <name>{3:True}</name>
+        <en_expanded>Import results settings &gt; Add single-injection replicates in files is True</en_expanded>
+      </all_info>
+      <all_info>
+        <type>is_</type>
+        <name>{0:ImportResultsSettings}{2:PropertySeparator}{0:ImportResultsSettings_FileImportOption}</name>
+        <name>"{6:ImportResultsSimultaneousFileOptions_many}"</name>
+        <en_expanded>Import results settings &gt; Files to import simultaneously is "Many"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>is_</type>
+        <name>{0:ImportResultsSettings}{2:PropertySeparator}{0:ImportResultsSettings_Prefix}</name>
+        <name>"sequence"</name>
+        <en_expanded>Import results settings &gt; Removed prefix is "sequence"</en_expanded>
+      </all_info>
+      <en_extra_info>File names = 
+[
+    "D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence1.d",
+    "D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence2.d",
+    "D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence3.d",
+    "D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence4.d",
+    "D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence5.d",
+    "D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence6.d"
+],
+Add single-injection replicates in files = True,
+Files to import simultaneously = "Many",
+Removed prefix = "sequence"</en_extra_info>
+      <hash>T2Fdo9IU9fkesx+NIfqxaLzwrwQ=</hash>
+    </audit_log_entry>
+    <audit_log_entry skyline_version="21.2.0.536-dbaf6ccd2 (64-Bit)" time_stamp="2023-01-18T11:28:43+01:00" user="DESKTOP-QGFMQJM\admin">
+      <undo_redo>
+        <type>managed_results</type>
+        <en_expanded>Managed results</en_expanded>
+      </undo_redo>
+      <summary>
+        <type>managed_results</type>
+        <en_expanded>Managed results</en_expanded>
+      </summary>
+      <all_info>
+        <type>removed_all_replicates</type>
+        <en_expanded>Removed all replicates</en_expanded>
+      </all_info>
+      <hash>ASL52Kzh87vv8Gc+1Dr84J7mRJc=</hash>
+    </audit_log_entry>
+    <audit_log_entry skyline_version="21.2.0.536-dbaf6ccd2 (64-Bit)" time_stamp="2023-01-18T11:28:03+01:00" user="DESKTOP-QGFMQJM\admin" mode="m">
+      <extra_info>{0:ImportResultsSettings_FileNames} = 
+[
+    "{4:D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence1.d}",
+    "{4:D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence2.d}",
+    "{4:D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence3.d}",
+    "{4:D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence4.d}",
+    "{4:D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence5.d}",
+    "{4:D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence6.d}"
+],
+{0:ImportResultsSettings_SingleInjectionReplicates} = {3:True},
+{0:ImportResultsSettings_FileImportOption} = "{6:ImportResultsSimultaneousFileOptions_many}",
+{0:ImportResultsSettings_Prefix} = "sequence"</extra_info>
+      <undo_redo>
+        <type>imported_results</type>
+        <name>6</name>
+        <en_expanded>Imported results from 6 files</en_expanded>
+      </undo_redo>
+      <summary>
+        <type>imported_results</type>
+        <name>6</name>
+        <en_expanded>Imported results from 6 files</en_expanded>
+      </summary>
+      <all_info>
+        <type>contains</type>
+        <name>{0:ImportResultsSettings}{2:PropertySeparator}{0:ImportResultsSettings_FileNames}</name>
+        <name>"{4:D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence1.d}"</name>
+        <en_expanded>Import results settings &gt; File names : contains "D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence1.d"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>contains</type>
+        <name>{0:ImportResultsSettings}{2:PropertySeparator}{0:ImportResultsSettings_FileNames}</name>
+        <name>"{4:D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence2.d}"</name>
+        <en_expanded>Import results settings &gt; File names : contains "D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence2.d"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>contains</type>
+        <name>{0:ImportResultsSettings}{2:PropertySeparator}{0:ImportResultsSettings_FileNames}</name>
+        <name>"{4:D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence3.d}"</name>
+        <en_expanded>Import results settings &gt; File names : contains "D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence3.d"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>contains</type>
+        <name>{0:ImportResultsSettings}{2:PropertySeparator}{0:ImportResultsSettings_FileNames}</name>
+        <name>"{4:D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence4.d}"</name>
+        <en_expanded>Import results settings &gt; File names : contains "D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence4.d"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>contains</type>
+        <name>{0:ImportResultsSettings}{2:PropertySeparator}{0:ImportResultsSettings_FileNames}</name>
+        <name>"{4:D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence5.d}"</name>
+        <en_expanded>Import results settings &gt; File names : contains "D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence5.d"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>contains</type>
+        <name>{0:ImportResultsSettings}{2:PropertySeparator}{0:ImportResultsSettings_FileNames}</name>
+        <name>"{4:D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence6.d}"</name>
+        <en_expanded>Import results settings &gt; File names : contains "D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence6.d"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>is_</type>
+        <name>{0:ImportResultsSettings}{2:PropertySeparator}{0:ImportResultsSettings_SingleInjectionReplicates}</name>
+        <name>{3:True}</name>
+        <en_expanded>Import results settings &gt; Add single-injection replicates in files is True</en_expanded>
+      </all_info>
+      <all_info>
+        <type>is_</type>
+        <name>{0:ImportResultsSettings}{2:PropertySeparator}{0:ImportResultsSettings_FileImportOption}</name>
+        <name>"{6:ImportResultsSimultaneousFileOptions_many}"</name>
+        <en_expanded>Import results settings &gt; Files to import simultaneously is "Many"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>is_</type>
+        <name>{0:ImportResultsSettings}{2:PropertySeparator}{0:ImportResultsSettings_Prefix}</name>
+        <name>"sequence"</name>
+        <en_expanded>Import results settings &gt; Removed prefix is "sequence"</en_expanded>
+      </all_info>
+      <en_extra_info>File names = 
+[
+    "D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence1.d",
+    "D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence2.d",
+    "D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence3.d",
+    "D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence4.d",
+    "D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence5.d",
+    "D:\Projects\Default\Data\Rapidfire\2023\January\18\004\sequence6.d"
+],
+Add single-injection replicates in files = True,
+Files to import simultaneously = "Many",
+Removed prefix = "sequence"</en_extra_info>
+      <hash>aK0j+XqRoGGiZWEvj1NPzPDiIAQ=</hash>
+    </audit_log_entry>
+    <audit_log_entry skyline_version="21.2.0.536-dbaf6ccd2 (64-Bit)" time_stamp="2023-01-18T11:27:51+01:00" user="DESKTOP-QGFMQJM\admin">
+      <undo_redo>
+        <type>managed_results</type>
+        <en_expanded>Managed results</en_expanded>
+      </undo_redo>
+      <summary>
+        <type>managed_results</type>
+        <en_expanded>Managed results</en_expanded>
+      </summary>
+      <all_info>
+        <type>removed_all_replicates</type>
+        <en_expanded>Removed all replicates</en_expanded>
+      </all_info>
+      <hash>LiIt0kqhz/nlDW7Zs7QRmb3tloM=</hash>
+    </audit_log_entry>
+    <audit_log_entry skyline_version="21.2.0.536-dbaf6ccd2 (64-Bit)" time_stamp="2023-01-18T10:54:48+01:00" user="DESKTOP-QGFMQJM\admin" mode="m">
+      <undo_redo>
+        <type>changed</type>
+        <name>{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_IonMobilityFiltering}</name>
+        <en_expanded>Transition Settings -- Ion mobility changed</en_expanded>
+      </undo_redo>
+      <summary>
+        <type>changed</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_IonMobilityFiltering}</name>
+        <en_expanded>Settings &gt; Transition Settings -- Ion mobility changed</en_expanded>
+      </summary>
+      <all_info>
+        <type>changed_from_to</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_IonMobilityFiltering}{2:PropertySeparator}{0:IonMobilityWindowWidthCalculator_WindowWidthMode}</name>
+        <name>"{6:IonMobilityWindowWidthType_none}"</name>
+        <name>"{6:IonMobilityWindowWidthType_fixed_width}"</name>
+        <en_expanded>Settings &gt; Transition Settings -- Ion mobility &gt; Ion mobility filter window width calculation type changed from "None" to "Fixed width"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>changed_from_to</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_IonMobilityFiltering}{2:PropertySeparator}{0:IonMobilityWindowWidthCalculator_FixedWindowWidth}</name>
+        <name>{3:0}</name>
+        <name>{3:1}</name>
+        <en_expanded>Settings &gt; Transition Settings -- Ion mobility &gt; Ion mobility filter window fixed width value changed from "0" to "1"</en_expanded>
+      </all_info>
+      <hash>aHOQ3u92umen8bzis28pchFYYRE=</hash>
+    </audit_log_entry>
+    <audit_log_entry skyline_version="21.2.0.536-dbaf6ccd2 (64-Bit)" time_stamp="2023-01-18T10:53:19+01:00" user="DESKTOP-QGFMQJM\admin" mode="m">
+      <extra_info>{0:ImportResultsSettings_FileNames} = 
+[
+    "{4:D:\Projects\Default\Data\Rapidfire\2023\January\18\002\sequence2.d}"
+],
+{0:ImportResultsSettings_SingleInjectionReplicates} = {3:True},
+{0:ImportResultsSettings_FileImportOption} = "{6:ImportResultsSimultaneousFileOptions_many}"</extra_info>
+      <undo_redo>
+        <type>imported_result</type>
+        <name>{4:D:\Projects\Default\Data\Rapidfire\2023\January\18\002\sequence2.d}</name>
+        <en_expanded>Imported results from "sequence2.d"</en_expanded>
+      </undo_redo>
+      <summary>
+        <type>imported_result</type>
+        <name>{4:D:\Projects\Default\Data\Rapidfire\2023\January\18\002\sequence2.d}</name>
+        <en_expanded>Imported results from "sequence2.d"</en_expanded>
+      </summary>
+      <all_info>
+        <type>contains</type>
+        <name>{0:ImportResultsSettings}{2:PropertySeparator}{0:ImportResultsSettings_FileNames}</name>
+        <name>"{4:D:\Projects\Default\Data\Rapidfire\2023\January\18\002\sequence2.d}"</name>
+        <en_expanded>Import results settings &gt; File names : contains "D:\Projects\Default\Data\Rapidfire\2023\January\18\002\sequence2.d"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>is_</type>
+        <name>{0:ImportResultsSettings}{2:PropertySeparator}{0:ImportResultsSettings_SingleInjectionReplicates}</name>
+        <name>{3:True}</name>
+        <en_expanded>Import results settings &gt; Add single-injection replicates in files is True</en_expanded>
+      </all_info>
+      <all_info>
+        <type>is_</type>
+        <name>{0:ImportResultsSettings}{2:PropertySeparator}{0:ImportResultsSettings_FileImportOption}</name>
+        <name>"{6:ImportResultsSimultaneousFileOptions_many}"</name>
+        <en_expanded>Import results settings &gt; Files to import simultaneously is "Many"</en_expanded>
+      </all_info>
+      <en_extra_info>File names = 
+[
+    "D:\Projects\Default\Data\Rapidfire\2023\January\18\002\sequence2.d"
+],
+Add single-injection replicates in files = True,
+Files to import simultaneously = "Many"</en_extra_info>
+      <hash>KhXEjcQckSJlqDGUFw5NN7VclM4=</hash>
+    </audit_log_entry>
+    <audit_log_entry skyline_version="21.2.0.536-dbaf6ccd2 (64-Bit)" time_stamp="2023-01-18T10:51:00+01:00" user="DESKTOP-QGFMQJM\admin" mode="m">
+      <undo_redo>
+        <type>changed</type>
+        <name>{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_IonMobilityFiltering}</name>
+        <en_expanded>Transition Settings -- Ion mobility changed</en_expanded>
+      </undo_redo>
+      <summary>
+        <type>changed</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_IonMobilityFiltering}</name>
+        <en_expanded>Settings &gt; Transition Settings -- Ion mobility changed</en_expanded>
+      </summary>
+      <all_info>
+        <type>changed_from_to</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_IonMobilityFiltering}{2:PropertySeparator}{0:IonMobilityWindowWidthCalculator_WindowWidthMode}</name>
+        <name>"{6:IonMobilityWindowWidthType_fixed_width}"</name>
+        <name>"{6:IonMobilityWindowWidthType_none}"</name>
+        <en_expanded>Settings &gt; Transition Settings -- Ion mobility &gt; Ion mobility filter window width calculation type changed from "Fixed width" to "None"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>changed_from_to</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_IonMobilityFiltering}{2:PropertySeparator}{0:IonMobilityWindowWidthCalculator_FixedWindowWidth}</name>
+        <name>{3:0.5}</name>
+        <name>{3:0}</name>
+        <en_expanded>Settings &gt; Transition Settings -- Ion mobility &gt; Ion mobility filter window fixed width value changed from "0.5" to "0"</en_expanded>
+      </all_info>
+      <hash>HdfbjbP8k6livh4DttGulvj/k30=</hash>
+    </audit_log_entry>
+    <audit_log_entry skyline_version="21.2.0.536-dbaf6ccd2 (64-Bit)" time_stamp="2023-01-18T10:50:31+01:00" user="DESKTOP-QGFMQJM\admin" mode="m">
+      <undo_redo>
+        <type>changed_to</type>
+        <name>{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_FullScan}{2:PropertySeparator}{0:TransitionFullScan_PrecursorIsotopeFilter}</name>
+        <name>{3:1}</name>
+        <en_expanded>Transition Settings -- Full-Scan &gt; Peaks changed to "1"</en_expanded>
+      </undo_redo>
+      <summary>
+        <type>changed_to</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_FullScan}{2:PropertySeparator}{0:TransitionFullScan_PrecursorIsotopeFilter}</name>
+        <name>{3:1}</name>
+        <en_expanded>Settings &gt; Transition Settings -- Full-Scan &gt; Peaks changed to "1"</en_expanded>
+      </summary>
+      <all_info>
+        <type>changed_from_to</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_FullScan}{2:PropertySeparator}{0:TransitionFullScan_PrecursorIsotopeFilter}</name>
+        <name>{3:3}</name>
+        <name>{3:1}</name>
+        <en_expanded>Settings &gt; Transition Settings -- Full-Scan &gt; Peaks changed from "3" to "1"</en_expanded>
+      </all_info>
+      <hash>JmBGbnEukoFLbA+wC9+htZX+Q0E=</hash>
+    </audit_log_entry>
+    <audit_log_entry skyline_version="21.2.0.536-dbaf6ccd2 (64-Bit)" time_stamp="2023-01-18T10:50:14+01:00" user="DESKTOP-QGFMQJM\admin" mode="m">
+      <undo_redo>
+        <type>changed_to</type>
+        <name>{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_FullScan}{2:PropertySeparator}{0:TransitionFullScan_PrecursorIsotopeFilter}</name>
+        <name>{3:3}</name>
+        <en_expanded>Transition Settings -- Full-Scan &gt; Peaks changed to "3"</en_expanded>
+      </undo_redo>
+      <summary>
+        <type>changed_to</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_FullScan}{2:PropertySeparator}{0:TransitionFullScan_PrecursorIsotopeFilter}</name>
+        <name>{3:3}</name>
+        <en_expanded>Settings &gt; Transition Settings -- Full-Scan &gt; Peaks changed to "3"</en_expanded>
+      </summary>
+      <all_info>
+        <type>changed_from_to</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_FullScan}{2:PropertySeparator}{0:TransitionFullScan_PrecursorIsotopeFilter}</name>
+        <name>{3:1}</name>
+        <name>{3:3}</name>
+        <en_expanded>Settings &gt; Transition Settings -- Full-Scan &gt; Peaks changed from "1" to "3"</en_expanded>
+      </all_info>
+      <hash>J1Z6Tg3nQfdpGNjjRQ7gdULwcmo=</hash>
+    </audit_log_entry>
+    <audit_log_entry skyline_version="21.2.0.536-dbaf6ccd2 (64-Bit)" time_stamp="2023-01-18T10:49:53+01:00" user="DESKTOP-QGFMQJM\admin" mode="m">
+      <extra_info>{0:ImportResultsSettings_FileNames} = 
+[
+    "{4:D:\Projects\Default\Data\Rapidfire\2023\January\18\002\sequence1.d}"
+],
+{0:ImportResultsSettings_SingleInjectionReplicates} = {3:True},
+{0:ImportResultsSettings_FileImportOption} = "{6:ImportResultsSimultaneousFileOptions_many}"</extra_info>
+      <undo_redo>
+        <type>imported_result</type>
+        <name>{4:D:\Projects\Default\Data\Rapidfire\2023\January\18\002\sequence1.d}</name>
+        <en_expanded>Imported results from "sequence1.d"</en_expanded>
+      </undo_redo>
+      <summary>
+        <type>imported_result</type>
+        <name>{4:D:\Projects\Default\Data\Rapidfire\2023\January\18\002\sequence1.d}</name>
+        <en_expanded>Imported results from "sequence1.d"</en_expanded>
+      </summary>
+      <all_info>
+        <type>contains</type>
+        <name>{0:ImportResultsSettings}{2:PropertySeparator}{0:ImportResultsSettings_FileNames}</name>
+        <name>"{4:D:\Projects\Default\Data\Rapidfire\2023\January\18\002\sequence1.d}"</name>
+        <en_expanded>Import results settings &gt; File names : contains "D:\Projects\Default\Data\Rapidfire\2023\January\18\002\sequence1.d"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>is_</type>
+        <name>{0:ImportResultsSettings}{2:PropertySeparator}{0:ImportResultsSettings_SingleInjectionReplicates}</name>
+        <name>{3:True}</name>
+        <en_expanded>Import results settings &gt; Add single-injection replicates in files is True</en_expanded>
+      </all_info>
+      <all_info>
+        <type>is_</type>
+        <name>{0:ImportResultsSettings}{2:PropertySeparator}{0:ImportResultsSettings_FileImportOption}</name>
+        <name>"{6:ImportResultsSimultaneousFileOptions_many}"</name>
+        <en_expanded>Import results settings &gt; Files to import simultaneously is "Many"</en_expanded>
+      </all_info>
+      <en_extra_info>File names = 
+[
+    "D:\Projects\Default\Data\Rapidfire\2023\January\18\002\sequence1.d"
+],
+Add single-injection replicates in files = True,
+Files to import simultaneously = "Many"</en_extra_info>
+      <hash>PHZQaNjAQucIzqyB5crqjlV99m4=</hash>
+    </audit_log_entry>
+    <audit_log_entry skyline_version="21.2.0.536-dbaf6ccd2 (64-Bit)" time_stamp="2023-01-18T10:49:41+01:00" user="DESKTOP-QGFMQJM\admin" mode="m">
+      <undo_redo>
+        <type>changed</type>
+        <name>{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_IonMobilityFiltering}</name>
+        <en_expanded>Transition Settings -- Ion mobility changed</en_expanded>
+      </undo_redo>
+      <summary>
+        <type>changed</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_IonMobilityFiltering}</name>
+        <en_expanded>Settings &gt; Transition Settings -- Ion mobility changed</en_expanded>
+      </summary>
+      <all_info>
+        <type>changed_from_to</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_IonMobilityFiltering}{2:PropertySeparator}{0:TransitionIonMobilityFiltering_IonMobilityLibrary}</name>
+        <name>"None"</name>
+        <name>"moiAggregated"</name>
+        <en_expanded>Settings &gt; Transition Settings -- Ion mobility &gt; Ion mobility library changed from "None" to "moiAggregated"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>is_</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_IonMobilityFiltering}{2:PropertySeparator}{0:TransitionIonMobilityFiltering_IonMobilityLibrary}{2:PropertySeparator}{0:IonMobilityLibrary_FilePathAuditLog}</name>
+        <name>"{4:D:\gkreder\moiAggregated.imsdb}"</name>
+        <en_expanded>Settings &gt; Transition Settings -- Ion mobility &gt; Ion mobility library &gt; File path is "D:\gkreder\moiAggregated.imsdb"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>is_</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_IonMobilityFiltering}{2:PropertySeparator}{0:TransitionIonMobilityFiltering_IonMobilityLibrary}{2:PropertySeparator}{0:IonMobilityLibrary_Status}{2:PropertySeparator}{0:IonMobilityLibraryChange_LSID}</name>
+        <name>""</name>
+        <en_expanded>Settings &gt; Transition Settings -- Ion mobility &gt; Ion mobility library &gt; Contents changed &gt; LSID is ""</en_expanded>
+      </all_info>
+      <all_info>
+        <type>is_</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_IonMobilityFiltering}{2:PropertySeparator}{0:TransitionIonMobilityFiltering_IonMobilityLibrary}{2:PropertySeparator}{0:IonMobilityLibrary_Status}{2:PropertySeparator}{0:IonMobilityLibraryChange_CreationTime}</name>
+        <name>{2:Missing}</name>
+        <en_expanded>Settings &gt; Transition Settings -- Ion mobility &gt; Ion mobility library &gt; Contents changed &gt; Timestamp is Missing</en_expanded>
+      </all_info>
+      <all_info>
+        <type>changed_from_to</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_IonMobilityFiltering}{2:PropertySeparator}{0:IonMobilityWindowWidthCalculator_WindowWidthMode}</name>
+        <name>"{6:IonMobilityWindowWidthType_none}"</name>
+        <name>"{6:IonMobilityWindowWidthType_fixed_width}"</name>
+        <en_expanded>Settings &gt; Transition Settings -- Ion mobility &gt; Ion mobility filter window width calculation type changed from "None" to "Fixed width"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>changed_from_to</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_IonMobilityFiltering}{2:PropertySeparator}{0:IonMobilityWindowWidthCalculator_FixedWindowWidth}</name>
+        <name>{3:0}</name>
+        <name>{3:0.5}</name>
+        <en_expanded>Settings &gt; Transition Settings -- Ion mobility &gt; Ion mobility filter window fixed width value changed from "0" to "0.5"</en_expanded>
+      </all_info>
+      <hash>r2EXpwPRw5dubZmCZmjbHdR8rOI=</hash>
+    </audit_log_entry>
+    <audit_log_entry skyline_version="21.2.0.536-dbaf6ccd2 (64-Bit)" time_stamp="2023-01-18T10:48:45+01:00" user="DESKTOP-QGFMQJM\admin" mode="m">
+      <extra_info>280 transitions added
+Columns identified as 'Molecule List Name','Molecule Name','Molecular Formula','Precursor Adduct','Precursor Charge','Ignore Column','Ignore Column','Product m/z','Product Charge','Ignore Column'
+Molecule List Name,Precursor Name,Precursor Formula,Precursor Adduct,Precursor Charge,Precursor RT,Precursor CE,Product m/z,Product Charge,CCS
+moi,Succinyl CoA,C25H40N7O19P3S,[M+H]+,1,0.1,0,868.1385303,1,254.6917066
+moi,Succinyl CoA,C25H40N7O19P3S,[M+Na]+,1,0.1,0,890.1204723,1,254.8465853
+moi,Succinyl CoA,C25H40N7O19P3S,[M+NH4]+,1,0.1,0,885.1650773,1,255.3522756
+moi,Succinyl CoA,C25H40N7O19P3S,[M-H]-,-1,0.1,0,866.1239783,-1,255.9484954
+moi,Succinyl CoA,C25H40N7O19P3S,[M+Na-2H]-,-1,0.1,0,888.1059203,-1,260.0372212
+moi,Succinate,C4H6O4,[M+H]+,1,0.1,0,119.0338847,1,116.6319357
+moi,Succinate,C4H6O4,[M+Na]+,1,0.1,0,141.0158267,1,119.650216
+moi,Succinate,C4H6O4,[M+NH4]+,1,0.1,0,136.0604317,1,127.3712392
+moi,Succinate,C4H6O4,[M-H]-,-1,0.1,0,117.0193327,-1,131.3858617
+moi,Succinate,C4H6O4,[M+Na-2H]-,-1,0.1,0,139.0012747,-1,132.5442893
+moi,Sphingosine,C18H37NO2,[M+H]+,1,0.1,0,300.2897054,1,181.3936462
+moi,Sphingosine,C18H37NO2,[M+Na]+,1,0.1,0,322.2716474,1,182.8063691
+moi,Sphingosine,C18H37NO2,[M+NH4]+,1,0.1,0,317.3162524,1,185.1696871
+moi,Sphingosine,C18H37NO2,[M-H]-,-1,0.1,0,298.2751534,-1,187.8260515
+moi,Sphingosine,C18H37NO2,[M+Na-2H]-,-1,0.1,0,320.2570954,-1,188.5886134
+moi,Spermine,C10H26N4,[M+H]+,1,0.1,0,203.2230229,1,145.3511557
+moi,Spermine,C10H26N4,[M+Na]+,1,0.1,0,225.2049649,1,148.3945678
+moi,Spermine,C10H26N4,[M+NH4]+,1,0.1,0,220.2495699,1,149.2697608
+moi,Spermine,C10H26N4,[M-H]-,-1,0.1,0,201.2084709,-1,153.2037559
+moi,Spermine,C10H26N4,[M+Na-2H]-,-1,0.1,0,223.1904129,-1,154.5539754
+moi,Spermidine,C7H19N3,[M+H]+,1,0.1,0,146.1651736,1,132.3934357
+moi,Spermidine,C7H19N3,[M+Na]+,1,0.1,0,168.1471156,1,135.1758459
+moi,Spermidine,C7H19N3,[M+NH4]+,1,0.1,0,163.1917206,1,135.9513425
+moi,Spermidine,C7H19N3,[M-H]-,-1,0.1,0,144.1506216,-1,136.9765745
+moi,Spermidine,C7H19N3,[M+Na-2H]-,-1,0.1,0,166.1325636,-1,137.5609722
+moi,Pyruvate,C3H4O3,[M+H]+,1,0.1,0,89.02331999,1,118.7855514
+moi,Pyruvate,C3H4O3,[M+Na]+,1,0.1,0,111.005262,1,123.3503249
+moi,Pyruvate,C3H4O3,[M+NH4]+,1,0.1,0,106.049867,1,124.1491711
+moi,Pyruvate,C3H4O3,[M-H]-,-1,0.1,0,87.00876799,-1,128.3142718
+moi,Pyruvate,C3H4O3,[M+Na-2H]-,-1,0.1,0,108.99071,-1,129.5168523
+moi,Phytosphingosine,C18H39NO3,[M+H]+,1,0.1,0,318.3002701,1,183.9475231
+moi,Phytosphingosine,C18H39NO3,[M+Na]+,1,0.1,0,340.2822121,1,184.9335679
+moi,Phytosphingosine,C18H39NO3,[M+NH4]+,1,0.1,0,335.3268171,1,191.2648002
+moi,Phytosphingosine,C18H39NO3,[M-H]-,-1,0.1,0,316.2857181,-1,193.7741161
+moi,Phytosphingosine,C18H39NO3,[M+Na-2H]-,-1,0.1,0,338.2676601,-1,194.4939163
+moi,Phosphoenolpyruvate,C3H5O6P,[M+H]+,1,0.1,0,168.9896509,1,124.1693927
+moi,Phosphoenolpyruvate,C3H5O6P,[M+Na]+,1,0.1,0,190.9715929,1,126.3517911
+moi,Phosphoenolpyruvate,C3H5O6P,[M+NH4]+,1,0.1,0,186.0161979,1,137.8147381
+moi,Phosphoenolpyruvate,C3H5O6P,[M-H]-,-1,0.1,0,166.9750989,-1,141.5283595
+moi,Phosphoenolpyruvate,C3H5O6P,[M+Na-2H]-,-1,0.1,0,188.9570409,-1,142.5986791
+moi,Oxalosuccinate,C6H6O7,[M+H]+,1,0.1,0,191.0186285,1,125.3925828
+moi,Oxalosuccinate,C6H6O7,[M+Na]+,1,0.1,0,213.0005705,1,126.2347367
+moi,Oxalosuccinate,C6H6O7,[M+NH4]+,1,0.1,0,208.0451755,1,138.9308482
+moi,Oxalosuccinate,C6H6O7,[M-H]-,-1,0.1,0,189.0040765,-1,142.5341395
+moi,Oxalosuccinate,C6H6O7,[M+Na-2H]-,-1,0.1,0,210.9860185,-1,143.5721825
+moi,Oxaloacetate,C4H4O5,[M+H]+,1,0.1,0,133.0131492,1,118.5267733
+moi,Oxaloacetate,C4H4O5,[M+Na]+,1,0.1,0,154.9950912,1,121.0297729
+moi,Oxaloacetate,C4H4O5,[M+NH4]+,1,0.1,0,150.0396962,1,129.9783411
+moi,Oxaloacetate,C4H4O5,[M-H]-,-1,0.1,0,130.9985972,-1,133.8924056
+moi,Oxaloacetate,C4H4O5,[M+Na-2H]-,-1,0.1,0,152.9805392,-1,135.0213893
+moi,NADPH,C21H30N7O17P3,[M+H]+,1,0.1,0,746.0984,1,234
+moi,NADPH,C21H30N7O17P3,[M+H-H2O]+,1,0.1,0,728.0878,1,236.3
+moi,NADPH,C21H30N7O17P3,[M+NH4]+,1,0.1,0,763.125,1,238.9
+moi,NADPH,C21H30N7O17P3,[M+Na]+,1,0.1,0,768.0804,1,239
+moi,NADPH,C21H30N7O17P3,[M-H]-,-1,0.1,0,744.0838,-1,239.1
+moi,NADPH,C21H30N7O17P3,[M+Na-2H]-,-1,0.1,0,766.0658,-1,239.3
+moi,NADPH,C21H30N7O17P3,[M+HCOO]-,-1,0.1,0,790.0893,-1,239.4
+moi,NADP+,C21H29N7O17P3,[M+H]+,1,0.1,0,745.0906,1,228
+moi,NADP+,C21H29N7O17P4,[M+H-H2O]+,1,0.1,0,727.08,1,230
+moi,NADP+,C21H29N7O17P5,[M+NH4]+,1,0.1,0,762.1172,1,232.4
+moi,NADP+,C21H29N7O17P6,[M+Na]+,1,0.1,0,767.0726,1,238.9
+moi,NADP+,C21H29N7O17P7,[M-H]-,-1,0.1,0,743.076,-1,239.1
+moi,NADP+,C21H29N7O17P8,[M+Na-2H]-,-1,0.1,0,765.058,-1,239.4
+moi,NADP+,C21H29N7O17P9,[M+HCOO]-,-1,0.1,0,789.0815,-1,239.4
+moi,NADH,C21H27N7O14P2,[M+H]+,1,0.1,0,664.1163986,1,223.808576
+moi,NADH,C21H27N7O14P2,[M+Na]+,1,0.1,0,686.0983406,1,225.5362961
+moi,NADH,C21H27N7O14P2,[M+NH4]+,1,0.1,0,681.1429456,1,232.1223853
+moi,NADH,C21H27N7O14P2,[M-H]-,-1,0.1,0,662.1018466,-1,232.6969533
+moi,NADH,C21H27N7O14P2,[M+Na-2H]-,-1,0.1,0,684.0837886,-1,232.8537827
+moi,NAD+,C21H28N7O14P2,[M+H]+,1,0.1,0,665.1242236,1,212.2171905
+moi,NAD+,C21H28N7O14P2,[M+Na]+,1,0.1,0,687.1061656,1,213.1557049
+moi,NAD+,C21H28N7O14P2,[M+NH4]+,1,0.1,0,682.1507706,1,232.2792321
+moi,NAD+,C21H28N7O14P2,[M-H]-,-1,0.1,0,663.1096716,-1,232.9198574
+moi,NAD+,C21H28N7O14P2,[M+Na-2H]-,-1,0.1,0,685.0916136,-1,233.0958534
+moi,Malate,C4H6O5,[M+H]+,1,0.1,0,135.0287993,1,114.9312627
+moi,Malate,C4H6O5,[M+Na]+,1,0.1,0,157.0107413,1,117.350607
+moi,Malate,C4H6O5,[M+NH4]+,1,0.1,0,152.0553463,1,130.4965361
+moi,Malate,C4H6O5,[M-H]-,-1,0.1,0,133.0142473,-1,134.4161519
+moi,Malate,C4H6O5,[M+Na-2H]-,-1,0.1,0,154.9961893,-1,135.5467355
+moi,L-Valine,C5H11NO2,[M+H]+,1,0.1,0,118.0862546,1,126.2682803
+moi,L-Valine,C5H11NO2,[M+Na]+,1,0.1,0,140.0681966,1,129.493101
+moi,L-Valine,C5H11NO2,[M+NH4]+,1,0.1,0,135.1128016,1,129.6202204
+moi,L-Valine,C5H11NO2,[M-H]-,-1,0.1,0,116.0717026,-1,133.3607442
+moi,L-Valine,C5H11NO2,[M+Na-2H]-,-1,0.1,0,138.0536446,-1,134.4763244
+moi,L-Tyrosine,C9H11NO3,[M+H]+,1,0.1,0,182.0811692,1,138.9849781
+moi,L-Tyrosine,C9H11NO3,[M+H]+,1,0.1,0,182.0811692,1,138.9849781
+moi,L-Tyrosine,C9H11NO3,[M+Na]+,1,0.1,0,204.0631112,1,139.9430235
+moi,L-Tyrosine,C9H11NO3,[M+NH4]+,1,0.1,0,199.1077162,1,141.5730052
+moi,L-Tyrosine,C9H11NO3,[M-H]-,-1,0.1,0,180.0666172,-1,141.5730052
+moi,L-Tyrosine,C9H11NO3,[M-H]-,-1,0.1,0,180.0666172,-1,145.295238
+moi,L-Tyrosine,C9H11NO3,[M+Na-2H]-,-1,0.1,0,202.0485592,-1,146.367595
+moi,L-Tryptophan,C11H12N2O2,[M+H]+,1,0.1,0,205.0971536,1,146.0643364
+moi,L-Tryptophan,C11H12N2O2,[M+Na]+,1,0.1,0,227.0790956,1,146.3043256
+moi,L-Tryptophan,C11H12N2O2,[M+NH4]+,1,0.1,0,222.1237006,1,147.2802776
+moi,L-Tryptophan,C11H12N2O2,[M-H]-,-1,0.1,0,203.0826016,-1,150.8795781
+moi,L-Tryptophan,C11H12N2O2,[M+Na-2H]-,-1,0.1,0,225.0645436,-1,151.9159703
+moi,L-Threonine,C4H9NO3,[M+H]+,1,0.1,0,120.0655192,1,121.9256951
+moi,L-Threonine,C4H9NO3,[M+Na]+,1,0.1,0,142.0474612,1,125.1670417
+moi,L-Threonine,C4H9NO3,[M+NH4]+,1,0.1,0,137.0920662,1,130.3939344
+moi,L-Threonine,C4H9NO3,[M-H]-,-1,0.1,0,118.0509672,-1,134.2973982
+moi,L-Threonine,C4H9NO3,[M+Na-2H]-,-1,0.1,0,140.0329092,-1,135.4233789
+moi,L-Serine,C3H7NO3,[M+H]+,1,0.1,0,106.0498691,1,120.3202565
+moi,L-Serine,C3H7NO3,[M+Na]+,1,0.1,0,128.0318111,1,124.1779821
+moi,L-Serine,C3H7NO3,[M+NH4]+,1,0.1,0,123.0764161,1,127.6055277
+moi,L-Serine,C3H7NO3,[M-H]-,-1,0.1,0,104.0353171,-1,131.5980694
+moi,L-Serine,C3H7NO3,[M+Na-2H]-,-1,0.1,0,126.0172591,-1,132.7501607
+moi,L-Proline,C5H9NO2,[M+H]+,1,0.1,0,116.0706045,1,120.8737189
+moi,L-Proline,C5H9NO2,[M+H]+,1,0.1,0,116.0706045,1,123.4043975
+moi,L-Proline,C5H9NO2,[M+Na]+,1,0.1,0,138.0525465,1,124.8660725
+moi,L-Proline,C5H9NO2,[M+NH4]+,1,0.1,0,133.0971515,1,124.8660725
+moi,L-Proline,C5H9NO2,[M-H]-,-1,0.1,0,114.0560525,-1,129.3579814
+moi,L-Proline,C5H9NO2,[M+Na-2H]-,-1,0.1,0,136.0379945,-1,130.6549884
+moi,L-Phenylalanine,C9H11NO2,[M+H]+,1,0.1,0,166.0862546,1,135.253482
+moi,L-Phenylalanine,C9H11NO2,[M+H]+,1,0.1,0,166.0862546,1,135.253482
+moi,L-Phenylalanine,C9H11NO2,[M+Na]+,1,0.1,0,188.0681966,1,136.4590926
+moi,L-Phenylalanine,C9H11NO2,[M+NH4]+,1,0.1,0,183.1128016,1,138.2407998
+moi,L-Phenylalanine,C9H11NO2,[M-H]-,-1,0.1,0,164.0717026,-1,138.2407998
+moi,L-Phenylalanine,C9H11NO2,[M-H]-,-1,0.1,0,164.0717026,-1,142.1113401
+moi,L-Phenylalanine,C9H11NO2,[M+Na-2H]-,-1,0.1,0,186.0536446,-1,143.226975
+moi,L-Methionine,C5H11NO2S,[M+H]+,1,0.1,0,150.0583258,1,133.6676945
+moi,L-Methionine,C5H11NO2S,[M+H]+,1,0.1,0,150.0583258,1,133.6676945
+moi,L-Methionine,C5H11NO2S,[M+Na]+,1,0.1,0,172.0402678,1,135.0277635
+moi,L-Methionine,C5H11NO2S,[M+NH4]+,1,0.1,0,167.0848728,1,137.3085075
+moi,L-Methionine,C5H11NO2S,[M-H]-,-1,0.1,0,148.0437738,-1,137.8019661
+moi,L-Methionine,C5H11NO2S,[M+Na-2H]-,-1,0.1,0,170.0257158,-1,138.357792
+moi,L-Leucine,C6H13NO2,[M+H]+,1,0.1,0,132.1019047,1,130.030038
+moi,L-Leucine,C6H13NO2,[M+H]+,1,0.1,0,132.1019047,1,130.030038
+moi,L-Leucine,C6H13NO2,[M+Na]+,1,0.1,0,154.0838467,1,132.0169887
+moi,L-Leucine,C6H13NO2,[M+NH4]+,1,0.1,0,149.1284517,1,132.0169887
+moi,L-Leucine,C6H13NO2,[M-H]-,-1,0.1,0,130.0873527,-1,132.8629478
+moi,L-Leucine,C6H13NO2,[M-H]-,-1,0.1,0,130.0873527,-1,135.8239266
+moi,L-Leucine,C6H13NO2,[M+Na-2H]-,-1,0.1,0,152.0692947,-1,136.9216948
+moi,L-Kynurenine,C10H12N2O3,[M+H]+,1,0.1,0,209.0920683,1,145.0551744
+moi,L-Kynurenine,C10H12N2O3,[M+Na]+,1,0.1,0,231.0740103,1,145.6133595
+moi,L-Kynurenine,C10H12N2O3,[M+NH4]+,1,0.1,0,226.1186153,1,147.3240478
+moi,L-Kynurenine,C10H12N2O3,[M-H]-,-1,0.1,0,207.0775163,-1,150.842635
+moi,L-Kynurenine,C10H12N2O3,[M+Na-2H]-,-1,0.1,0,229.0594583,-1,151.8555624
+moi,L-Histidine,C6H9N3O2,[M+H]+,1,0.1,0,156.0767525,1,129.7591957
+moi,L-Histidine,C6H9N3O2,[M+H]+,1,0.1,0,156.0767525,1,129.7591957
+moi,L-Histidine,C6H9N3O2,[M+Na]+,1,0.1,0,178.0586945,1,131.1980356
+moi,L-Histidine,C6H9N3O2,[M+Na]+,1,0.1,0,178.0586945,1,135.4882528
+moi,L-Histidine,C6H9N3O2,[M+NH4]+,1,0.1,0,173.1032995,1,135.4882528
+moi,L-Histidine,C6H9N3O2,[M-H]-,-1,0.1,0,154.0622005,-1,139.4563964
+moi,L-Histidine,C6H9N3O2,[M-H]-,-1,0.1,0,154.0622005,-1,140.6005413
+moi,L-Histidine,C6H9N3O2,[M+Na-2H]-,-1,0.1,0,176.0441425,-1,140.6005413
+moi,L-Glycine,C2H5NO2,[M+H]+,1,0.1,0,76.0393044,1,122.9252366
+moi,L-Glycine,C2H5NO2,[M+Na]+,1,0.1,0,98.0212464,1,126.8243892
+moi,L-Glycine,C2H5NO2,[M+NH4]+,1,0.1,0,93.0658514,1,127.1011197
+moi,L-Glycine,C2H5NO2,[M-H]-,-1,0.1,0,74.0247524,-1,128.307043
+moi,L-Glycine,C2H5NO2,[M+Na-2H]-,-1,0.1,0,96.0066944,-1,132.4224429
+moi,L-Glutamine,C5H10N2O3,[M+H]+,1,0.1,0,147.0764182,1,126.3474033
+moi,L-Glutamine,C5H10N2O3,[M+Na]+,1,0.1,0,169.0583602,1,128.5189192
+moi,L-Glutamine,C5H10N2O3,[M+NH4]+,1,0.1,0,164.1029652,1,133.3930065
+moi,L-Glutamine,C5H10N2O3,[M-H]-,-1,0.1,0,145.0618662,-1,137.1328225
+moi,L-Glutamine,C5H10N2O3,[M+Na-2H]-,-1,0.1,0,167.0438082,-1,138.2109266
+moi,L-Glutamic acid,C5H9NO4,[M+H]+,1,0.1,0,148.0604338,1,126.6424926
+moi,L-Glutamic acid,C5H9NO4,[M+Na]+,1,0.1,0,170.0423758,1,126.6424926
+moi,L-Glutamic acid,C5H9NO4,[M+K]+,1,0.1,0,186.0163158,1,128.812661
+moi,L-Glutamic acid,C5H9NO4,[M+NH4]+,1,0.1,0,165.0869808,1,133.8304247
+moi,L-Glutamic acid,C5H9NO4,[M-H]-,-1,0.1,0,146.0458818,-1,137.571066
+moi,L-Glutamic acid,C5H9NO4,[M-H]-,-1,0.1,0,146.0458818,-1,138.6494
+moi,L-Glutamic acid,C5H9NO4,[M+Na-2H]-,-1,0.1,0,168.0278238,-1,149.3
+moi,L-Cysteine,C3H7NO2S,[M+H]+,1,0.1,0,122.0270256,1,128.6658228
+moi,L-Cysteine,C3H7NO2S,[M+Na]+,1,0.1,0,144.0089676,1,130.1460705
+moi,L-Cysteine,C3H7NO2S,[M+NH4]+,1,0.1,0,139.0535726,1,132.6024899
+moi,L-Cysteine,C3H7NO2S,[M-H]-,-1,0.1,0,120.0124736,-1,134.0213337
+moi,L-Cysteine,C3H7NO2S,[M+Na-2H]-,-1,0.1,0,141.9944156,-1,135.1391408
+moi,L-Aspartic Acid,C4H7NO4,[M+H]+,1,0.1,0,134.0447837,1,122.7851272
+moi,L-Aspartic Acid,C4H7NO4,[M+Na]+,1,0.1,0,156.0267257,1,122.7851272
+moi,L-Aspartic Acid,C4H7NO4,[M+NH4]+,1,0.1,0,151.0713307,1,125.4248561
+moi,L-Aspartic Acid,C4H7NO4,[M-H]-,-1,0.1,0,132.0302317,-1,131.6651637
+moi,L-Aspartic Acid,C4H7NO4,[M-H]-,-1,0.1,0,132.0302317,-1,135.4963488
+moi,L-Aspartic Acid,C4H7NO4,[M+Na-2H]-,-1,0.1,0,154.0121737,-1,136.6011654
+moi,L-Asparagine,C4H8N2O3,[M+H]+,1,0.1,0,133.0607681,1,122.4414625
+moi,L-Asparagine,C4H8N2O3,[M+Na]+,1,0.1,0,155.0427101,1,125.0873911
+moi,L-Asparagine,C4H8N2O3,[M+NH4]+,1,0.1,0,150.0873151,1,131.2270072
+moi,L-Asparagine,C4H8N2O3,[M-H]-,-1,0.1,0,131.0462161,-1,135.0569697
+moi,L-Asparagine,C4H8N2O3,[M+Na-2H]-,-1,0.1,0,153.0281581,-1,136.1614402
+moi,L-Arginine,C6H14N4O2,[M+H]+,1,0.1,0,175.1189517,1,136.220068
+moi,L-Arginine,C6H14N4O2,[M+H]+,1,0.1,0,175.1189517,1,136.220068
+moi,L-Arginine,C6H14N4O2,[M+Na]+,1,0.1,0,197.1008937,1,137.7849247
+moi,L-Arginine,C6H14N4O2,[M+NH4]+,1,0.1,0,192.1454987,1,139.0351556
+moi,L-Arginine,C6H14N4O2,[M-H]-,-1,0.1,0,173.1043997,-1,139.0351556
+moi,L-Arginine,C6H14N4O2,[M-H]-,-1,0.1,0,173.1043997,-1,142.5415297
+moi,L-Arginine,C6H14N4O2,[M+Na-2H]-,-1,0.1,0,195.0863417,-1,143.5514749
+moi,L-Alanine,C3H7NO2,[M+H]+,1,0.1,0,90.05495447,1,123.3560953
+moi,L-Alanine,C3H7NO2,[M+Na]+,1,0.1,0,112.0368965,1,125.589218
+moi,L-Alanine,C3H7NO2,[M+NH4]+,1,0.1,0,107.0815015,1,128.0259308
+moi,L-Alanine,C3H7NO2,[M-H]-,-1,0.1,0,88.04040247,-1,129.6741191
+moi,L-Alanine,C3H7NO2,[M+Na-2H]-,-1,0.1,0,110.0223445,-1,130.8532997
+moi,Isocitrate,C6H8O7,[M+H]+,1,0.1,0,193.0342786,1,122.0550499
+moi,Isocitrate,C6H8O7,[M+Na]+,1,0.1,0,215.0162206,1,122.7302742
+moi,Isocitrate,C6H8O7,[M+NH4]+,1,0.1,0,210.0608256,1,138.760979
+moi,Isocitrate,C6H8O7,[M-H]-,-1,0.1,0,191.0197266,-1,142.3720883
+moi,Isocitrate,C6H8O7,[M+Na-2H]-,-1,0.1,0,213.0016686,-1,143.4124012
+moi,Glyoxylate,C2H2O3,[M+H]+,1,0.1,0,75.00766992,1,123.5478469
+moi,Glyoxylate,C2H2O3,[M+Na]+,1,0.1,0,96.98961192,1,124.5340356
+moi,Glyoxylate,C2H2O3,[M+NH4]+,1,0.1,0,92.03421692,1,127.7782718
+moi,Glyoxylate,C2H2O3,[M-H]-,-1,0.1,0,72.99311792,-1,129.0001038
+moi,Glyoxylate,C2H2O3,[M+Na-2H]-,-1,0.1,0,94.97505992,-1,130.0499738
+moi,Glycerol 3-Phosphate,C3H9O6P,[M+H]+,1,0.1,0,173.020951,1,130.2620348
+moi,Glycerol 3-Phosphate,C3H9O6P,[M+Na]+,1,0.1,0,195.002893,1,132.5791788
+moi,Glycerol 3-Phosphate,C3H9O6P,[M+NH4]+,1,0.1,0,190.047498,1,138.3613305
+moi,Glycerol 3-Phosphate,C3H9O6P,[M-H]-,-1,0.1,0,171.006399,-1,141.9531052
+moi,Glycerol 3-Phosphate,C3H9O6P,[M+Na-2H]-,-1,0.1,0,192.988341,-1,142.9879295
+moi,Glycerol,C3H8O3,[M+H]+,1,0.1,0,93.05462012,1,124.4378725
+moi,Glycerol,C3H8O3,[M+Na]+,1,0.1,0,115.0365621,1,125.7567258
+moi,Glycerol,C3H8O3,[M+NH4]+,1,0.1,0,110.0811671,1,129.081007
+moi,Glycerol,C3H8O3,[M-H]-,-1,0.1,0,91.04006812,-1,129.8225515
+moi,Glycerol,C3H8O3,[M+Na-2H]-,-1,0.1,0,113.0220101,-1,130.9961527
+moi,Glyceraldehyde 3-Phosphate,C3H7O6P,[M+H]+,1,0.1,0,171.0053009,1,128.9782361
+moi,Glyceraldehyde 3-Phosphate,C3H7O6P,[M+Na]+,1,0.1,0,192.9872429,1,131.2402466
+moi,Glyceraldehyde 3-Phosphate,C3H7O6P,[M+NH4]+,1,0.1,0,188.0318479,1,137.8201825
+moi,Glyceraldehyde 3-Phosphate,C3H7O6P,[M-H]-,-1,0.1,0,168.9907489,-1,141.4365479
+moi,Glyceraldehyde 3-Phosphate,C3H7O6P,[M+Na-2H]-,-1,0.1,0,190.9726909,-1,142.4785441
+moi,Glutathione,C10H17N3O6S,[M+H]+,1,0.1,0,308.0910825,1,164.3091542
+moi,Glutathione,C10H17N3O6S,[M+Na]+,1,0.1,0,330.0730245,1,165.7213612
+moi,Glutathione,C10H17N3O6S,[M+NH4]+,1,0.1,0,325.1176295,1,166.128902
+moi,Glutathione,C10H17N3O6S,[M-H]-,-1,0.1,0,306.0765305,-1,166.8658181
+moi,Glutathione,C10H17N3O6S,[M+Na-2H]-,-1,0.1,0,328.0584725,-1,167.5987797
+moi,Glucose-6-Phosphate,C6H13O9P,[M+H]+,1,0.1,0,261.036995,1,147.0630547
+moi,Glucose-6-Phosphate,C6H13O9P,[M+Na]+,1,0.1,0,283.018937,1,147.6580104
+moi,Glucose-6-Phosphate,C6H13O9P,[M+NH4]+,1,0.1,0,278.063542,1,155.5506851
+moi,Glucose-6-Phosphate,C6H13O9P,[M-H]-,-1,0.1,0,259.022443,-1,158.6007944
+moi,Glucose-6-Phosphate,C6H13O9P,[M+Na-2H]-,-1,0.1,0,281.004385,-1,159.4773863
+moi,Glucose,C6H12O6,[M+H]+,1,0.1,0,181.0706641,1,131.5444833
+moi,Glucose,C6H12O6,[M+Na]+,1,0.1,0,203.0526061,1,132.9306012
+moi,Glucose,C6H12O6,[M+NH4]+,1,0.1,0,198.0972111,1,141.034915
+moi,Glucose,C6H12O6,[M-H]-,-1,0.1,0,179.0561121,-1,144.5720598
+moi,Glucose,C6H12O6,[M+Na-2H]-,-1,0.1,0,201.0380541,-1,145.5908691
+moi,Fumarate,C4H4O4,[M+H]+,1,0.1,0,117.0182346,1,114.9300191
+moi,Fumarate,C4H4O4,[M+Na]+,1,0.1,0,139.0001766,1,117.913181
+moi,Fumarate,C4H4O4,[M+NH4]+,1,0.1,0,134.0447816,1,126.397856
+moi,Fumarate,C4H4O4,[M-H]-,-1,0.1,0,115.0036826,-1,130.4729105
+moi,Fumarate,C4H4O4,[M+Na-2H]-,-1,0.1,0,136.9856246,-1,131.6489603
+moi,Fructose-6-Phosphate,C6H13O9P,[M+H]+,1,0.1,0,261.036995,1,146.8651557
+moi,Fructose-6-Phosphate,C6H13O9P,[M+Na]+,1,0.1,0,283.018937,1,147.4302273
+moi,Fructose-6-Phosphate,C6H13O9P,[M+NH4]+,1,0.1,0,278.063542,1,154.4545262
+moi,Fructose-6-Phosphate,C6H13O9P,[M-H]-,-1,0.1,0,259.022443,-1,157.5248102
+moi,Fructose-6-Phosphate,C6H13O9P,[M+Na-2H]-,-1,0.1,0,281.004385,-1,158.4072849
+moi,Dihydroxyacetone Phosphate,C3H7O6P,[M+H]+,1,0.1,0,171.0053009,1,129.0569402
+moi,Dihydroxyacetone Phosphate,C3H7O6P,[M+Na]+,1,0.1,0,192.9872429,1,131.5141639
+moi,Dihydroxyacetone Phosphate,C3H7O6P,[M+NH4]+,1,0.1,0,188.0318479,1,135.6734011
+moi,Dihydroxyacetone Phosphate,C3H7O6P,[M-H]-,-1,0.1,0,168.9907489,-1,139.3327406
+moi,Dihydroxyacetone Phosphate,C3H7O6P,[M+Na-2H]-,-1,0.1,0,190.9726909,-1,140.3877275
+moi,Dihydrosphingosine,C18H39NO2,[M+H]+,1,0.1,0,302.3053555,1,181.7405486
+moi,Dihydrosphingosine,C18H39NO2,[M+Na]+,1,0.1,0,324.2872975,1,182.7936911
+moi,Dihydrosphingosine,C18H39NO2,[M+NH4]+,1,0.1,0,319.3319025,1,187.7802404
+moi,Dihydrosphingosine,C18H39NO2,[M-H]-,-1,0.1,0,300.2908035,-1,190.3766342
+moi,Dihydrosphingosine,C18H39NO2,[M+Na-2H]-,-1,0.1,0,322.2727455,-1,191.1218386
+moi,Citrate,C6H8O7,[M+H]+,1,0.1,0,193.0342786,1,122.2780731
+moi,Citrate,C6H8O7,[M+Na]+,1,0.1,0,215.0162206,1,122.9746238
+moi,Citrate,C6H8O7,[M+NH4]+,1,0.1,0,210.0608256,1,138.1602429
+moi,Citrate,C6H8O7,[M-H]-,-1,0.1,0,191.0197266,-1,141.7581048
+moi,Citrate,C6H8O7,[M+Na-2H]-,-1,0.1,0,213.0016686,-1,142.794571
+moi,cis-Aconitate,C6H6O6,[M+H]+,1,0.1,0,175.0237139,1,129.6078048
+moi,cis-Aconitate,C6H6O6,[M+Na]+,1,0.1,0,197.0056559,1,131.0220936
+moi,cis-Aconitate,C6H6O6,[M+NH4]+,1,0.1,0,192.0502609,1,137.8698273
+moi,cis-Aconitate,C6H6O6,[M-H]-,-1,0.1,0,173.0091619,-1,141.4943555
+moi,cis-Aconitate,C6H6O6,[M+Na-2H]-,-1,0.1,0,194.9911039,-1,142.5386846
+moi,ATP,C10H16N5O13P3,[M+H]+,1,0.1,0,508.0030226,1,190.0819958
+moi,ATP,C10H16N5O13P3,[M+Na]+,1,0.1,0,529.9849646,1,190.2095272
+moi,ATP,C10H16N5O13P3,[M+NH4]+,1,0.1,0,525.0295696,1,199.5259122
+moi,ATP,C10H16N5O13P3,[M-H]-,-1,0.1,0,505.9884706,-1,201.199558
+moi,ATP,C10H16N5O13P3,[M+Na-2H]-,-1,0.1,0,527.9704126,-1,201.675027
+moi,alpha-Ketoglutarate,C5H6O5,[M+H]+,1,0.1,0,147.0287993,1,119.4718496
+moi,alpha-Ketoglutarate,C5H6O5,[M+Na]+,1,0.1,0,169.0107413,1,121.4073803
+moi,alpha-Ketoglutarate,C5H6O5,[M+NH4]+,1,0.1,0,164.0553463,1,131.6848285
+moi,alpha-Ketoglutarate,C5H6O5,[M-H]-,-1,0.1,0,145.0142473,-1,135.5411461
+moi,alpha-Ketoglutarate,C5H6O5,[M+Na-2H]-,-1,0.1,0,166.9961893,-1,136.6531958
+moi,ADP,C10H15N5O10P2,[M+H]+,1,0.1,0,428.0366917,1,180.141477
+moi,ADP,C10H15N5O10P2,[M+Na]+,1,0.1,0,450.0186337,1,180.4080999
+moi,ADP,C10H15N5O10P2,[M+NH4]+,1,0.1,0,445.0632387,1,188.5339797
+moi,ADP,C10H15N5O10P2,[M-H]-,-1,0.1,0,426.0221397,-1,190.7323115
+moi,ADP,C10H15N5O10P2,[M+Na-2H]-,-1,0.1,0,448.0040817,-1,191.3603112
+moi,Acetyl CoA,C23H38N7O17P3S,[M+H]+,1,0.1,0,810.133051,1,248.1589097
+moi,Acetyl CoA,C23H38N7O17P3S,[M+Na]+,1,0.1,0,832.114993,1,249.6641685
+moi,Acetyl CoA,C23H38N7O17P3S,[M+NH4]+,1,0.1,0,827.159598,1,249.7439978
+moi,Acetyl CoA,C23H38N7O17P3S,[M-H]-,-1,0.1,0,808.118499,-1,249.9893074
+moi,Acetyl CoA,C23H38N7O17P3S,[M+Na-2H]-,-1,0.1,0,830.100441,-1,251.892096
+moi,3-Phosphoglycerate,C3H7O7P,[M+H]+,1,0.1,0,187.0002156,1,130.3451365
+moi,3-Phosphoglycerate,C3H7O7P,[M+Na]+,1,0.1,0,208.9821576,1,132.2166304
+moi,3-Phosphoglycerate,C3H7O7P,[M+NH4]+,1,0.1,0,204.0267626,1,140.6948555
+moi,3-Phosphoglycerate,C3H7O7P,[M-H]-,-1,0.1,0,184.9856636,-1,144.2174912
+moi,3-Phosphoglycerate,C3H7O7P,[M+Na-2H]-,-1,0.1,0,206.9676056,-1,145.2320762
+moi,2-Phosphoglycerate,C3H7O7P,[M+H]+,1,0.1,0,187.0002156,1,128.9833407
+moi,2-Phosphoglycerate,C3H7O7P,[M+Na]+,1,0.1,0,208.9821576,1,130.8584902
+moi,2-Phosphoglycerate,C3H7O7P,[M+NH4]+,1,0.1,0,204.0267626,1,141.1382231
+moi,2-Phosphoglycerate,C3H7O7P,[M-H]-,-1,0.1,0,184.9856636,-1,144.674505
+moi,2-Phosphoglycerate,C3H7O7P,[M+Na-2H]-,-1,0.1,0,206.9676056,-1,145.6930542
+moi,"1,3-Bisphosphoglycerate",C3H8O10P2,[M+H]+,1,0.1,0,266.9665465,1,142.756108
+moi,"1,3-Bisphosphoglycerate",C3H8O10P2,[M+Na]+,1,0.1,0,288.9484885,1,143.6003202
+moi,"1,3-Bisphosphoglycerate",C3H8O10P2,[M+NH4]+,1,0.1,0,283.9930935,1,154.195407
+moi,"1,3-Bisphosphoglycerate",C3H8O10P2,[M-H]-,-1,0.1,0,264.9519945,-1,157.2336147
+moi,"1,3-Bisphosphoglycerate",C3H8O10P2,[M+Na-2H]-,-1,0.1,0,286.9339365,-1,158.1067319
+</extra_info>
+      <undo_redo>
+        <type>imported_transition_list_from_file</type>
+        <name>{4:D:\Projects\Default\Data\Rapidfire\2022\December\1\002\skyline\transitionList_moi_aggregated_precursors_CCS.csv}</name>
+        <en_expanded>Imported a transition list from "transitionList_moi_aggregated_precursors_CCS.csv"</en_expanded>
+      </undo_redo>
+      <summary>
+        <type>imported_transition_list_from_file</type>
+        <name>{4:D:\Projects\Default\Data\Rapidfire\2022\December\1\002\skyline\transitionList_moi_aggregated_precursors_CCS.csv}</name>
+        <en_expanded>Imported a transition list from "transitionList_moi_aggregated_precursors_CCS.csv"</en_expanded>
+      </summary>
+      <hash>R4RITyfYYatiXUYq5hiYVzHEhvY=</hash>
+    </audit_log_entry>
+    <audit_log_entry skyline_version="21.2.0.536-dbaf6ccd2 (64-Bit)" time_stamp="2023-01-18T10:48:05+01:00" user="DESKTOP-QGFMQJM\admin" mode="m">
+      <undo_redo>
+        <type>start_log_existing_doc</type>
+        <en_expanded>Start of audit log for already existing document</en_expanded>
+      </undo_redo>
+      <summary>
+        <type>start_log_existing_doc</type>
+        <en_expanded>Start of audit log for already existing document</en_expanded>
+      </summary>
+      <all_info>
+        <type>changed_from_to</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_PeptideSettings}{2:TabSeparator}{0:PeptideSettings_Prediction}{2:PropertySeparator}{0:PeptidePrediction_UseMeasuredRTs}</name>
+        <name>{3:True}</name>
+        <name>{3:False}</name>
+        <en_expanded>Settings &gt; Molecule Settings -- Prediction &gt; Use measured retention times when present changed from True to False</en_expanded>
+      </all_info>
+      <all_info>
+        <type>removed_all</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_PeptideSettings}{2:TabSeparator}{0:PeptideSettings_Modifications}{2:PropertySeparator}{0:PeptideModifications_InternalStandardTypes}</name>
+        <en_expanded>Settings &gt; Molecule Settings -- Modifications &gt; Internal standard types: removed all</en_expanded>
+      </all_info>
+      <all_info>
+        <type>changed_from_to</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_Filter}{2:PropertySeparator}{0:TransitionFilter_PeptideIonTypesString}</name>
+        <name>"y"</name>
+        <name>"y, p"</name>
+        <en_expanded>Settings &gt; Transition Settings -- Filter &gt; Ion types changed from "y" to "y, p"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>changed_from_to</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_Filter}{2:PropertySeparator}{0:TransitionFilter_SmallMoleculeIonTypesString}</name>
+        <name>"f"</name>
+        <name>"f, p"</name>
+        <en_expanded>Settings &gt; Transition Settings -- Filter &gt; Molecule Ion types changed from "f" to "f, p"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>changed_from_to</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_Integration}{2:PropertySeparator}{0:TransitionIntegration_IsIntegrateAll}</name>
+        <name>{3:False}</name>
+        <name>{3:True}</name>
+        <en_expanded>Settings &gt; Transition Settings -- Integration &gt; Integrate All changed from False to True</en_expanded>
+      </all_info>
+      <all_info>
+        <type>changed_from_to</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_Instrument}{2:PropertySeparator}{0:TransitionInstrument_MzMatchTolerance}</name>
+        <name>{3:0.055}</name>
+        <name>{3:0.05}</name>
+        <en_expanded>Settings &gt; Transition Settings -- Instrument &gt; Method match tolerance m/z changed from "0.055" to "0.05"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>changed_from_to</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_FullScan}{2:PropertySeparator}{0:TransitionFullScan_PrecursorIsotopes}</name>
+        <name>"{6:FullScanPrecursorIsotopes_None}"</name>
+        <name>"{6:FullScanPrecursorIsotopes_Count}"</name>
+        <en_expanded>Settings &gt; Transition Settings -- Full-Scan &gt; Isotope peaks included changed from "None" to "Count"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>changed_from_to</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_FullScan}{2:PropertySeparator}{0:TransitionFullScan_PrecursorIsotopeFilter}</name>
+        <name>{2:Missing}</name>
+        <name>{3:1}</name>
+        <en_expanded>Settings &gt; Transition Settings -- Full-Scan &gt; Peaks changed from Missing to "1"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>changed_from_to</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_FullScan}{2:PropertySeparator}{0:TransitionFullScan_PrecursorMassAnalyzer}</name>
+        <name>"{6:FullScanMassAnalyzerType_none}"</name>
+        <name>"{6:FullScanMassAnalyzerType_tof}"</name>
+        <en_expanded>Settings &gt; Transition Settings -- Full-Scan &gt; Precursor mass analyzer changed from "None" to "TOF"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>changed_from_to</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_FullScan}{2:PropertySeparator}{0:TransitionFullScan_ResolvingPower}</name>
+        <name>{2:Missing}</name>
+        <name>{3:30000}</name>
+        <en_expanded>Settings &gt; Transition Settings -- Full-Scan &gt; Resolving power changed from Missing to "30000"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>changed_from_to</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_FullScan}{2:PropertySeparator}{0:TransitionFullScan_IsotopeEnrichments}</name>
+        <name>{2:Missing}</name>
+        <name>"Default"</name>
+        <en_expanded>Settings &gt; Transition Settings -- Full-Scan &gt; Isotope labeling enrichment changed from Missing to "Default"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>contains</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_FullScan}{2:PropertySeparator}{0:TransitionFullScan_IsotopeEnrichments}{2:PropertySeparator}{0:IsotopeEnrichments_Enrichments}</name>
+        <name>{ {0:IsotopeEnrichmentItem_IsotopeSymbol} = "H'", {0:IsotopeEnrichmentItem_AtomPercentEnrichment} = {3:0.98}, {0:IsotopeEnrichmentItem_Symbol} = "H" }</name>
+        <en_expanded>Settings &gt; Transition Settings -- Full-Scan &gt; Isotope labeling enrichment &gt; Stable isotope labeling atoms : contains { Atom = "H'", Enrichment percentage = "0.98", Symbol = "H" }</en_expanded>
+      </all_info>
+      <all_info>
+        <type>contains</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_FullScan}{2:PropertySeparator}{0:TransitionFullScan_IsotopeEnrichments}{2:PropertySeparator}{0:IsotopeEnrichments_Enrichments}</name>
+        <name>{ {0:IsotopeEnrichmentItem_IsotopeSymbol} = "C'", {0:IsotopeEnrichmentItem_AtomPercentEnrichment} = {3:0.995}, {0:IsotopeEnrichmentItem_Symbol} = "C" }</name>
+        <en_expanded>Settings &gt; Transition Settings -- Full-Scan &gt; Isotope labeling enrichment &gt; Stable isotope labeling atoms : contains { Atom = "C'", Enrichment percentage = "0.995", Symbol = "C" }</en_expanded>
+      </all_info>
+      <all_info>
+        <type>contains</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_FullScan}{2:PropertySeparator}{0:TransitionFullScan_IsotopeEnrichments}{2:PropertySeparator}{0:IsotopeEnrichments_Enrichments}</name>
+        <name>{ {0:IsotopeEnrichmentItem_IsotopeSymbol} = "N'", {0:IsotopeEnrichmentItem_AtomPercentEnrichment} = {3:0.995}, {0:IsotopeEnrichmentItem_Symbol} = "N" }</name>
+        <en_expanded>Settings &gt; Transition Settings -- Full-Scan &gt; Isotope labeling enrichment &gt; Stable isotope labeling atoms : contains { Atom = "N'", Enrichment percentage = "0.995", Symbol = "N" }</en_expanded>
+      </all_info>
+      <all_info>
+        <type>contains</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_FullScan}{2:PropertySeparator}{0:TransitionFullScan_IsotopeEnrichments}{2:PropertySeparator}{0:IsotopeEnrichments_Enrichments}</name>
+        <name>{ {0:IsotopeEnrichmentItem_IsotopeSymbol} = "O"", {0:IsotopeEnrichmentItem_AtomPercentEnrichment} = {3:0.99}, {0:IsotopeEnrichmentItem_Symbol} = "O" }</name>
+        <en_expanded>Settings &gt; Transition Settings -- Full-Scan &gt; Isotope labeling enrichment &gt; Stable isotope labeling atoms : contains { Atom = "O"", Enrichment percentage = "0.99", Symbol = "O" }</en_expanded>
+      </all_info>
+      <all_info>
+        <type>contains</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_FullScan}{2:PropertySeparator}{0:TransitionFullScan_IsotopeEnrichments}{2:PropertySeparator}{0:IsotopeEnrichments_Enrichments}</name>
+        <name>{ {0:IsotopeEnrichmentItem_IsotopeSymbol} = "O'", {0:IsotopeEnrichmentItem_AtomPercentEnrichment} = {3:0.99}, {0:IsotopeEnrichmentItem_Symbol} = "O" }</name>
+        <en_expanded>Settings &gt; Transition Settings -- Full-Scan &gt; Isotope labeling enrichment &gt; Stable isotope labeling atoms : contains { Atom = "O'", Enrichment percentage = "0.99", Symbol = "O" }</en_expanded>
+      </all_info>
+      <all_info>
+        <type>contains</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_FullScan}{2:PropertySeparator}{0:TransitionFullScan_IsotopeEnrichments}{2:PropertySeparator}{0:IsotopeEnrichments_Enrichments}</name>
+        <name>{ {0:IsotopeEnrichmentItem_IsotopeSymbol} = "Cl'", {0:IsotopeEnrichmentItem_AtomPercentEnrichment} = {3:0.99}, {0:IsotopeEnrichmentItem_Symbol} = "Cl" }</name>
+        <en_expanded>Settings &gt; Transition Settings -- Full-Scan &gt; Isotope labeling enrichment &gt; Stable isotope labeling atoms : contains { Atom = "Cl'", Enrichment percentage = "0.99", Symbol = "Cl" }</en_expanded>
+      </all_info>
+      <all_info>
+        <type>contains</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_FullScan}{2:PropertySeparator}{0:TransitionFullScan_IsotopeEnrichments}{2:PropertySeparator}{0:IsotopeEnrichments_Enrichments}</name>
+        <name>{ {0:IsotopeEnrichmentItem_IsotopeSymbol} = "Br'", {0:IsotopeEnrichmentItem_AtomPercentEnrichment} = {3:0.99}, {0:IsotopeEnrichmentItem_Symbol} = "Br" }</name>
+        <en_expanded>Settings &gt; Transition Settings -- Full-Scan &gt; Isotope labeling enrichment &gt; Stable isotope labeling atoms : contains { Atom = "Br'", Enrichment percentage = "0.99", Symbol = "Br" }</en_expanded>
+      </all_info>
+      <all_info>
+        <type>changed_from_to</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_FullScan}{2:PropertySeparator}{0:TransitionFullScan_RetentionTimeFilterType}</name>
+        <name>"{6:RetentionTimeFilterType_ms2_ids}"</name>
+        <name>"{6:RetentionTimeFilterType_none}"</name>
+        <en_expanded>Settings &gt; Transition Settings -- Full-Scan &gt; Retention time filter type changed from "Use only scans within time frame of MS/MS IDs" to "Include all matching scans"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>changed_from_to</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_FullScan}{2:PropertySeparator}{0:TransitionFullScan_RetentionTimeFilterLength}</name>
+        <name>{3:5}</name>
+        <name>{3:0}</name>
+        <en_expanded>Settings &gt; Transition Settings -- Full-Scan &gt; Retention time filter length changed from "5" to "0"</en_expanded>
+      </all_info>
+      <hash>+9S9RZKst+dsSIiBV/0pUze89KU=</hash>
+    </audit_log_entry>
+  </audit_log>
+</audit_log_root>

@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<audit_log_root format_version="22.2">
+  <document_hash>QCn3twwKYPkg0gWkVH5p3BSORQ0=</document_hash>
+  <root_hash>xBe/hLwUCOly3B8HfsDPTkHpKtI=</root_hash>
+  <audit_log>
+    <audit_log_entry skyline_version="22.2.0.351-28f9b9301 (64-Bit)" time_stamp="2023-01-24T13:37:56+01:00" user="DESKTOP-QGFMQJM\admin" mode="m">
+      <undo_redo>
+        <type>changed</type>
+        <name>{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_Instrument}</name>
+        <en_expanded>Transition Settings -- Instrument changed</en_expanded>
+      </undo_redo>
+      <summary>
+        <type>changed</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_Instrument}</name>
+        <en_expanded>Settings &gt; Transition Settings -- Instrument changed</en_expanded>
+      </summary>
+      <all_info>
+        <type>changed_from_to</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_Instrument}{2:PropertySeparator}{0:TransitionInstrument_MinMz}</name>
+        <name>{3:50}</name>
+        <name>{3:10}</name>
+        <en_expanded>Settings &gt; Transition Settings -- Instrument &gt; Min m/z changed from "50" to "10"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>changed_from_to</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_Instrument}{2:PropertySeparator}{0:TransitionInstrument_MaxMz}</name>
+        <name>{3:1500}</name>
+        <name>{3:1700}</name>
+        <en_expanded>Settings &gt; Transition Settings -- Instrument &gt; Max m/z changed from "1500" to "1700"</en_expanded>
+      </all_info>
+      <hash>2O62otXywC0cUlphc0Qpc3lTIzA=</hash>
+    </audit_log_entry>
+  </audit_log>
+</audit_log_root>
