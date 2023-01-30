@@ -53,7 +53,7 @@ for s in sampleInfoD:
     outSuf, startTime_adjusted, endTime_adjusted = getSampleInfo(s)
     if outSuf != None:
         # print(f'["{args.dFile}", "{outSuf}.d", {startTime_adjusted}, {endTime_adjusted}]')
-        print(f'{args.dFile} {outSuf}.d {startTime_adjusted} {endTime_adjusted}')
+        print(f'{os.path.basename(args.dFile)} {outSuf}.d {startTime_adjusted} {endTime_adjusted}')
         # print([args.dFile, f"{outSuf}.d", startTime_adjusted, endTime_adjusted])
         list_output.append([args.dFile, f"{outSuf}.d", startTime_adjusted, endTime_adjusted])
 
