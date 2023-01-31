@@ -9,7 +9,8 @@ workflow {
   // Channel.fromPath(params.files2split, type: 'dir') | extractSplits | splitText | splitFile | view{it}
 
   // Channel.fromPath(params.outDir + "*.d", type: 'dir') | convertCalibrate | collect | run_processing | view{it}
-  Channel.fromPath(params.files2split, type: 'dir') | extractSplits | splitText | splitFile | convertCalibrate | collect | run_processing | view{it}
+  // Channel.fromPath(params.files2split, type: 'dir') | extractSplits | splitText | splitFile | convertCalibrate | collect | run_processing | view{it}
+  Channel.fromPath(params.files2split, type: 'dir') | extractSplits | splitText | splitFile | convert2mzml | calibrateCCS | collect | run_processing | view{it}
 }
 
 process extractSplits {
@@ -49,10 +50,39 @@ process splitFile {
   
 
   docker run -v !{baseDir}/sample_d_files:/data splitter wine /home/xclient/.wine/drive_c/splitter/MHFileSplitter.exe $inFile $outDir/$outFile $start $end 0 0 $outDir/$logFile
-
+  docker run -v !{baseDir}/sample_d_files:/data splitter chmod 777 $outDir/$outFile
   echo $outFile
   '''
   // chmod 777 !{params.outDir}/$outFile
+}
+
+process convert2mzml {
+  input:
+    val dfile
+  output:
+    val dfile
+
+  shell:
+  '''
+  docker run --rm -e WINEDEBUG=-all -v !{params.outDir}:/data chambm/pwiz-skyline-i-agree-to-the-vendor-licenses wine msconvert !{dfile}
+  '''
+
+}
+
+process calibrateCCS {
+  conda params.conda
+  input:
+    val dfile
+  output:
+    val dfile
+
+  shell:
+  '''
+  df=!{dfile}
+  mzfile=${df%.d}.mzML
+
+  python !{baseDir}/RapidSky/CCSCal.py --inMZML !{params.outDir}/$mzfile --tuneIonsFile !{baseDir}/transition_lists/agilentTuneHighMass_transitionList.csv --outDir !{params.outDir}/!{dfile}
+  '''
 }
 
 
@@ -85,8 +115,6 @@ process run_processing {
 
   shell:
   '''
-  echo !{x}
-
   docker run --rm -e WINEDEBUG=-all -v !{baseDir}:/data chambm/pwiz-skyline-i-agree-to-the-vendor-licenses wine SkylineCmd --in=skyline_documents/IMRes40.sky --import-transition-list=transition_lists/moi_aggregated_transitionList.csv --import-all-files=/data/sample_d_files/split_files/ --report-conflict-resolution=overwrite --report-add=report_templates/MoleculeReportCustom.skyr --report-name=MetaboliteReportCustom --report-format=tsv --report-file=/data/sample_d_files/split_files/outputReport.tsv --out=/data/sample_d_files/split_files/outputSkylineDoc.sky
   '''
 
