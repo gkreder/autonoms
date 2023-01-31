@@ -49,10 +49,11 @@ process splitFile {
   outDir="$(basename "!{params.outDir}")"
   logFile=${outFile%.d}.log
   
-  chmod 777 -R !{params.outDir}
+  chmod -R 777 !{params.outDir}
 
-  docker run --rm -v !{params.dir}:/data splitter wine /home/xclient/.wine/drive_c/splitter/MHFileSplitter.exe $inFile $outDir/$outFile $start $end 0 0 $outDir/$logFile
-  docker run --rm -v !{params.dir}:/data splitter chmod 777 $outDir/$outFile
+  docker run --rm -v !{params.dir}:/data splitter /bin/bash -c "wine /home/xclient/.wine/drive_c/splitter/MHFileSplitter.exe $inFile $outDir/$outFile $start $end 0 0 $outDir/$logFile; chmod a+wrx $outDir/$logFile; chmod -R a+wrx $outDir/$outFile;"
+  # docker run --rm -v !{params.dir}:/data splitter wine /home/xclient/.wine/drive_c/splitter/MHFileSplitter.exe $inFile $outDir/$outFile $start $end 0 0 $outDir/$logFile
+  # docker run --rm -v !{params.dir}:/data splitter chmod 777 $outDir/$outFile
 
   echo $outFile
   '''
