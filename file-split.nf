@@ -1,13 +1,10 @@
 nextflow.enable.dsl=2
 
+if ( params.dir == null ) { exit 1, 'Must supply a --dir input specifying input data directory' }
 // params.dir = "$baseDir/sample_d_files"
-// params.dir = 
 params.outDir = params.dir + "/split_files"
 params.files2split = params.dir + "/*.d"
-params.conda = "$HOME/miniconda3/envs/deimos"
-
-Channel.fromPath(params.dir).ifEmpty { exit 1, 'params.dir empty - must supply input directory' }
-  
+params.conda = "$HOME/miniconda3/envs/deimos"  
 
 workflow {
   // Channel.fromPath(params.files2split, type: 'dir') | extractSplits | splitText | splitFile | view{it}
