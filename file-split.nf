@@ -1,9 +1,10 @@
 nextflow.enable.dsl=2
 
-params.dir = "$baseDir/sample_d_files"
+if ( params.dir == null ) { exit 1, 'Must supply a --dir input specifying input data directory' }
+// params.dir = "$baseDir/sample_d_files"
 params.outDir = params.dir + "/split_files"
 params.files2split = params.dir + "/*.d"
-params.conda = "$HOME/miniconda3/envs/deimos"
+params.conda = "$HOME/miniconda3/envs/deimos"  
 
 workflow {
   // Channel.fromPath(params.files2split, type: 'dir') | extractSplits | splitText | splitFile | view{it}
@@ -50,10 +51,12 @@ process splitFile {
   
   chmod 777 -R !{params.outDir}
 
-  docker run -v !{params.dir}:/data splitter /bin/bash -c "wine /home/xclient/.wine/drive_c/splitter/MHFileSplitter.exe $inFile $outDir/$outFile $start $end 0 0 $outDir/$logFile; chmod 777 $outDir/$outFile"
-  
+  docker run --rm -v !{params.dir}:/data splitter wine /home/xclient/.wine/drive_c/splitter/MHFileSplitter.exe $inFile $outDir/$outFile $start $end 0 0 $outDir/$logFile
+  docker run --rm -v !{params.dir}:/data splitter chmod 777 $outDir/$outFile
+
   echo $outFile
   '''
+  // docker run -v !{params.dir}:/data splitter /bin/bash -c "wine /home/xclient/.wine/drive_c/splitter/MHFileSplitter.exe $inFile $outDir/$outFile $start $end 0 0 $outDir/$logFile; chmod 777 $outDir/$outFile"
   // docker run -v !{params.dir}:/data splitter wine /home/xclient/.wine/drive_c/splitter/MHFileSplitter.exe $inFile $outDir/$outFile $start $end 0 0 $outDir/$logFile
   // docker run -v !{params.dir}:/data splitter chmod 777 $outDir/$outFile
   // echo $outFile
