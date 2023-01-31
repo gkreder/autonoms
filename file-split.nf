@@ -115,7 +115,7 @@ process run_processing {
 
   shell:
   '''
-  docker run --rm -e WINEDEBUG=-all -v !{baseDir}:/data chambm/pwiz-skyline-i-agree-to-the-vendor-licenses wine SkylineCmd --in=skyline_documents/IMRes40.sky --import-transition-list=transition_lists/moi_aggregated_transitionList.csv --import-all-files=/data/sample_d_files/split_files/ --report-conflict-resolution=overwrite --report-add=report_templates/MoleculeReportCustom.skyr --report-name=MetaboliteReportCustom --report-format=tsv --report-file=/data/sample_d_files/split_files/outputReport.tsv --out=/data/sample_d_files/split_files/outputSkylineDoc.sky
+  docker run --rm -e WINEDEBUG=-all -v !{baseDir}:/data -v !{params.dir}:/data/data chambm/pwiz-skyline-i-agree-to-the-vendor-licenses wine SkylineCmd --in=skyline_documents/IMRes40.sky --import-transition-list=transition_lists/moi_aggregated_transitionList.csv --import-all-files=/data/data/split_files/ --report-conflict-resolution=overwrite --report-add=report_templates/MoleculeReportCustom.skyr --report-name=MetaboliteReportCustom --report-format=tsv --report-file=/data/data/split_files/outputReport.tsv --out=/data/data/split_files/outputSkylineDoc.sky
   '''
 
 }
