@@ -22,6 +22,7 @@ with open(os.path.join(args.dFile, "AcqData", 'MSTS.xml'), 'r') as f:
 
 
 scanLength = ( ( float(mstsD['EndTime']) - float(mstsD['StartTime']) ) / float(mstsD['NumOfScans']) ) * 60 # Scan Length in Seconds
+endTimeCeil = ( float(mstsD['EndTime']) * 60 ) - 0.01 # So we don't try to slice past the end of the file
 sampleInfoD = d['RFDatabase']['Plates']['Plate']['Injections']['SampleInfo']
 
 def getSampleInfo(s):
@@ -41,7 +42,7 @@ def getSampleInfo(s):
     # print(td)
     # mtMS = sum([float(x) for x in td.values()]) # method time in milliseconds
     mtMS = float(td['Load/Wash']) #BLAZE Mode Elution is in Load/Wash
-    endTime = startTime + ( mtMS / 1000)
+    endTime = min(startTime + ( mtMS / 1000), endTimeCeil)
     startTime_adjusted = startTime - scanLength
     # endTime_adjusted = endTime + scanLength
     endTime_adjusted = endTime
