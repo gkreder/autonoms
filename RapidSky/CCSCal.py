@@ -59,5 +59,5 @@ override_string = f'''<?xml version="1.0" encoding="utf-8"?>
     </SingleFieldCcsCalibration>
 </OverrideImsCalibration>'''
 
-with open(os.path.join(args.outDir, 'OverrideImsCal.xml'), 'w') as f:
+with open(os.path.join(args.outDir, "AcqData", 'OverrideImsCal.xml'), 'w') as f:
     print(override_string, file = f)
