@@ -93,6 +93,8 @@ process calibrateCCS {
   mzfile=${df%.d}.mzML
 
   python !{baseDir}/RapidSky/CCSCal.py --inMZML !{params.outDir}/$mzfile --tuneIonsFile !{baseDir}/transition_lists/agilentTuneHighMass_transitionList.csv --outDir !{params.outDir}/!{dfile}
+
+  rm -f !{params.outDir}/$mzfile
   '''
 }
 
