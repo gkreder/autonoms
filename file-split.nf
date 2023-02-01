@@ -15,7 +15,6 @@ process extractSplits {
     path dfile
   output:
     stdout
-  // now all outDir is completely removed, should we just remove .d-files we actually create?? also how can we do in Dockerfile so we don't need to give 777 permissions?
 
   shell:
   '''
@@ -29,6 +28,7 @@ process splitFile {
   output:
     stdout
 
+  // removes outdir, should we do it? or just remove .d-files, mzml etc if there are any?
   shell:
   '''
   IFS=' '
@@ -41,13 +41,12 @@ process splitFile {
   outDir="$(basename "!{params.outDir}")"
   logFile=${outFile%.d}.log
   
+  rm -rf !{params.outDir}
   mkdir -p !{params.outDir}
   chmod -R 777 !{params.outDir}
   chmod -R 777 !{params.dir}
 
   docker run --rm -v !{params.dir}:/data -v !{params.outDir}:/data/$outDir splitter /bin/bash -c "wine /home/xclient/.wine/drive_c/splitter/MHFileSplitter.exe $inFile $outDir/$outFile $start $end 0 0 $outDir/$logFile; chmod a+wrx $outDir/$logFile; chmod -R a+wrx $outDir/$outFile;"
-  # docker run --rm -v !{params.dir}:/data splitter wine /home/xclient/.wine/drive_c/splitter/MHFileSplitter.exe $inFile $outDir/$outFile $start $end 0 0 $outDir/$logFile
-  # docker run --rm -v !{params.dir}:/data splitter chmod 777 $outDir/$outFile
 
   echo $outFile
   '''
