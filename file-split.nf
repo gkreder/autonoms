@@ -38,7 +38,6 @@ process splitFile {
   start=${strarr[2]}
   end=${strarr[3]}
 
-  outDir="$(basename "!{params.outDir}")"
   logFile=${outFile%.d}.log
   
   rm -rf !{params.outDir}
@@ -46,7 +45,7 @@ process splitFile {
   chmod -R 777 !{params.outDir}
   chmod -R 777 !{params.dir}
 
-  docker run --rm -v !{params.dir}:/data -v !{params.outDir}:/data/$outDir splitter /bin/bash -c "wine /home/xclient/.wine/drive_c/splitter/MHFileSplitter.exe $inFile $outDir/$outFile $start $end 0 0 $outDir/$logFile; chmod a+wrx $outDir/$logFile; chmod -R a+wrx $outDir/$outFile;"
+  docker run --rm -v !{params.dir}:/data/baseDir -v !{params.outDir}:/data/outDir splitter /bin/bash -c "wine /home/xclient/.wine/drive_c/splitter/MHFileSplitter.exe /data/baseDir/$inFile /data/outDir/$outFile $start $end 0 0 /data/outDir/$logFile; chmod a+wrx /data/outDir/$logFile; chmod -R a+wrx /data/outDir/$outFile;"
 
   echo $outFile
   '''
@@ -92,6 +91,6 @@ process run_processing {
 
   shell:
   '''
-  docker run --rm -e WINEDEBUG=-all -v !{baseDir}:/data -v !{params.outDir}:/data/outDir chambm/pwiz-skyline-i-agree-to-the-vendor-licenses wine SkylineCmd --in=/data/skyline_documents/IMRes40.sky --import-transition-list=/data/transition_lists/moi_aggregated_transitionList.csv --import-all-files=/data/outDir/ --report-conflict-resolution=overwrite --report-add=/data/report_templates/MoleculeReportCustom.skyr --report-name=MetaboliteReportCustom --report-format=tsv --report-file=/data/outDir/outputReport.tsv --out=/data/outDir/outputSkylineDoc.sky
+  docker run --rm -e WINEDEBUG=-all -v !{baseDir}:/data/baseDir -v !{params.outDir}:/data/outDir chambm/pwiz-skyline-i-agree-to-the-vendor-licenses wine SkylineCmd --in=/data/baseDir/skyline_documents/IMRes40.sky --import-transition-list=/data/baseDir/transition_lists/moi_aggregated_transitionList.csv --import-all-files=/data/outDir/ --report-conflict-resolution=overwrite --report-add=/data/baseDir/report_templates/MoleculeReportCustom.skyr --report-name=MetaboliteReportCustom --report-format=tsv --report-file=/data/outDir/outputReport.tsv --out=/data/outDir/outputSkylineDoc.sky
   '''
 }
