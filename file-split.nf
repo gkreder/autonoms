@@ -16,8 +16,14 @@ process extractSplits {
   output:
     stdout
 
+  // if several .d-files in params.dir this will not work... (rm etc)
   shell:
   '''
+  rm -rf !{params.outDir}
+  mkdir -p !{params.outDir}
+  chmod -R 777 !{params.outDir}
+  chmod -R 777 !{params.dir}
+
   python !{baseDir}/RapidSky/splitterExtract.py -l !{params.dir}/RFFileSplitter.log -d !{params.dir}/!{dfile} -b !{params.dir}/RFDatabase.xml -m !{params.dir}/methods
   '''
 }
@@ -39,11 +45,6 @@ process splitFile {
   end=${strarr[3]}
 
   logFile=${outFile%.d}.log
-  
-  rm -R -f !{params.outDir}
-  mkdir -p !{params.outDir}
-  chmod -R 777 !{params.outDir}
-  chmod -R 777 !{params.dir}
 
   docker run --rm -v !{params.dir}:/data/baseDir -v !{params.outDir}:/data/outDir splitter /bin/bash -c "wine /home/xclient/.wine/drive_c/splitter/MHFileSplitter.exe /data/baseDir/$inFile /data/outDir/$outFile $start $end 0 0 /data/outDir/$logFile; chmod a+wrx /data/outDir/$logFile; chmod -R a+wrx /data/outDir/$outFile;"
 
