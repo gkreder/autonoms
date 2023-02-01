@@ -1,16 +1,11 @@
 nextflow.enable.dsl=2
 
 if ( params.dir == null ) { exit 1, 'Must supply a --dir input specifying input data directory' }
-// params.dir = "$baseDir/sample_d_files"
 params.outDir = params.dir + "/out_files"
 params.files2split = params.dir + "/*.d"
 params.conda = "$HOME/miniconda3/envs/deimos"  
 
 workflow {
-  // Channel.fromPath(params.files2split, type: 'dir') | extractSplits | splitText | splitFile | view{it}
-
-  // Channel.fromPath(params.outDir + "*.d", type: 'dir') | convertCalibrate | collect | run_processing | view{it}
-  // Channel.fromPath(params.files2split, type: 'dir') | extractSplits | splitText | splitFile | convertCalibrate | collect | run_processing | view{it}
   Channel.fromPath(params.files2split, type: 'dir') | extractSplits | splitText | splitFile | convert2mzml | calibrateCCS | collect | run_processing | view{it}
 }
 
@@ -22,11 +17,8 @@ process extractSplits {
     stdout
   // now all outDir is completely removed, should we just remove .d-files we actually create?? also how can we do in Dockerfile so we don't need to give 777 permissions?
 
-  // rm -rf -f !{params.outDir} && mkdir !{params.outDir}
-  // chmod 777 !{params.outDir}/
   shell:
   '''
-
   python !{baseDir}/RapidSky/splitterExtract.py -l !{params.dir}/RFFileSplitter.log -d !{params.dir}/!{dfile} -b !{params.dir}/RFDatabase.xml -m !{params.dir}/methods
   '''
 }
@@ -49,7 +41,6 @@ process splitFile {
   outDir="$(basename "!{params.outDir}")"
   logFile=${outFile%.d}.log
   
-  # chmod -R 777 !{params.outDir}
   mkdir -p !{params.outDir}
   chmod -R 777 !{params.outDir}
   chmod -R 777 !{params.dir}
@@ -60,11 +51,6 @@ process splitFile {
 
   echo $outFile
   '''
-  // docker run -v !{params.dir}:/data splitter /bin/bash -c "wine /home/xclient/.wine/drive_c/splitter/MHFileSplitter.exe $inFile $outDir/$outFile $start $end 0 0 $outDir/$logFile; chmod 777 $outDir/$outFile"
-  // docker run -v !{params.dir}:/data splitter wine /home/xclient/.wine/drive_c/splitter/MHFileSplitter.exe $inFile $outDir/$outFile $start $end 0 0 $outDir/$logFile
-  // docker run -v !{params.dir}:/data splitter chmod 777 $outDir/$outFile
-  // echo $outFile
-  // chmod 777 !{params.outDir}/$outFile
 }
 
 process convert2mzml {
@@ -109,5 +95,4 @@ process run_processing {
   '''
   docker run --rm -e WINEDEBUG=-all -v !{baseDir}:/data -v !{params.outDir}:/data/outDir chambm/pwiz-skyline-i-agree-to-the-vendor-licenses wine SkylineCmd --in=/data/skyline_documents/IMRes40.sky --import-transition-list=/data/transition_lists/moi_aggregated_transitionList.csv --import-all-files=/data/outDir/ --report-conflict-resolution=overwrite --report-add=/data/report_templates/MoleculeReportCustom.skyr --report-name=MetaboliteReportCustom --report-format=tsv --report-file=/data/outDir/outputReport.tsv --out=/data/outDir/outputSkylineDoc.sky
   '''
-
 }
