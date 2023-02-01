@@ -40,7 +40,7 @@ process splitFile {
 
   logFile=${outFile%.d}.log
   
-  rm -rf !{params.outDir}
+  rm -R -f !{params.outDir}
   mkdir -p !{params.outDir}
   chmod -R 777 !{params.outDir}
   chmod -R 777 !{params.dir}
