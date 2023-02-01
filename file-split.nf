@@ -2,7 +2,7 @@ nextflow.enable.dsl=2
 
 if ( params.dir == null ) { exit 1, 'Must supply a --dir input specifying input data directory' }
 // params.dir = "$baseDir/sample_d_files"
-params.outDir = params.dir + "/split_files"
+params.outDir = params.dir + "/out_files"
 params.files2split = params.dir + "/*.d"
 params.conda = "$HOME/miniconda3/envs/deimos"  
 
@@ -51,10 +51,10 @@ process splitFile {
   
   # chmod -R 777 !{params.outDir}
   mkdir -p !{params.outDir}
-  # chmod -R 777 !{params.outDir}
+  chmod -R 777 !{params.outDir}
   chmod -R 777 !{params.dir}
 
-  docker run --rm -v !{params.dir}:/data splitter /bin/bash -c "wine /home/xclient/.wine/drive_c/splitter/MHFileSplitter.exe $inFile $outDir/$outFile $start $end 0 0 $outDir/$logFile; chmod a+wrx $outDir/$logFile; chmod -R a+wrx $outDir/$outFile;"
+  docker run --rm -v !{params.dir}:/data -v !{params.outDir}:/data/$outDir splitter /bin/bash -c "wine /home/xclient/.wine/drive_c/splitter/MHFileSplitter.exe $inFile $outDir/$outFile $start $end 0 0 $outDir/$logFile; chmod a+wrx $outDir/$logFile; chmod -R a+wrx $outDir/$outFile;"
   # docker run --rm -v !{params.dir}:/data splitter wine /home/xclient/.wine/drive_c/splitter/MHFileSplitter.exe $inFile $outDir/$outFile $start $end 0 0 $outDir/$logFile
   # docker run --rm -v !{params.dir}:/data splitter chmod 777 $outDir/$outFile
 
@@ -98,27 +98,6 @@ process calibrateCCS {
   '''
 }
 
-
-process convertCalibrate {
-  conda params.conda
-  input:
-    val dfile
-  output:
-    path dfile
-
-  // remove mzml file after calibration?
-  shell:
-  '''
-  df=!{dfile}
-
-  docker run --rm -e WINEDEBUG=-all -v !{params.outDir}:/data chambm/pwiz-skyline-i-agree-to-the-vendor-licenses wine msconvert $df
-
-  mzfile=${df%.d}.mzML
-
-  python !{baseDir}/RapidSky/CCSCal.py --inMZML !{params.outDir}/$mzfile --tuneIonsFile !{baseDir}/transition_lists/agilentTuneHighMass_transitionList.csv --outDir !{params.outDir}/!{dfile}
-  '''
-}
-
 // run processing on all .d files in .d directory
 process run_processing {
   input:
@@ -128,7 +107,7 @@ process run_processing {
 
   shell:
   '''
-  docker run --rm -e WINEDEBUG=-all -v !{baseDir}:/data -v !{params.dir}:/data/data chambm/pwiz-skyline-i-agree-to-the-vendor-licenses wine SkylineCmd --in=skyline_documents/IMRes40.sky --import-transition-list=transition_lists/moi_aggregated_transitionList.csv --import-all-files=/data/data/split_files/ --report-conflict-resolution=overwrite --report-add=report_templates/MoleculeReportCustom.skyr --report-name=MetaboliteReportCustom --report-format=tsv --report-file=/data/data/split_files/outputReport.tsv --out=/data/data/split_files/outputSkylineDoc.sky
+  docker run --rm -e WINEDEBUG=-all -v !{baseDir}:/data -v !{params.outDir}:/data/outDir chambm/pwiz-skyline-i-agree-to-the-vendor-licenses wine SkylineCmd --in=/data/skyline_documents/IMRes40.sky --import-transition-list=/data/transition_lists/moi_aggregated_transitionList.csv --import-all-files=/data/outDir/ --report-conflict-resolution=overwrite --report-add=/data/report_templates/MoleculeReportCustom.skyr --report-name=MetaboliteReportCustom --report-format=tsv --report-file=/data/outDir/outputReport.tsv --out=/data/outDir/outputSkylineDoc.sky
   '''
 
 }
