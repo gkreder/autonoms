@@ -1,25 +1,29 @@
 nextflow.enable.dsl=2
 
-params.dfiles_dir = "$baseDir/sample_d_files/"
-params.dfiles = params.dfiles_dir + "*.d"
-params.conda = "$HOME/miniconda3/envs/deimos"
+// params.dfiles_dir = "$baseDir/sample_d_files/"
+// params.dfiles = params.dfiles_dir + "*.d"
+// params.conda = "$HOME/miniconda3/envs/deimos"
+if ( params.dir == null ) { exit 1, 'Must supply a --dir input specifying input data directory' }
+params.outDir = params.dir + "/out_files"
+params.files2split = params.dir + "/*.d"
+params.conda = "$HOME/miniconda3/envs/deimos"  
 
 workflow {
-  // Channel.fromPath(params.dfiles, type: 'dir') | convert2mzml | calibrateCCS | collect | run_processing | view{it}
-  Channel.fromPath(params.dfiles, type: 'dir') | convertCalibrate | collect | run_processing | view{it}
+  Channel.fromPath(params.dfiles, type: 'dir') | convert2mzml | calibrateCCS | collect | run_processing | view{it}
+  // Channel.fromPath(params.dfiles, type: 'dir') | convertCalibrate | collect | run_processing | view{it}
 }
 
-// run docker command to convert to .mzML 
 process convert2mzml {
   input:
-    path dfile
+    val dfile
   output:
-    path dfile
+    val dfile
 
   shell:
   '''
-  docker run --rm -e WINEDEBUG=-all -v !{params.dfiles_dir}:/data chambm/pwiz-skyline-i-agree-to-the-vendor-licenses wine msconvert !{dfile} 
+  docker run --rm -e WINEDEBUG=-all -v !{params.outDir}:/data chambm/pwiz-skyline-i-agree-to-the-vendor-licenses wine msconvert !{dfile}
   '''
+
 }
 
 // combines mzml conversion and calibration to one process, seems like channel
@@ -45,22 +49,21 @@ process convertCalibrate {
   '''
 }
 
-// calibrate CCS using .mzML file, save results in origninal .d dir
 process calibrateCCS {
   conda params.conda
-  
   input:
-    path dfile
+    val dfile
   output:
-    path dfile
+    val dfile
 
-  // remove mzml file after calibration?
   shell:
   '''
   df=!{dfile}
   mzfile=${df%.d}.mzML
 
-  python !{baseDir}/RapidSky/CCSCal.py --inMZML !{params.dfiles_dir}/$mzfile --tuneIonsFile !{baseDir}/transition_lists/agilentTuneHighMass_transitionList.csv --outDir !{params.dfiles_dir}/!{dfile}
+  python !{baseDir}/RapidSky/CCSCal.py --inMZML !{params.outDir}/$mzfile --tuneIonsFile !{baseDir}/transition_lists/agilentTuneHighMass_transitionList.csv --outDir !{params.outDir}/!{dfile}
+
+  rm -f !{params.outDir}/$mzfile
   '''
 }
 
@@ -73,9 +76,6 @@ process run_processing {
 
   shell:
   '''
-  echo !{x}
-
-  docker run --rm -e WINEDEBUG=-all -v !{baseDir}:/data chambm/pwiz-skyline-i-agree-to-the-vendor-licenses wine SkylineCmd --in=skyline_documents/IMRes40.sky --import-transition-list=transition_lists/moi_aggregated_transitionList.csv --import-all-files=/data/sample_d_files/ --report-conflict-resolution=overwrite --report-add=report_templates/MoleculeReportCustom.skyr --report-name=MetaboliteReportCustom --report-format=tsv --report-file=outputReport.tsv --out=outputSkylineDoc.sky
+  docker run --rm -e WINEDEBUG=-all -v !{baseDir}:/data/baseDir -v !{params.outDir}:/data/outDir chambm/pwiz-skyline-i-agree-to-the-vendor-licenses wine SkylineCmd --in=/data/baseDir/skyline_documents/IMRes40.sky --import-transition-list=/data/baseDir/transition_lists/moi_aggregated_transitionList.csv --import-all-files=/data/outDir/ --report-conflict-resolution=overwrite --report-add=/data/baseDir/report_templates/MoleculeReportCustom.skyr --report-name=MetaboliteReportCustom --report-format=tsv --report-file=/data/outDir/outputReport.tsv --out=/data/outDir/outputSkylineDoc.sky
   '''
-
 }
