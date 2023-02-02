@@ -54,16 +54,16 @@ process convertCalibrate {
 process calibrateCCS {
   conda params.conda
   input:
-    path dfile
+    val dfile
   output:
     val dfile
 
   shell:
   '''
-  df=!{dfile}
+  df=$(basename !{dfile})
   mzfile=${df%.d}.mzML
 
-  python !{baseDir}/RapidSky/CCSCal.py --inMZML !{params.outDir}/$mzfile --tuneIonsFile !{baseDir}/transition_lists/agilentTuneHighMass_transitionList.csv --outDir !{params.outDir}/!{dfile}
+  python !{baseDir}/RapidSky/CCSCal.py --inMZML !{params.outDir}/$mzfile --tuneIonsFile !{baseDir}/transition_lists/agilentTuneHighMass_transitionList.csv --outDir !{params.outDir}/$df
 
   rm -f !{params.outDir}/$mzfile
   '''
