@@ -92,6 +92,6 @@ process run_processing {
 
   shell:
   '''
-  docker run --rm -e WINEDEBUG=-all -v !{baseDir}:/data/baseDir -v !{params.outDir}:/data/outDir chambm/pwiz-skyline-i-agree-to-the-vendor-licenses wine SkylineCmd --in=/data/baseDir/skyline_documents/IMRes40.sky --import-transition-list=/data/baseDir/transition_lists/moi_aggregated_transitionList.csv --import-all-files=/data/outDir/ --report-conflict-resolution=overwrite --report-add=/data/baseDir/report_templates/MoleculeReportCustom.skyr --report-name=MetaboliteReportCustom --report-format=tsv --report-file=/data/outDir/outputReport.tsv --out=/data/outDir/outputSkylineDoc.sky
+  docker run --rm -e WINEDEBUG=-all -v !{baseDir}:/temp/baseDir -v !{params.outDir}:/temp/outDir chambm/pwiz-skyline-i-agree-to-the-vendor-licenses wine SkylineCmd --in=/temp/baseDir/skyline_documents/IMRes40.sky --import-transition-list=/temp/baseDir/transition_lists/moi_aggregated_transitionList.csv --import-all-files=/temp/outDir/ --report-conflict-resolution=overwrite --report-add=/temp/baseDir/report_templates/MoleculeReportCustom.skyr --report-name=MetaboliteReportCustom --report-format=tsv --report-file=/temp/outDir/outputReport.tsv --out=/temp/outDir/outputSkylineDoc.sky
   '''
 }
