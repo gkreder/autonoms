@@ -10,7 +10,7 @@ params.conda = "$HOME/miniconda3/envs/deimos"
 
 workflow {
   // Channel.fromPath(params.dfiles, type: 'dir') | convert2mzml | calibrateCCS | collect | run_processing | view{it}
-  Channel.fromPath(params.dfiles, type: 'dir') | convert2mzml | calibrateCCS | run_processing | view{it}
+  Channel.fromPath(params.dfiles, type: 'dir') | convert2mzml | calibrateCCS | collect | run_processing | view{it}
   // Channel.fromPath(params.dfiles, type: 'dir') | convertCalibrate | collect | run_processing | view{it}
 }
 
