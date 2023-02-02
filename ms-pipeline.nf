@@ -53,7 +53,7 @@ process convertCalibrate {
 process calibrateCCS {
   conda params.conda
   input:
-    val dfile
+    path dfile
   output:
     val dfile
 
