@@ -13,7 +13,7 @@ workflow {
 process extractSplits {
   conda params.conda
   input:
-    val dfile
+    path dfile
   output:
     stdout
 
