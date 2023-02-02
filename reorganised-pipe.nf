@@ -13,7 +13,7 @@ workflow {
 process extractSplits {
   conda params.conda
   input:
-    path dfile
+    val dfile
   output:
     stdout
 
@@ -61,9 +61,9 @@ process convert2mzml {
 
   shell:
   '''
-  docker run --rm -e WINEDEBUG=-all -v !{params.outDir}:/data chambm/pwiz-skyline-i-agree-to-the-vendor-licenses wine msconvert !{dfile}
+  file=$(basename !{dfile})
+  docker run --rm -e WINEDEBUG=-all -v !{params.dir}:/data chambm/pwiz-skyline-i-agree-to-the-vendor-licenses wine msconvert $file
   '''
-
 }
 
 process calibrateCCS {
@@ -75,12 +75,12 @@ process calibrateCCS {
 
   shell:
   '''
-  df=!{dfile}
+  df=$(basename !{dfile})
   mzfile=${df%.d}.mzML
 
-  python !{baseDir}/RapidSky/CCSCal.py --inMZML !{params.outDir}/$mzfile --tuneIonsFile !{baseDir}/transition_lists/agilentTuneHighMass_transitionList.csv --outDir !{params.outDir}/!{dfile}
+  python !{baseDir}/RapidSky/CCSCal.py --inMZML !{params.dir}/$mzfile --tuneIonsFile !{baseDir}/transition_lists/agilentTuneHighMass_transitionList.csv --outDir !{params.dir}/$dfile
 
-  rm -f !{params.outDir}/$mzfile
+  rm -f !{params.dir}/$mzfile
   '''
 }
 
