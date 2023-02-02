@@ -21,6 +21,7 @@ process convert2mzml {
 
   shell:
   '''
+  file=$(basename !{dfile})
   docker run --rm -e WINEDEBUG=-all -v !{params.outDir}:/data chambm/pwiz-skyline-i-agree-to-the-vendor-licenses wine msconvert !{dfile}
   '''
 
