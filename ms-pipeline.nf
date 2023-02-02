@@ -4,7 +4,7 @@ nextflow.enable.dsl=2
 // params.dfiles = params.dfiles_dir + "*.d"
 // params.conda = "$HOME/miniconda3/envs/deimos"
 if ( params.dir == null ) { exit 1, 'Must supply a --dir input specifying input data directory' }
-params.outDir = params.dir + "/out_files"
+params.outDir = params.dir
 params.dfiles = params.dir + "/*.d"
 params.conda = "$HOME/miniconda3/envs/deimos"  
 
