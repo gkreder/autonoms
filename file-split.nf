@@ -19,10 +19,12 @@ process extractSplits {
   // if several .d-files in params.dir this will not work... (rm etc)
   shell:
   '''
-  rm -rf !{params.outDir}
-  mkdir -p !{params.outDir}
-  chmod -R 777 !{params.outDir}
-  chmod -R 777 !{params.dir}
+  # rm -rf !{params.outDir}
+  # mkdir -p !{params.outDir}
+  # chmod -R 777 !{params.outDir}
+  # chmod -R 777 !{params.dir}
+
+  docker run --rm -v !{params.outDir}:!{params.outDir} -u root chambm/pwiz-skyline-i-agree-to-the-vendor-licenses /bin/bash -c "rm -rf !{params.outDir}; mkdir -p !{params.outDir}; chmod -R 777 !{params.outDir};"
 
   python !{baseDir}/RapidSky/splitterExtract.py -l !{params.dir}/RFFileSplitter.log -d !{params.dir}/!{dfile} -b !{params.dir}/RFDatabase.xml -m !{params.dir}/methods
   '''
@@ -92,6 +94,6 @@ process run_processing {
 
   shell:
   '''
-  docker run --rm -e WINEDEBUG=-all -v !{baseDir}:/data/baseDir -v !{params.outDir}:/data/outDir chambm/pwiz-skyline-i-agree-to-the-vendor-licenses wine SkylineCmd --in=/data/baseDir/skyline_documents/IMRes40.sky --import-transition-list=/data/baseDir/transition_lists/moi_aggregated_transitionList.csv --import-all-files=/data/outDir/ --report-conflict-resolution=overwrite --report-add=/data/baseDir/report_templates/MoleculeReportCustom.skyr --report-name=MetaboliteReportCustom --report-format=tsv --report-file=/data/outDir/outputReport.tsv --out=/data/outDir/outputSkylineDoc.sky
+  docker run --rm -e WINEDEBUG=-all -v !{baseDir}:/temp/baseDir -v !{params.outDir}:/temp/outDir chambm/pwiz-skyline-i-agree-to-the-vendor-licenses wine SkylineCmd --in=/temp/baseDir/skyline_documents/IMRes40.sky --import-transition-list=/temp/baseDir/transition_lists/moi_aggregated_transitionList.csv --import-all-files=/temp/outDir/ --report-conflict-resolution=overwrite --report-add=/temp/baseDir/report_templates/MoleculeReportCustom.skyr --report-name=MetaboliteReportCustom --report-format=tsv --report-file=/temp/outDir/outputReport.tsv --out=/temp/outDir/outputSkylineDoc.sky
   '''
 }
