@@ -4,6 +4,7 @@ if ( params.dir == null ) { exit 1, 'Must supply a --dir input specifying input 
 params.outDir = params.dir + "/out_files"
 params.files2split = params.dir + "/sequence*.d"
 params.conda = "$HOME/miniconda3/envs/deimos"  
+params.methodsDir = "/mnt/backup/RapidFire/methods"
 
 workflow {
   Channel.fromPath(params.files2split, type: 'dir') | extractSplits | splitText | splitFile | convert2mzml | calibrateCCS | collect | run_processing | view{it}
@@ -26,7 +27,7 @@ process extractSplits {
 
   docker run --rm -v !{params.outDir}:!{params.outDir} -u root chambm/pwiz-skyline-i-agree-to-the-vendor-licenses /bin/bash -c "rm -rf !{params.outDir}; mkdir -p !{params.outDir}; chmod -R 777 !{params.outDir};"
 
-  python !{baseDir}/RapidSky/splitterExtract.py -l !{params.dir}/RFFileSplitter.log -d !{params.dir}/!{dfile} -b !{params.dir}/RFDatabase.xml -m !{params.dir}/methods
+  python !{baseDir}/RapidSky/splitterExtract.py -l !{params.dir}/RFFileSplitter.log -d !{params.dir}/!{dfile} -b !{params.dir}/RFDatabase.xml -m !{params.methodsDir}
   '''
 }
 
