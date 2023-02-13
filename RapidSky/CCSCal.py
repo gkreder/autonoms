@@ -65,7 +65,7 @@ override_string = f'''<?xml version="1.0" encoding="utf-8"?>
     <SingleFieldCcsCalibration>
         <DriftGas mass="{args.bufferGasMass}">N2</DriftGas>
         <TFix>{ccs_cal.tfix}</TFix>
-        <Beta>{beta}</Beta>
+        <Beta>{ccs_cal.beta}</Beta>
     </SingleFieldCcsCalibration>
 </OverrideImsCalibration>'''
 
