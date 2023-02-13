@@ -57,13 +57,18 @@ print(f"Beta - {ccs_cal.beta}")
 print(f"TFix - {ccs_cal.tfix}")
 
 
+# Beta comes out negative for negative charged ions? Hardcoding a positive Beta value for now
+if mode == 'Negative':
+    beta = abs(ccs_cal.beta)
+elif mode == 'Positive':
+    beta = ccs_cal.beta
 override_string = f'''<?xml version="1.0" encoding="utf-8"?>
 <OverrideImsCalibration>
     <FileVersion>1</FileVersion>
     <SingleFieldCcsCalibration>
         <DriftGas mass="{args.bufferGasMass}">N2</DriftGas>
         <TFix>{ccs_cal.tfix}</TFix>
-        <Beta>{ccs_cal.beta}</Beta>
+        <Beta>{beta}</Beta>
     </SingleFieldCcsCalibration>
 </OverrideImsCalibration>'''
 
