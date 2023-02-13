@@ -42,9 +42,8 @@ def getSampleInfo(s):
     # print(td)
     # mtMS = sum([float(x) for x in td.values()]) # method time in milliseconds
     mtMS = float(td['Load/Wash']) #BLAZE Mode Elution is in Load/Wash
-    endTime = min(startTime + ( mtMS / 1000), endTimeCeil)
+    endTime = min(startTime + ( mtMS / 1000) + scanLength, endTimeCeil)
     startTime_adjusted = startTime - scanLength
-    # endTime_adjusted = endTime + scanLength
     endTime_adjusted = endTime
     return(outSuf, startTime_adjusted, endTime_adjusted)
     print(f"{outSuf}.d", startTime_adjusted, endTime_adjusted)
