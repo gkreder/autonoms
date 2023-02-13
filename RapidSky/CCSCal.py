@@ -52,7 +52,8 @@ for m in dfRef['Precursor m/z'].values:
 
 print('...done')
 # Beta comes out negative for negative charged ions? If I flip the ccs values or the tas in negative mode I think it works...
-ccs_cal = deimos.calibration.calibrate_ccs(mz = dfRef['Precursor m/z'], ccs = float(modeInt) * dfRef['CCS'], q = dfRef['Precursor Charge'], ta = tas, buffer_mass = args.bufferGasMass)
+# ccs_cal = deimos.calibration.calibrate_ccs(mz = dfRef['Precursor m/z'], ccs = float(modeInt) * dfRef['CCS'], q = dfRef['Precursor Charge'], ta = tas, buffer_mass = args.bufferGasMass)
+ccs_cal = deimos.calibration.calibrate_ccs(mz = dfRef['Precursor m/z'], ccs = dfRef['CCS'], q = modeInt * dfRef['Precursor Charge'], ta = tas, buffer_mass = args.bufferGasMass)
 print(f'r-squared:\t{ccs_cal.fit["r"] ** 2}')
 print(f"Beta - {ccs_cal.beta}")
 print(f"TFix - {ccs_cal.tfix}")
