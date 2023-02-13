@@ -34,31 +34,34 @@ dfRef = pd.read_csv(args.tuneIonsFile)
 dfRef = pd.DataFrame(dfRef[dfRef['Precursor Charge'] * modeInt >= 1])
 print(f'...done, found {mode} mode data\n\n')
 
-print('Scraping tune ion values...')
-tas = []
-for m in dfRef['Precursor m/z'].values:
-    ss = deimos.locate(ms1, by=['mz'], loc=[m], tol=[args.tol], return_index=False)
-    # slice by mass
-    # l = m - tol
-    # h = m + tol
-    # ss = deimos.slice(ms1, by='mz', low = l, high = h)
-    # t = ms1[(ms1['mz'] - m).abs() <= tol]
-    qs = np.quantile(ss.intensity, q = [0, 0.1, 0.5, 0.7, 0.9])
-    q90 = qs[-1]
-    # ta = ss.loc[lambda x : x['intensity'] > q90].drift_time.mean()
-    ta = np.average(ss['drift_time'], weights = ss['intensity'])
-    print(m, ta)
-    tas.append(ta)
+# print('Scraping tune ion values...')
+# tas = []
+# for m in dfRef['Precursor m/z'].values:
+#     ss = deimos.locate(ms1, by=['mz'], loc=[m], tol=[args.tol], return_index=False)
+#     # slice by mass
+#     # l = m - tol
+#     # h = m + tol
+#     # ss = deimos.slice(ms1, by='mz', low = l, high = h)
+#     # t = ms1[(ms1['mz'] - m).abs() <= tol]
+#     qs = np.quantile(ss.intensity, q = [0, 0.1, 0.5, 0.7, 0.9])
+#     q90 = qs[-1]
+#     # ta = ss.loc[lambda x : x['intensity'] > q90].drift_time.mean()
+#     ta = np.average(ss['drift_time'], weights = ss['intensity'])
+#     print(m, ta)
+#     tas.append(ta)
 
-print('...done')
-# Beta comes out negative for negative charged ions? If I flip the ccs values or the tas in negative mode I think it works...
-# ccs_cal = deimos.calibration.calibrate_ccs(mz = dfRef['Precursor m/z'], ccs = float(modeInt) * dfRef['CCS'], q = dfRef['Precursor Charge'], ta = tas, buffer_mass = args.bufferGasMass)
-ccs_cal = deimos.calibration.calibrate_ccs(mz = dfRef['Precursor m/z'], ccs = dfRef['CCS'], q = modeInt * dfRef['Precursor Charge'], ta = tas, buffer_mass = args.bufferGasMass)
+# print('...done')
+# # Beta comes out negative for negative charged ions? If I flip the ccs values or the tas in negative mode I think it works...
+# # ccs_cal = deimos.calibration.calibrate_ccs(mz = dfRef['Precursor m/z'], ccs = float(modeInt) * dfRef['CCS'], q = dfRef['Precursor Charge'], ta = tas, buffer_mass = args.bufferGasMass)
+# ccs_cal = deimos.calibration.calibrate_ccs(mz = dfRef['Precursor m/z'], ccs = dfRef['CCS'], q = modeInt * dfRef['Precursor Charge'], ta = tas, buffer_mass = args.bufferGasMass)
+
+
+# Use the built in deimos tunemix method
+ccs_cal = deimos.calibration.tunemix(ms1, mz = dfRef['Precursor m/z'], ccs = dfRef['CCS'], q = modeInt * dfRef['Precursor Charge'], buffer_mass = args.bufferGasMass)
+
 print(f'r-squared:\t{ccs_cal.fit["r"] ** 2}')
 print(f"Beta - {ccs_cal.beta}")
 print(f"TFix - {ccs_cal.tfix}")
-
-
 
 override_string = f'''<?xml version="1.0" encoding="utf-8"?>
 <OverrideImsCalibration>
