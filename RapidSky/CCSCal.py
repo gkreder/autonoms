@@ -18,9 +18,17 @@ args = parser.parse_args()
 ########################################################################
 
 print('Loading data...')
-data = deimos.load(args.inMZML, accession={'retention_time': 'MS:1000016', 'drift_time': 'MS:1002476', 'Positive Scan' : "MS:1000130"})
+data = deimos.load(args.inMZML, accession={'retention_time': 'MS:1000016', 'drift_time': 'MS:1002476', 'Positive Scan' : "MS:1000130", 'Negative Scan' : 'MS:1000129'})
 ms1 = data['ms1']
-mode = {1.0 : 'Positive', 0 : 'Negative'}[ms1['Positive Scan'].mode().values[0]]
+posModeI = len(ms1['Positive Scan'].mode().values)
+negModeI = len(ms1['Negative Scan'].mode().values)
+if posModeI > 0 and negModeI > 0:
+    sys.exit('Error - I see scans in both positive and negative mode in the same mzML file')
+# mode = {1.0 : 'Positive', 0 : 'Negative'}[ms1['Positive Scan'].mode().values[0]]
+if posModeI == 0 and negModeI > 0:
+    mode = 'Negative'
+elif negModeI == 0 and posModeI > 0:
+    mode = 'Positive'
 modeInt = {'Positive' : 1.0, 'Negative' : -1.0}[mode]
 dfRef = pd.read_csv(args.tuneIonsFile)
 dfRef = pd.DataFrame(dfRef[dfRef['Precursor Charge'] * modeInt >= 1])
