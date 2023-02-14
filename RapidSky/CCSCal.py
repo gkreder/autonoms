@@ -113,16 +113,12 @@ def tunemix(features, mz, ccs, q=[1, 1, 1, 1, 1, 1],
             mz_add = mz_tol_da
         mz_lower = mz_i - mz_add
         mz_upper = mz_i + mz_add
-        subset = deimos.slice(features, by='mz',
-                              low = mz_lower,
-                              high = mz_upper)
+        subset = deimos.slice(features, by='mz', low = mz_lower, high = mz_upper)
 
         # extract dt info
         dt_profile = deimos.collapse(subset, keep='drift_time')
-        dt_i = dt_profile.sort_values(by='intensity', ascending=False)[
-            'drift_time'].values[0]
-        dt_profile = deimos.locate(
-            dt_profile, by='drift_time', loc=dt_i, tol=dt_tol * dt_i).sort_values(by='drift_time')
+        dt_i = dt_profile.sort_values(by='intensity', ascending=False)['drift_time'].values[0]
+        dt_profile = deimos.locate(dt_profile, by='drift_time', loc=dt_i, tol=dt_tol * dt_i).sort_values(by='drift_time')
 
         # interpolate spline
         x = dt_profile['drift_time'].values
@@ -142,7 +138,7 @@ def tunemix(features, mz, ccs, q=[1, 1, 1, 1, 1, 1],
 
 # Use the built in deimos tunemix method
 # ccs_cal = deimos.calibration.tunemix(ms1, mz = dfRef['Precursor m/z'], ccs = dfRef['CCS'], q = modeInt * dfRef['Precursor Charge'], buffer_mass = args.bufferGasMass) #mz_tol is in ppm?
-ccs_cal = tunemix(ms1, mz = dfRef['Precursor m/z'], ccs = dfRef['CCS'], q = modeInt * dfRef['Precursor Charge'], mz_tol_da = 0.005) #mz_tol is in ppm?
+ccs_cal = tunemix(ms1, mz = dfRef['Precursor m/z'], ccs = dfRef['CCS'], q = modeInt * dfRef['Precursor Charge'], mz_tol_ppm = 10) 
 
 print(f'r-squared:\t{ccs_cal.fit["r"] ** 2}')
 print(f"Beta - {ccs_cal.beta}")
