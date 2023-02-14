@@ -11,6 +11,7 @@ parser.add_argument('--splitterLog', '-l', required = True)
 parser.add_argument('--dFile', '-d', required = True)
 parser.add_argument('--RFDB', '-b', required = True)
 parser.add_argument('--methodsDir', '-m', required = True)
+parser.add_argument('--skipSeq', '-s', default = None)
 args = parser.parse_args()
 ####################################################################################
 with open(args.RFDB, 'r') as f:
@@ -30,6 +31,9 @@ def getSampleInfo(s):
     s = {x['Name'] : x['Value'] for x in s}
     if 'DELAY' in s['Plate Position']:
         return(None, None, None)
+    if args.skipSeq != None and s['Sequence'] == args.skipSeq:
+        return(None, None, None)
+    
     outSuf = f"Inj{int(s['Injection']):05}-{s['Barcode']}-{s['Plate Position']}"
     searchString = f"{outSuf}.d ...\nOriginal Time Range \(secs\):"
     l = re.findall(rf"{searchString}.*", logLines)[0]

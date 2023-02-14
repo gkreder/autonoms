@@ -31,7 +31,7 @@ process extractSplits {
 
   docker run --rm -v !{params.outDir}:!{params.outDir} -u root chambm/pwiz-skyline-i-agree-to-the-vendor-licenses /bin/bash -c "rm -rf !{params.outDir}; mkdir -p !{params.outDir}; chmod -R 777 !{params.outDir};"
 
-  python !{baseDir}/RapidSky/splitterExtract.py -l !{params.dir}/RFFileSplitter.log -d !{params.dir}/!{dfile} -b !{params.dir}/RFDatabase.xml -m !{params.methodsDir}
+  python !{baseDir}/RapidSky/splitterExtract.py --skipSeq 1 -l !{params.dir}/RFFileSplitter.log -d !{params.dir}/!{dfile} -b !{params.dir}/RFDatabase.xml -m !{params.methodsDir}
   '''
 }
 
