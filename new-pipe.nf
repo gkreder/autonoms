@@ -84,7 +84,7 @@ process calibrateCCS {
   df=!{dfile}
   mzfile=${df%.d}.mzML
 
-  python !{baseDir}/RapidSky/CCSCal.py --inMZML !{params.dir}/$mzfile --tuneIonsFile !{baseDir}/transition_lists/agilentTuneHighMass_transitionList.csv --outDir !{params.dir}/!{dfile}
+  python !{baseDir}/RapidSky/CCSCal.py --inMZML !{params.dir}/$mzfile --tuneIonsFile !{baseDir}/transition_lists/agilentTuneRestrictedDeimos_transitionList.csv --outDir !{params.dir}/!{dfile}
   
   cp !{params.dir}/!{dfile}/AcqData/OverrideImsCal.xml !{params.dir}/!{params.analyse}/AcqData/OverrideImsCal.xml
   rm -f !{params.outDir}/$mzfile
