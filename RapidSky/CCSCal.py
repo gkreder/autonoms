@@ -5,6 +5,7 @@ import argparse
 import deimos
 import pandas as pd
 import numpy as np
+from scipy.interpolate import interp1d
 ########################################################################
 parser = argparse.ArgumentParser()
 parser.add_argument('-i', '--inMZML', required = True)
