@@ -11,7 +11,7 @@ params.methodsDir = "/mnt/backup/RapidFire/methods"
 
 workflow {
   // Channel.fromPath(params.files2split, type: 'dir') | extractSplits | splitText | splitFile | convert2mzml | calibrateCCS | collect | run_processing | view{it}
-  Channel.fromPath(params.calibrate) | convert2mzml | calibrateCCS | extractSplits | splitText | splitFile | collect | run_processing | view{it}
+  Channel.from(params.calibrate) | convert2mzml | calibrateCCS | extractSplits | splitText | splitFile | collect | run_processing | view{it}
 }
 
 process extractSplits {
