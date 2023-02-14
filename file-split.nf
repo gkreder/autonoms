@@ -96,6 +96,5 @@ process run_processing {
   shell:
   '''
   docker run --rm -e WINEDEBUG=-all -v !{baseDir}:/temp/baseDir -v !{params.outDir}:/temp/outDir chambm/pwiz-skyline-i-agree-to-the-vendor-licenses /bin/bash -c "cp /temp/baseDir/skyline_documents/IMRes40.sky /temp/outDir/; cp /temp/baseDir/transition_lists/moi_aggregated_transitionList.csv /temp/outDir/; cp /temp/baseDir/report_templates/MoleculeReportCustom.skyr /temp/outDir/; wine SkylineCmd --in=/temp/outDir/IMRes40.sky --import-transition-list=/temp/outDir/moi_aggregated_transitionList.csv --import-all-files=/temp/outDir/ --report-conflict-resolution=overwrite --report-add=/temp/outDir/MoleculeReportCustom.skyr --report-name=MetaboliteReportCustom --report-format=tsv --report-file=/temp/outDir/outputReport.tsv --out=/temp/outDir/outputSkylineDoc.sky;"
-  
   '''
 }
