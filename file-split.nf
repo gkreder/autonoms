@@ -53,7 +53,7 @@ process splitFile {
 
   echo $outFile
   '''
-}/
+}
 
 process convert2mzml {
   input:
