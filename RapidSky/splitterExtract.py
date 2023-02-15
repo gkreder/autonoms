@@ -29,6 +29,12 @@ endTimeCeil = ( float(mstsD['EndTime']) * 60 ) - 0.01 # So we don't try to slice
 startTimeFloor = 0.0
 sampleInfoD = d['RFDatabase']['Plates']['Plate']['Injections']['SampleInfo']
 
+if args.rawTimes:
+    searchString = f"Effective Time Range for splitting"
+    l2 = float(re.findall(rf"{searchString}.*", logLines)[-1].split(' ')[-1].split('-')[0].strip())
+    l1 = float(re.findall(rf"{searchString}.*", logLines)[-2].split(' ')[-1].split('-')[0].strip())
+    effectiveOffset = l2 - l1
+
 def getSampleInfo(s):
     s = s['Field']
     s = {x['Name'] : x['Value'] for x in s}
@@ -48,15 +54,39 @@ def getSampleInfo(s):
     # mtMS = sum([float(x) for x in td.values()]) # method time in milliseconds
     mtMS = float(td['Load/Wash']) #BLAZE Mode Elution is in Load/Wash
     if args.rawTimes: # changed scheme for time calculations
-        mhOffset = float(re.findall(rf"Applying MassHunter delay .*", logLines)[-1].split(' ')[-1].strip())
-        # offset = (sum([float(x) for x in td.values()]) / 1000) # method time in milliseconds
-        # offset = (mtMS / 1000) # method time in milliseconds
-        # offset = 0
-        offset = mhOffset
-        endTime = float(l.split(' ')[-1].split('-')[1].strip())
-        startTime_adjusted = max( ( startTime - (offset) ), startTimeFloor)
-        # startTime_adjusted = startTime
-        endTime_adjusted = min(endTime - (offset), endTimeCeil)
+        ###########################
+        # Calculating a shift based on MH Delay from raw times
+        ###########################
+        # mhOffset = float(re.findall(rf"Applying MassHunter delay .*", logLines)[-1].split(' ')[-1].strip())
+        # # offset = (sum([float(x) for x in td.values()]) / 1000) # method time in milliseconds
+        # # offset = (mtMS / 1000) # method time in milliseconds
+        # # offset = 0
+        # offset = mhOffset
+        # endTime = float(l.split(' ')[-1].split('-')[1].strip())
+        # startTime_adjusted = max( ( startTime - (offset) ), startTimeFloor)
+        # # startTime_adjusted = startTime
+        # endTime_adjusted = min(endTime - (offset), endTimeCeil)
+
+        ###########################
+        # Calculating a shift based on the adjusted times
+        ###########################
+        searchString = f"Effective Time Range for splitting .*\n.*{outSuf}.d"
+        l = re.findall(rf"{searchString}.*", logLines)[0]
+        startTime = float(l.split('\n')[0].split(' ')[-1].split('-')[0])
+        endTime = float(l.split('\n')[0].split(' ')[-1].split('-')[1].strip())
+        startTime_adjusted = startTime - effectiveOffset
+        endTime_adjusted = endTime - effectiveOffset
+        # mhOffset = float(re.findall(rf"Applying MassHunter delay .*", logLines)[-1].split(' ')[-1].strip())
+        # # offset = (sum([float(x) for x in td.values()]) / 1000) # method time in milliseconds
+        # # offset = (mtMS / 1000) # method time in milliseconds
+        # # offset = 0
+        # offset = mhOffset
+        # endTime = float(l.split(' ')[-1].split('-')[1].strip())
+        # startTime_adjusted = max( ( startTime - (offset) ), startTimeFloor)
+        # # startTime_adjusted = startTime
+        # endTime_adjusted = min(endTime - (offset), endTimeCeil)
+
+        
     else:
         endTime = min(startTime + ( mtMS / 1000) + scanLength, endTimeCeil)
         startTime_adjusted = startTime - scanLength
