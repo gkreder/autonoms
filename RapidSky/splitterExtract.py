@@ -25,7 +25,8 @@ with open(os.path.join(args.dFile, "AcqData", 'MSTS.xml'), 'r') as f:
 
 scanLength = ( ( float(mstsD['EndTime']) - float(mstsD['StartTime']) ) / float(mstsD['NumOfScans']) ) * 60 # Scan Length in Seconds
 endTimeCeil = ( float(mstsD['EndTime']) * 60 ) - 0.01 # So we don't try to slice past the end of the file
-startTimeFloor = ( float(mstsD['StartTime']) * 60 )
+# startTimeFloor = ( float(mstsD['StartTime']) * 60 )
+startTimeFloor = 0.0
 sampleInfoD = d['RFDatabase']['Plates']['Plate']['Injections']['SampleInfo']
 
 def getSampleInfo(s):
@@ -44,21 +45,20 @@ def getSampleInfo(s):
         methodLines = f.read()
     methodD = xmltodict.parse(methodLines)['RFConfig']
     td = dict(zip(methodD['CycleNames']['string'], methodD['CycleDurations']['int']))
-    # print(td)
     # mtMS = sum([float(x) for x in td.values()]) # method time in milliseconds
     mtMS = float(td['Load/Wash']) #BLAZE Mode Elution is in Load/Wash
     if args.rawTimes: # changed scheme for time calculations
         mhOffset = float(re.findall(rf"Applying MassHunter delay .*", logLines)[-1].split(' ')[-1].strip())
-        offset = (sum([float(x) for x in td.values()]) * 1000) # method time in milliseconds
+        offset = (sum([float(x) for x in td.values()]) / 1000) # method time in milliseconds
         endTime = float(l.split(' ')[-1].split('-')[1].strip())
-        startTime_adjusted = max(startTime - (offset), startTimeFloor)
+        startTime_adjusted = max( ( startTime - (offset) ), startTimeFloor)
+        # startTime_adjusted = startTime
         endTime_adjusted = min(endTime - (offset), endTimeCeil)
     else:
         endTime = min(startTime + ( mtMS / 1000) + scanLength, endTimeCeil)
         startTime_adjusted = startTime - scanLength
         endTime_adjusted = endTime
     return(outSuf, startTime_adjusted, endTime_adjusted)
-    print(f"{outSuf}.d", startTime_adjusted, endTime_adjusted)
 
 list_output = []
 for s in sampleInfoD:
