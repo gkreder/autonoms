@@ -12,6 +12,7 @@ parser.add_argument('--dFile', '-d', required = True)
 parser.add_argument('--RFDB', '-b', required = True)
 parser.add_argument('--methodsDir', '-m', required = True)
 parser.add_argument('--skipSeq', '-s', default = None)
+parser.add_argument('--rawTimes', default = None)
 args = parser.parse_args()
 ####################################################################################
 with open(args.RFDB, 'r') as f:
@@ -33,7 +34,6 @@ def getSampleInfo(s):
         return(None, None, None)
     if args.skipSeq != None and (s['Sequence'] == args.skipSeq) or (int(s['Sequence']) == int(args.skipSeq)):
         return(None, None, None)
-    
     outSuf = f"Inj{int(s['Injection']):05}-{s['Barcode']}-{s['Plate Position']}"
     searchString = f"{outSuf}.d ...\nOriginal Time Range \(secs\):"
     l = re.findall(rf"{searchString}.*", logLines)[0]
@@ -46,9 +46,15 @@ def getSampleInfo(s):
     # print(td)
     # mtMS = sum([float(x) for x in td.values()]) # method time in milliseconds
     mtMS = float(td['Load/Wash']) #BLAZE Mode Elution is in Load/Wash
-    endTime = min(startTime + ( mtMS / 1000) + scanLength, endTimeCeil)
-    startTime_adjusted = startTime - scanLength
-    endTime_adjusted = endTime
+    if args.rawTimes: # changed scheme for time calculations
+        mhOffset = float(re.findall(rf"Applying MassHunter delay .*", logLines)[-1].split(' ')[-1].strip())
+        endTime = float(l.split(' ')[-1].split('-')[1].strip())
+        startTime_adjusted = startTime - (2 * mhOffset)
+        endTime_adjusted = endTime - (2 * mhOffset)
+    else:
+        endTime = min(startTime + ( mtMS / 1000) + scanLength, endTimeCeil)
+        startTime_adjusted = startTime - scanLength
+        endTime_adjusted = endTime
     return(outSuf, startTime_adjusted, endTime_adjusted)
     print(f"{outSuf}.d", startTime_adjusted, endTime_adjusted)
 
