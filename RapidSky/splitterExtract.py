@@ -48,9 +48,10 @@ def getSampleInfo(s):
     mtMS = float(td['Load/Wash']) #BLAZE Mode Elution is in Load/Wash
     if args.rawTimes: # changed scheme for time calculations
         mhOffset = float(re.findall(rf"Applying MassHunter delay .*", logLines)[-1].split(' ')[-1].strip())
+        offset = mtMS
         endTime = float(l.split(' ')[-1].split('-')[1].strip())
-        startTime_adjusted = startTime - (2 * mhOffset)
-        endTime_adjusted = endTime - (2 * mhOffset)
+        startTime_adjusted = startTime - (offset)
+        endTime_adjusted = endTime - (offset)
     else:
         endTime = min(startTime + ( mtMS / 1000) + scanLength, endTimeCeil)
         startTime_adjusted = startTime - scanLength
