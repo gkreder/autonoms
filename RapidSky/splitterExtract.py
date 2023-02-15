@@ -50,7 +50,8 @@ def getSampleInfo(s):
     if args.rawTimes: # changed scheme for time calculations
         mhOffset = float(re.findall(rf"Applying MassHunter delay .*", logLines)[-1].split(' ')[-1].strip())
         # offset = (sum([float(x) for x in td.values()]) / 1000) # method time in milliseconds
-        offset = (mtMS / 1000) # method time in milliseconds
+        # offset = (mtMS / 1000) # method time in milliseconds
+        offset = 0
         endTime = float(l.split(' ')[-1].split('-')[1].strip())
         startTime_adjusted = max( ( startTime - (offset) ), startTimeFloor)
         # startTime_adjusted = startTime
