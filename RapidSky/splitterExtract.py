@@ -12,7 +12,7 @@ parser.add_argument('--dFile', '-d', required = True)
 parser.add_argument('--RFDB', '-b', required = True)
 parser.add_argument('--methodsDir', '-m', required = True)
 parser.add_argument('--skipSeq', '-s', default = None)
-parser.add_argument('--rawTimes', default = None)
+parser.add_argument('--rawTimes', action = 'store_true')
 args = parser.parse_args()
 ####################################################################################
 with open(args.RFDB, 'r') as f:
