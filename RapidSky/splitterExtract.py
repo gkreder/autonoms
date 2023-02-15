@@ -25,6 +25,7 @@ with open(os.path.join(args.dFile, "AcqData", 'MSTS.xml'), 'r') as f:
 
 scanLength = ( ( float(mstsD['EndTime']) - float(mstsD['StartTime']) ) / float(mstsD['NumOfScans']) ) * 60 # Scan Length in Seconds
 endTimeCeil = ( float(mstsD['EndTime']) * 60 ) - 0.01 # So we don't try to slice past the end of the file
+startTimeFloor = ( float(mstsD['StartTime']) * 60 )
 sampleInfoD = d['RFDatabase']['Plates']['Plate']['Injections']['SampleInfo']
 
 def getSampleInfo(s):
@@ -48,10 +49,10 @@ def getSampleInfo(s):
     mtMS = float(td['Load/Wash']) #BLAZE Mode Elution is in Load/Wash
     if args.rawTimes: # changed scheme for time calculations
         mhOffset = float(re.findall(rf"Applying MassHunter delay .*", logLines)[-1].split(' ')[-1].strip())
-        offset = mtMS
+        offset = mhOffset
         endTime = float(l.split(' ')[-1].split('-')[1].strip())
-        startTime_adjusted = startTime - (offset)
-        endTime_adjusted = endTime - (offset)
+        startTime_adjusted = max(startTime - (offset), startTimeFloor)
+        endTime_adjusted = min(endTime - (offset), endTimeCeil)
     else:
         endTime = min(startTime + ( mtMS / 1000) + scanLength, endTimeCeil)
         startTime_adjusted = startTime - scanLength
