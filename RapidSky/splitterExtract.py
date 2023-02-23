@@ -45,7 +45,7 @@ def getSampleInfo(s):
     s = {x['Name'] : x['Value'] for x in s}
     if 'DELAY' in s['Plate Position']:
         return(None, None, None)
-    if args.skipSeq != None and (s['Sequence'] == args.skipSeq) or (int(s['Sequence']) == int(args.skipSeq)):
+    if args.skipSeq != None and ((s['Sequence'] == args.skipSeq) or (int(s['Sequence']) == int(args.skipSeq))):
         return(None, None, None)
     outSuf = f"Inj{int(s['Injection']):05}-{s['Barcode']}-{s['Plate Position']}"
     searchString = f"{outSuf}.d ...\nOriginal Time Range \(secs\):"
