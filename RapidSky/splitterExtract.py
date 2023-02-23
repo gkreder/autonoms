@@ -27,10 +27,10 @@ scanLength = ( ( float(mstsD['EndTime']) - float(mstsD['StartTime']) ) / float(m
 endTimeCeil = ( float(mstsD['EndTime']) * 60 ) - 0.01 # So we don't try to slice past the end of the file
 # startTimeFloor = ( float(mstsD['StartTime']) * 60 )
 startTimeFloor = 0.0
-dPlates =  d['RFDatabase']['Plates']
+dPlates =  d['RFDatabase']['Plates']['Plate']
 if type(dPlates) == type([]):
     plateNum = int(os.path.basename(args.dFile).split('.')[0].replace('sequence', ''))
-    sampleInfoD = d['RFDatabase']['Plates'][plateNum - 1]['Plate']['Injections']['SampleInfo']
+    sampleInfoD = d['RFDatabase']['Plates']['Plate'][plateNum - 1]['Injections']['SampleInfo']
 elif type(dPlates) == type({'a' : 1}):
     sampleInfoD = d['RFDatabase']['Plates']['Plate']['Injections']['SampleInfo']
 
