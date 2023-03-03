@@ -6,8 +6,12 @@ params.files2split = params.dir + "/sequence*.d"
 params.conda = "$HOME/miniconda3/envs/deimos"  
 params.methodsDir = "/mnt/backup/RapidFire/methods"
 
+// workflow {
+//   Channel.fromPath(params.files2split, type: 'dir') | extractSplits | splitText | splitFile | demultiplex | convert2mzml | calibrateCCS | collect | run_processing | view{it}
+// }
+
 workflow {
-  Channel.fromPath(params.files2split, type: 'dir') | extractSplits | splitText | splitFile | demultiplex | convert2mzml | calibrateCCS | collect | run_processing | view{it}
+  Channel.fromPath(params.files2split, type: 'dir') | extractSplits | splitText | splitFile | demultiplex | collect | run_processing | view{it}
 }
 
 process extractSplits {
