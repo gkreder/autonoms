@@ -27,7 +27,7 @@ process extractSplits {
 
   docker run --rm -v !{params.outDir}:!{params.outDir} -u root chambm/pwiz-skyline-i-agree-to-the-vendor-licenses /bin/bash -c "rm -rf !{params.outDir}; mkdir -p !{params.outDir}; chmod -R 777 !{params.outDir};"
 
-  python !{baseDir}/RapidSky/splitterExtract.py -l !{params.dir}/RFFileSplitter.log -d !{params.dir}/!{dfile} -b !{params.dir}/RFDatabase.xml -m !{params.methodsDir}
+  python !{baseDir}/RapidSky/splitterExtract.py -l !{params.dir}/RFFileSplitter.log -d !{params.dir}/!{dfile} -b !{params.dir}/RFDatabase.xml}
   '''
 }
 
@@ -52,6 +52,26 @@ process splitFile {
   docker run --rm -v !{params.dir}:/data/baseDir -v !{params.outDir}:/data/outDir splitter /bin/bash -c "wine /home/xclient/.wine/drive_c/splitter/MHFileSplitter.exe /data/baseDir/$inFile /data/outDir/$outFile $start $end 0 0 /data/outDir/$logFile; chmod a+wrx /data/outDir/$logFile; chmod -R a+wrx /data/outDir/$outFile;"
 
   echo $outFile
+  '''
+}
+
+process demultiplex {
+  input:
+    val dfile
+  output:
+    val dfile
+
+  shell:
+  '''
+  # echo "demuxMA=3" >> /data/pnnlParams_!{dfile}.txt;
+  # chmod a+wrx /data/pnnlParams_!{dfile}.txt;
+  docker run --rm -v !{params.outDir}:/data gkreder/pnnl /bin/bash -c "wine /PNNL/PNNL-Preprocessor/PNNL-PreProcessor.exe \
+  -demux=True \
+  -demuxMA=3 \
+  -mInt=20 \
+  -overwrite=True \
+  -out=/data \
+  -dataset=/data/!{dfile}; chmod -R a+wrx /data/!{dfile}.DeMP.d; rm -r -f /data/!{dfile}; mv /data/!{dfile}.DeMP.d /data/!{dfile};";
   '''
 }
 
