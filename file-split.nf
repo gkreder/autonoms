@@ -7,7 +7,7 @@ params.conda = "$HOME/miniconda3/envs/deimos"
 params.methodsDir = "/mnt/backup/RapidFire/methods"
 
 workflow {
-  Channel.fromPath(params.files2split, type: 'dir') | extractSplits | splitText | splitFile | convert2mzml | calibrateCCS | collect | run_processing | view{it}
+  Channel.fromPath(params.files2split, type: 'dir') | extractSplits | splitText | splitFile | demultiplex | convert2mzml | calibrateCCS | collect | run_processing | view{it}
 }
 
 process extractSplits {
