@@ -56,6 +56,7 @@ process splitFile {
 }
 
 process demultiplex {
+  maxForks 10
   input:
     val dfile
   output:
