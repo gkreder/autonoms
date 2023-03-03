@@ -72,7 +72,7 @@ process demultiplex {
   -mInt=20 \
   -overwrite=True \
   -out=/data \
-  -dataset=/data/$dfile; chmod -R a+wrx /data/$dfile.DeMP.d; rm -r -f /data/$dfile; mv /data/$dfile.DeMP.d /data/$dfile;";
+  -dataset=/data/${dfile}; chmod -R a+wrx /data/${dfile}.DeMP.d; rm -r -f /data/${dfile}; mv /data/${dfile}.DeMP.d /data/${dfile};";
   '''
 }
 
