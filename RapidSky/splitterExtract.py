@@ -24,7 +24,7 @@ barcode = barcodes[0]
 
 with open(args.splitterLog, 'r') as f:
     logLines = f.read()
-splitterLines = re.findall(rf"Writing .*?-{barcode}-.*?\.d.*?Time taken", logLines, flags = re.DOTALL)
+splitterLines = re.findall(rf"Writing .*-{barcode}-.*\.d.*\n.*\n.*\n.*\n.*\n.*\nTime.*", logLines)
 
 def fl(l):
     return([(float(x), float(y)) for (x,y) in l])
