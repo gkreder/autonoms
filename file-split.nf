@@ -63,8 +63,8 @@ process demultiplex {
 
   shell:
   '''
-  # echo "demuxMA=3" >> /data/pnnlParams_!{dfile}.txt;
-  # chmod a+wrx /data/pnnlParams_!{dfile}.txt;
+  # echo "demuxMA=3" >> /data/pnnlParams.txt;
+  # chmod a+wrx /data/pnnlParams.txt;
   docker run --rm -v !{params.outDir}:/data gkreder/pnnl /bin/bash -c "wine /PNNL/PNNL-Preprocessor/PNNL-PreProcessor.exe \
   -demux=True \
   -demuxMA=3 \
