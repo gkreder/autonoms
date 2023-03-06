@@ -13,7 +13,7 @@ parser.add_argument('--RFDB', '-b', required = True)
 args = parser.parse_args()
 ####################################################################################
 
-sequence = os.path.basename(args.dFile.lower()).replace(".DeMP.d", "").replace('.d', '').replace('sequence', '')
+sequence = os.path.basename(args.dFile.lower()).replace(".demp.d", "").replace('.d', '').replace('sequence', '')
 tree = ET.parse(args.RFDB)
 root = tree.getroot()
 samples =  [x for x in root.iterfind("Plates/Plate/Injections/SampleInfo") if x.find(".//Name[.='Sequence']/../Value").text == sequence]
