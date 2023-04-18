@@ -1,6 +1,7 @@
 nextflow.enable.dsl=2
 
 if ( params.dir == null ) { exit 1, 'Must supply a --dir input specifying input data directory' }
+if ( params.cal == null ) { exit 1, 'Must supply a --cal input specifying input calibration file' }
 params.outDir = params.dir + "/out_files"
 params.files2split = params.dir + "/sequence*.d"
 params.conda = "$HOME/miniconda3/envs/deimos"  

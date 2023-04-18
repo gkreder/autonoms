@@ -1,0 +1,368 @@
+Molecule List Name,Precursor Name,Precursor Formula,Precursor Adduct,Precursor Charge,Product m/z,Product Charge
+ymdb,(2)-Methylglutaric acid,C6H10O4,[M-H]-,-1,145.0502,-1
+ymdb,(4-hydroxyphenyl)pyruvic acid,C9H8O4,[M-H]-,-1,179.0344,-1
+ymdb,(R)-Mevalonic acid,C6H12O4,[M-H]-,-1,147.0657,-1
+ymdb,(R)-Pantothenic acid,C9H17NO5,[M+H]+,1,220.118,1
+ymdb,(R)-Pantothenic acid,C9H17NO5,[M-H]-,-1,218.1038,-1
+ymdb,2'-Deoxyadenosine,C10H13N5O3,[M+H]+,1,252.1096,1
+ymdb,2'-Deoxyadenosine,C10H13N5O3,[M+H]+,1,252.1096,1
+ymdb,2'-Deoxyadenosine,C10H13N5O3,[M-H]-,-1,250.0944,-1
+ymdb,2'-Deoxycytidine,C9H13N3O4,[M-H]-,-1,226.0847,-1
+ymdb,2'-Deoxyguanosine,C10H13N5O4,[M-H]-,-1,266.0887,-1
+ymdb,2-Aminobenzoic acid,C7H7NO2,[M-H]-,-1,136.0416,-1
+ymdb,2-Dehydro-D-gluconate,C6H10O7,[M-H]-,-1,193.0348,-1
+ymdb,2-Hydroxy-2-methylbutanedioic acid,C5H8O5,[M-H]-,-1,147.0299,-1
+ymdb,2-O-acetyl-1-O-hexadecyl-sn-glycero-3-phosphocholine,C26H54NO7P,[M+H]+,1,524.3716,1
+ymdb,2-O-acetyl-1-O-hexadecyl-sn-glycero-3-phosphocholine,C26H54NO7P,[M-H]-,-1,522.3559,-1
+ymdb,2-hydroxybutyric acid,C4H8O3,[M-H]-,-1,103.0405,-1
+ymdb,2-phospho-D-glyceric acid,C3H7O7P,[M-H]-,-1,184.9845,-1
+ymdb,"3',5'-cyclic AMP",C10H12N5O6P,[M+H]+,1,330.0609,1
+ymdb,"3',5'-cyclic AMP",C10H12N5O6P,[M+H]+,1,330.0609,1
+ymdb,"3',5'-cyclic AMP",C10H12N5O6P,[M-H]-,-1,328.0452,-1
+ymdb,3-(4-hydroxyphenyl)lactic acid,C9H10O4,[M-H]-,-1,181.0504,-1
+ymdb,3-(indol-3-yl)pyruvic acid,C11H9NO3,[M-H]-,-1,202.0524,-1
+ymdb,3-Aminoisobutyrate,C4H9NO2,[M+H]+,1,104.0705,1
+ymdb,3-Dehydroshikimic acid,C7H8O5,[M+H]+,1,173.045,1
+ymdb,3-Dehydroshikimic acid,C7H8O5,[M-H]-,-1,171.0298,-1
+ymdb,3-Hydroxyanthranilic acid,C7H7NO3,[M+H]+,1,154.0493,1
+ymdb,3-Hydroxyanthranilic acid,C7H7NO3,[M-H]-,-1,152.0363,-1
+ymdb,3-Hydroxybutyric acid,C4H8O3,[M-H]-,-1,103.0395,-1
+ymdb,3-Methyladenine,C6H7N5,[M+H]+,1,150.0769,1
+ymdb,4-Acetamidobutanoic acid,C6H11NO3,[M-H]-,-1,144.0663,-1
+ymdb,4-Aminobenzoic acid,C7H7NO2,[M+H]+,1,138.0559,1
+ymdb,4-Hydroxybenzoic acid,C7H6O3,[M-H]-,-1,137.0259,-1
+ymdb,4-Hydroxyphenylacetic acid,C8H8O3,[M-H]-,-1,151.0395,-1
+ymdb,4-Nitrophenol,C6H5NO3,[M-H]-,-1,138.0192,-1
+ymdb,5'-Deoxyadenosine,C10H13N5O3,[M+H]+,1,252.108,1
+ymdb,5'-Deoxyadenosine,C10H13N5O3,[M+H]+,1,252.108,1
+ymdb,5'-Deoxyadenosine,C10H13N5O3,[M-H]-,-1,250.0947,-1
+ymdb,5'-Methylthioadenosine,C11H15N5O3S,[M+H]+,1,298.0992,1
+ymdb,5'-Methylthioadenosine,C11H15N5O3S,[M-H]-,-1,296.0817,-1
+ymdb,5-Amino-1-(5-phospho-D-ribosyl)imidazole-4-carboxamide,C9H15N4O8P,[M+H]+,1,339.0708,1
+ymdb,5-Amino-1-(5-phospho-D-ribosyl)imidazole-4-carboxamide,C9H15N4O8P,[M-H]-,-1,337.0552,-1
+ymdb,5-Aminolevulinic acid,C5H9NO3,[M+H]+,1,132.0652,1
+ymdb,5-Thymidylic acid,C10H15N2O8P,[M+H]+,1,323.0644,1
+ymdb,5-Thymidylic acid,C10H15N2O8P,[M-H]-,-1,321.0488,-1
+ymdb,6-Phosphogluconic acid,C6H13O10P,[M-H]-,-1,275.0168,-1
+ymdb,7-Methylguanine,C6H7N5O,[M+H]+,1,166.0729,1
+ymdb,7-Methylguanine,C6H7N5O,[M-H]-,-1,164.0572,-1
+ymdb,ADP,C10H15N5O10P2,[M+H]+,1,428.033,1
+ymdb,ADP,C10H15N5O10P2,[M-H]-,-1,426.0216,-1
+ymdb,Adenine,C5H5N5,[M+H]+,1,136.0614,1
+ymdb,Adenine,C5H5N5,[M-H]-,-1,134.0486,-1
+ymdb,Adenosine,C10H13N5O4,[M+H]+,1,268.1041,1
+ymdb,Adenosine,C10H13N5O4,[M+H]+,1,268.1046,1
+ymdb,Adenosine,C10H13N5O4,[M-H]-,-1,266.0897,-1
+ymdb,Adenosine diphosphate ribose,C15H23N5O14P2,[M+H]+,1,560.0791,1
+ymdb,Adenosine diphosphate ribose,C15H23N5O14P2,[M-H]-,-1,558.0655,-1
+ymdb,Adenosine diphosphate ribose,C15H23N5O14P2,[M-H]-,-1,558.0655,-1
+ymdb,Adenosine monophosphate,C10H14N5O7P,[M+H]+,1,348.0686,1
+ymdb,Adenosine monophosphate,C10H14N5O7P,[M-H]-,-1,346.0558,-1
+ymdb,Adenosine triphosphate,C10H16N5O13P3,[M+H]+,1,508.0034,1
+ymdb,Adenosine triphosphate,C10H16N5O13P3,[M-H]-,-1,505.9893,-1
+ymdb,Allantoin,C4H6N4O3,[M-H]-,-1,157.0373,-1
+ymdb,Astilbin,C21H22O11,[M+H]+,1,451.124,1
+ymdb,Astilbin,C21H22O11,[M-H]-,-1,449.1084,-1
+ymdb,Beta-pseudouridine,C9H12N2O6,[M-H]-,-1,243.0617,-1
+ymdb,Betaine,C5H11NO2,[M+H]+,1,118.0868,1
+ymdb,Biotin,C10H16N2O3S,[M+H]+,1,245.0959,1
+ymdb,Biotin,C10H16N2O3S,[M-H]-,-1,243.0835,-1
+ymdb,CDP,C9H15N3O11P2,[M+H]+,1,404.0233,1
+ymdb,CDP,C9H15N3O11P2,[M-H]-,-1,402.0119,-1
+ymdb,CDP-Ethanolamine,C11H20N4O11P2,[M-H]-,-1,445.0534,-1
+ymdb,Caffeic acid,C9H8O4,[M-H]-,-1,179.0355,-1
+ymdb,Camphene,C10H16,[M+H]+,1,137.133,1
+ymdb,Carnosine,C9H14N4O3,[M+H]+,1,227.115,1
+ymdb,Carnosine,C9H14N4O3,[M-H]-,-1,225.1008,-1
+ymdb,Catechin,C15H14O6,[M+H]+,1,291.0869,1
+ymdb,Catechin,C15H14O6,[M-H]-,-1,289.0712,-1
+ymdb,Cellobiose,C12H22O11,[M-H]-,-1,341.1076,-1
+ymdb,Cinnamaldehyde,C9H8O,[M+H]+,1,133.0653,1
+ymdb,Cinnamic acid,C9H8O2,[M+H]+,1,149.0603,1
+ymdb,Citicoline,C14H26N4O11P2,[M+H]+,1,489.1105,1
+ymdb,Citicoline,C14H26N4O11P2,[M-H]-,-1,487.1,-1
+ymdb,Citric acid,C6H8O7,[M-H]-,-1,191.0213,-1
+ymdb,Citrulline,C6H13N3O3,[M+H]+,1,176.1028,1
+ymdb,Citrulline,C6H13N3O3,[M-H]-,-1,174.0898,-1
+ymdb,Cytidine,C9H13N3O5,[M+H]+,1,244.0927,1
+ymdb,Cytidine,C9H13N3O5,[M-H]-,-1,242.0804,-1
+ymdb,Cytidine monophosphate,C9H14N3O8P,[M+H]+,1,324.0578,1
+ymdb,Cytidine monophosphate,C9H14N3O8P,[M-H]-,-1,322.0439,-1
+ymdb,Cytidine triphosphate,C9H16N3O14P3,[M+H]+,1,483.9927,1
+ymdb,Cytidine triphosphate,C9H16N3O14P3,[M-H]-,-1,481.9774,-1
+ymdb,Cytosine,C4H5N3O,[M+H]+,1,112.0509,1
+ymdb,D-Erythrose 4-phosphate,C4H9O7P,[M-H]-,-1,199.0008,-1
+ymdb,D-Isoleucine,C6H13NO2,[M+H]+,1,132.1024,1
+ymdb,D-Isoleucine,C6H13NO2,[M-H]-,-1,130.0868,-1
+ymdb,D-Leucine,C6H13NO2,[M+H]+,1,132.1024,1
+ymdb,D-Leucine,C6H13NO2,[M-H]-,-1,130.0868,-1
+ymdb,D-Tryptophan,C11H12N2O2,[M+H]+,1,205.0964,1
+ymdb,D-Tryptophan,C11H12N2O2,[M-H]-,-1,203.0832,-1
+ymdb,D-Tryptophan,C11H12N2O2,[M-H]-,-1,203.084,-1
+ymdb,D-glucitol,C6H14O6,[M-H]-,-1,181.071,-1
+ymdb,D-mannitol,C6H14O6,[M-H]-,-1,181.0714,-1
+ymdb,D-mannose 6-phosphate,C6H13O9P,[M-H]-,-1,259.0228,-1
+ymdb,DL-Pipecolic acid,C6H11NO2,[M+H]+,1,130.0865,1
+ymdb,DL-Pipecolic acid,C6H11NO2,[M-H]-,-1,128.0717,-1
+ymdb,Deoxyuridine triphosphate,C9H15N2O14P3,[M-H]-,-1,466.9659,-1
+ymdb,Diaminopimelic acid,C7H14N2O4,[M+H]+,1,191.1012,1
+ymdb,Diaminopimelic acid,C7H14N2O4,[M-H]-,-1,189.0886,-1
+ymdb,Dimethyl-L-arginine,C8H18N4O2,[M+H]+,1,203.1491,1
+ymdb,Dimethyl-L-arginine,C8H18N4O2,[M-H]-,-1,201.1361,-1
+ymdb,Diphenylketone,C13H10O,[M+H]+,1,183.081,1
+ymdb,Dodecanoylcarnitine,C19H37NO4,[M+H]+,1,344.2782,1
+ymdb,FAD,C27H33N9O15P2,[M+H]+,1,786.1609,1
+ymdb,FAD,C27H33N9O15P2,[M-H]-,-1,784.1493,-1
+ymdb,Ferulic acid,C10H10O4,[M-H]-,-1,193.0524,-1
+ymdb,Flavin Mononucleotide,C17H21N4O9P,[M+H]+,1,457.1124,1
+ymdb,Flavin Mononucleotide,C17H21N4O9P,[M-H]-,-1,455.0968,-1
+ymdb,Folic acid,C19H19N7O6,[M+H]+,1,442.1447,1
+ymdb,Folic acid,C19H19N7O6,[M-H]-,-1,440.1335,-1
+ymdb,Fructose 6-phosphate,C6H13O9P,[M-H]-,-1,259.0219,-1
+ymdb,GTP,C10H16N5O14P3,[M-H]-,-1,521.9834,-1
+ymdb,Galactose 1-phosphate,C6H13O9P,[M-H]-,-1,259.024,-1
+ymdb,Geranyl-PP,C10H20O7P2,[M-H]-,-1,313.0602,-1
+ymdb,Gluconic acid,C6H12O7,[M+H]+,1,197.0661,1
+ymdb,Gluconic acid,C6H12O7,[M-H]-,-1,195.0502,-1
+ymdb,Glucosamine,C6H13NO5,[M+H]+,1,180.1052,1
+ymdb,Glucose 6-phosphate,C6H13O9P,[M-H]-,-1,259.0219,-1
+ymdb,Glutathione,C10H17N3O6S,[M+H]+,1,308.0911,1
+ymdb,Glutathione,C10H17N3O6S,[M-H]-,-1,306.0776,-1
+ymdb,Glyceric acid,C3H6O4,[M-H]-,-1,105.0225,-1
+ymdb,Guanine,C5H5N5O,[M+H]+,1,152.0562,1
+ymdb,Guanosine,C10H13N5O5,[M+H]+,1,284.0977,1
+ymdb,Guanosine,C10H13N5O5,[M-H]-,-1,282.0855,-1
+ymdb,Guanosine diphosphate mannose,C16H25N5O16P2,[M+H]+,1,606.0812,1
+ymdb,Guanosine diphosphate mannose,C16H25N5O16P2,[M-H]-,-1,604.0692,-1
+ymdb,Guanosine monophosphate,C10H14N5O8P,[M+H]+,1,364.064,1
+ymdb,Guanosine monophosphate,C10H14N5O8P,[M-H]-,-1,362.0504,-1
+ymdb,Heptadecanoic acid,C17H34O2,[M+H]+,1,271.2625,1
+ymdb,Heptadecanoic acid,C17H34O2,[M-H]-,-1,269.2486,-1
+ymdb,Hexadecanoylcarnitine,C23H45NO4,[M+H]+,1,400.3427,1
+ymdb,Histamine,C5H9N3,[M+H]+,1,112.0863,1
+ymdb,Homocysteine,C4H9NO2S,[M+H]+,1,136.0427,1
+ymdb,Homocysteine,C4H9NO2S,[M-H]-,-1,134.029,-1
+ymdb,Homovanillic acid,C9H10O4,[M-H]-,-1,181.05,-1
+ymdb,Hypotaurine,C2H7NO2S,[M+H]+,1,110.0269,1
+ymdb,Hypotaurine,C2H7NO2S,[M-H]-,-1,108.0134,-1
+ymdb,Hypoxanthine,C5H4N4O,[M+H]+,1,137.0461,1
+ymdb,Hypoxanthine,C5H4N4O,[M-H]-,-1,135.0317,-1
+ymdb,Indoleacetaldehyde,C10H9NO,[M+H]+,1,160.075,1
+ymdb,Indoleacetaldehyde,C10H9NO,[M-H]-,-1,158.0606,-1
+ymdb,Inosine,C10H12N4O5,[M+H]+,1,269.0886,1
+ymdb,Inosine,C10H12N4O5,[M-H]-,-1,267.076,-1
+ymdb,Inosinic acid,C10H13N4O8P,[M+H]+,1,349.0532,1
+ymdb,Inosinic acid,C10H13N4O8P,[M-H]-,-1,347.0434,-1
+ymdb,Isocitric acid,C6H8O7,[M-H]-,-1,191.0192,-1
+ymdb,Isomaltose,C12H22O11,[M-H]-,-1,341.1084,-1
+ymdb,Isorhamnetin,C16H12O7,[M+H]+,1,317.0661,1
+ymdb,Isorhamnetin,C16H12O7,[M-H]-,-1,315.0505,-1
+ymdb,Kaempferol,C15H10O6,[M+H]+,1,287.0556,1
+ymdb,Kaempferol,C15H10O6,[M-H]-,-1,285.0399,-1
+ymdb,Kynurenic acid,C10H7NO3,[M+H]+,1,190.0497,1
+ymdb,Kynurenic acid,C10H7NO3,[M-H]-,-1,188.0365,-1
+ymdb,L-2-aminoadipate,C6H11NO4,[M+H]+,1,162.0747,1
+ymdb,L-2-aminoadipate,C6H11NO4,[M-H]-,-1,160.0613,-1
+ymdb,L-Acetylcarnitine,C9H17NO4,[M+H]+,1,204.1222,1
+ymdb,L-Allothreonine,C4H9NO3,[M-H]-,-1,118.0515,-1
+ymdb,L-Arginine,C6H14N4O2,[M+H]+,1,175.119,1
+ymdb,L-Arginine,C6H14N4O2,[M-H]-,-1,173.1044,-1
+ymdb,L-Asparagine,C4H8N2O3,[M+H]+,1,133.0613,1
+ymdb,L-Asparagine,C4H8N2O3,[M-H]-,-1,131.0467,-1
+ymdb,L-Aspartic acid,C4H7NO4,[M-H]-,-1,132.0302,-1
+ymdb,L-Cystathionine,C7H14N2O4S,[M+H]+,1,223.0732,1
+ymdb,L-Cystathionine,C7H14N2O4S,[M-H]-,-1,221.0598,-1
+ymdb,L-Cysteine,C3H7NO2S,[M+H]+,1,122.0276,1
+ymdb,L-Cysteine,C3H7NO2S,[M-H]-,-1,120.0119,-1
+ymdb,L-Cystine,C6H12N2O4S2,[M+H]+,1,241.0311,1
+ymdb,L-Cystine,C6H12N2O4S2,[M-H]-,-1,239.0166,-1
+ymdb,L-Dihydroorotic acid,C5H6N2O4,[M-H]-,-1,157.027,-1
+ymdb,L-Glutamic acid,C5H9NO4,[M+H]+,1,148.0599,1
+ymdb,L-Glutamic acid,C5H9NO4,[M-H]-,-1,146.0459,-1
+ymdb,L-Glutamine,C5H10N2O3,[M+H]+,1,147.0762,1
+ymdb,L-Glutamine,C5H10N2O3,[M-H]-,-1,145.0628,-1
+ymdb,L-Histidine,C6H9N3O2,[M+H]+,1,156.0768,1
+ymdb,L-Histidine,C6H9N3O2,[M-H]-,-1,154.0622,-1
+ymdb,L-Homoserine,C4H9NO3,[M+H]+,1,120.0654,1
+ymdb,L-Homoserine,C4H9NO3,[M-H]-,-1,118.0509,-1
+ymdb,L-Isoleucine,C6H13NO2,[M+H]+,1,132.1019,1
+ymdb,L-Isoleucine,C6H13NO2,[M-H]-,-1,130.0874,-1
+ymdb,L-Kynurenine,C10H12N2O3,[M+H]+,1,209.0908,1
+ymdb,L-Leucine,C6H13NO2,[M+H]+,1,132.1019,1
+ymdb,L-Leucine,C6H13NO2,[M-H]-,-1,130.0874,-1
+ymdb,L-Lysine,C6H14N2O2,[M+H]+,1,147.1128,1
+ymdb,L-Lysine,C6H14N2O2,[M-H]-,-1,145.0987,-1
+ymdb,L-Methionine,C5H11NO2S,[M+H]+,1,150.0583,1
+ymdb,L-Methionine,C5H11NO2S,[M-H]-,-1,148.0432,-1
+ymdb,L-Phenylalanine,C9H11NO2,[M+H]+,1,166.0863,1
+ymdb,L-Phenylalanine,C9H11NO2,[M-H]-,-1,164.0717,-1
+ymdb,L-Proline,C5H9NO2,[M+H]+,1,116.0706,1
+ymdb,L-Proline,C5H9NO2,[M-H]-,-1,114.0564,-1
+ymdb,L-Serine,C3H7NO3,[M-H]-,-1,104.0348,-1
+ymdb,L-Threonine,C4H9NO3,[M+H]+,1,120.0661,1
+ymdb,L-Threonine,C4H9NO3,[M-H]-,-1,118.0504,-1
+ymdb,L-Tryptophan,C11H12N2O2,[M+H]+,1,205.0964,1
+ymdb,L-Tryptophan,C11H12N2O2,[M-H]-,-1,203.084,-1
+ymdb,L-Tyrosine,C9H11NO3,[M+H]+,1,182.0812,1
+ymdb,L-Tyrosine,C9H11NO3,[M-H]-,-1,180.0666,-1
+ymdb,L-Valine,C5H11NO2,[M+H]+,1,118.0868,1
+ymdb,L-Valine,C5H11NO2,[M-H]-,-1,116.0712,-1
+ymdb,L-arabinitol,C5H12O5,[M-H]-,-1,151.061,-1
+ymdb,"L-gulono-1,4-lactone",C6H10O6,[M-H]-,-1,177.0396,-1
+ymdb,Melibiose,C12H22O11,[M+H]+,1,343.1231,1
+ymdb,Melibiose,C12H22O11,[M-H]-,-1,341.1076,-1
+ymdb,Myoinositol,C6H12O6,[M-H]-,-1,179.0552,-1
+ymdb,Myricetin,C15H10O8,[M+H]+,1,319.0454,1
+ymdb,N(pros)-methyl-L-histidine,C7H11N3O2,[M+H]+,1,170.0929,1
+ymdb,N(pros)-methyl-L-histidine,C7H11N3O2,[M-H]-,-1,168.0773,-1
+ymdb,N-Acetyl-DL-serine,C5H9NO4,[M-H]-,-1,146.046,-1
+ymdb,N-Acetylputrescine,C6H14N2O,[M+H]+,1,131.1179,1
+ymdb,N-acetyl-D-tryptophan,C13H14N2O3,[M+H]+,1,247.1083,1
+ymdb,N-acetyl-D-tryptophan,C13H14N2O3,[M-H]-,-1,245.0926,-1
+ymdb,N-acetyl-L-glutamic acid,C7H11NO5,[M-H]-,-1,188.0563,-1
+ymdb,N1-Acetylspermine,C12H28N4O,[M+H]+,1,245.2342,1
+ymdb,NAD,C21H27N7O14P2,[M+H]+,1,664.1143,1
+ymdb,NAD,C21H27N7O14P2,[M-H]-,-1,662.107,-1
+ymdb,NADP,C21H28N7O17P3,[M+H]+,1,744.0791,1
+ymdb,NADP,C21H28N7O17P3,[M-H]-,-1,742.0697,-1
+ymdb,NADPH,C21H30N7O17P3,[M+H]+,1,746.0989,1
+ymdb,NADPH,C21H30N7O17P3,[M-H]-,-1,744.0837,-1
+ymdb,Niacinamide,C6H6N2O,[M+H]+,1,123.0557,1
+ymdb,Nicotinamide ribotide,C11H15N2O8P,[M+H]+,1,335.0628,1
+ymdb,Nicotinic acid,C6H5NO2,[M+H]+,1,124.0407,1
+ymdb,Nicotinic acid,C6H5NO2,[M-H]-,-1,122.0271,-1
+ymdb,Norleucine,C6H13NO2,[M+H]+,1,132.1024,1
+ymdb,Norleucine,C6H13NO2,[M-H]-,-1,130.0875,-1
+ymdb,O-Phospho-L-serine,C3H8NO6P,[M-H]-,-1,184.0022,-1
+ymdb,O-Phosphoethanolamine,C2H8NO4P,[M-H]-,-1,140.0126,-1
+ymdb,O-Succinyl-L-homoserine,C8H13NO6,[M+H]+,1,220.0798,1
+ymdb,O-acetyl-L-serine,C5H9NO4,[M+H]+,1,148.0602,1
+ymdb,Oleic acid,C18H34O2,[M-H]-,-1,281.2486,-1
+ymdb,Orotic acid,C5H4N2O4,[M+H]+,1,157.0249,1
+ymdb,Orotic acid,C5H4N2O4,[M-H]-,-1,155.0112,-1
+ymdb,Oxoadipic acid,C6H8O5,[M-H]-,-1,159.0292,-1
+ymdb,Oxoglutaric acid,C5H6O5,[M-H]-,-1,145.0137,-1
+ymdb,PC(12:0/12:0),C32H64NO8P,[M+H]+,1,622.4448,1
+ymdb,PC(14:0/0:0),C22H46NO7P,[M+H]+,1,468.309,1
+ymdb,PC(14:0/14:0),C36H72NO8P,[M+H]+,1,678.5074,1
+ymdb,PC(16:0/0:0),C24H50NO7P,[M+H]+,1,496.3403,1
+ymdb,PC(16:0/16:0),C40H80NO8P,[M+H]+,1,734.5699,1
+ymdb,PC(18:0/18:0),C44H88NO8P,[M+H]+,1,790.6325,1
+ymdb,PC(18:1(9Z)/0:0),C26H52NO7P,[M+H]+,1,522.3559,1
+ymdb,PE(10:0/10:0),C25H50NO8P,[M+H]+,1,524.3352,1
+ymdb,PE(10:0/10:0),C25H50NO8P,[M-H]-,-1,522.3196,-1
+ymdb,PE(12:0/12:0),C29H58NO8P,[M+H]+,1,580.3978,1
+ymdb,PE(12:0/12:0),C29H58NO8P,[M-H]-,-1,578.3822,-1
+ymdb,PE(14:0/14:0),C33H66NO8P,[M+H]+,1,636.4604,1
+ymdb,PE(14:0/14:0),C33H66NO8P,[M-H]-,-1,634.4448,-1
+ymdb,PE(15:0/15:0),C35H70NO8P,[M+H]+,1,664.4917,1
+ymdb,PE(15:0/15:0),C35H70NO8P,[M-H]-,-1,662.4761,-1
+ymdb,PE(16:0/16:0),C37H74NO8P,[M+H]+,1,692.523,1
+ymdb,PE(16:0/16:0),C37H74NO8P,[M-H]-,-1,690.5074,-1
+ymdb,PE(16:0/18:1(9Z)),C39H76NO8P,[M+H]+,1,718.5387,1
+ymdb,PE(16:0/18:1(9Z)),C39H76NO8P,[M-H]-,-1,716.523,-1
+ymdb,PE(16:1(9Z)/16:1(9Z)),C37H70NO8P,[M+H]+,1,688.4917,1
+ymdb,PE(16:1(9Z)/16:1(9Z)),C37H70NO8P,[M-H]-,-1,686.4761,-1
+ymdb,PE(18:0/18:0),C41H82NO8P,[M+H]+,1,748.5856,1
+ymdb,PE(18:0/18:0),C41H82NO8P,[M-H]-,-1,746.5699,-1
+ymdb,PE(18:1(9Z)/18:1(9Z)),C41H78NO8P,[M+H]+,1,744.5543,1
+ymdb,PE(18:1(9Z)/18:1(9Z)),C41H78NO8P,[M-H]-,-1,742.5387,-1
+ymdb,Palmitic acid,C16H32O2,[M-H]-,-1,255.233,-1
+ymdb,Phosphorylcholine,C5H14NO4P,[M+H]+,1,184.0732,1
+ymdb,Protocatechuic acid,C7H6O4,[M-H]-,-1,153.021,-1
+ymdb,Protoporphyrin IX,C34H34N4O4,[M+H]+,1,563.2629,1
+ymdb,Purine,C5H4N4,[M+H]+,1,121.0519,1
+ymdb,Purine,C5H4N4,[M-H]-,-1,119.0401,-1
+ymdb,Pyridoxal,C8H9NO3,[M+H]+,1,168.0654,1
+ymdb,Pyridoxal,C8H9NO3,[M-H]-,-1,166.0504,-1
+ymdb,Pyridoxal 5'-phosphate,C8H10NO6P,[M+H]+,1,248.0319,1
+ymdb,Pyridoxal 5'-phosphate,C8H10NO6P,[M-H]-,-1,246.0173,-1
+ymdb,Pyridoxamine,C8H12N2O2,[M+H]+,1,169.0968,1
+ymdb,Pyridoxamine,C8H12N2O2,[M-H]-,-1,167.0826,-1
+ymdb,Pyridoxine,C8H11NO3,[M+H]+,1,170.0832,1
+ymdb,Pyridoxine,C8H11NO3,[M-H]-,-1,168.0677,-1
+ymdb,Pyroglutamic acid,C5H7NO3,[M+H]+,1,130.0492,1
+ymdb,Pyroglutamic acid,C5H7NO3,[M-H]-,-1,128.035,-1
+ymdb,Quinolinic acid,C7H5NO4,[M+H]+,1,168.0277,1
+ymdb,Quinolinic acid,C7H5NO4,[M-H]-,-1,166.015,-1
+ymdb,Riboflavin,C17H20N4O6,[M+H]+,1,377.1433,1
+ymdb,Riboflavin,C17H20N4O6,[M-H]-,-1,375.1309,-1
+ymdb,S-Adenosyl-L-methionine,C15H22N6O5S,[M+H]+,1,399.1451,1
+ymdb,S-Adenosylhomocysteine,C14H20N6O5S,[M+H]+,1,385.1274,1
+ymdb,S-Adenosylhomocysteine,C14H20N6O5S,[M-H]-,-1,383.1152,-1
+ymdb,Salicylaldehyde,C7H6O2,[M-H]-,-1,121.0305,-1
+ymdb,Salicylic acid,C7H6O3,[M-H]-,-1,137.024,-1
+ymdb,Salicylurate,C9H9NO4,[M-H]-,-1,194.0453,-1
+ymdb,Shikimic acid,C7H10O5,[M+H]+,1,175.0606,1
+ymdb,Shikimic acid,C7H10O5,[M-H]-,-1,173.0461,-1
+ymdb,Spermidine,C7H19N3,[M+H]+,1,146.1653,1
+ymdb,Spermine,C10H26N4,[M+H]+,1,203.2231,1
+ymdb,Sphinganine,C18H39NO2,[M+H]+,1,302.3046,1
+ymdb,Succinic acid,C4H6O4,[M+H]+,1,119.0344,1
+ymdb,Succinic acid,C4H6O4,[M-H]-,-1,117.0198,-1
+ymdb,Sucrose,C12H22O11,[M-H]-,-1,341.1084,-1
+ymdb,Taurine,C2H7NO3S,[M+H]+,1,126.0219,1
+ymdb,Taurine,C2H7NO3S,[M+H]+,1,126.0219,1
+ymdb,Taurine,C2H7NO3S,[M-H]-,-1,124.0085,-1
+ymdb,Thiamine monophosphate,C12H17N4O4PS,[M+H]+,1,345.0786,1
+ymdb,Thiamine pyrophosphate,C12H18N4O7P2S,[M+H]+,1,425.0434,1
+ymdb,Thiamine pyrophosphate,C12H18N4O7P2S,[M-H]-,-1,423.0306,-1
+ymdb,Thymidine,C10H14N2O5,[M-H]-,-1,241.0851,-1
+ymdb,Thymine,C5H6N2O2,[M+H]+,1,127.0502,1
+ymdb,Thymine,C5H6N2O2,[M-H]-,-1,125.0365,-1
+ymdb,Trehalose,C12H22O11,[M-H]-,-1,341.1084,-1
+ymdb,Trehalose 6-phosphate,C12H23O14P,[M-H]-,-1,421.0747,-1
+ymdb,Tyramine,C8H11NO,[M+H]+,1,138.0919,1
+ymdb,Tyrosol,C8H10O2,[M-H]-,-1,137.0603,-1
+ymdb,Uracil,C4H4N2O2,[M+H]+,1,113.0351,1
+ymdb,Uracil,C4H4N2O2,[M-H]-,-1,111.0201,-1
+ymdb,Uric acid,C5H4N4O3,[M+H]+,1,169.0362,1
+ymdb,Uric acid,C5H4N4O3,[M-H]-,-1,167.0211,-1
+ymdb,Uridine,C9H12N2O6,[M+H]+,1,245.0774,1
+ymdb,Uridine,C9H12N2O6,[M-H]-,-1,243.0631,-1
+ymdb,Uridine 5'-diphosphate,C9H14N2O12P2,[M+H]+,1,405.0095,1
+ymdb,Uridine 5'-diphosphate,C9H14N2O12P2,[M-H]-,-1,402.9956,-1
+ymdb,Uridine 5'-monophosphate,C9H13N2O9P,[M+H]+,1,325.0437,1
+ymdb,Uridine 5'-monophosphate,C9H13N2O9P,[M-H]-,-1,323.0317,-1
+ymdb,Uridine diphosphate glucuronic acid,C15H22N2O18P2,[M-H]-,-1,579.0291,-1
+ymdb,Uridine triphosphate,C9H15N2O15P3,[M+H]+,1,484.9755,1
+ymdb,Uridine triphosphate,C9H15N2O15P3,[M-H]-,-1,482.9623,-1
+ymdb,Xanthine,C5H4N4O2,[M+H]+,1,153.0402,1
+ymdb,Xanthine,C5H4N4O2,[M-H]-,-1,151.0277,-1
+ymdb,Xanthurenic acid,C10H7NO4,[M+H]+,1,206.0446,1
+ymdb,Xanthurenic acid,C10H7NO4,[M-H]-,-1,204.0317,-1
+ymdb,Xanthylic acid,C10H13N4O9P,[M+H]+,1,365.0477,1
+ymdb,Xanthylic acid,C10H13N4O9P,[M-H]-,-1,363.0352,-1
+ymdb,Xylitol,C5H12O5,[M-H]-,-1,151.0607,-1
+ymdb,alpha-D-glucose 1-phosphate,C6H13O9P,[M-H]-,-1,259.0228,-1
+ymdb,dAMP,C10H14N5O6P,[M+H]+,1,332.076,1
+ymdb,dAMP,C10H14N5O6P,[M-H]-,-1,330.0603,-1
+ymdb,dCDP,C9H15N3O10P2,[M+H]+,1,388.0306,1
+ymdb,dCDP,C9H15N3O10P2,[M-H]-,-1,386.0153,-1
+ymdb,dCMP,C9H14N3O7P,[M+H]+,1,308.0648,1
+ymdb,dCMP,C9H14N3O7P,[M-H]-,-1,306.0509,-1
+ymdb,dGDP,C10H15N5O10P2,[M+H]+,1,428.0351,1
+ymdb,dGDP,C10H15N5O10P2,[M-H]-,-1,426.0233,-1
+ymdb,dGTP,C10H16N5O13P3,[M-H]-,-1,505.9881,-1
+ymdb,dUMP,C9H13N2O8P,[M-H]-,-1,307.033,-1
+ymdb,glycerol 2-phosphate,C3H9O6P,[M-H]-,-1,171.0071,-1
+ymdb,indole-3-acetate,C10H9NO2,[M+H]+,1,176.072,1
+ymdb,itaconic acid,C5H6O4,[M-H]-,-1,129.0192,-1
+ymdb,lauric acid,C12H24O2,[M-H]-,-1,199.1704,-1
+ymdb,leukotriene B4,C20H32O4,[M-H]-,-1,335.2222,-1
+ymdb,lignoceric acid,C24H48O2,[M-H]-,-1,367.3582,-1
+ymdb,malonyl-CoA,C24H38N7O19P3S,[M-H]-,-1,852.1078,-1
+ymdb,naphthalene,C10H8,[M+H]+,1,129.0704,1
+ymdb,palmitoleic acid,C16H30O2,[M-H]-,-1,253.2173,-1
+ymdb,stearic acid,C18H36O2,[M-H]-,-1,283.2643,-1
+ymdb,thiamine(1+) diphosphate(1-),C12H18N4O7P2S,[M+H]+,1,425.0434,1
+ymdb,thiamine(1+) diphosphate(1-),C12H18N4O7P2S,[M-H]-,-1,423.0306,-1
+ymdb,trans-4-Coumaric acid,C9H8O3,[M-H]-,-1,163.0402,-1
+ymdb,trans-4-hydroxy-L-proline,C5H9NO3,[M+H]+,1,132.064,1
+ymdb,trans-4-hydroxy-L-proline,C5H9NO3,[M-H]-,-1,130.0505,-1
+ymdb,trans-Aconitic acid,C6H6O6,[M+H]+,1,175.0243,1
+ymdb,trans-Aconitic acid,C6H6O6,[M-H]-,-1,173.0086,-1
+ymdb,tryptophol,C10H11NO,[M+H]+,1,162.0912,1
+ymdb,tryptophol,C10H11NO,[M-H]-,-1,160.0785,-1
+ymdb,xanthosine,C10H12N4O6,[M+H]+,1,285.0805,1
+ymdb,xanthosine,C10H12N4O6,[M-H]-,-1,283.0684,-1
