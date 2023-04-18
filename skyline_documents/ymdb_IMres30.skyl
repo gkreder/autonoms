@@ -1,0 +1,267 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<audit_log_root format_version="22.2">
+  <document_hash>B0/z+Tut4a0YuHhFaVhxMAMmm4Q=</document_hash>
+  <root_hash>Zy6Bp+M3eWqXBF7Gb4wHg8gSVrA=</root_hash>
+  <audit_log>
+    <audit_log_entry skyline_version="22.2.0.351-28f9b9301 (64-Bit)" time_stamp="2023-04-18T14:42:51+02:00" user="DESKTOP-QGFMQJM\admin" mode="m">
+      <undo_redo>
+        <type>changed</type>
+        <name>{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_IonMobilityFiltering}</name>
+        <en_expanded>Transition Settings -- Ion mobility changed</en_expanded>
+      </undo_redo>
+      <summary>
+        <type>changed</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_IonMobilityFiltering}</name>
+        <en_expanded>Settings &gt; Transition Settings -- Ion mobility changed</en_expanded>
+      </summary>
+      <all_info>
+        <type>changed_from_to</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_IonMobilityFiltering}{2:PropertySeparator}{0:TransitionIonMobilityFiltering_IonMobilityLibrary}</name>
+        <name>"moiAggregated"</name>
+        <name>"ymdb"</name>
+        <en_expanded>Settings &gt; Transition Settings -- Ion mobility &gt; Ion mobility library changed from "moiAggregated" to "ymdb"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>is_</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_IonMobilityFiltering}{2:PropertySeparator}{0:TransitionIonMobilityFiltering_IonMobilityLibrary}{2:PropertySeparator}{0:IonMobilityLibrary_FilePathAuditLog}</name>
+        <name>"{4:D:\gkreder\RapidSky\skyline_documents\ymdb.imsdb}"</name>
+        <en_expanded>Settings &gt; Transition Settings -- Ion mobility &gt; Ion mobility library &gt; File path is "D:\gkreder\RapidSky\skyline_documents\ymdb.imsdb"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>is_</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_IonMobilityFiltering}{2:PropertySeparator}{0:TransitionIonMobilityFiltering_IonMobilityLibrary}{2:PropertySeparator}{0:IonMobilityLibrary_Status}{2:PropertySeparator}{0:IonMobilityLibraryChange_Added}</name>
+        <name>{3:367}</name>
+        <en_expanded>Settings &gt; Transition Settings -- Ion mobility &gt; Ion mobility library &gt; Contents changed &gt; Items added is "367"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>is_</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_IonMobilityFiltering}{2:PropertySeparator}{0:TransitionIonMobilityFiltering_IonMobilityLibrary}{2:PropertySeparator}{0:IonMobilityLibrary_Status}{2:PropertySeparator}{0:IonMobilityLibraryChange_LSID}</name>
+        <name>"urn:lsid:proteome.gs.washington.edu:ion_mobility_library:skyline:ymdb:2c0caafd-e9d6-4064-8246-32f289720b47:1.1"</name>
+        <en_expanded>Settings &gt; Transition Settings -- Ion mobility &gt; Ion mobility library &gt; Contents changed &gt; LSID is "urn:lsid:proteome.gs.washington.edu:ion_mobility_library:skyline:ymdb:2c0caafd-e9d6-4064-8246-32f289720b47:1.1"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>is_</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_IonMobilityFiltering}{2:PropertySeparator}{0:TransitionIonMobilityFiltering_IonMobilityLibrary}{2:PropertySeparator}{0:IonMobilityLibrary_Status}{2:PropertySeparator}{0:IonMobilityLibraryChange_CreationTime}</name>
+        <name>"2023-04-18T14:37:28+02:00"</name>
+        <en_expanded>Settings &gt; Transition Settings -- Ion mobility &gt; Ion mobility library &gt; Contents changed &gt; Timestamp is "2023-04-18T14:37:28+02:00"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>changed_from_to</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_IonMobilityFiltering}{2:PropertySeparator}{0:IonMobilityWindowWidthCalculator_ResolvingPower}</name>
+        <name>{3:40}</name>
+        <name>{3:30}</name>
+        <en_expanded>Settings &gt; Transition Settings -- Ion mobility &gt; Resolving power changed from "40" to "30"</en_expanded>
+      </all_info>
+      <hash>Dn2YxIIqgU2jBAlY4oaZKARyF+U=</hash>
+    </audit_log_entry>
+    <audit_log_entry skyline_version="22.2.0.351-28f9b9301 (64-Bit)" time_stamp="2023-04-18T14:34:09+02:00" user="DESKTOP-QGFMQJM\admin" mode="m">
+      <extra_info>367 transitions added</extra_info>
+      <undo_redo>
+        <type>imported_transition_list_from_file</type>
+        <name>{4:D:\gkreder\RapidSky\transition_lists\ymdb_transition_list.csv}</name>
+        <en_expanded>Imported a transition list from "ymdb_transition_list.csv"</en_expanded>
+      </undo_redo>
+      <summary>
+        <type>imported_transition_list_from_file</type>
+        <name>{4:D:\gkreder\RapidSky\transition_lists\ymdb_transition_list.csv}</name>
+        <en_expanded>Imported a transition list from "ymdb_transition_list.csv"</en_expanded>
+      </summary>
+      <hash>pqIKQGDxNFsw8E+MJLKz6fuBr0U=</hash>
+    </audit_log_entry>
+    <audit_log_entry skyline_version="22.2.0.351-28f9b9301 (64-Bit)" time_stamp="2023-04-18T14:34:00+02:00" user="DESKTOP-QGFMQJM\admin" mode="m">
+      <undo_redo>
+        <type>start_log_existing_doc</type>
+        <en_expanded>Start of audit log for already existing document</en_expanded>
+      </undo_redo>
+      <summary>
+        <type>start_log_existing_doc</type>
+        <en_expanded>Start of audit log for already existing document</en_expanded>
+      </summary>
+      <all_info>
+        <type>changed_from_to</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_PeptideSettings}{2:TabSeparator}{0:PeptideSettings_Prediction}{2:PropertySeparator}{0:PeptidePrediction_UseMeasuredRTs}</name>
+        <name>{3:True}</name>
+        <name>{3:False}</name>
+        <en_expanded>Settings &gt; Molecule Settings -- Prediction &gt; Use measured retention times when present changed from True to False</en_expanded>
+      </all_info>
+      <all_info>
+        <type>removed_all</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_PeptideSettings}{2:TabSeparator}{0:PeptideSettings_Modifications}{2:PropertySeparator}{0:PeptideModifications_InternalStandardTypes}</name>
+        <en_expanded>Settings &gt; Molecule Settings -- Modifications &gt; Internal standard types: removed all</en_expanded>
+      </all_info>
+      <all_info>
+        <type>changed_from_to</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_Filter}{2:PropertySeparator}{0:TransitionFilter_PeptideIonTypesString}</name>
+        <name>"y"</name>
+        <name>"y, p"</name>
+        <en_expanded>Settings &gt; Transition Settings -- Filter &gt; Ion types changed from "y" to "y, p"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>changed_from_to</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_Filter}{2:PropertySeparator}{0:TransitionFilter_SmallMoleculeIonTypesString}</name>
+        <name>"f"</name>
+        <name>"f, p"</name>
+        <en_expanded>Settings &gt; Transition Settings -- Filter &gt; Molecule Ion types changed from "f" to "f, p"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>changed_from_to</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_Integration}{2:PropertySeparator}{0:TransitionIntegration_IsIntegrateAll}</name>
+        <name>{3:False}</name>
+        <name>{3:True}</name>
+        <en_expanded>Settings &gt; Transition Settings -- Integration &gt; Integrate All changed from False to True</en_expanded>
+      </all_info>
+      <all_info>
+        <type>changed_from_to</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_Instrument}{2:PropertySeparator}{0:TransitionInstrument_MinMz}</name>
+        <name>{3:50}</name>
+        <name>{3:10}</name>
+        <en_expanded>Settings &gt; Transition Settings -- Instrument &gt; Min m/z changed from "50" to "10"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>changed_from_to</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_Instrument}{2:PropertySeparator}{0:TransitionInstrument_MaxMz}</name>
+        <name>{3:1500}</name>
+        <name>{3:1700}</name>
+        <en_expanded>Settings &gt; Transition Settings -- Instrument &gt; Max m/z changed from "1500" to "1700"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>changed_from_to</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_Instrument}{2:PropertySeparator}{0:TransitionInstrument_MzMatchTolerance}</name>
+        <name>{3:0.055}</name>
+        <name>{3:0.05}</name>
+        <en_expanded>Settings &gt; Transition Settings -- Instrument &gt; Method match tolerance m/z changed from "0.055" to "0.05"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>changed_from_to</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_FullScan}{2:PropertySeparator}{0:TransitionFullScan_PrecursorIsotopes}</name>
+        <name>"{6:FullScanPrecursorIsotopes_None}"</name>
+        <name>"{6:FullScanPrecursorIsotopes_Count}"</name>
+        <en_expanded>Settings &gt; Transition Settings -- Full-Scan &gt; Isotope peaks included changed from "None" to "Count"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>changed_from_to</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_FullScan}{2:PropertySeparator}{0:TransitionFullScan_PrecursorIsotopeFilter}</name>
+        <name>{2:Missing}</name>
+        <name>{3:1}</name>
+        <en_expanded>Settings &gt; Transition Settings -- Full-Scan &gt; Peaks changed from Missing to "1"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>changed_from_to</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_FullScan}{2:PropertySeparator}{0:TransitionFullScan_PrecursorMassAnalyzer}</name>
+        <name>"{6:FullScanMassAnalyzerType_none}"</name>
+        <name>"{6:FullScanMassAnalyzerType_tof}"</name>
+        <en_expanded>Settings &gt; Transition Settings -- Full-Scan &gt; Precursor mass analyzer changed from "None" to "TOF"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>changed_from_to</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_FullScan}{2:PropertySeparator}{0:TransitionFullScan_ResolvingPower}</name>
+        <name>{2:Missing}</name>
+        <name>{3:30000}</name>
+        <en_expanded>Settings &gt; Transition Settings -- Full-Scan &gt; Resolving power changed from Missing to "30000"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>changed_from_to</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_FullScan}{2:PropertySeparator}{0:TransitionFullScan_IsotopeEnrichments}</name>
+        <name>{2:Missing}</name>
+        <name>"Default"</name>
+        <en_expanded>Settings &gt; Transition Settings -- Full-Scan &gt; Isotope labeling enrichment changed from Missing to "Default"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>contains</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_FullScan}{2:PropertySeparator}{0:TransitionFullScan_IsotopeEnrichments}{2:PropertySeparator}{0:IsotopeEnrichments_Enrichments}</name>
+        <name>{ {0:IsotopeEnrichmentItem_IsotopeSymbol} = "H'", {0:IsotopeEnrichmentItem_AtomPercentEnrichment} = {3:0.98}, {0:IsotopeEnrichmentItem_Symbol} = "H" }</name>
+        <en_expanded>Settings &gt; Transition Settings -- Full-Scan &gt; Isotope labeling enrichment &gt; Stable isotope labeling atoms : contains { Atom = "H'", Enrichment percentage = "0.98", Symbol = "H" }</en_expanded>
+      </all_info>
+      <all_info>
+        <type>contains</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_FullScan}{2:PropertySeparator}{0:TransitionFullScan_IsotopeEnrichments}{2:PropertySeparator}{0:IsotopeEnrichments_Enrichments}</name>
+        <name>{ {0:IsotopeEnrichmentItem_IsotopeSymbol} = "C'", {0:IsotopeEnrichmentItem_AtomPercentEnrichment} = {3:0.995}, {0:IsotopeEnrichmentItem_Symbol} = "C" }</name>
+        <en_expanded>Settings &gt; Transition Settings -- Full-Scan &gt; Isotope labeling enrichment &gt; Stable isotope labeling atoms : contains { Atom = "C'", Enrichment percentage = "0.995", Symbol = "C" }</en_expanded>
+      </all_info>
+      <all_info>
+        <type>contains</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_FullScan}{2:PropertySeparator}{0:TransitionFullScan_IsotopeEnrichments}{2:PropertySeparator}{0:IsotopeEnrichments_Enrichments}</name>
+        <name>{ {0:IsotopeEnrichmentItem_IsotopeSymbol} = "N'", {0:IsotopeEnrichmentItem_AtomPercentEnrichment} = {3:0.995}, {0:IsotopeEnrichmentItem_Symbol} = "N" }</name>
+        <en_expanded>Settings &gt; Transition Settings -- Full-Scan &gt; Isotope labeling enrichment &gt; Stable isotope labeling atoms : contains { Atom = "N'", Enrichment percentage = "0.995", Symbol = "N" }</en_expanded>
+      </all_info>
+      <all_info>
+        <type>contains</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_FullScan}{2:PropertySeparator}{0:TransitionFullScan_IsotopeEnrichments}{2:PropertySeparator}{0:IsotopeEnrichments_Enrichments}</name>
+        <name>{ {0:IsotopeEnrichmentItem_IsotopeSymbol} = "O"", {0:IsotopeEnrichmentItem_AtomPercentEnrichment} = {3:0.99}, {0:IsotopeEnrichmentItem_Symbol} = "O" }</name>
+        <en_expanded>Settings &gt; Transition Settings -- Full-Scan &gt; Isotope labeling enrichment &gt; Stable isotope labeling atoms : contains { Atom = "O"", Enrichment percentage = "0.99", Symbol = "O" }</en_expanded>
+      </all_info>
+      <all_info>
+        <type>contains</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_FullScan}{2:PropertySeparator}{0:TransitionFullScan_IsotopeEnrichments}{2:PropertySeparator}{0:IsotopeEnrichments_Enrichments}</name>
+        <name>{ {0:IsotopeEnrichmentItem_IsotopeSymbol} = "O'", {0:IsotopeEnrichmentItem_AtomPercentEnrichment} = {3:0.99}, {0:IsotopeEnrichmentItem_Symbol} = "O" }</name>
+        <en_expanded>Settings &gt; Transition Settings -- Full-Scan &gt; Isotope labeling enrichment &gt; Stable isotope labeling atoms : contains { Atom = "O'", Enrichment percentage = "0.99", Symbol = "O" }</en_expanded>
+      </all_info>
+      <all_info>
+        <type>contains</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_FullScan}{2:PropertySeparator}{0:TransitionFullScan_IsotopeEnrichments}{2:PropertySeparator}{0:IsotopeEnrichments_Enrichments}</name>
+        <name>{ {0:IsotopeEnrichmentItem_IsotopeSymbol} = "Cl'", {0:IsotopeEnrichmentItem_AtomPercentEnrichment} = {3:0.99}, {0:IsotopeEnrichmentItem_Symbol} = "Cl" }</name>
+        <en_expanded>Settings &gt; Transition Settings -- Full-Scan &gt; Isotope labeling enrichment &gt; Stable isotope labeling atoms : contains { Atom = "Cl'", Enrichment percentage = "0.99", Symbol = "Cl" }</en_expanded>
+      </all_info>
+      <all_info>
+        <type>contains</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_FullScan}{2:PropertySeparator}{0:TransitionFullScan_IsotopeEnrichments}{2:PropertySeparator}{0:IsotopeEnrichments_Enrichments}</name>
+        <name>{ {0:IsotopeEnrichmentItem_IsotopeSymbol} = "Br'", {0:IsotopeEnrichmentItem_AtomPercentEnrichment} = {3:0.99}, {0:IsotopeEnrichmentItem_Symbol} = "Br" }</name>
+        <en_expanded>Settings &gt; Transition Settings -- Full-Scan &gt; Isotope labeling enrichment &gt; Stable isotope labeling atoms : contains { Atom = "Br'", Enrichment percentage = "0.99", Symbol = "Br" }</en_expanded>
+      </all_info>
+      <all_info>
+        <type>changed_from_to</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_FullScan}{2:PropertySeparator}{0:TransitionFullScan_RetentionTimeFilterType}</name>
+        <name>"{6:RetentionTimeFilterType_ms2_ids}"</name>
+        <name>"{6:RetentionTimeFilterType_none}"</name>
+        <en_expanded>Settings &gt; Transition Settings -- Full-Scan &gt; Retention time filter type changed from "Use only scans within time frame of MS/MS IDs" to "Include all matching scans"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>changed_from_to</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_FullScan}{2:PropertySeparator}{0:TransitionFullScan_RetentionTimeFilterLength}</name>
+        <name>{3:5}</name>
+        <name>{3:0}</name>
+        <en_expanded>Settings &gt; Transition Settings -- Full-Scan &gt; Retention time filter length changed from "5" to "0"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>changed_from_to</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_IonMobilityFiltering}{2:PropertySeparator}{0:TransitionIonMobilityFiltering_IonMobilityLibrary}</name>
+        <name>"None"</name>
+        <name>"moiAggregated"</name>
+        <en_expanded>Settings &gt; Transition Settings -- Ion mobility &gt; Ion mobility library changed from "None" to "moiAggregated"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>is_</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_IonMobilityFiltering}{2:PropertySeparator}{0:TransitionIonMobilityFiltering_IonMobilityLibrary}{2:PropertySeparator}{0:IonMobilityLibrary_FilePathAuditLog}</name>
+        <name>"{4:D:\gkreder\RapidSky\skyline_documents\moiAggregated.imsdb}"</name>
+        <en_expanded>Settings &gt; Transition Settings -- Ion mobility &gt; Ion mobility library &gt; File path is "D:\gkreder\RapidSky\skyline_documents\moiAggregated.imsdb"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>is_</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_IonMobilityFiltering}{2:PropertySeparator}{0:TransitionIonMobilityFiltering_IonMobilityLibrary}{2:PropertySeparator}{0:IonMobilityLibrary_Status}{2:PropertySeparator}{0:IonMobilityLibraryChange_LSID}</name>
+        <name>""</name>
+        <en_expanded>Settings &gt; Transition Settings -- Ion mobility &gt; Ion mobility library &gt; Contents changed &gt; LSID is ""</en_expanded>
+      </all_info>
+      <all_info>
+        <type>is_</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_IonMobilityFiltering}{2:PropertySeparator}{0:TransitionIonMobilityFiltering_IonMobilityLibrary}{2:PropertySeparator}{0:IonMobilityLibrary_Status}{2:PropertySeparator}{0:IonMobilityLibraryChange_CreationTime}</name>
+        <name>{2:Missing}</name>
+        <en_expanded>Settings &gt; Transition Settings -- Ion mobility &gt; Ion mobility library &gt; Contents changed &gt; Timestamp is Missing</en_expanded>
+      </all_info>
+      <all_info>
+        <type>changed_from_to</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_IonMobilityFiltering}{2:PropertySeparator}{0:IonMobilityWindowWidthCalculator_WindowWidthMode}</name>
+        <name>"{6:IonMobilityWindowWidthType_none}"</name>
+        <name>"{6:IonMobilityWindowWidthType_resolving_power}"</name>
+        <en_expanded>Settings &gt; Transition Settings -- Ion mobility &gt; Ion mobility filter window width calculation type changed from "None" to "Resolving power"</en_expanded>
+      </all_info>
+      <all_info>
+        <type>changed_from_to</type>
+        <name>{0:Settings}{2:PropertySeparator}{0:SrmSettings_TransitionSettings}{2:TabSeparator}{0:TransitionSettings_IonMobilityFiltering}{2:PropertySeparator}{0:IonMobilityWindowWidthCalculator_ResolvingPower}</name>
+        <name>{3:0}</name>
+        <name>{3:40}</name>
+        <en_expanded>Settings &gt; Transition Settings -- Ion mobility &gt; Resolving power changed from "0" to "40"</en_expanded>
+      </all_info>
+      <hash>63/BxTcWesiDYOIi4Q7xHFnLGkQ=</hash>
+    </audit_log_entry>
+  </audit_log>
+</audit_log_root>
