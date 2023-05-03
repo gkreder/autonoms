@@ -5,6 +5,7 @@ import sys
 import os
 import re
 import argparse
+import shutil
 
 
 
@@ -58,12 +59,13 @@ def set_calibration_output(window, sample_name, out_d_file_name):
     # print(output_path.legacy_properties()['Value'] == '''D:\Projects\Default\Data\6560\IM_calibration''') # D:\Projects\Default\Data\6560\IM_calibration
     # sys.exit(output_path)
 
+
 def get_instrument_state(window):
     state_colors = {"idle" : '#FF75C335', 'not ready' : "#FFFFBA00", "run" : "#FF4780EA", "prerun" : '#FF5F4AC9'}
     colors_state = {v : k for k,v in state_colors.items()}
     status_bar = window.child_window(auto_id = "AutomationId.StatusBar.StateLabel")
     status_color = status_bar.legacy_properties()["Value"]
-    if status_color not in state_colors.keys():
+    if status_color not in colors_state.keys():
         sys.exit(f"Error - couldnt find a state color for status color {status_color}")
     current_state = colors_state[status_color]
     return(current_state)
@@ -78,7 +80,7 @@ def wait_for_state(window, state, timeout_seconds):
     reached_state = (current_state == state)
     while (time.time() - start_time < timeout_seconds) and not reached_state:
         time.sleep(1)
-        new_state = get_instrument_state(window, state)
+        new_state = get_instrument_state(window)
         if new_state != current_state:
             print(f"Waiting for state {state}....Instrument currently in state {new_state}")
         current_state = new_state
@@ -110,9 +112,13 @@ def stop_sample_run(window):
     stop_button = sample_run_pane.child_window(title = "Stop")
     stop_button.set_focus()
     stop_button.click_input()
+    time.sleep(5)
 
     # "User stopped the run" message
     ok_button = window.child_window(auto_id = "btnOK")
+    start_time = time.time()
+    while (not ok_button.exists()) and (time.time() - start_time) < 10:
+        time.sleep(1)
     if ok_button.exists():
         ok_button.set_focus()
         ok_button.click_input()
@@ -121,11 +127,21 @@ def move_file(filename, output_name):
     # output_name = os.path.join(output_dir, os.path.basename(filename))
     # print(f"Moving file {filename} to {output_name}")
     os.rename(filename, output_name)
+    # shutil.move(filename, output_name)
 
 
 # output_d_file can be the entire path
 def run_calibration_B(ms_method_name, output_d_filename_full, sample_name = "CalB", runtime = 45, overwrite = True, timeout_seconds = 180):
     app, window = get_app()
+    if os.path.exists(output_d_filename_full):
+        if overwrite:
+            print(f"file {output_d_filename_full} exists, removing to overwrite")
+            os.chmod(output_d_filename_full, 0o777)
+            shutil.rmtree(output_d_filename_full)
+            # os.remove(output_d_filename_full)
+        else:
+            sys.exit(f"file {output_d_filename_full} exists, please set overwrite to True and re-run to continue")
+
     open_ms_method(window, ms_method_name)
     output_d_file_base = os.path.basename(output_d_filename_full)
     agilent_output_file = set_calibration_output(window, sample_name, output_d_file_base)
@@ -134,7 +150,9 @@ def run_calibration_B(ms_method_name, output_d_filename_full, sample_name = "Cal
     wait_for_state(window, "run", timeout_seconds = timeout_seconds)
     time.sleep(runtime) # Run has started, wait 45 seconds
     stop_sample_run(window)
-    move_file(agilent_output_file, output_d_filename_full)
+    wait_for_state(window, 'idle', timeout_seconds = 500)
+    if agilent_output_file != output_d_filename_full:
+        move_file(agilent_output_file, output_d_filename_full)
 
 
 
