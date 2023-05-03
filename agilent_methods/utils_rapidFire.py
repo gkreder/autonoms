@@ -61,15 +61,33 @@ def check_vac_pressure(window, level_check = -50):
         sys.exit(f'Vacuum pressure is {vac_pressure}, is the vacuum on?')
 
 
+def open_log_view(window):
+    system_tools_menu = window.child_window(title = "System Tools", control_type = "MenuItem")
+    system_tools_menu.set_focus()
+    system_tools_menu.click_input()
+    view_log_button = [x for x in system_tools_menu.descendants() if "View Log" in x.window_text()][0]
+    view_log_button.set_focus()
+    view_log_button.click_input()
+
+
+
 app, window = get_window()
 window.set_focus()
 
 
-run_button = window.child_window(auto_id = "runBtn")
-run_button.set_focus()
-run_button.click_input()
+# Press the start run button
+# run_button = window.child_window(auto_id = "runBtn")
+# run_button.set_focus()
+# run_button.click_input()
 
-
+# Press the stop run botton and confirm run abortion
+# stop_button = window.child_window(auto_id = "stopBtn")
+# stop_button.set_focus()
+# stop_button.click_input()
+# time.sleep(1)
+# yes_button = window.child_window(auto_id = "button1")
+# yes_button.set_focus()
+# yes_button.click_input()
 
 
 
