@@ -1,13 +1,13 @@
-import time
-from pywinauto import Application
-from pywinauto import Desktop
 import sys
 import os
+import time
+if sys.platform.startswith('win'):
+    from pywinauto import Application
+    from pywinauto import Desktop
+    from pywinauto.controls.uia_controls import UIAElementInfo
 import re
 import argparse
 import shutil
-import pyautogui
-from pywinauto.controls.uia_controls import UIAElementInfo
 import glob
 
 
@@ -89,6 +89,21 @@ def press_start_button(window):
     run_button.set_focus()
     run_button.click_input()
 
+def start_run(window, app, plate_timeout = 180):
+    check_vac_pressure(window)
+    press_start_button(window)
+    plate_window = app.window(auto_id = "NewPlatePrompt")
+    try:
+        # Wait for the plate selection window to become visible
+        plate_window.wait('visible', timeout = plate_timeout)  
+    except TimeoutError:
+        sys.exit(f"Error - The plate run window did not appear within {timeout} seconds.")
+    plate_window.set_focus()
+    play_button = plate_window.child_window(auto_id = "playBtn")
+    play_button.set_focus()
+    play_button.click_input()
+
+
 def stop_run(window):
     # Press the stop run botton and confirm run abortion
     stop_button = window.child_window(auto_id = "stopBtn")
@@ -98,35 +113,6 @@ def stop_run(window):
     yes_button = window.child_window(auto_id = "button1")
     yes_button.set_focus()
     yes_button.click_input()
-
-
-
-
-##################################################
-# Needs more work as the uia backend likely can't 
-# access properties that will update pump 
-# inidcator (or the checkbox)
-##################################################
-# def get_pump_status(window, pump_number):
-#     if pump_number not in [1,2,3,4]:
-#         sys.exit(f"Error - pump_number must be an integer 1-4")
-#     indicator = window.child_window(auto_id = f"pump{pump_number}Ind")
-#     indicator.set_focus()
-#     print(dir(indicator))
-#     print(vars(indicator))
-#     print(indicator.dump_tree())
-#     # rect = indicator.rectangle()
-#     # x = ( rect.right - rect.left ) / 2
-#     # y = ( rect.bottom - rect.top ) / 2
-#     # screenshot = pyautogui.screenshot()
-#     # pixel_color = screenshot.getpixel((x, y))
-#     # print(pixel_color)
-
-
-# app, window = get_window()
-# window.set_focus()
-
-
 
 
 def get_rf_output_dir(rf_cfg_file):
@@ -183,6 +169,32 @@ def copy_last_run_output(out_dir, rf_cfg_file, overwrite = True):
     print(out_dir)
     # os.chmod(rf_data_dir, 0o777)
     shutil.copytree(rf_data_dir, out_dir)
+
+
+##################################################
+# Needs more work as the uia backend likely can't 
+# access properties that will update pump 
+# inidcator (or the checkbox)
+##################################################
+# def get_pump_status(window, pump_number):
+#     if pump_number not in [1,2,3,4]:
+#         sys.exit(f"Error - pump_number must be an integer 1-4")
+#     indicator = window.child_window(auto_id = f"pump{pump_number}Ind")
+#     indicator.set_focus()
+#     print(dir(indicator))
+#     print(vars(indicator))
+#     print(indicator.dump_tree())
+#     # rect = indicator.rectangle()
+#     # x = ( rect.right - rect.left ) / 2
+#     # y = ( rect.bottom - rect.top ) / 2
+#     # screenshot = pyautogui.screenshot()
+#     # pixel_color = screenshot.getpixel((x, y))
+#     # print(pixel_color)
+
+
+# app, window = get_window()
+# window.set_focus()
+
 
 
 # rf_cfg_file = '''C:\\Agilent\\RapidFire\\FIA_configs\\RapidFire.cfg'''

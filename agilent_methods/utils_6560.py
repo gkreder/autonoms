@@ -1,8 +1,10 @@
-import time
-from pywinauto import Application
-from pywinauto import Desktop
-import sys
 import os
+import sys
+import time
+if sys.platform.startswith('win'):
+    # Import pywin libraries if we're running on windows
+    from pywinauto import Application
+    from pywinauto import Desktop
 import re
 import argparse
 import shutil
