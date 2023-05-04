@@ -6,7 +6,9 @@ import os
 import re
 import argparse
 import shutil
-
+import pyautogui
+from pywinauto.controls.uia_controls import UIAElementInfo
+import glob
 
 
 def get_window(start_str = "RapidFire :"):
@@ -61,48 +63,131 @@ def check_vac_pressure(window, level_check = -50):
         sys.exit(f'Vacuum pressure is {vac_pressure}, is the vacuum on?')
 
 
-def open_log_view(window):
+def open_log_view(window, app):
     system_tools_menu = window.child_window(title = "System Tools", control_type = "MenuItem")
     system_tools_menu.set_focus()
     system_tools_menu.click_input()
     view_log_button = [x for x in system_tools_menu.descendants() if "View Log" in x.window_text()][0]
     view_log_button.set_focus()
     view_log_button.click_input()
+    time.sleep(1)
+    log_window = app.window(title_re = f".*RapidFire Log.*")
+    return(log_window)
+
+
+def set_run_mode(window, mode):
+    mode_d = {'Sequences' : "admeModeBtn", "Plates" : "htsModeBtn"}
+    if mode not in mode_d.keys():
+        sys.exit(f"error - mode {mode} not found in available modes")
+    radio = window.child_window(auto_id = mode_d[mode])
+    radio.set_focus()
+    # radio.click_input() # just setting focus activates the radio button
+
+def press_start_button(window):
+    # Press the start run button
+    run_button = window.child_window(auto_id = "runBtn")
+    run_button.set_focus()
+    run_button.click_input()
+
+def stop_run(window):
+    # Press the stop run botton and confirm run abortion
+    stop_button = window.child_window(auto_id = "stopBtn")
+    stop_button.set_focus()
+    stop_button.click_input()
+    time.sleep(1)
+    yes_button = window.child_window(auto_id = "button1")
+    yes_button.set_focus()
+    yes_button.click_input()
 
 
 
-app, window = get_window()
-window.set_focus()
+
+##################################################
+# Needs more work as the uia backend likely can't 
+# access properties that will update pump 
+# inidcator (or the checkbox)
+##################################################
+# def get_pump_status(window, pump_number):
+#     if pump_number not in [1,2,3,4]:
+#         sys.exit(f"Error - pump_number must be an integer 1-4")
+#     indicator = window.child_window(auto_id = f"pump{pump_number}Ind")
+#     indicator.set_focus()
+#     print(dir(indicator))
+#     print(vars(indicator))
+#     print(indicator.dump_tree())
+#     # rect = indicator.rectangle()
+#     # x = ( rect.right - rect.left ) / 2
+#     # y = ( rect.bottom - rect.top ) / 2
+#     # screenshot = pyautogui.screenshot()
+#     # pixel_color = screenshot.getpixel((x, y))
+#     # print(pixel_color)
 
 
-# Press the start run button
-# run_button = window.child_window(auto_id = "runBtn")
-# run_button.set_focus()
-# run_button.click_input()
-
-# Press the stop run botton and confirm run abortion
-# stop_button = window.child_window(auto_id = "stopBtn")
-# stop_button.set_focus()
-# stop_button.click_input()
-# time.sleep(1)
-# yes_button = window.child_window(auto_id = "button1")
-# yes_button.set_focus()
-# yes_button.click_input()
+# app, window = get_window()
+# window.set_focus()
 
 
 
-# windows = Desktop(backend = 'uia').windows()
-# for w in windows:
-#     print(w.window_text())
-# import pywinauto
-# from pywinauto.uia_element_info import UIAElementInfo
-# from pywinauto.controls.uiawrapper import UIAWrapper
-# all_elements = pywinauto.findwindows.find_elements(title_re = f".*File", top_level_only = False)
-# print(all_elements)
-# he = pywinauto.findwindows.find_elements(title_re=f".*File &name:*", top_level_only = False)[0]
-# uia_element_info = UIAElementInfo(he.handle)
-# control_wrapper = UIAWrapper(uia_element_info)
-# control_wrapper.set_focus()
+
+def get_rf_output_dir(rf_cfg_file):
+    with open(rf_cfg_file, 'r') as f:
+        lines = f.read()
+    sd = [x for x in re.findall(r'.*SHARED_DATA_DIRECTORY.*', lines) if not x.startswith('//')]
+    if len(sd) != 1:
+        sys.exit(f'Error - couldnt find a singular SHARED_DATA_DIRECTORY in config file {rf_cfg_file}')
+    sd = sd[0].split('=')[-1].strip().replace(';', '').split('"')[1].replace('"', '')
+    return(sd)
 
 
+def find_newest_rftime_dir(base_dir, min_depth = 4, max_depth=4):
+    newest_rftime = None
+    newest_rftime_path = None
+
+    for depth in range(min_depth, max_depth + 1):
+        pattern = os.path.join(base_dir, *('*' * depth), 'batch.rftime')
+        for rftime_path in glob.glob(pattern):
+            # Skip directories that end with ".d"
+            if any(part.endswith('.d') for part in rftime_path.split(os.sep)):
+                continue
+
+            # Get the modification time of the file
+            rftime_mtime = os.path.getmtime(rftime_path)
+
+            # Check if this is the newest rftime file found so far
+            if newest_rftime is None or rftime_mtime > newest_rftime:
+                newest_rftime = rftime_mtime
+                newest_rftime_path = rftime_path
+    
+    if not newest_rftime: # still equals None
+        sys.exit(f'Error - I couldnt find any batch.rftime files in {base_dir} at depths {min_depth}-{max_depth}')
+    newest_dir = os.path.dirname(newest_rftime_path)
+    return(newest_dir)
+
+
+def find_latest_data_dir(rf_cfg_file):
+    rf_data_dir = get_rf_output_dir(rf_cfg_file)
+    newest_dir = find_newest_rftime_dir(rf_data_dir)
+    return(newest_dir)
+
+
+def copy_last_run_output(out_dir, rf_cfg_file, overwrite = True):
+    rf_data_dir = find_latest_data_dir(rf_cfg_file)
+    if os.path.exists(out_dir):
+        if overwrite:
+            print(f"{out_dir} exists, removing to overwrite")
+            os.chmod(out_dir, 0o777)
+            shutil.rmtree(out_dir)
+        else:
+            sys.exit(f'{out_dir} exists, please set overwrite = True to overwrite')
+    print(rf_data_dir)
+    print(out_dir)
+    # os.chmod(rf_data_dir, 0o777)
+    shutil.copytree(rf_data_dir, out_dir)
+
+
+# rf_cfg_file = '''C:\\Agilent\\RapidFire\\FIA_configs\\RapidFire.cfg'''
+# output_data_dir = find_latest_data_dir(rf_cfg_file)
+
+
+# copy_last_run_output('''M:\\test_output''', rf_cfg_file)
 
