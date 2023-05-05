@@ -178,7 +178,9 @@ def get_cal_method_rfbat(rfbat_file):
 
 def create_sequences(in_xlsx, out_dir, sample_sheet = "samples", rf_sheet = "rf_params"):
     df = pd.read_excel(in_xlsx, sheet_name = sample_sheet)
-    os.system(f"mkdir -p {out_dir}")
+    # os.system(f"mkdir -p {out_dir}")
+    os.makedirs(f"{out_dir}", exist_ok = True)
+    sequence_files = []
     for sequence_name, g in df.groupby("Sequence"):
         rfcfg_filename = os.path.join(out_dir, f"{sequence_name}.rfcfg")
         create_rfcfg_file(in_xlsx, rfcfg_filename, sheet_name = rf_sheet)
@@ -193,4 +195,6 @@ def create_sequences(in_xlsx, out_dir, sample_sheet = "samples", rf_sheet = "rf_
         plate_name = sequence_name
         create_rfbat_file(rfmap_filename, rfcfg_filename, rfbat_filename, ms_method, column_type, sequence_name, plate_name, cal_method)
         print(rfbat_filename)
+        sequence_files.append((sequence_name, rfbat_filename, rfmap_filename, rfcfg_filename))
+    return(sequence_files)
         
