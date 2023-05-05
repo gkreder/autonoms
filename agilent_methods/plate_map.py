@@ -53,7 +53,8 @@ def prettify(elem):
     return (out_s)
 
 
-def create_rfbat_file(rfmap_filename, rfcfg_filename, rfbat_filename, ms_method, column_type, sequence_name, plate_name):
+
+def create_rfbat_file(rfmap_filename, rfcfg_filename, rfbat_filename, ms_method, column_type, sequence_name, plate_name, cal_method):
     
     rfcfg_tree = ET.parse(rfcfg_filename)
     rfcfg_data = rfcfg_tree.getroot()
@@ -96,6 +97,8 @@ def create_rfbat_file(rfmap_filename, rfcfg_filename, rfbat_filename, ms_method,
     ET.SubElement(sequence, "PlateNum").text = "1"
     ET.SubElement(sequence, "Method").text = ms_method
     ET.SubElement(sequence, "PlateName").text = plate_name
+
+    ET.SubElement(sequence, "CalibrationMethod").text = cal_method
 
 
     output = prettify(rfbatch)
@@ -149,6 +152,29 @@ def create_rfcfg_file(in_xlsx, out_rfcfg, sheet_name = "rf_params"):
     with open(out_rfcfg, 'w') as f:
         print(prettify(root), file = f)
 
+def get_cal_method_xlsx(in_xlsx, sequence_name, sample_sheet = "samples"):
+    df = pd.read_excel(in_xlsx, sheet_name = sample_sheet)
+    df = df[df['Sequence'] == sequence_name]
+    ms_method = get_set_val(df, "6560_Method")
+    ms_mfile = os.path.basename(ms_method)
+    cal_mfile = ms_mfile.replace('.m', '_calB.m')
+    cal_method = os.path.join(os.path.dirname(ms_method), cal_mfile)
+    return(cal_method)
+
+
+def get_cal_method_rfbat(rfbat_file):
+    tree = ET.parse(rfbat_file)
+    root = tree.getroot()
+    for sequence in root.findall(".//Sequence"):
+        calibration_method = sequence.find("CalibrationMethod")
+        if calibration_method is not None:
+            return calibration_method.text
+    if not calibration_method:
+        sys.exit(f'Error - couldnt find an IM calibration method element in file {rfbat_file}')
+    return None
+
+
+
 
 def create_sequences(in_xlsx, out_dir, sample_sheet = "samples", rf_sheet = "rf_params"):
     df = pd.read_excel(in_xlsx, sheet_name = sample_sheet)
@@ -161,9 +187,10 @@ def create_sequences(in_xlsx, out_dir, sample_sheet = "samples", rf_sheet = "rf_
         plate_type = get_set_val(g, "Plate_Type")
         _ = create_rfmap_xml(sequences, plate_type= plate_type, output_file = rfmap_filename)
         ms_method = get_set_val(g, "6560_Method")
+        cal_method = get_cal_method_xlsx(in_xlsx, sequence_name, sample_sheet = sample_sheet)
         column_type = get_set_val(g, "Column_Type")
         rfbat_filename = os.path.join(out_dir, f"{sequence_name}.rfbat")
         plate_name = sequence_name
-        create_rfbat_file(rfmap_filename, rfcfg_filename, rfbat_filename, ms_method, column_type, sequence_name, plate_name)
+        create_rfbat_file(rfmap_filename, rfcfg_filename, rfbat_filename, ms_method, column_type, sequence_name, plate_name, cal_method)
         print(rfbat_filename)
         

@@ -11,7 +11,7 @@ import shutil
 import glob
 
 
-def get_window(start_str = "RapidFire :"):
+def initialize_app(start_str = "RapidFire :"):
     app = Application(backend = 'uia').connect(title_re = f".*RapidFire : .*")
     window = app.window(title_re = f".*RapidFire : .*")
     if not window:
@@ -192,7 +192,7 @@ def copy_last_run_output(out_dir, rf_cfg_file, overwrite = True):
 #     # print(pixel_color)
 
 
-# app, window = get_window()
+# app, window = initialize_app()
 # window.set_focus()
 
 

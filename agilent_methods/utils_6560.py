@@ -11,7 +11,7 @@ import shutil
 
 
 
-def get_app(search_str = "Agilent MassHunter Workstation Data Acquisition", backend = 'uia'):
+def initialize_app(search_str = "Agilent MassHunter Workstation Data Acquisition", backend = 'uia'):
     app = Application(backend = backend).connect(title_re = f".*{search_str}")
     window = app.window(title_re = f".*{search_str}")
     if not window:
@@ -134,7 +134,7 @@ def move_file(filename, output_name):
 
 # output_d_file can be the entire path
 def run_calibration_B(ms_method_name, output_d_filename_full, sample_name = "CalB", runtime = 45, overwrite = True, timeout_seconds = 180):
-    app, window = get_app()
+    app, window = initialize_app()
     if os.path.exists(output_d_filename_full):
         if overwrite:
             print(f"file {output_d_filename_full} exists, removing to overwrite")
