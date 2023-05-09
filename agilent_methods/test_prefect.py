@@ -9,14 +9,9 @@ from prefect.client import get_client
 import prefect.cli
 import asyncio
 from prefect.task_runners import SequentialTaskRunner
+import paramiko
 # from utilities import AN_IMPORTED_MESSAGE
 
-
-
-# input_excel_file = '/Users/reder/OneDrive/right-bourbon/pilot_yeast_2/experimentTemplate.xlsx'
-input_excel_file = "D:\\gkreder\\RapidSky\\agilent_methods\\experimentTemplate.xlsx"
-output_dir = 'output'
-pnnl_path = '''C:\\"Program Files"\\PNNL-Preprocessor\\PNNL-PreProcessor.exe'''
 
 @task
 def create_rf_sequences(input_excel_file, output_dir):
@@ -68,16 +63,14 @@ def demultiplex(d_file, pnnl_exe_path, overwrite = True, test = False, pnnl_MA =
     pnnl_out_files = glob.glob(os.path.join(temp_out_dir, "*.d"))
     newest_pnnl_file = max(pnnl_out_files, key = os.path.getmtime)
     oname = os.path.join(d_file_dir, os.path.basename(newest_pnnl_file))
-    if overwrite:
-        os.replace(newest_pnnl_file, oname)
-    else:
-        shutil.move(newest_pnnl_file, oname)
+    if os.path.exists(oname):
+        if overwrite:
+            shutil.rmtree(oname)
+        else:
+            sys.exist(f"Erorr - the file {oname} exists, please set ovewrite = True to force overwrite")    
+    shutil.move(newest_pnnl_file, oname)
     shutil.rmtree(temp_out_dir)
     return(d_file)
-
-
-
-
 
 
 @flow(task_runner=SequentialTaskRunner(), name = "rfbat_workflow")
@@ -89,12 +82,49 @@ def rfbat_workflow(input_excel_file, output_dir, test = False):
     rfbat_files = create_rf_sequences.submit(input_excel_file, output_dir)
     output_calibration_files = run_calibration.map(rfbat_files, output_dir, test = test)
     demultiplexed_files = demultiplex.map(output_calibration_files, pnnl_path, test = False)
+
+
+
+@task
+def psexec(psexec_path, remote_ip, remote_username, remote_password, command, **kwargs):
+    # psexec_command = f"{psexec_path} \\\\{remote_ip} -u {remote_username} -p {remote_password} -accepteula -h -nobanner {command}"
+    psexec_command = f"{psexec_path} \\\\{remote_ip} -d -i 1 -accepteula -h -nobanner {command}"
+    print("psexec_command:")
+    print(psexec_command)
+    print("")
+    os.system(psexec_command)
+        
     
 
-if __name__ == "__main__":
-    rfbat_workflow(input_excel_file, output_dir, test = True)
-    # rfbat_workflow.run()
-    # rfbat_workflow(input_excel_file, output_dir, test = True)
-    # asyncio.run(rfbat_workflow(input_excel_file, output_dir, test = True))
+@flow(task_runner = SequentialTaskRunner(), name = "rf_test_workflow")
+def rf_test_workflow(rf_ip, rf_username, rf_pw, rf_condaActivate_path, rf_conda_envName, remote_script_path):
+    psexec_path = "C:\\PsTools\\PsExec.exe"
+    # run_psexec_task = RunPsExec(psexec_path, rf_ip, rf_username, rf_pw, remote_script_path)
+    # run_psexec_result = run_psexec_task()
+    command = f"cmd.exe /c \"{rf_condaActivate_path} {rf_conda_envName} && python {remote_script_path}\""
+    psexec(psexec_path, rf_ip, rf_username, rf_pw, command)
 
-# rfbat_workflow(input_excel_file, output_dir)
+
+
+rf_ip = "192.168.254.2"
+rf_username = 'admin'
+rf_pw ='3000hanover'
+rf_condaActivate_path = "C:\\Users\\admin\\miniconda3\\Scripts\\activate.bat"
+rf_conda_envName = "wingui"
+# remote_script_path = "\\\\192.168.254.1\\D\\gkreder\\scripts\\rf_workflows.py touch_app"
+remote_script_path = "C:\\gkreder\\scripts\\rf_workflows.py touch_app"
+
+
+
+
+# input_excel_file = '/Users/reder/OneDrive/right-bourbon/pilot_yeast_2/experimentTemplate.xlsx'
+input_excel_file = "D:\\gkreder\\RapidSky\\agilent_methods\\experimentTemplate.xlsx"
+output_dir = 'output'
+pnnl_path = '''C:\\"Program Files"\\PNNL-Preprocessor\\PNNL-PreProcessor.exe'''
+
+
+
+if __name__ == "__main__":
+    # rfbat_workflow(input_excel_file, output_dir, test = True)
+    
+    rf_test_workflow(rf_ip, rf_username, rf_pw, rf_condaActivate_path, rf_conda_envName, remote_script_path)
