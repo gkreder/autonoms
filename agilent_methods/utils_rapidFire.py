@@ -9,11 +9,13 @@ import re
 import argparse
 import shutil
 import glob
+import xml.etree.ElementTree as ET
+import plate_map
 
 
 def initialize_app(start_str = "RapidFire :"):
     app = Application(backend = 'uia').connect(title_re = f".*RapidFire : .*")
-    window = app.window(title_re = f".*RapidFire : .*")
+    window = app.window(title_re = f".*{start_str}.*")
     if not window:
         sys.exit("error - couldnt find RapidFire ui window")
     return(app, window)
@@ -169,6 +171,40 @@ def copy_last_run_output(out_dir, rf_cfg_file, overwrite = True):
     print(out_dir)
     # os.chmod(rf_data_dir, 0o777)
     shutil.copytree(rf_data_dir, out_dir)
+
+
+################################################################################
+# Single call workflows for remote calls
+################################################################################
+
+
+def remote_startup():
+    app, window = initialize_app()
+    open_log_view(window, app)
+
+# def remote_rf_maintenance_run(*args, **kwargs):
+#     app, window = initialize_app()    
+#     set_run_mode(window, "Sequences")
+#     check_vac_pressure(window)
+#     load_rf_batch(window, *args, **kwargs)
+#     start_run(window, app)
+
+def remote_touch_app():
+    app, window = initialize_app()
+    open_log_view(window, app)
+    window.set_focus()
+
+def remote_run_rfbat(*args, **kwargs):
+    # Must give it a rfbat_file
+    app, window = initialize_app()
+    open_button(window, app)
+    check_vac_pressure(window)
+    rfcfg_file = plate_map.get_rfcfg_file_rfbat(*args, **kwargs)
+    load_rf_method(window, rfcfg_file)
+    load_rf_batch(window, *args, **kwargs)
+    start_run(window, app)
+    return
+
 
 
 ##################################################

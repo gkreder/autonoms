@@ -173,6 +173,15 @@ def get_cal_method_rfbat(rfbat_file):
         sys.exit(f'Error - couldnt find an IM calibration method element in file {rfbat_file}')
     return None
 
+def get_rfcfg_file_rfbat(rfbat_file):
+    tree = ET.parse(rfbat_file)
+    root = tree.getroot()
+    for elem in root.findall(".//CFGFILE"):
+        rfcfg_file = elem.find("FileName")
+        if rfcfg_file is not None:
+            return(rfcfg_file.text)
+    sys.exit(f"Error - could not find a rfcfg file in {rfbat_file}")
+
 
 
 

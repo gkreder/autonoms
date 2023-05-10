@@ -10,6 +10,9 @@ import prefect.cli
 import asyncio
 from prefect.task_runners import SequentialTaskRunner
 import paramiko
+import rpyc
+import sys
+import test_kwargs
 # from utilities import AN_IMPORTED_MESSAGE
 
 
@@ -93,20 +96,42 @@ def psexec(psexec_path, remote_ip, remote_username, remote_password, command, **
     print(psexec_command)
     print("")
     os.system(psexec_command)
-        
+
+
+@task(tags = ["instrument_run"])
+def rf_call(rf_ip, rf_function, rf_port = 18861, *args,  **kwargs):
+    connection = rpyc.connect(rf_ip, rf_port)
+    try:
+        rf_service = connection.root
+        result = rf_service.call_function(rf_function, *args, **kwargs)
+        return(result)
+    finally:
+        connection.close()    
+
+
     
 
 @flow(task_runner = SequentialTaskRunner(), name = "rf_test_workflow")
-def rf_test_workflow(rf_ip, rf_username, rf_pw, rf_condaActivate_path, rf_conda_envName, remote_script_path):
-    psexec_path = "C:\\PsTools\\PsExec.exe"
+def rf_test_workflow():
+    # psexec_path = "C:\\PsTools\\PsExec.exe"
     # run_psexec_task = RunPsExec(psexec_path, rf_ip, rf_username, rf_pw, remote_script_path)
     # run_psexec_result = run_psexec_task()
-    command = f"cmd.exe /c \"{rf_condaActivate_path} {rf_conda_envName} && python {remote_script_path}\""
-    psexec(psexec_path, rf_ip, rf_username, rf_pw, command)
+    # command = f"cmd.exe /c \"{rf_condaActivate_path} {rf_conda_envName} && python {remote_script_path}\""
+    # psexec(psexec_path, rf_ip, rf_username, rf_pw, command)
+    
+    rf_ip = "192.168.254.2"
+    
+    # rf_function = "remote_touch_app"
+    # rf_call(rf_ip, rf_function)
 
 
+    rf_function = "remote_run_rfbat"
+    rf_call(rf_ip, rf_function, rfbat_file = "M:\\Projects\\Default\\Data\\Rapidfire\\batches\\RapidFireMaintenance.rfbat")
+    # rf_call(rf_ip, rf_function, kwargs = {"rfbat_file" : "M:\\Projects\\Default\\Data\\Rapidfire\\batches\\RapidFireMaintenance.rfbat"})
+    # rf_call(rf_ip, rf_function, args = ("M:\\Projects\\Default\\Data\\Rapidfire\\batches\\RapidFireMaintenance.rfbat"))
+    # rf_call_2(rf_ip, rf_function)
 
-rf_ip = "192.168.254.2"
+
 rf_username = 'admin'
 rf_pw ='3000hanover'
 rf_condaActivate_path = "C:\\Users\\admin\\miniconda3\\Scripts\\activate.bat"
@@ -127,4 +152,4 @@ pnnl_path = '''C:\\"Program Files"\\PNNL-Preprocessor\\PNNL-PreProcessor.exe'''
 if __name__ == "__main__":
     # rfbat_workflow(input_excel_file, output_dir, test = True)
     
-    rf_test_workflow(rf_ip, rf_username, rf_pw, rf_condaActivate_path, rf_conda_envName, remote_script_path)
+    rf_test_workflow()
