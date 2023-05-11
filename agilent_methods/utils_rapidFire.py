@@ -197,7 +197,7 @@ def remote_touch_app():
 def remote_run_rfbat(*args, **kwargs):
     # Must give it a rfbat_file
     app, window = initialize_app()
-    open_button(window, app)
+    open_log_view(window, app)
     check_vac_pressure(window)
     rfcfg_file = plate_map.get_rfcfg_file_rfbat(*args, **kwargs)
     load_rf_method(window, rfcfg_file)
