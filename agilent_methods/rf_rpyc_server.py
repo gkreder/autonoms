@@ -8,7 +8,9 @@ class RapidFireService(rpyc.Service):
         print(f"Looking for function name {function_name}")
         function = globals().get(function_name)
         if function:
-            return function(*args, **kwargs)
+            result = function(*args, **kwargs)
+            print(f'Im done running {function}. It had return value {result}')
+            return(result)
         else:
             raise ValueError(f"Function '{function_name}' not found in utils_rapidFire.py")
         

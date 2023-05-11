@@ -5,6 +5,7 @@ import sys
 import os
 import csv
 import xml.etree.ElementTree as ET
+from datetime import datetime
 
 def read_tsv(file_path):
     with open(file_path, "r") as tsv_file:
@@ -92,6 +93,7 @@ def create_rfbat_file(rfmap_filename, rfcfg_filename, rfbat_filename, ms_method,
 
     cfgfile = ET.SubElement(sequence, 'CFGFILE')
     cfgfile.extend(rfcfg_data)
+    ET.SubElement(cfgfile, "FileName").text = rfcfg_filename
 
     ET.SubElement(sequence, "ColumnType").text = column_type
     ET.SubElement(sequence, "PlateNum").text = "1"
@@ -181,6 +183,27 @@ def get_rfcfg_file_rfbat(rfbat_file):
         if rfcfg_file is not None:
             return(rfcfg_file.text)
     sys.exit(f"Error - could not find a rfcfg file in {rfbat_file}")
+
+
+
+def find_latest_dir(base_path):
+    today = datetime.now()
+    date_path = os.path.join(base_path, str(today.year), today.strftime('%B'), str(today.day))
+    
+    if not os.path.exists(date_path):
+        return None  # Return None if the directory does not exist
+
+    # Get a list of all directories in the date_path
+    dir_list = [d for d in os.listdir(date_path) if os.path.isdir(os.path.join(date_path, d))]
+    
+    # Sort the directories by creation time
+    dir_list.sort(key=lambda d: os.path.getmtime(os.path.join(date_path, d)), reverse=True)
+    
+    # Return the path of the most recently created directory
+    if dir_list:
+        return os.path.join(date_path, dir_list[0])
+    else:
+        return None  # Return None if there are no directories
 
 
 

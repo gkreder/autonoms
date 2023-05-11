@@ -194,16 +194,22 @@ def remote_touch_app():
     open_log_view(window, app)
     window.set_focus()
 
-def remote_run_rfbat(*args, **kwargs):
+def remote_run_rfbat(test = False, *args, **kwargs):
     # Must give it a rfbat_file
     app, window = initialize_app()
     open_log_view(window, app)
-    check_vac_pressure(window)
-    rfcfg_file = plate_map.get_rfcfg_file_rfbat(*args, **kwargs)
-    load_rf_method(window, rfcfg_file)
+    set_run_mode(window, "Sequences")
+    # rfcfg_file = plate_map.get_rfcfg_file_rfbat(*args, **kwargs)
+    load_rf_method(window, kwargs['rfcfg_file'])
+    load_rf_batch(window, kwargs['rfbat_file'])
+    if not test:
+        check_vac_pressure(window)
+        start_run(window, app)
+    return(1)
+
+def test_fun(*args, **kwargs):
+    app, window = initialize_app()
     load_rf_batch(window, *args, **kwargs)
-    start_run(window, app)
-    return
 
 
 
