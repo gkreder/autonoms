@@ -133,7 +133,7 @@ def move_file(filename, output_name):
 
 
 # output_d_file can be the entire path
-def run_calibration_B(ms_method_name, output_d_filename_full, sample_name = "CalB", runtime = 45, overwrite = True, timeout_seconds = 180):
+def run_calibration_B(ms_method_name, output_d_filename_full, sample_name = "CalB", runtime = 45, overwrite = True, timeout_seconds = 900):
     app, window = initialize_app()
     if os.path.exists(output_d_filename_full):
         if overwrite:
@@ -152,9 +152,11 @@ def run_calibration_B(ms_method_name, output_d_filename_full, sample_name = "Cal
     wait_for_state(window, "run", timeout_seconds = timeout_seconds)
     time.sleep(runtime) # Run has started, wait 45 seconds
     stop_sample_run(window)
-    wait_for_state(window, 'idle', timeout_seconds = 500)
-    if agilent_output_file != output_d_filename_full:
-        move_file(agilent_output_file, output_d_filename_full)
+
+    # UNCOMMENT THESE
+    # wait_for_state(window, 'idle', timeout_seconds = timeout_seconds)
+    # if agilent_output_file != output_d_filename_full:
+    #     move_file(agilent_output_file, output_d_filename_full)
 
 
 

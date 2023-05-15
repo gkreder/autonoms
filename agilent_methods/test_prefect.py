@@ -40,7 +40,7 @@ def create_rf_sequences(input_excel_file, output_dir):
     # return((rfbat_files, sequence_dirs))
     return(out_files)
 
-@task(tags = ["instrument_run"])
+@task(tags = ["instrument_run"], timeout_seconds = 100000000)
 def run_calibration(seq_files_tuple, output_dir, test = False):
     # sequence_name = os.path.basename(rfbat_file).replace('.rfbat', '')
     # sequence_dir = os.path.join(output_dir, sequence_name) 
@@ -71,15 +71,15 @@ def demultiplex(d_file, pnnl_exe_path, overwrite = True, test = False, pnnl_MA =
     cmd = f'''{pnnl_exe_path} -demux=True -demuxMA={pnnl_MA} -mInt={pnnl_mInt} -overwrite={overwrite} -out={temp_out_dir} -dataset="{d_file}"'''
     print(f"demultiplexing {d_file}")
     print(cmd)
+    opref = os.path.splitext(d_file)[0]
+    oname_final = opref + "_demultiplexed.d"
     if test:
         print('testing...not running command')
-        return(d_file)
+        return(oname_final)
     os.system(cmd)
     pnnl_out_files = glob.glob(os.path.join(temp_out_dir, "*.d"))
     newest_pnnl_file = max(pnnl_out_files, key = os.path.getmtime)
     oname = os.path.join(d_file_dir, os.path.basename(newest_pnnl_file))
-    opref = os.path.splitext(d_file)[0]
-    oname_final = opref + "_demultiplexed.d"
     for fname in [oname, oname_final]:
         if os.path.exists(fname):
             if overwrite:
@@ -114,18 +114,18 @@ def copy_ccs_calibration(uncalibrated_d_file, calibrated_d_file):
 
 
 
-@flow(task_runner=SequentialTaskRunner(), name = "rfbat_prep")
-def rfbat_prep(input_excel_file, output_dir, msconvert_exe, tuneIons_file, test = False):
+@flow(task_runner=SequentialTaskRunner(), name = "rfbat_prep", timeout_seconds = 100000000)
+def rfbat_prep(input_excel_file, output_dir, msconvert_exe, tuneIons_file, cal_runtime = 45, test = False):
     # print(get_client())
     client = get_client()
     client.create_concurrency_limit(tag = "instrument_run", concurrency_limit = 1)
     client.create_concurrency_limit(tag = "pnnl", concurrency_limit = 4)
     sequence_files = create_rf_sequences.submit(input_excel_file, output_dir)
     # REMEMBER to uncomment these!
-    output_calibration_files = run_calibration.map(sequence_files, output_dir, test = test)
-    demultiplexed_calibration_files = demultiplex.map(output_calibration_files, pnnl_path, test = False)
-    calibration_mzmls = msconvert.map(demultiplexed_calibration_files, msconvert_exe)
-    ccs_calibration.map(calibration_mzmls, demultiplexed_calibration_files, tuneIons_file)
+    output_calibration_files = run_calibration.map(sequence_files, output_dir, test = test, wait_for = [sequence_files])
+    demultiplexed_calibration_files = demultiplex.map(output_calibration_files, pnnl_path, test = test, wait_for = [output_calibration_files])
+    calibration_mzmls = msconvert.map(demultiplexed_calibration_files, msconvert_exe, wait_for = [demultiplexed_calibration_files])
+    ccs_calibration.map(calibration_mzmls, demultiplexed_calibration_files, tuneIons_file, wait_for = [calibration_mzmls])
     return(sequence_files)
 
 
@@ -148,7 +148,7 @@ def rf_test_workflow():
     rf_call.submit(rf_ip, rf_function, rfbat_file = "M:\\Projects\\Default\\Data\\Rapidfire\\batches\\RapidFireMaintenance.rfbat").wait(10000)
 
 
-@task(timeout_seconds = 10000, tags = ["instrument_run"])
+@task(timeout_seconds = 100000, tags = ["instrument_run"])
 def rf_call(rf_ip, rf_function, rf_port = 18861, *args,  **kwargs):
     rpyc_configs = {"sync_request_timeout" : 10000}
     connection = rpyc.connect(rf_ip, rf_port, config = rpyc_configs)
@@ -165,7 +165,10 @@ def rf_call(rf_ip, rf_function, rf_port = 18861, *args,  **kwargs):
 
 @task
 def start_rf_ms_connection(start_mh_rf_path):
-    subprocess.call([start_mh_rf_path])
+    print("Starting mh_rf connection...")
+    print(start_mh_rf_path)
+    print("")
+    subprocess.call([start_mh_rf_path], shell = True)
 
 
 
@@ -213,20 +216,67 @@ def msconvert(d_file, msconvert_exe):
     subprocess.call(arg_list)
     return(out_file)
 
-@flow
-def copy_ms_files(sequence_dir, rapid_fire_data_dir, mh_splitter_exe, pnnl_exe, msconvert_exe):
+@task
+def rm_tree(fname):
+    shutil.rmtree(fname)
+    return(fname)
+
+@flow(task_runner = SequentialTaskRunner(), name = "rf_post_run_process")
+def rf_post_run_process(sequence_dir, rapid_fire_data_dir, mh_splitter_exe, pnnl_exe):
     latest_dir = pu.find_latest_dir(rapid_fire_data_dir)
     splitter_file = os.path.join(latest_dir, "RFFileSplitter.log")
     rfdb_file = os.path.join(latest_dir, "RFDatabase.xml")
     sequence_file = os.path.join(latest_dir, "sequence1.d")
     splits = get_splits(splitter_file, rfdb_file, sequence_file)
+    injections_dir = os.path.join(sequence_dir, 'injections')
+    os.makedirs(injections_dir, exist_ok = True)
     # print(splitter_file, rfdb_file, sequence_file)
-    split_d_files = split_d_file.map(splits, latest_dir, sequence_dir, mh_splitter_exe)
+    split_d_files = split_d_file.map(splits, latest_dir, injections_dir, mh_splitter_exe)
     demultiplexed_files = demultiplex.map(split_d_files, pnnl_exe)
-    # msconvert.map(demultiplexed_files, msconvert_exe)
+    _ = rm_tree.map(split_d_files)
     sequence_name = os.path.basename(sequence_dir)
     calibration_d_file = os.path.join(sequence_dir, sequence_name + "_IM_calibration_demultiplexed.d")
     copy_ccs_calibration.map(demultiplexed_files, calibration_d_file)
+
+
+@flow(task_runner = SequentialTaskRunner(), name = "skyline_analysis")
+def skyline(sequence_dir, skyline_exe, sky_imsdb_file, sky_document_file, transition_list_file, sky_report_file):
+    skyline_dir = os.path.join(sequence_dir, "skyline_files")
+    os.makedirs(skyline_dir, exist_ok = True)
+    
+    injection_dir = os.path.join(sequence_dir, 'injections')
+
+    # Copy files and reassign variables
+    shutil.copy2(sky_imsdb_file, skyline_dir)
+    sky_imsdb_file = os.path.join(skyline_dir, os.path.basename(sky_imsdb_file))
+
+    shutil.copy2(sky_document_file, skyline_dir)
+    sky_document_file = os.path.join(skyline_dir, os.path.basename(sky_document_file))
+
+    shutil.copy2(transition_list_file, skyline_dir)
+    transition_list_file = os.path.join(skyline_dir, os.path.basename(transition_list_file))
+
+    shutil.copy2(sky_report_file, skyline_dir)
+    sky_report_file = os.path.join(skyline_dir, os.path.basename(sky_report_file))
+
+    output_report_file = os.path.join(sequence_dir, "output_report.tsv")
+    output_sky_file = os.path.join(sequence_dir, "skyline_results.sky")
+    # print(skyline_exe)
+    # sys.stdout.flush()
+    # print('\n\n\n')
+    arg_list = [skyline_exe, f"--in={sky_document_file}", 
+                f"--import-transition-list={transition_list_file}",
+                f"--import-all-files={injection_dir}",
+                f"--report-conflict-resolution=overwrite",
+                f"--report-add={sky_report_file}",
+                f"--report-name=MetaboliteReportShort",
+                f"--report-format=tsv",
+                f"--report-file={output_report_file}",
+                f"--out={output_sky_file}"
+                ]
+    cmd = " ".join(arg_list)
+    print(f"Running skyline command {cmd}")
+    subprocess.call(arg_list, shell = True)
 
 rf_username = 'admin'
 rf_pw ='3000hanover'
@@ -236,27 +286,52 @@ rf_conda_envName = "wingui"
 
 # input_excel_file = '/Users/reder/OneDrive/right-bourbon/pilot_yeast_2/experimentTemplate.xlsx'
 # input_excel_file = "D:\\gkreder\\RapidSky\\agilent_methods\\experimentTemplate.xlsx"
-input_excel_file = "D:\\gkreder\\RapidSky\\agilent_methods\\experimentTemplate_short.xlsx"
-output_dir = 'D:\\gkreder\\scripts\\output'
+# input_excel_file = "D:\\gkreder\\RapidSky\\agilent_methods\\experimentTemplate_short.xlsx"
+input_excel_file = "D:\\gkreder\\RapidSky\\agilent_methods\\experiment_visit.xlsx"
+output_dir = 'D:\\gkreder\\scripts\\output_new'
 pnnl_path = '''C:\\"Program Files"\\PNNL-Preprocessor\\PNNL-PreProcessor.exe'''
-start_mh_rf_path = os.path.join("C:", "Agilent", "RapidFire Communicator", "RFMassHunter_NET", "bin", "Start_MassHunter_S.bat")
+start_mh_rf_path = os.path.join("C:\\Agilent", "RapidFire Communicator", "RFMassHunter_NET", "bin", "Start_MassHunter_S.bat")
 rapid_fire_data_dir = "D:\\Projects\\Default\\Data\\RapidFire"
 mh_splitter_exe = "D:\\gkreder\\RapidFire_bin\\MHFileSplitter.exe"
 msconvert_exe = os.path.join("C:\\Users\\admin\\AppData\\Local\\Apps", "ProteoWizard 3.0.22173.4a1045d 64-bit", "msconvert.exe")
 tuneIons_file = "D:\\gkreder\\RapidSky\\transition_lists\\agilentTuneRestrictedDeimos_transitionList.csv"
+skyline_exe = "C:\\Users\\admin\\Desktop\\SkylineCmd.exe.lnk"
+sky_imsdb_file = "D:\\gkreder\\RapidSky\\skyline_documents\\ymdb.imsdb"
+sky_document_file = "D:\\gkreder\\RapidSky\\skyline_documents\\ymdb_IMres30.sky"
+transition_list_file = "D:\\gkreder\\RapidSky\\transition_lists\\ymdb_transition_list.csv"
+sky_report_file = "D:\\gkreder\\RapidSky\\report_templates\\MoleculeReportShort.skyr"
 
 
+@flow(task_runner = SequentialTaskRunner())
+def main_flow():
+    test = False
+    check_string = '''Running in live mode. Please ensure
+    (1) MH Acq is set to autoLayout
+    (2) RF Vacuum pump is turned on
+    (3) The tune splitter is set to calibrant B inlet
+    (4) You have turned on RapidFire autosplitting
+    (5) You have tuned the 6560 
+    
+    Press Enter when ready...
+    '''
+    if not test:
+        input(check_string)
+    
+    cal_runtime = 15
+    sequence_files = rfbat_prep(input_excel_file, output_dir, msconvert_exe, tuneIons_file, cal_runtime = cal_runtime, test = test).result()
+    # rf_plate_run.map(sequence_files)
+    for sequence_dir, rfbat_file, rfcfg_file, rfmap_file in sequence_files:
+        rf_plate_run_res = rf_plate_run(sequence_dir, rfbat_file, rfcfg_file, start_mh_rf_path, test = test)
+        # rf_plate_run_res.wait()
+        input("press enter to continue...")
+        rf_pos_run_process_res = rf_post_run_process(sequence_dir, rapid_fire_data_dir, mh_splitter_exe, pnnl_path, wait_for = [rf_plate_run_res])
+        skyline_res = skyline(sequence_dir, skyline_exe, sky_imsdb_file, sky_document_file, transition_list_file, sky_report_file, wait_for = [rf_pos_run_process_res])
+        # skyline_res.wait()
 
 
 if __name__ == "__main__":
-    sequence_files = rfbat_prep(input_excel_file, output_dir, msconvert_exe, tuneIons_file, test = True).result()
-    for sequence_dir, rfbat_file, rfcfg_file, rfmap_file in sequence_files:
-        if "positive" not in sequence_dir.lower():
-            continue
-        # print(sequence_dir, rfbat_file, rfcfg_file, rfmap_file)
-        # rf_plate_run(sequence_dir, rfbat_file, rfcfg_file, start_mh_rf_path, test = False)
-        copy_ms_files(sequence_dir, rapid_fire_data_dir, mh_splitter_exe, pnnl_path, msconvert_exe)
-        break
+    main_flow()
+    
 
 
 

@@ -5,7 +5,8 @@ import sys
 import os
 import csv
 import xml.etree.ElementTree as ET
-from datetime import datetime
+import datetime
+from pathlib import Path
 
 def read_tsv(file_path):
     with open(file_path, "r") as tsv_file:
@@ -184,26 +185,38 @@ def get_rfcfg_file_rfbat(rfbat_file):
             return(rfcfg_file.text)
     sys.exit(f"Error - could not find a rfcfg file in {rfbat_file}")
 
+def find_latest_dir(base_path, start_year = 2021):
+    base_path = Path(base_path)
+    latest_dir = None
+    latest_date = None
+
+    months = ['January', 'February', 'March', 'April', 'May', 'June', 
+              'July', 'August', 'September', 'October', 'November', 'December']
 
 
-def find_latest_dir(base_path):
-    today = datetime.now()
-    date_path = os.path.join(base_path, str(today.year), today.strftime('%B'), str(today.day))
-    
-    if not os.path.exists(date_path):
-        return None  # Return None if the directory does not exist
+    for year in range(start_year, datetime.datetime.now().year+1):  # Adjust the range as needed
+        for month in range(0, 12):  # All possible months
+            for day in range(1, 32):  # All possible days
+                try:
+                    dir_path = base_path / str(year) / months[month] / str(day)
+                    if dir_path.exists() and dir_path.is_dir():
+                        dir_date = datetime.datetime(year, month, day)
+                        # Get a list of all directories in the date_path
+                        dir_list = [os.path.join(dir_path, d) for d in os.listdir(dir_path) if os.path.isdir(os.path.join(dir_path, d))]
+                        
+                        # Sort the directories by creation time
+                        dir_list.sort(key=lambda d: os.path.getmtime(d), reverse=True)
+                        dir_newest = dir_list[0]
+                        mtime = os.path.getmtime(dir_newest)
+                        dir_modified = mtime
+                        if latest_date is None or dir_modified > latest_date:
+                            latest_dir = dir_newest
+                            latest_date = mtime
+                except ValueError:
+                    # Ignore invalid dates, like February 30
+                    pass
+    return latest_dir
 
-    # Get a list of all directories in the date_path
-    dir_list = [d for d in os.listdir(date_path) if os.path.isdir(os.path.join(date_path, d))]
-    
-    # Sort the directories by creation time
-    dir_list.sort(key=lambda d: os.path.getmtime(os.path.join(date_path, d)), reverse=True)
-    
-    # Return the path of the most recently created directory
-    if dir_list:
-        return os.path.join(date_path, dir_list[0])
-    else:
-        return None  # Return None if there are no directories
 
 
 
