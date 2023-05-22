@@ -133,7 +133,7 @@ def move_file(filename, output_name):
 
 
 # output_d_file can be the entire path
-def run_calibration_B(ms_method_name, output_d_filename_full, sample_name = "CalB", runtime = 45, overwrite = True, timeout_seconds = 900):
+def run_calibration_B(ms_method_name, output_d_filename_full, sample_name = "CalB", runtime = 30, manual_stop = True, overwrite = True, timeout_seconds = 900):
     app, window = initialize_app()
     if os.path.exists(output_d_filename_full):
         if overwrite:
@@ -147,16 +147,37 @@ def run_calibration_B(ms_method_name, output_d_filename_full, sample_name = "Cal
     open_ms_method(window, ms_method_name)
     output_d_file_base = os.path.basename(output_d_filename_full)
     agilent_output_file = set_calibration_output(window, sample_name, output_d_file_base)
+    reset_button = window.child_window(auto_id = "resetMethodBtn")
+    reset_button.set_focus()
+    reset_button.click_input()
+    yes_button = window.child_window(auto_id = "btnYes")
+    start_time = time.time()
+    while (not yes_button.exists()) and (time.time()- start_time) < 15:
+        time.sleep(1)
+    if yes_button.exists():
+        yes_button.set_focus()
+        yes_button.click_input()
     wait_for_state(window, "idle", timeout_seconds = timeout_seconds)
     start_sample_run(window, overwrite = overwrite)
     wait_for_state(window, "run", timeout_seconds = timeout_seconds)
-    time.sleep(runtime) # Run has started, wait 45 seconds
-    stop_sample_run(window)
+    if manual_stop:
+        time.sleep(runtime) # Run has started
+        stop_sample_run(window)
+    else:
+        # "Run Completed" message box
+        ok_button = window.child_window(auto_id = "btnOK")
+        start_time = time.time()
+        while (not ok_button.exists()) and (time.time() - start_time) < 15:
+            time.sleep(1)
+        if ok_button.exists():
+            ok_button.set_focus()
+            ok_button.click_input()
+        wait_for_state(window, "idle", timeout_seconds = timeout_seconds)
 
     # UNCOMMENT THESE
-    # wait_for_state(window, 'idle', timeout_seconds = timeout_seconds)
-    # if agilent_output_file != output_d_filename_full:
-    #     move_file(agilent_output_file, output_d_filename_full)
+    wait_for_state(window, 'idle', timeout_seconds = timeout_seconds)
+    if agilent_output_file != output_d_filename_full:
+        move_file(agilent_output_file, output_d_filename_full)
 
 
 

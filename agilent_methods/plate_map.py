@@ -185,7 +185,7 @@ def get_rfcfg_file_rfbat(rfbat_file):
             return(rfcfg_file.text)
     sys.exit(f"Error - could not find a rfcfg file in {rfbat_file}")
 
-def find_latest_dir(base_path, start_year = 2021):
+def find_latest_dir(base_path, sequence_name = None, start_year = 2021):
     base_path = Path(base_path)
     latest_dir = None
     latest_date = None
@@ -206,12 +206,25 @@ def find_latest_dir(base_path, start_year = 2021):
                         
                         # Sort the directories by creation time
                         dir_list.sort(key=lambda d: os.path.getmtime(d), reverse=True)
-                        dir_newest = dir_list[0]
-                        mtime = os.path.getmtime(dir_newest)
-                        dir_modified = mtime
-                        if latest_date is None or dir_modified > latest_date:
-                            latest_dir = dir_newest
-                            latest_date = mtime
+                        if sequence_name:
+                            dir_list_temp = []
+                            for dir_temp in dir_list:
+                                # print(dir_temp)
+                                rfdb_file = os.path.join(dir_temp, "RFDatabase.xml")
+                                if not os.path.exists(rfdb_file):
+                                    continue
+                                with open(rfdb_file, 'r') as f:
+                                    lines = f.read()
+                                if f"Barcode>{sequence_name}<" in lines:
+                                    dir_list_temp.append(dir_temp)
+                            dir_list = dir_list_temp
+                        if len(dir_list) > 0:
+                            dir_newest = dir_list[0]
+                            mtime = os.path.getmtime(dir_newest)
+                            dir_modified = mtime
+                            if latest_date is None or dir_modified > latest_date:
+                                latest_dir = dir_newest
+                                latest_date = mtime
                 except ValueError:
                     # Ignore invalid dates, like February 30
                     pass
