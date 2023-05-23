@@ -2,13 +2,14 @@
 
 This repository contains code meant for automating the agilent RapidFire 365 + 6560 IM-QTOF system, both in terms of experimental runs on the hardware as well as the data analysis. Please note it is still under construction. 
 
+## agilent_methods
+
+This folder contains newer code that automates experimental runs via pywinauto GUI automation and launches complete workflows including data preprocessing and analysis. Prefect is being used here since this pipeline is being hosted and run on the Windows Desktop hooked up to the Agilent 6560. 
+
 ## RapidSky
 
 The original code utilities used for the major steps in data preprocessing and analysis via Skyline after experimental runs are completed
 
-## agilent_methods
-
-This folder contains newer code that automates experimental runs via pywinauto GUI automation and launches complete workflows including 
 
 # Nextflow remote pipeline (deprecated)
 

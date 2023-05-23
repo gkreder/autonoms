@@ -10,7 +10,6 @@ import argparse
 import shutil
 import glob
 import xml.etree.ElementTree as ET
-import plate_map
 
 
 def initialize_app(start_str = "RapidFire :"):

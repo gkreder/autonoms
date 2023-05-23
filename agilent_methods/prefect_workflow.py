@@ -1,5 +1,5 @@
 from prefect import flow, task, get_run_logger, pause_flow_run
-import plate_map as pu
+import utils_plates as pu
 import utils_6560 as msu
 import utils_rapidFire as rfu
 import os
