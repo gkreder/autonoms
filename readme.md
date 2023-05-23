@@ -1,7 +1,5 @@
 # Current pipeline
 
----
-
 
 This repository contains code meant for automating the agilent RapidFire 365 + 6560 IM-QTOF system, both in terms of experimental runs on the hardware as well as the data analysis. Please note it is still under development. 
 
