@@ -1,14 +1,27 @@
 # Current pipeline
 
-This repository contains code meant for automating the agilent RapidFire 365 + 6560 IM-QTOF system, both in terms of experimental runs on the hardware as well as the data analysis. Please note it is still under construction. 
+---
+
+
+This repository contains code meant for automating the agilent RapidFire 365 + 6560 IM-QTOF system, both in terms of experimental runs on the hardware as well as the data analysis. Please note it is still under development. 
 
 ## agilent_methods
 
 This folder contains newer code that automates experimental runs via pywinauto GUI automation and launches complete workflows including data preprocessing and analysis. Prefect is being used here since this pipeline is being hosted and run on the Windows Desktop hooked up to the Agilent 6560. 
 
+The Agilent RapidFire and 6560 are each individually controlled by their own Windows Desktops that are connected to each other via ethernet. The rf_rpyc_server.py code hosts a rpyc server on the RapidFire computer so that RapidFire utility functions can be called remotely on the RapidFire control computer from the 6560 computer.
+
+The utils_6560.py, utils_rapidFire.py, and utils_plates.py contain the core functions for respectively controlling the instruments and creating instrument files from user-supplied experiment definitions. 
+
+The main workflow is contained in the prefect_workflow.py file though it is still under development. 
+
 ## RapidSky
 
-The original code utilities used for the major steps in data preprocessing and analysis via Skyline after experimental runs are completed
+The original code utilities used for the major steps in data preprocessing and analysis via Skyline after experimental runs are completed. Some of these have been replaced by code called directly in the Prefect workflow in agilent_methods since the original pipeline was running on a remote Linux computer. The new pipeline is being directly run on a Windows computer which means that some of the mass spec software can now be run natively instead of wrapped inside Docker. 
+
+---
+
+---
 
 
 # Nextflow remote pipeline (deprecated)
