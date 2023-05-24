@@ -10,6 +10,7 @@ import argparse
 import shutil
 import glob
 import xml.etree.ElementTree as ET
+import plate_map as pu
 
 
 def initialize_app(start_str = "RapidFire :"):
@@ -204,7 +205,33 @@ def remote_run_rfbat(test = False, *args, **kwargs):
     if not test:
         check_vac_pressure(window)
         start_run(window, app)
-    return(1)
+    print(f"Checking the rf data dir {kwargs['rf_base_data_dir']}...")
+    rf_base_data_dir = kwargs['rf_base_data_dir']
+    data_dir = pu.find_latest_dir(rf_base_data_dir, path_convert = {'D:\\' : "M:\\"})
+    print(f"Monitoring the batch.log file in directory {data_dir}...")
+    log_file = os.path.join(data_dir, "batch.log")
+    start_time = time.time()
+    log_lines = ""
+    print("Waiting for batch.log file to appear...")
+    while not os.path.exists(log_file) and ( (time.time() - start_time) < kwargs['timeout_seconds']):
+        time.sleep(1)
+    print(f"...monitoring batch.log file...")
+    while ("batch.log closed" not in log_lines) and ( (time.time() - start_time) < kwargs['timeout_seconds']):
+        with open(log_file, 'r') as f:
+            log_lines = f.read()
+        time.sleep(1)
+    rf_splitter_log = os.path.join(data_dir, "RFFileSplitter.log")
+    splitter_lines = ""
+    print(f"Waiting for file splitting to start...")
+    while not os.path.exists(rf_splitter_log) and ( (time.time() - start_time) < kwargs['timeout_seconds']):
+        time.sleep(1)
+    print(f"...monitoring splitter file...")
+    wells = pu.get_rfbat_wells(kwargs["rfbat_file"], path_convert = {"D:\\" : "M:\\"})
+    while ( len(re.findall(rf"Done writing file:.*-{wells[-1]}.d", splitter_lines)) == 0 ) and ( (time.time() - start_time) < kwargs['timeout_seconds']):
+        with open(rf_splitter_log, 'r') as f:
+            splitter_lines = f.read()
+        time.sleep(1)
+    return(0)
 
 def test_fun(*args, **kwargs):
     app, window = initialize_app()

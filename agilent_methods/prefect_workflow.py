@@ -160,9 +160,6 @@ def rf_call(rf_ip, rf_function, rf_port = 18861, *args,  **kwargs):
         return(result)
     finally:
         connection.close()  
-
-
-
  
 
 @task
@@ -173,27 +170,23 @@ def start_rf_ms_connection(start_mh_rf_path):
     subprocess.call([start_mh_rf_path], shell = True)
 
 
-
-
 @flow(task_runner = SequentialTaskRunner(), name = "rf_plate_run", timeout_seconds = 1000000)
-def rf_plate_run(sequence_dir, rfbat_file, rfcfg_file, start_mh_rf_path, test = False, path_convert = {'D:\\' : "M:\\"}):
-    # rfbat_files = create_rf_sequences.submit(input_excel_file, output_dir)
-    # output_calibration_files = run_calibration.map(rfbat_files, output_dir, test = test)
+def rf_plate_run(sequence_dir, rfbat_file, rfcfg_file, start_mh_rf_path, rapid_fire_data_dir, test = False, path_convert = {'D:\\' : "M:\\"}):
     client = get_client()
     client.create_concurrency_limit(tag = "instrument_run", concurrency_limit = 1)
     client.create_concurrency_limit(tag = "pnnl", concurrency_limit = 4)
     rf_ip = "192.168.254.2"
     rf_function = "remote_run_rfbat"
-    sequence_dir_rf = sequence_dir
+    # sequence_dir_rf = sequence_dir
     rfbat_file_rf = rfbat_file
     rfcfg_file_rf = rfcfg_file
     for old_s, new_s in path_convert.items():
-        sequence_dir_rf = sequence_dir_rf
+        # sequence_dir_rf = sequence_dir_rf.replace(old_s, new_s)
         rfbat_file_rf = rfbat_file_rf.replace(old_s, new_s)
         rfcfg_file_rf = rfcfg_file_rf.replace(old_s, new_s)
     result = start_rf_ms_connection.submit(start_mh_rf_path)
     result.wait()
-    result = rf_call.submit(rf_ip, rf_function, test = test, rfcfg_file = rfcfg_file_rf, rfbat_file = rfbat_file_rf)
+    result = rf_call.submit(rf_ip, rf_function, test = test, rfcfg_file = rfcfg_file_rf, rfbat_file = rfbat_file_rf, rf_base_data_dir = rapid_fire_data_dir, timeout_seconds = 3600)
     result.wait()    
     return(result)
 
@@ -373,13 +366,14 @@ def main_flow():
     sequence_files = rfbat_prep(input_excel_file, output_dir, msconvert_exe, tuneIons_file, cal_runtime = cal_runtime, test = test).result()
     # rf_plate_run.map(sequence_files)
     for sequence_dir, rfbat_file, rfcfg_file, rfmap_file in sequence_files:
-        # rf_plate_run_res = rf_plate_run(sequence_dir, rfbat_file, rfcfg_file, start_mh_rf_path, test = test)
+        rf_plate_run_res = rf_plate_run(sequence_dir, rfbat_file, rfcfg_file, start_mh_rf_path, rapid_fire_data_dir, test = test)
+        print(rf_plate_run_res)
         # input("press enter to continue...")
         # demultiplexed_files = rf_post_run_process(sequence_dir, rapid_fire_data_dir, mh_splitter_exe, pnnl_path, wait_for = [rf_plate_run_res])
-        demultiplexed_files = rf_post_run_process(sequence_dir, rapid_fire_data_dir, mh_splitter_exe, pnnl_path)
+        # demultiplexed_files = rf_post_run_process(sequence_dir, rapid_fire_data_dir, mh_splitter_exe, pnnl_path)
     #     skyline_res = skyline(sequence_dir, skyline_exe, sky_imsdb_file, sky_document_file, transition_list_file, sky_report_file, wait_for = [rf_pos_run_process_res])
     #     # skyline_res.wait()
-        rf_post_run_calibration(sequence_dir, demultiplexed_files, input_excel_file, tuneIons_file, msconvert_exe)
+        # rf_post_run_calibration(sequence_dir, demultiplexed_files, input_excel_file, tuneIons_file, msconvert_exe)
 
 
 if __name__ == "__main__":
