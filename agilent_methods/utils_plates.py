@@ -185,7 +185,12 @@ def get_rfcfg_file_rfbat(rfbat_file):
             return(rfcfg_file.text)
     sys.exit(f"Error - could not find a rfcfg file in {rfbat_file}")
 
-def find_latest_dir(base_path, sequence_name = None, start_year = 2021):
+
+def find_latest_dir(base_path, sequence_name = None, start_year = 2021, path_convert = None):
+    if path_convert:
+        for old_s, new_s in path_convert.items():
+            base_path = base_path.replace(old_s, new_s)
+
     base_path = Path(base_path)
     latest_dir = None
     latest_date = None
@@ -239,7 +244,7 @@ def create_sequences(in_xlsx, out_dir, sample_sheet = "samples", rf_sheet = "rf_
     # os.system(f"mkdir -p {out_dir}")
     os.makedirs(f"{out_dir}", exist_ok = True)
     sequence_files = []
-    for sequence_name, g in df.groupby("Sequence"):
+    for sequence_name, g in df.groupby("Sequence", sort = False):
         rfcfg_filename = os.path.join(out_dir, f"{sequence_name}.rfcfg")
         create_rfcfg_file(in_xlsx, rfcfg_filename, sheet_name = rf_sheet)
         sequences = g['Well'].values

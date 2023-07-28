@@ -10,7 +10,7 @@ import argparse
 import shutil
 import glob
 import xml.etree.ElementTree as ET
-import plate_map as pu
+import utils_plates as pu
 
 
 def initialize_app(start_str = "RapidFire :"):
@@ -75,7 +75,6 @@ def open_log_view(window, app):
     time.sleep(1)
     log_window = app.window(title_re = f".*RapidFire Log.*")
     return(log_window)
-
 
 def set_run_mode(window, mode):
     mode_d = {'Sequences' : "admeModeBtn", "Plates" : "htsModeBtn"}
@@ -173,6 +172,58 @@ def copy_last_run_output(out_dir, rf_cfg_file, overwrite = True):
     shutil.copytree(rf_data_dir, out_dir)
 
 
+def open_splitter_view(window, app):
+    file_menu_item = window.child_window(title = "File", control_type = "MenuItem")
+    file_menu_item.set_focus()
+    file_menu_item.click_input()
+
+    open_splitter_button = [x for x in file_menu_item.descendants() if "Convert MS Data" in x.window_text()][0]
+    open_splitter_button.set_focus()
+    open_splitter_button.click_input()
+    time.sleep(1)
+
+    splitter_window = [x for x in app.windows() if "Convert MS Data" in x.texts()][0]
+    return(splitter_window)
+
+def set_splitter_autoconvert(splitter_window, state):
+    if state not in [0, 1, True, False]:
+        sys.exit(f"Error unrecognized auto split state {state}")
+    state = int(state)
+    autoconvert_button = [x for x in splitter_window.children() if x.automation_id() == "autoConvertCheckBox"][0]
+    if autoconvert_button.get_toggle_state() != state:
+        autoconvert_button.toggle()
+    return(0)
+
+
+def run_split(splitter_window, split_dir, multiple_injections = True, path_convert = None):
+    if path_convert:
+        sys.exit(path_convert)
+        for old_s, new_s in path_convert.items():
+            split_dir = split_dir.replace(old_s, new_s)
+            # rfbat_file = rfbat_file.replace(old_s, new_s)
+
+    data_path_box = [x for x in splitter_window.children() if x.automation_id() == "dataPathTextBox"][0]
+    data_path_box.set_focus()
+    data_path_box.set_edit_text("")
+    data_path_box.type_keys(f"{split_dir}")
+
+    output_path_box = [x for x in splitter_window.children() if x.automation_id() == "exportPathTextBox"][0]
+    output_path_box.set_focus()
+    output_path_box.set_edit_text("")
+    output_path_box.type_keys(f"{split_dir}")
+
+    if multiple_injections:
+        multiple_inj_button = [x for x in splitter_window.children() if "multipleInj" in x.automation_id()][0]
+        if multiple_inj_button.get_toggle_state() == 0:
+            multiple_inj_button.toggle()
+
+    convert_button = [x for x in splitter_window.children() if x.automation_id() == "exportButton"][0]
+    convert_button.set_focus()
+    convert_button.click_input()
+    return(0)
+
+
+
 ################################################################################
 # Single call workflows for remote calls
 ################################################################################
@@ -195,9 +246,14 @@ def remote_touch_app():
     window.set_focus()
 
 def remote_run_rfbat(test = False, *args, **kwargs):
+    if test:
+        data_dir = pu.find_latest_dir(kwargs['rf_base_data_dir'], path_convert={"D:\\" : "M:\\"})
+        return(data_dir)
     # Must give it a rfbat_file
     app, window = initialize_app()
     open_log_view(window, app)
+    splitter_window = open_splitter_view(window, app)
+    set_splitter_autoconvert(splitter_window, False)
     set_run_mode(window, "Sequences")
     # rfcfg_file = plate_map.get_rfcfg_file_rfbat(*args, **kwargs)
     load_rf_method(window, kwargs['rfcfg_file'])
@@ -220,19 +276,39 @@ def remote_run_rfbat(test = False, *args, **kwargs):
         with open(log_file, 'r') as f:
             log_lines = f.read()
         time.sleep(1)
-    rf_splitter_log = os.path.join(data_dir, "RFFileSplitter.log")
-    splitter_lines = ""
-    print(f"Waiting for file splitting to start...")
-    while not os.path.exists(rf_splitter_log) and ( (time.time() - start_time) < kwargs['timeout_seconds']):
+    # rf_splitter_log = os.path.join(data_dir, "RFFileSplitter.log")
+    # splitter_lines = ""
+    # print(f"Waiting for file splitting to start...")
+    # while not os.path.exists(rf_splitter_log) and ( (time.time() - start_time) < kwargs['timeout_seconds']):
+    #     time.sleep(1)
+    # print(f"...monitoring splitter file...")
+    # wells = pu.get_rfbat_wells(kwargs["rfbat_file"], path_convert = {"D:\\" : "M:\\"})
+    # # while ( len(re.findall(rf"Done writing file:.*-{wells[-1]}.d", splitter_lines)) == 0 ) and ( (time.time() - start_time) < kwargs['timeout_seconds']):
+    # while ( len(re.findall(rf"Done writing file:.*.d", splitter_lines)) != len(wells) ) and ( (time.time() - start_time) < kwargs['timeout_seconds']):
+    #     with open(rf_splitter_log, 'r') as f:
+    #         splitter_lines = f.read()
+    #     time.sleep(1)
+    return(data_dir)
+
+def remote_file_split(test = False, *args, **kwargs):
+    data_dir = kwargs['data_dir']
+    app, window = initialize_app()
+    splitter_window = open_splitter_view(window, app)
+    set_splitter_autoconvert(splitter_window, False)
+    run_split(splitter_window, split_dir = data_dir)
+    # rf_splitter_log = os.path.join(data_dir, "RFFileSplitter.log")
+    # splitter_lines = ""
+    progress_text = [x for x in splitter_window.children() if x.automation_id() == "exportProgressLabel"][0]
+    print(f"Waiting fo rfile splitting to start...")
+    start_time = time.time()
+    # while not os.path.exists(rf_splitter_log) and ( (time.time() - start_time) < kwargs['timeout_seconds']):
+    while ( "plate" not in [x.lower() for x in progress_text.texts()] ) and ( "Completed Successfully" not in progress_text.texts() ) and ( (time.time() - start_time) < kwargs['timeout_seconds']):
         time.sleep(1)
-    print(f"...monitoring splitter file...")
-    wells = pu.get_rfbat_wells(kwargs["rfbat_file"], path_convert = {"D:\\" : "M:\\"})
-    while ( len(re.findall(rf"Done writing file:.*-{wells[-1]}.d", splitter_lines)) == 0 ) and ( (time.time() - start_time) < kwargs['timeout_seconds']):
-        with open(rf_splitter_log, 'r') as f:
-            splitter_lines = f.read()
+    print(f"..monitoring splitter progress...")
+    while ( "Completed Successfully" not in progress_text.texts() ) and ( (time.time() - start_time) < kwargs['timeout_seconds']):
         time.sleep(1)
     return(0)
-
+    
 def test_fun(*args, **kwargs):
     app, window = initialize_app()
     load_rf_batch(window, *args, **kwargs)
