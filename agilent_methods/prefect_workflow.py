@@ -77,7 +77,7 @@ def run_calibration(seq_files_tuple, test = False):
     return(output_calibration_file)
  
 
-@task(tags = ['pnnl'])
+@task(tags = ['preprocessing'])
 def demultiplex(d_file, pnnl_exe_path, overwrite = True, test = False, demux_MA = 3, demux_mInt = 20, demux_min_percent = 97):
     """
     Runs IM-MS .d file demultiplexing using PNNL Preprocessor
@@ -123,7 +123,7 @@ def demultiplex(d_file, pnnl_exe_path, overwrite = True, test = False, demux_MA 
     os.rename(oname, oname_final)
     return(oname_final)
 
-@task(tags = ['pnnl'])
+@task(tags = ['preprocessing'])
 def ccs_calibration(mzml_file, d_file, tuneIons_file):
     """
     Run CCS calibration given input standards ion file (.mzML), data file (.d), and known CCS values of standards
@@ -145,7 +145,7 @@ def ccs_calibration(mzml_file, d_file, tuneIons_file):
     return(ccs_override_string)
 
 
-@task(tags = ['pnnl'])
+@task(tags = ['preprocessing'])
 def copy_ccs_calibration(uncalibrated_d_file, calibrated_d_file):
     """
     Copies the CCS calibration file from one .d file to another
@@ -202,8 +202,20 @@ def start_rf_ms_connection(start_mh_rf_path):
     print("")
     subprocess.call([start_mh_rf_path], shell = True)
 
-@task(tags = ['pnnl'])
+@task(tags = ['preprocessing'])
 def split_d_file(split_tuple, raw_data_dir, out_dir, mh_splitter_exe):
+    """
+    Splits a .d file from an entire RF-6560 sequence run and produces a .d file correspoding to the specified injection times
+
+            Parameters:
+                    split_tuple (tuple): Tuple containing the basename of the sequence .d file, desired output .d file name, and start/end times
+                    raw_data_dir (str): Path to directory containing sequence .d file
+                    out_dir (str): Path to split file output directory
+                    mh_splitter_exe (str): Path to Agilent file splitter utility executable
+
+            Returns:
+                    out_d_file (str): Path to split .d file
+    """
     in_d_file_base, out_d_file_base, start_time, end_time = split_tuple
     print(split_tuple)
     in_d_file = os.path.join(raw_data_dir, in_d_file_base)
@@ -214,8 +226,20 @@ def split_d_file(split_tuple, raw_data_dir, out_dir, mh_splitter_exe):
     subprocess.call(arg_list)
     return(out_d_file)
 
-@task(tags = ['pnnl'])
+@task(tags = ['preprocessing'])
 def msconvert(d_file, msconvert_exe):
+    """
+    Splits a .d file from an entire RF-6560 sequence run and produces a .d file correspoding to the specified injection times
+
+            Parameters:
+                    split_tuple (tuple): Tuple containing the basename of the sequence .d file, desired output .d file name, and start/end times
+                    raw_data_dir (str): Path to directory containing sequence .d file
+                    out_dir (str): Path to split file output directory
+                    mh_splitter_exe (str): Path to Agilent file splitter utility executable
+
+            Returns:
+                    out_d_file (str): Path to split .d file
+    """
     out_dir = os.path.dirname(d_file)
     out_file = os.path.splitext(d_file)[0] + ".mzML"
     arg_list = [msconvert_exe, d_file, "-o", out_dir]
@@ -225,11 +249,31 @@ def msconvert(d_file, msconvert_exe):
 
 @task
 def rm_tree(fname):
+    """
+    Utility function for removing multiple files in parallel via Prefect
+
+            Parameters:
+                    fname (str): Path to filename to delete
+
+            Returns:
+                    fname (str): Path of deleted file
+    """
     shutil.rmtree(fname)
     return(fname)
 
 @task
 def nearest_tune(df_sequence, well_file):
+    """
+    In a given experimental sequence, assign each non-TUNE sample row to its nearest TUNE injection for the purposes of CCS calibration. 
+    Currently, nearest TUNE must occur before a given injection and the first injection of every sequence must be a TUNE injection.
+
+            Parameters:
+                    df_sequence (Pandas DataFrame): DataFrame corresponding to an experimental sequence
+                    well_file (dict): Dictionary containing pairs well : output-filename for each well in the experimental sequence
+
+            Returns:
+                    pairs (list): List of tuples where each tuple matches an output injection filename to its nearest TUNE well
+    """
     last_tune_well = None  # Initially there's no TUNE well
     pairs = []  # List to store the result pairs
     # Iterate over rows
@@ -250,15 +294,25 @@ def nearest_tune(df_sequence, well_file):
 ##################################################################################################
 @flow(task_runner = SequentialTaskRunner(), name = "rf_post_run_calibration")
 def rf_post_run_calibration(sequence_dir, demultiplexed_files, input_excel_file, tuneIons_file, msconvert_exe):
+    """
+    For an experimental sequence, runs the CCS calibration for each injection in the sequence
+
+            Parameters:
+                    sequence_dir (str): Path to sequence output directory
+                    demultiplexed_files (list): List of demultiplexed filenames
+                    input_excel_file (str): Path to experiment definition .xlsx file
+                    tuneIons_file (str): Path to .csv file containing standards' m/z values and CCS values
+                    msconvert_exe (str): Path to msconvert executable
+
+            Returns:
+                    copy_pairs (list): List of tuples where each tuple matches an output calibrated injection filename to its nearest TUNE well
+    """
     sequence_name = os.path.basename(sequence_dir)
     print(f"Running post run calibration on sequence {sequence_name}")
     print(demultiplexed_files)
     df = pd.read_excel(input_excel_file)
     df = pd.DataFrame(df[df['Sequence'] == sequence_name])
     df_tune = df[df['Sample_Type'] == "TUNE"]
-    print("")
-    print(df_tune)
-    print("")
     file_well = {x : os.path.basename(x).split('-')[-1].split('_')[0] for x in demultiplexed_files}
     well_file = {v : k for (k, v) in file_well.items()}
     tune_injection_files = df_tune["Well"].apply(lambda x : well_file[x]).values
@@ -273,19 +327,43 @@ def rf_post_run_calibration(sequence_dir, demultiplexed_files, input_excel_file,
     return(copy_pairs)
 
 @flow(task_runner=SequentialTaskRunner(), name = "rfbat_prep", timeout_seconds = 100000000)
-def rfbat_prep(input_excel_file, output_dir, msconvert_exe, tuneIons_file, cal_runtime = 45, test = False):
-    client = get_client()
-    client.create_concurrency_limit(tag = "instrument_run", concurrency_limit = 1)
-    client.create_concurrency_limit(tag = "pnnl", concurrency_limit = 4)
+def rfbat_prep(input_excel_file, output_dir):
+    """
+    Creates instrument files and sequence directories given an input experiment definition file.
+
+            Parameters:
+                    input_excel_file (str): Path to experiment definition .xlsx file
+                    output_dir (str): Desired top output directory
+
+            Returns:
+                    sequences_files (list): A list of tuples where each tuple corresponds files for a sequence in the original input_excel_file
+    """
+    # client = get_client()
+    # client.create_concurrency_limit(tag = "instrument_run", concurrency_limit = 1)
+    # client.create_concurrency_limit(tag = "preprocessing", concurrency_limit = 4)
     sequence_files = create_rf_sequences.submit(input_excel_file, output_dir)
     return(sequence_files)   
 
 @flow(task_runner = SequentialTaskRunner(), name = "rf_plate_run", timeout_seconds = 10000)
-def rf_plate_run(sequence_dir, rfbat_file, rfcfg_file, start_mh_rf_path, rapid_fire_data_dir, test = False, path_convert = {'D:\\' : "M:\\"}):
+def rf_plate_run(rfbat_file, rfcfg_file, start_mh_rf_path, rapid_fire_data_dir, test = False, path_convert = {'D:\\' : "M:\\"}, rf_ip = "192.168.254.2"):
+    """
+    Runs a RapidFire-6560 run for given sequence given its instrument files
+
+            Parameters:
+                    rfbat_file (str): Path to sequence .rfbat RapidFire file
+                    rfcfg_file (str): Path to sequence .rfcfg RapidFire file
+                    start_mh_rf_path (str): Path to Agilent 6560-RF connection executable
+                    rapid_fire_data_dir (str): Path to top-level directory where RapidFire is configured to output data
+                    test (bool): Run in test mode
+                    path_convert (dict): A dictionary of file path replacements between the 6560 and RapidFire shared drive (e.g. {"D:" : "M:"} means D: on 6560 corresponds to M: on RapidFire)
+                    rf_ip (str): RapidFire IP address on local network
+
+            Returns:
+                    result: Result from RapidFire remote_run_rfbat function call
+    """
     client = get_client()
     client.create_concurrency_limit(tag = "instrument_run", concurrency_limit = 1)
-    client.create_concurrency_limit(tag = "pnnl", concurrency_limit = 4)
-    rf_ip = "192.168.254.2"
+    client.create_concurrency_limit(tag = "preprocessing", concurrency_limit = 4)
     rf_function = "remote_run_rfbat"
     rfbat_file_rf = rfbat_file
     rfcfg_file_rf = rfcfg_file
@@ -299,13 +377,29 @@ def rf_plate_run(sequence_dir, rfbat_file, rfcfg_file, start_mh_rf_path, rapid_f
     return(result)
 
 @flow(task_runner = SequentialTaskRunner(), name = "rf_post_run_process")
-def rf_post_run_process(sequence_dir, rapid_fire_data_dir, mh_splitter_exe, pnnl_exe):
+def rf_post_run_process(sequence_dir, rapid_fire_data_dir, mh_splitter_exe, pnnl_exe, path_convert = {'D:\\' : "M:\\"}, rf_ip = "192.168.254.2"):
+    """
+    Runs post-acquisition file splitting and demultiplexing
+
+            Parameters:
+                    sequence_dir (str): Path to sequence directory
+                    rapid_fire_data_dir (str): Path to top-level directory where RapidFire is configured to output data
+                    mh_splitter_exe (str): Path to Agilent file splitter utility executable
+                    pnnl_exe (str): Local path to PNNL Preprocessor executable
+                    path_convert (dict): A dictionary of file path replacements between the 6560 and RapidFire shared drive (e.g. {"D:" : "M:"} means D: on 6560 corresponds to M: on RapidFire)
+                    rf_ip (str): RapidFire IP address on local network
+
+            Returns:
+                    demultiplexed_files: File paths of output split demultiplexed files
+    """
     client = get_client()
     client.create_concurrency_limit(tag = "instrument_run", concurrency_limit = 1)
     sequence_name = os.path.basename(sequence_dir)
     latest_dir = pu.find_latest_dir(rapid_fire_data_dir, sequence_name = sequence_name)
-    latest_dir_rf = latest_dir.replace("D:\\", "M:\\")
-    rf_ip = "192.168.254.2"
+    latest_dir_rf = latest_dir
+    for old_s, new_s in path_convert.items():
+        latest_dir_rf = latest_dir_rf.replace(old_s, new_s)
+    # latest_dir_rf = latest_dir.replace("D:\\", "M:\\")
     remote_file_split_result = rf_call.submit(rf_ip, "remote_file_split", data_dir = latest_dir_rf, timeout_seconds = 100000).wait().result()
     splitter_file = os.path.join(latest_dir, "RFFileSplitter.log")
     rfdb_file = os.path.join(latest_dir, "RFDatabase.xml")
@@ -330,6 +424,17 @@ def rf_post_run_process(sequence_dir, rapid_fire_data_dir, mh_splitter_exe, pnnl
 
 @flow(task_runner = SequentialTaskRunner(), name = "skyline_analysis")
 def skyline(sequence_dir, skyline_exe, sky_imsdb_file, sky_document_file, transition_list_file, sky_report_file):
+    """
+    Runs Skyline data analysis
+
+            Parameters:
+                    sequence_dir (str): Path to sequence directory
+                    skyline_exe (str): Path to Skyline command line executable
+                    sky_imsdb_file (str): Path to Skyline ion mobility database (.imsdb) file
+                    sky_document_file (str): Path to Skyline template document (.sky) file
+                    transition_list_file (str): Path to target metabolite transition list file
+                    sky_report_file (str): Path to Skyline report output template (.skyr) file
+    """
     skyline_dir = os.path.join(sequence_dir, "skyline_files")
     os.makedirs(skyline_dir, exist_ok = True)
     injection_dir = os.path.join(sequence_dir, 'injections')
@@ -362,6 +467,12 @@ def skyline(sequence_dir, skyline_exe, sky_imsdb_file, sky_document_file, transi
 
 
 def get_args():
+    """
+    Helper function for initializing arguments on command line invocation
+
+            Returns:
+                args (Namespace): Parameter arguments
+    """
     parser = argparse.ArgumentParser()
     parser.add_argument('--input_excel_file', required = True)
     parser.add_argument('--output_dir', required = True)
@@ -384,14 +495,13 @@ def get_args():
     args.sky_report_file = "D:\\gkreder\\RapidSky\\report_templates\\MoleculeReportShort.skyr"
     return(args)
 
-
-
-@flow(task_runner = SequentialTaskRunner())
-def test_seqs(sequence_dir, rfbat_file, rfcfg_file, rfmap_file):
-    print(sequence_dir, rfbat_file, rfcfg_file, rfmap_file)
-
 @flow(task_runner = SequentialTaskRunner())
 def main_flow(args):
+    """
+    The main workflow, calling the various sub-flows for running preparing files, running experiments, processing data, then performing analysis.
+    Sequences are run experimentally in the order in which they appear in the input experiment definition file. Data from all sequences is collected before
+    any data processing. 
+    """
     test = args.test
     check_string = '''Running in live mode. Please ensure
     (1) MH Acq is set to autoLayout
@@ -403,18 +513,15 @@ def main_flow(args):
     '''
     if not test:
         input(check_string)
-    
-    cal_runtime = 15
-    sequence_files = rfbat_prep(args.input_excel_file, args.output_dir, args.msconvert_exe, args.tuneIons_file, cal_runtime = cal_runtime, test = test).result()
+    sequence_files = rfbat_prep(args.input_excel_file, args.output_dir).result()
     rf_data_dirs = []
     for sequence_dir, rfbat_file, rfcfg_file, rfmap_file in sequence_files:
-        sequence_rf_data_dir = rf_plate_run(sequence_dir, rfbat_file, rfcfg_file, args.start_mh_rf_path, args.rapid_fire_data_dir, test = test).result()
+        sequence_rf_data_dir = rf_plate_run(rfbat_file, rfcfg_file, args.start_mh_rf_path, args.rapid_fire_data_dir, test = test).result()
         rf_data_dirs.append(sequence_rf_data_dir)
     for i_seq, (sequence_dir, rfbat_file, rfcfg_file, rfmap_file) in enumerate(sequence_files):
         demultiplexed_files = rf_post_run_process(sequence_dir, args.rapid_fire_data_dir, args.mh_splitter_exe, args.pnnl_path)
         copy_ccs_pairs = rf_post_run_calibration(sequence_dir, demultiplexed_files, args.input_excel_file, args.tuneIons_file, args.msconvert_exe)
         skyline_res = skyline(sequence_dir, args.skyline_exe, args.sky_imsdb_file, args.sky_document_file, args.transition_list_file, args.sky_report_file)
-
 
 if __name__ == "__main__":
     args = get_args()
