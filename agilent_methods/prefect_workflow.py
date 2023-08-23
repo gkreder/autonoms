@@ -13,8 +13,8 @@ import sys
 import subprocess
 import time
 from datetime import datetime
-from RapidSky.splitterExtract import get_splits
-from RapidSky.CCSCal import ccs_cal
+from splitterExtract import get_splits
+from CCSCal import ccs_cal
 import pandas as pd
 import argparse
 
