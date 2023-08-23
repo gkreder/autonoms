@@ -12,6 +12,17 @@ import shutil
 
 
 def initialize_app(search_str = "Agilent MassHunter Workstation Data Acquisition", backend = 'uia'):
+    """
+    Finds the (open) MassHunter Acquisition application and returns its handles
+
+            Parameters:
+                    search_str (str): Identifying application text to search for
+                    backend (str): pywinauto backend to use
+
+            Returns:
+                    app : pywinauto application corresponding to MassHunter Workstation Data Acquisition
+                    window : pywinauto window corresponding to MassHunter Workstation Data Acquisition
+    """
     app = Application(backend = backend).connect(title_re = f".*{search_str}")
     window = app.window(title_re = f".*{search_str}")
     if not window:
@@ -132,15 +143,25 @@ def move_file(filename, output_name):
     # shutil.move(filename, output_name)
 
 
-# output_d_file can be the entire path
 def run_calibration_B(ms_method_name, output_d_filename_full, sample_name = "CalB", runtime = 30, manual_stop = True, overwrite = True, timeout_seconds = 900):
+    """
+    Runs calibrant line B using the specified MS method acquisition parameters and saves the output
+
+            Parameters:
+                    ms_method_name (str): Path to .m file for the MS acquisition method
+                    output_d_filename_full (str): Path to output .d file
+                    sample_name (str) : Sample name in metadata entry
+                    runtime (float) : Acquisition time (in seconds) 
+                    manual_stop (bool) : If true, leave to the user to close dialog boxes after run has stopped
+                    overwrite (bool) : If true, overwrite existing output file
+                    timeout_seconds (float) : Allowed wait time for instrument to reach ready and idle states
+    """
     app, window = initialize_app()
     if os.path.exists(output_d_filename_full):
         if overwrite:
             print(f"file {output_d_filename_full} exists, removing to overwrite")
             os.chmod(output_d_filename_full, 0o777)
             shutil.rmtree(output_d_filename_full)
-            # os.remove(output_d_filename_full)
         else:
             sys.exit(f"file {output_d_filename_full} exists, please set overwrite to True and re-run to continue")
 
@@ -174,11 +195,6 @@ def run_calibration_B(ms_method_name, output_d_filename_full, sample_name = "Cal
             ok_button.click_input()
         wait_for_state(window, "idle", timeout_seconds = timeout_seconds)
 
-    # UNCOMMENT THESE
     wait_for_state(window, 'idle', timeout_seconds = timeout_seconds)
     if agilent_output_file != output_d_filename_full:
         move_file(agilent_output_file, output_d_filename_full)
-
-
-
-#  run_calibration_B("2023-03-02_dodd_4Bit_POS_calB.m", os.path.join("D:\\", "gkreder", "2023-03-02_dodd_4Bit_POS_calB.d"))

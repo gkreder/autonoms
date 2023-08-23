@@ -166,12 +166,22 @@ def get_cal_method_xlsx(in_xlsx, sequence_name, sample_sheet = "samples"):
 
 
 def get_cal_method_rfbat(rfbat_file):
+    """
+    For a given .rfbat file, finds the .m file corresponding the 6560 acquisition parameters to be used for a calibrant line run
+
+            Parameters:
+                    rfbat_file (str): Path to .rfbat file
+
+            Returns:
+                    calibration_method_text (str): Path to .m file corresponding to 6560 acquisition parameters
+    """
     tree = ET.parse(rfbat_file)
     root = tree.getroot()
     for sequence in root.findall(".//Sequence"):
         calibration_method = sequence.find("CalibrationMethod")
         if calibration_method is not None:
-            return calibration_method.text
+            calibration_method_text = calibration_method.text
+            return(calibration_method_text)
     if not calibration_method:
         sys.exit(f'Error - couldnt find an IM calibration method element in file {rfbat_file}')
     return None

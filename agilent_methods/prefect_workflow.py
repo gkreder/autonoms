@@ -1,29 +1,37 @@
-from prefect import flow, task, get_run_logger, pause_flow_run
-import utils_plates as pu
-import utils_6560 as msu
-import utils_rapidFire as rfu
+################################################################################################
+# gk@reder.io
+################################################################################################
 import os
 import glob
 import shutil
-from prefect.client import get_client
-import asyncio
-from prefect.task_runners import SequentialTaskRunner
 import rpyc
 import sys
 import subprocess
-import time
-from datetime import datetime
-from splitterExtract import get_splits
-from CCSCal import ccs_cal
 import pandas as pd
 import argparse
-
+from prefect import flow, task
+from prefect.client import get_client
+from prefect.task_runners import SequentialTaskRunner
+import utils_plates as pu
+import utils_6560 as msu
+import utils_rapidFire as rfu
+from splitterExtract import get_splits
+from CCSCal import ccs_cal
 ################################################################################################
-# Tasks
+# Prefect Tasks
 ################################################################################################
-
 @task
 def create_rf_sequences(input_excel_file, output_dir):
+    """
+    Creates instrument files and output directories given experiment definition file
+
+            Parameters:
+                    input_excel_file (str): Input .xlsx file following experiment definition template
+                    output_dir (str): Desired top output directory
+
+            Returns:
+                    out_files (list): A list of tuples where each tuple corresponds to a sequence in the original input_excel_file
+    """
     sequence_files = pu.create_sequences(input_excel_file, output_dir)
     out_files = []
     rfbat_files = []
@@ -41,14 +49,20 @@ def create_rf_sequences(input_excel_file, output_dir):
         rfbat_files.append(rfbat_filename_full)
         sequence_dirs.append(sequence_dir)
         out_files.append((sequence_dir, rfbat_filename_full, rfcfg_filename_full, rfmap_filename_full))
-    # rfbat_files = glob.glob(f"{output_dir}/*.rfbat")
-    # return((rfbat_files, sequence_dirs))
     return(out_files)
 
 @task(tags = ["instrument_run"], timeout_seconds = 100000000)
-def run_calibration(seq_files_tuple, output_dir, test = False):
-    # sequence_name = os.path.basename(rfbat_file).replace('.rfbat', '')
-    # sequence_dir = os.path.join(output_dir, sequence_name) 
+def run_calibration(seq_files_tuple, test = False):
+    """
+    Runs a Calibrant line (bottle B) run on the 6560 and saves the output
+
+            Parameters:
+                    seq_files_tuple (tuple): A tuple for a given experimental sequence consisting of (sequence_dir, rfbat_filename_full, rfcfg_filename_full, rfmap_filename_full)
+                    test (bool): Run in test mode
+
+            Returns:
+                    output_calibration_file (str): Path to the resulting .d file produced from calibrant run
+    """
     sequence_dir = seq_files_tuple[0]
     sequence_name = os.path.basename(sequence_dir)
     rfbat_file = seq_files_tuple[1]
@@ -59,16 +73,27 @@ def run_calibration(seq_files_tuple, output_dir, test = False):
         msu.run_calibration_B(ms_cal_method, output_calibration_file, manual_stop = True)
     else:
         print('TEST MODE')
-        # with open(output_calibration_file, 'w') as f:
-            # print(f"test of {ms_cal_method}", file = f)
     print(f'Calibration for method {ms_cal_method} ran and saved to {output_calibration_file}')
-    # print(ms_cal_method)
     return(output_calibration_file)
  
 
-
 @task(tags = ['pnnl'])
 def demultiplex(d_file, pnnl_exe_path, overwrite = True, test = False, demux_MA = 3, demux_mInt = 20, demux_min_percent = 97):
+    """
+    Runs IM-MS .d file demultiplexing using PNNL Preprocessor
+
+            Parameters:
+                    d_file (str): Path to input multiplexed .d file
+                    pnnl_exe_path (str): Local path to PNNL Preprocessor executable
+                    overwrite (bool): Overwrite existing demultiplexed output
+                    test (bool): Run in test mode
+                    demux_MA (int): Corresponds to PNNL -demuxMA flag, demultiplexing frame moving average window (must be positive odd number)
+                    demux_mInt (int): Corresponds to PNNL -mInt flag, Minimum intensity threshold for smoothing (must be >= 0)
+                    demux_min_percent (float): Corresponds to PNNL -demuxSignal flag, minimum percentage of signal points required for inclusion in demultiplexed data (must be within range [50-100])
+
+            Returns:
+                    oname_final (str): Path to the resulting demultiplexed .d file
+    """
     d_file_prefix = os.path.basename(d_file).lower().replace(".d", "")
     d_file_dir = os.path.dirname(d_file)
     temp_out_dir = os.path.join(d_file_dir, f"{d_file_prefix}_temp_pnnl")
@@ -98,10 +123,19 @@ def demultiplex(d_file, pnnl_exe_path, overwrite = True, test = False, demux_MA 
     os.rename(oname, oname_final)
     return(oname_final)
 
-
-
 @task(tags = ['pnnl'])
 def ccs_calibration(mzml_file, d_file, tuneIons_file):
+    """
+    Run CCS calibration given input standards ion file (.mzML), data file (.d), and known CCS values of standards
+
+            Parameters:
+                    mzml_file (str): Path to .mzML IM-MS file containing standards to calibrate with
+                    d_file (str): Path to .d file containing experimental injection to CCS calibrate
+                    tuneIons_file (str): Path to .csv file containing standards' m/z values and CCS values
+
+            Returns:
+                    ccs_override_string (str): The string content of the xml IM-MS CCS calibration file required for .d file calibration
+    """
     print(f"Running CCS calibration on file {mzml_file} with output file {d_file}")
     print(f"tune ions file is {tuneIons_file}")
     ccs_override_string = ccs_cal(mzml_file, tuneIons_file)
@@ -113,23 +147,39 @@ def ccs_calibration(mzml_file, d_file, tuneIons_file):
 
 @task(tags = ['pnnl'])
 def copy_ccs_calibration(uncalibrated_d_file, calibrated_d_file):
+    """
+    Copies the CCS calibration file from one .d file to another
+
+            Parameters:
+                    uncalibrated_d_file (str): Path to .d file to be calibrated
+                    calibrated_d_file (str): Path to .d file containing IM-MS calibration file
+    """
     print(f"Copying ccs calibration file from {calibrated_d_file} to {uncalibrated_d_file}")
     ccs_cal_file = os.path.join(calibrated_d_file, "AcqData", "OverrideImsCal.xml")
     copy_dir = os.path.join(uncalibrated_d_file, "AcqData")
     shutil.copy2(ccs_cal_file, copy_dir)
 
-@task
-def remote_call(function_name, *args, **kwargs):
-    conn = rpyc.connect("192.168.254.2", 18861)
-    remote_function = conn.root.call_function
-    result = remote_function(function_name, *args ,**kwargs)
-    # fn = conn.teleport(rfu.initialize_app)
-    # result = fn()
-    conn.close()
-    return(result)
+# @task
+# def remote_call(function_name, *args, **kwargs):
+#     conn = rpyc.connect("192.168.254.2", 18861)
+#     remote_function = conn.root.call_function
+#     result = remote_function(function_name, *args ,**kwargs)
+#     conn.close()
+#     return(result)
 
 @task(timeout_seconds = 100000, tags = ["instrument_run"])
 def rf_call(rf_ip, rf_function, rf_port = 18861, *args,  **kwargs):
+    """
+    Calls a function from the utils_rapidFire module using the rpyc server running on the RapidFire computer. Function will be executed on the RapidFire computer itself
+
+            Parameters:
+                    rf_ip (str): IP address of the RapidFire computer on the local network
+                    rf_function (str): Name of function from utils_rapidFire to call. Function arguments passed through *args and **kwargs
+                    rf_port (int): Port number on which the rpyc server is accessible 
+
+            Returns:
+                    result: Result from function call
+    """
     rpyc_configs = {"sync_request_timeout" : 10000}
     connection = rpyc.connect(rf_ip, rf_port, config = rpyc_configs)
     try:
@@ -141,6 +191,12 @@ def rf_call(rf_ip, rf_function, rf_port = 18861, *args,  **kwargs):
  
 @task
 def start_rf_ms_connection(start_mh_rf_path):
+    """
+    Ensures the 6560 and RapidFire are connected to each other for data acquisition using the Agilent connection executable
+
+            Parameters:
+                    start_mh_rf_path (str): Path to Agilent 6560-RF connection executable
+    """
     print("Starting mh_rf connection...")
     print(start_mh_rf_path)
     print("")
@@ -187,14 +243,11 @@ def nearest_tune(df_sequence, well_file):
                 sys.exit(f"Error - couldnt find a tune well for well {row['Well']}")
             pairs.append((row['Well'], last_tune_well))
     pairs = [tuple(well_file[y] for y in x) for x in pairs]
-    # pairs = list(zip(*pairs))
     return pairs
 
-
 ##################################################################################################
-# Flows
+# Prefect Flows
 ##################################################################################################
-
 @flow(task_runner = SequentialTaskRunner(), name = "rf_post_run_calibration")
 def rf_post_run_calibration(sequence_dir, demultiplexed_files, input_excel_file, tuneIons_file, msconvert_exe):
     sequence_name = os.path.basename(sequence_dir)
@@ -221,7 +274,6 @@ def rf_post_run_calibration(sequence_dir, demultiplexed_files, input_excel_file,
 
 @flow(task_runner=SequentialTaskRunner(), name = "rfbat_prep", timeout_seconds = 100000000)
 def rfbat_prep(input_excel_file, output_dir, msconvert_exe, tuneIons_file, cal_runtime = 45, test = False):
-    # print(get_client())
     client = get_client()
     client.create_concurrency_limit(tag = "instrument_run", concurrency_limit = 1)
     client.create_concurrency_limit(tag = "pnnl", concurrency_limit = 4)
@@ -235,11 +287,9 @@ def rf_plate_run(sequence_dir, rfbat_file, rfcfg_file, start_mh_rf_path, rapid_f
     client.create_concurrency_limit(tag = "pnnl", concurrency_limit = 4)
     rf_ip = "192.168.254.2"
     rf_function = "remote_run_rfbat"
-    # sequence_dir_rf = sequence_dir
     rfbat_file_rf = rfbat_file
     rfcfg_file_rf = rfcfg_file
     for old_s, new_s in path_convert.items():
-        # sequence_dir_rf = sequence_dir_rf.replace(old_s, new_s)
         rfbat_file_rf = rfbat_file_rf.replace(old_s, new_s)
         rfcfg_file_rf = rfcfg_file_rf.replace(old_s, new_s)
     result = start_rf_ms_connection.submit(start_mh_rf_path)
@@ -247,14 +297,6 @@ def rf_plate_run(sequence_dir, rfbat_file, rfcfg_file, start_mh_rf_path, rapid_f
     result = rf_call.submit(rf_ip, rf_function, test = test, rfcfg_file = rfcfg_file_rf, rfbat_file = rfbat_file_rf, rf_base_data_dir = rapid_fire_data_dir, timeout_seconds = 10000)
     result.wait()    
     return(result)
-
-# task(tags = ['instrument_run'])
-# def rf_split(rf_data_dir, test = False):
-#     rf_ip = "192.168.254.2"
-#     rf_function = "remote_file_split"
-#     result = rf_call.submit(rf_ip, rf_function, test = test, data_dir = rf_data_dir, timeout_seconds = 10000)
-#     result.wait()
-#     return(0)
 
 @flow(task_runner = SequentialTaskRunner(), name = "rf_post_run_process")
 def rf_post_run_process(sequence_dir, rapid_fire_data_dir, mh_splitter_exe, pnnl_exe):
@@ -265,15 +307,12 @@ def rf_post_run_process(sequence_dir, rapid_fire_data_dir, mh_splitter_exe, pnnl
     latest_dir_rf = latest_dir.replace("D:\\", "M:\\")
     rf_ip = "192.168.254.2"
     remote_file_split_result = rf_call.submit(rf_ip, "remote_file_split", data_dir = latest_dir_rf, timeout_seconds = 100000).wait().result()
-    # result.wait().result()
     splitter_file = os.path.join(latest_dir, "RFFileSplitter.log")
     rfdb_file = os.path.join(latest_dir, "RFDatabase.xml")
     sequence_file = os.path.join(latest_dir, "sequence1.d")
     sequence_file_moved = os.path.join(sequence_dir, "sequence1.d")
     for rf_file in ['batch.log', 'batch.rftime', 'platemap.tofmap.txt', 'RFDatabase.xml']:
         original_file = os.path.join(latest_dir, rf_file)
-        # copy_file = os.path.join(sequence_dir, rf_file)
-        # sys.exit((os.path.exists(original_file), original_file, copy_file))
         shutil.copy2(original_file, sequence_dir)
     if os.path.exists(sequence_file_moved):
         shutil.rmtree(sequence_file_moved)
@@ -281,7 +320,6 @@ def rf_post_run_process(sequence_dir, rapid_fire_data_dir, mh_splitter_exe, pnnl
     splits = get_splits(splitter_file, rfdb_file, sequence_file)
     injections_dir = os.path.join(sequence_dir, 'injections')
     os.makedirs(injections_dir, exist_ok = True)
-    # print(splitter_file, rfdb_file, sequence_file)
     split_d_files = split_d_file.map(splits, latest_dir, injections_dir, mh_splitter_exe)
     demultiplexed_files = demultiplex.map(split_d_files, pnnl_exe)
     _ = rm_tree.map(split_d_files)
@@ -294,27 +332,20 @@ def rf_post_run_process(sequence_dir, rapid_fire_data_dir, mh_splitter_exe, pnnl
 def skyline(sequence_dir, skyline_exe, sky_imsdb_file, sky_document_file, transition_list_file, sky_report_file):
     skyline_dir = os.path.join(sequence_dir, "skyline_files")
     os.makedirs(skyline_dir, exist_ok = True)
-    
     injection_dir = os.path.join(sequence_dir, 'injections')
 
     # Copy files and reassign variables
     shutil.copy2(sky_imsdb_file, skyline_dir)
     sky_imsdb_file = os.path.join(skyline_dir, os.path.basename(sky_imsdb_file))
-
     shutil.copy2(sky_document_file, skyline_dir)
     sky_document_file = os.path.join(skyline_dir, os.path.basename(sky_document_file))
-
     shutil.copy2(transition_list_file, skyline_dir)
     transition_list_file = os.path.join(skyline_dir, os.path.basename(transition_list_file))
-
     shutil.copy2(sky_report_file, skyline_dir)
     sky_report_file = os.path.join(skyline_dir, os.path.basename(sky_report_file))
-
     output_report_file = os.path.join(sequence_dir, "output_report.tsv")
     output_sky_file = os.path.join(sequence_dir, "skyline_results.sky")
-    # print(skyline_exe)
-    # sys.stdout.flush()
-    # print('\n\n\n')
+
     arg_list = [skyline_exe, f"--in={sky_document_file}", 
                 f"--import-transition-list={transition_list_file}",
                 f"--import-all-files={injection_dir}",
@@ -380,38 +411,12 @@ def main_flow(args):
         sequence_rf_data_dir = rf_plate_run(sequence_dir, rfbat_file, rfcfg_file, args.start_mh_rf_path, args.rapid_fire_data_dir, test = test).result()
         rf_data_dirs.append(sequence_rf_data_dir)
     for i_seq, (sequence_dir, rfbat_file, rfcfg_file, rfmap_file) in enumerate(sequence_files):
-        # rf_data_dir = rf_data_dirs[i_seq]
-        # res = rf_split(rf_data_dir)
-        # res.wait()
         demultiplexed_files = rf_post_run_process(sequence_dir, args.rapid_fire_data_dir, args.mh_splitter_exe, args.pnnl_path)
         copy_ccs_pairs = rf_post_run_calibration(sequence_dir, demultiplexed_files, args.input_excel_file, args.tuneIons_file, args.msconvert_exe)
-        # skyline_res = skyline(sequence_dir, skyline_exe, sky_imsdb_file, sky_document_file, transition_list_file, sky_report_file, wait_for = [copy_ccs_pairs])
         skyline_res = skyline(sequence_dir, args.skyline_exe, args.sky_imsdb_file, args.sky_document_file, args.transition_list_file, args.sky_report_file)
+
+
 if __name__ == "__main__":
     args = get_args()
     main_flow(args)
     
-
-
-
-# Currently unused, for possible usage of PsExec for remote starting of the rpyc server
-# @task
-# def psexec(psexec_path, remote_ip, remote_username, remote_password, command, **kwargs):
-#     # psexec_path = "C:\\PsTools\\PsExec.exe"
-#     # run_psexec_task = RunPsExec(psexec_path, rf_ip, rf_username, rf_pw, remote_script_path)
-#     # run_psexec_result = run_psexec_task()
-#     # command = f"cmd.exe /c \"{rf_condaActivate_path} {rf_conda_envName} && python {remote_script_path}\""
-#     # psexec(psexec_path, rf_ip, rf_username, rf_pw, command)
-#     # psexec_command = f"{psexec_path} \\\\{remote_ip} -u {remote_username} -p {remote_password} -accepteula -h -nobanner {command}"
-#     psexec_command = f"{psexec_path} \\\\{remote_ip} -d -i 1 -accepteula -h -nobanner {command}"
-#     print("psexec_command:")
-#     print(psexec_command)
-#     print("")
-#     os.system(psexec_command)
-
-
-# @flow(task_runner = SequentialTaskRunner(), name = "rf_test_workflow")
-# def rf_test_workflow():
-#     rf_ip = "192.168.254.2"
-#     rf_function = "remote_run_rfbat"
-#     rf_call.submit(rf_ip, rf_function, rfbat_file = "M:\\Projects\\Default\\Data\\Rapidfire\\batches\\RapidFireMaintenance.rfbat").wait(10000)

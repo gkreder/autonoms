@@ -30,28 +30,6 @@ def ccs_cal(inMZML, tuneIonsFile, tol = default_tol, bufferGasMass = default_but
     dfRef = pd.DataFrame(dfRef[dfRef['Precursor Charge'] * modeInt >= 1])
     print(f'...done, found {mode} mode data\n\n')
 
-    # print('Scraping tune ion values...')
-    # tas = []
-    # for m in dfRef['Precursor m/z'].values:
-    #     ss = deimos.locate(ms1, by=['mz'], loc=[m], tol=[tol], return_index=False)
-    #     # slice by mass
-    #     # l = m - tol
-    #     # h = m + tol
-    #     # ss = deimos.slice(ms1, by='mz', low = l, high = h)
-    #     # t = ms1[(ms1['mz'] - m).abs() <= tol]
-    #     qs = np.quantile(ss.intensity, q = [0, 0.1, 0.5, 0.7, 0.9])
-    #     q90 = qs[-1]
-    #     # ta = ss.loc[lambda x : x['intensity'] > q90].drift_time.mean()
-    #     ta = np.average(ss['drift_time'], weights = ss['intensity'])
-    #     print(m, ta)
-    #     tas.append(ta)
-
-    # print('...done')
-    # # Beta comes out negative for negative charged ions? If I flip the ccs values or the tas in negative mode I think it works...
-    # # ccs_cal = deimos.calibration.calibrate_ccs(mz = dfRef['Precursor m/z'], ccs = float(modeInt) * dfRef['CCS'], q = dfRef['Precursor Charge'], ta = tas, buffer_mass = bufferGasMass)
-    # ccs_cal = deimos.calibration.calibrate_ccs(mz = dfRef['Precursor m/z'], ccs = dfRef['CCS'], q = modeInt * dfRef['Precursor Charge'], ta = tas, buffer_mass = bufferGasMass)
-
-
     # Overriding the deimos tunemix function because I'm not sure they implemented slice correctedly with the mz_tol
     def tunemix(features, mz, ccs, q=[1, 1, 1, 1, 1, 1],
                 buffer_mass=bufferGasMass, mz_tol_ppm=None,
