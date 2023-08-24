@@ -6,10 +6,7 @@ from xml.dom import minidom
 import pandas as pd
 import sys
 import os
-import csv
 import xml.etree.ElementTree as ET
-import datetime
-from pathlib import Path
 ################################################################################################
 
 ################################################################################################

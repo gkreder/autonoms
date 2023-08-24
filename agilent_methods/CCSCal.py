@@ -2,7 +2,6 @@
 # gk@reder.io
 ################################################################################################
 import sys
-import os
 import argparse
 import deimos
 import pandas as pd

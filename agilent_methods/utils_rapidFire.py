@@ -11,7 +11,6 @@ if sys.platform.startswith('win'):
     from pywinauto.controls.uia_controls import UIAElementInfo
 import re
 import shutil
-import glob
 ################################################################################################
 # Functions for individual actions in the RapidFire UI
 ################################################################################################
