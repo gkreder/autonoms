@@ -5,25 +5,43 @@ import sys
 import os
 import time
 if sys.platform.startswith('win'):
+    # Import only if running on Windows
     from pywinauto import Application
     from pywinauto import Desktop
     from pywinauto.controls.uia_controls import UIAElementInfo
 import re
-import argparse
 import shutil
 import glob
-import xml.etree.ElementTree as ET
 import utils_plates as pu
 
+################################################################################################
+# Functions for individual actions in the RapidFire UI
+################################################################################################
+def initialize_app(search_str = "RapidFire :"):
+    """
+    Finds the (open) RapidFire UI application and returns its handles
 
-def initialize_app(start_str = "RapidFire :"):
+            Parameters:
+                    search_str (str): Identifying application text to search for
+
+            Returns:
+                    app: pywinauto application corresponding to RapidFire UI
+                    window: pywinauto window corresponding to RapidFire UI
+    """
     app = Application(backend = 'uia').connect(title_re = f".*RapidFire : .*")
-    window = app.window(title_re = f".*{start_str}.*")
+    window = app.window(title_re = f".*{search_str}.*")
     if not window:
         sys.exit("error - couldnt find RapidFire ui window")
     return(app, window)
 
 def load_rf_method(window, rfcfg_file):
+    """
+    Loads a RF method (.rfcfg)
+
+            Parameters:
+                window: pywinauto window corresponding to the RapidFire UI
+                rfcfg_file (str): Path to .rfcfg file (on RapidFire drive)
+    """
     # e.g. rfcfg_file = M:\\Projects\\Default\\Data\\Rapidfire\\methods\\BLAZE_B-C_5000_125.rfcfg
     file_menu_item = window.child_window(title ="File", control_type = "MenuItem")
     file_menu_item.set_focus()
@@ -42,6 +60,13 @@ def load_rf_method(window, rfcfg_file):
     open_button.click_input()
 
 def load_rf_batch(window, rfbat_file):
+    """
+    Loads a RF Batch (.rfbat)
+
+            Parameters:
+                window: pywinauto window corresponding to the RapidFire UI
+                rfbat_file (str): Path to .rfbat file (on RapidFire drive)
+    """
     # e.g. rfbat_file = '''M:\\Projects\\Default\\Data\\Rapidfire\\batches\\RapidFireMaintenance.rfbat'''
     file_menu_item = window.child_window(title ="File", control_type = "MenuItem")
     file_menu_item.set_focus()
@@ -62,6 +87,13 @@ def load_rf_batch(window, rfbat_file):
 
 
 def check_vac_pressure(window, level_check = -50):
+    """
+    Ensures the RF pump vacuum pressure is below a certain threshold level (meaning that the pump is on and functioning)
+
+            Parameters:
+                window: pywinauto window corresponding to the RapidFire UI
+                level_check (float): Pressure level (in kPa) above which error gets thrown (-60 kPa or below means pump is in good condition)
+    """
     vac_text = window.child_window(auto_id = "vacTxt")
     vac_pressure = float(vac_text.get_value())
     if vac_pressure > level_check:
@@ -69,6 +101,13 @@ def check_vac_pressure(window, level_check = -50):
 
 
 def open_log_view(window, app):
+    """
+    Opens the RapidFire System Log window
+
+            Parameters:
+                app: pywinauto application corresponding to RapidFire UI
+                window: pywinauto window corresponding to RapidFire UI
+    """
     system_tools_menu = window.child_window(title = "System Tools", control_type = "MenuItem")
     system_tools_menu.set_focus()
     system_tools_menu.click_input()
@@ -80,20 +119,39 @@ def open_log_view(window, app):
     return(log_window)
 
 def set_run_mode(window, mode):
+    """
+    Sets the RF run mode (between plates and sequences)
+
+            Parameters:
+                window: pywinauto window corresponding to RapidFire UI
+                mode (str): Desired run mode
+    """
     mode_d = {'Sequences' : "admeModeBtn", "Plates" : "htsModeBtn"}
     if mode not in mode_d.keys():
         sys.exit(f"error - mode {mode} not found in available modes")
     radio = window.child_window(auto_id = mode_d[mode])
     radio.set_focus()
-    # radio.click_input() # just setting focus activates the radio button
 
 def press_start_button(window):
-    # Press the start run button
+    """
+    Presses the start (run) button
+
+            Parameters:
+                window: pywinauto window corresponding to RapidFire UI
+    """
     run_button = window.child_window(auto_id = "runBtn")
     run_button.set_focus()
     run_button.click_input()
 
 def start_run(window, app, plate_timeout = 180):
+    """
+    Sets the RF run mode (between plates and sequences)
+
+            Parameters:
+                app: pywinauto application corresponding to RapidFire UI
+                window: pywinauto window corresponding to RapidFire UI
+                plate_timeout (float): Seconds to wait for plate run window to appear before erroring
+    """
     check_vac_pressure(window)
     press_start_button(window)
     plate_window = app.window(auto_id = "NewPlatePrompt")
@@ -109,6 +167,12 @@ def start_run(window, app, plate_timeout = 180):
 
 
 def stop_run(window):
+    """
+    Stops a run 
+
+            Parameters:
+                window: pywinauto window corresponding to RapidFire UI
+    """
     # Press the stop run botton and confirm run abortion
     stop_button = window.child_window(auto_id = "stopBtn")
     stop_button.set_focus()
@@ -120,6 +184,15 @@ def stop_run(window):
 
 
 def get_rf_output_dir(rf_cfg_file):
+    """
+    Checks the RapidFire output directory for a given RF configuration file
+
+            Parameters:
+                rf_cfg_file (str): Path to RF configuration file
+            
+            Returns:
+                sd (str): Path to the RF data output directory
+    """
     with open(rf_cfg_file, 'r') as f:
         lines = f.read()
     sd = [x for x in re.findall(r'.*SHARED_DATA_DIRECTORY.*', lines) if not x.startswith('//')]
@@ -130,6 +203,17 @@ def get_rf_output_dir(rf_cfg_file):
 
 
 def find_newest_rftime_dir(base_dir, min_depth = 4, max_depth=4):
+    """
+    Given a base RF directory to search, finds the directory containing the newest batch.rftime file
+
+            Parameters:
+                base_dir (str): Path to base directory to search
+                min_depth (int): Minimum searching depth
+                max_depth (int): Maximum searching depth
+            
+            Returns:
+                newest_dir (str): Directory name of the directory containing the newest batch.rftime file
+    """
     newest_rftime = None
     newest_rftime_path = None
 
@@ -155,12 +239,29 @@ def find_newest_rftime_dir(base_dir, min_depth = 4, max_depth=4):
 
 
 def find_latest_data_dir(rf_cfg_file):
+    """
+    Given a RF configuration file, finds the directory containing the newest batch.rftime file within the configuration's output directory
+
+            Parameters:
+                rf_cfg_file (str): Path to RF configuration file
+            
+            Returns:
+                newest_dir (str): Name of directory containing newest batch.rftime file
+    """
     rf_data_dir = get_rf_output_dir(rf_cfg_file)
     newest_dir = find_newest_rftime_dir(rf_data_dir)
     return(newest_dir)
 
 
 def copy_last_run_output(out_dir, rf_cfg_file, overwrite = True):
+    """
+    Copies the newest RF run data to a new directory
+
+            Parameters:
+                out_dir (str): Path to output directory
+                rf_cfg_file (str): Path to RF configuration file
+                overwrite (bool): Overwrite existing files
+    """
     rf_data_dir = find_latest_data_dir(rf_cfg_file)
     if os.path.exists(out_dir):
         if overwrite:
@@ -176,6 +277,17 @@ def copy_last_run_output(out_dir, rf_cfg_file, overwrite = True):
 
 
 def open_splitter_view(window, app):
+    """
+    Opens the file splitter dialogue in the RF UI
+
+            Parameters: 
+                app: pywinauto application corresponding to RapidFire UI
+                window: pywinauto window corresponding to RapidFire UI
+            
+            Returns:
+                splitter_window: pywinauto window corresponding to the file splitter dialogue
+                window: pywinauto window corresponding to RapidFire UI
+    """
     file_menu_item = window.child_window(title = "File", control_type = "MenuItem")
     file_menu_item.set_focus()
     file_menu_item.click_input()
@@ -189,7 +301,14 @@ def open_splitter_view(window, app):
     return(splitter_window)
 
 def set_splitter_autoconvert(splitter_window, state):
-    if state not in [0, 1, True, False]:
+    """
+    Sets the file splitter dialogue state for the auto conversion option
+
+            Parameters:
+                splitter_window: pywinauto window corresponding to the file splitter dialogue
+                state (bool): auto conversion state
+    """
+    if state not in [True, False]:
         sys.exit(f"Error unrecognized auto split state {state}")
     state = int(state)
     autoconvert_button = [x for x in splitter_window.children() if x.automation_id() == "autoConvertCheckBox"][0]
@@ -198,12 +317,15 @@ def set_splitter_autoconvert(splitter_window, state):
     return(0)
 
 
-def run_split(splitter_window, split_dir, multiple_injections = True, path_convert = None):
-    if path_convert:
-        sys.exit(path_convert)
-        for old_s, new_s in path_convert.items():
-            split_dir = split_dir.replace(old_s, new_s)
-            # rfbat_file = rfbat_file.replace(old_s, new_s)
+def run_split(splitter_window, split_dir, multiple_injections = True):
+    """
+    Runs file splitting through the file splitter dialogue
+
+            Parameters:
+                splitter_window: pywinauto window corresponding to the file splitter dialogue
+                split_dir: Path to directory containing RF sequence output to split. Output split files will be placed here as well
+                multiple_injections (bool): Run multiple splits at once in parallel
+    """
 
     data_path_box = [x for x in splitter_window.children() if x.automation_id() == "dataPathTextBox"][0]
     data_path_box.set_focus()
@@ -225,23 +347,23 @@ def run_split(splitter_window, split_dir, multiple_injections = True, path_conve
     convert_button.click_input()
     return(0)
 
-
-
-################################################################################
-# Single call workflows for remote calls
-################################################################################
-
-
-def remote_startup():
-    app, window = initialize_app()
-    open_log_view(window, app)
-
-def remote_touch_app():
-    app, window = initialize_app()
-    open_log_view(window, app)
-    window.set_focus()
-
+################################################################################################
+# Multi-step workflows
+################################################################################################
 def remote_run_rfbat(test = False, *args, **kwargs):
+    """
+    Runs a sequence on the RF
+
+            Parameters:
+                test (bool): Run in test mode
+                **rf_base_data_dir (str): Path to RF base data dir
+                **rfcfg_file (str): Path to RF .rfcfg method file
+                **rfbat_file (str): Path to RF .rfbat batch file
+                **timeout_seconds (float): Seconds to wait before erroring
+            
+            Returns:
+                data_dir (str): Path to directory containing run output files
+    """
     if test:
         data_dir = pu.find_latest_dir(kwargs['rf_base_data_dir'], path_convert={"D:\\" : "M:\\"})
         return(data_dir)
@@ -251,7 +373,6 @@ def remote_run_rfbat(test = False, *args, **kwargs):
     splitter_window = open_splitter_view(window, app)
     set_splitter_autoconvert(splitter_window, False)
     set_run_mode(window, "Sequences")
-    # rfcfg_file = plate_map.get_rfcfg_file_rfbat(*args, **kwargs)
     load_rf_method(window, kwargs['rfcfg_file'])
     load_rf_batch(window, kwargs['rfbat_file'])
     if not test:
@@ -275,17 +396,22 @@ def remote_run_rfbat(test = False, *args, **kwargs):
     return(data_dir)
 
 def remote_file_split(test = False, *args, **kwargs):
+    """
+    Runs file splitting through the file splitter dialogue
+
+            Parameters:
+                test (bool): Run in test mode
+                **data_dir (str): Path to RF directory containing run output files
+                **timeout_seconds (float): Seconds to wait before erroring
+    """
     data_dir = kwargs['data_dir']
     app, window = initialize_app()
     splitter_window = open_splitter_view(window, app)
     set_splitter_autoconvert(splitter_window, False)
     run_split(splitter_window, split_dir = data_dir)
-    # rf_splitter_log = os.path.join(data_dir, "RFFileSplitter.log")
-    # splitter_lines = ""
     progress_text = [x for x in splitter_window.children() if x.automation_id() == "exportProgressLabel"][0]
     print(f"Waiting fo rfile splitting to start...")
     start_time = time.time()
-    # while not os.path.exists(rf_splitter_log) and ( (time.time() - start_time) < kwargs['timeout_seconds']):
     while ( "plate" not in [x.lower() for x in progress_text.texts()] ) and ( "Completed Successfully" not in progress_text.texts() ) and ( (time.time() - start_time) < kwargs['timeout_seconds']):
         time.sleep(1)
     print(f"..monitoring splitter progress...")
@@ -293,7 +419,4 @@ def remote_file_split(test = False, *args, **kwargs):
         time.sleep(1)
     return(0)
     
-def test_fun(*args, **kwargs):
-    app, window = initialize_app()
-    load_rf_batch(window, *args, **kwargs)
 

@@ -181,7 +181,7 @@ def stop_sample_run(window):
         ok_button.click_input()
 
 ################################################################################################
-# Multi-step complete workflows
+# Multi-step workflows
 ################################################################################################
 def run_calibration_B(ms_method_name, output_d_filename_full, sample_name = "CalB", runtime = 30, manual_stop = True, overwrite = True, timeout_seconds = 900):
     """
