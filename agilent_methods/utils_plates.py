@@ -1,3 +1,6 @@
+################################################################################################
+# gk@reder.io
+################################################################################################
 import xml.etree.ElementTree as ET
 from xml.dom import minidom
 import pandas as pd
@@ -7,47 +10,63 @@ import csv
 import xml.etree.ElementTree as ET
 import datetime
 from pathlib import Path
+################################################################################################
 
-def read_tsv(file_path):
-    with open(file_path, "r") as tsv_file:
-        tsv_reader = csv.reader(tsv_file, delimiter='\t')
-        sequences = [row[0] for i_row, row in enumerate(tsv_reader) if i_row > 0]
-    return sequences
-
+################################################################################################
 def write_xml(xml_string, output_file, add_header = True):
+    """Writes xml string content to file
+    
+    :param xml_string: xml string content
+    :type xml_string: str
+    :param output_file: Path to output file
+    :type output_file: str
+    :param add_header: Add an xml header to string content before writing to file, defaults to True
+    :type add_header: bool, optional
+    """
     with open(output_file, 'wb') as output_xml:
         if add_header:
             output_xml.write(b'<?xml version="1.0" encoding="utf-8"?>\n')
         output_xml.write(xml_string)
 
 def create_rfmap_xml(sequences, output_file = None, plate_type="P384"):
+    """Creates RF rfmap xml string from list of experimental sequences
+    
+    :param sequences: List of sequence names one for each injection
+    :type sequences: list
+    :param output_file: In not None path to output file to write to, defaults to None
+    :type output_file: str, optional
+    :param plate_type: RF plate type value to use, must be already set in RF configs (via RapidFire UI), defaults to "P384"
+    :type plate_type: bool, optional
+    :return: rfmap xml string content
+    :rtype: str
+    """
     rf_plate_map = ET.Element("RFPlateMap")
     rf_plate_map.set("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance")
     rf_plate_map.set("xmlns:xsd", "http://www.w3.org/2001/XMLSchema")
-
     file_name = ET.SubElement(rf_plate_map, "FileName")
     if output_file:
         file_name.text = output_file
-
     plate_type_element = ET.SubElement(rf_plate_map, "PlateType")
     plate_type_element.text = plate_type
-
     sequences_element = ET.SubElement(rf_plate_map, "Sequences")
     array_of_string = ET.SubElement(sequences_element, "ArrayOfString")
-
     for seq in sequences:
         seq_element = ET.SubElement(array_of_string, "string")
         seq_element.text = seq
-
     xml_string = ET.tostring(rf_plate_map, encoding="utf-8", method="xml")
-
     if output_file:
         write_xml(xml_string, output_file, add_header = True)
-
     return(xml_string)
 
 
 def prettify(elem):
+    """Prepares an xml ElementTree in preparation for file writing
+
+    :param elem: xml ElementTree to prepare
+    :type elem: class: `xml.etree.ElementTree`
+    :return: Prepared xml string
+    :rtype: str
+    """
     rough_string = ET.tostring(elem, 'utf-8')
     reparsed = minidom.parseString(rough_string)
     pretty_xml = reparsed.toprettyxml(indent="  ", encoding="utf-8").decode('utf-8')
@@ -57,6 +76,25 @@ def prettify(elem):
 
 
 def create_rfbat_file(rfmap_filename, rfcfg_filename, rfbat_filename, ms_method, column_type, sequence_name, plate_name, cal_method):
+    """Creates a RF batch .rfbat file
+
+    :param rfmap_filename: Path to input RF .rfmap file
+    :type rfmap_filename: str
+    :param rfcfg_filename: Path to input RF method .rfcfg file
+    :type rfcfg_filename: str
+    :param rfbat_filename: Path to output RF batch .rfbat file
+    :type rfcfg_filename: str
+    :param ms_method: Path to input Agilent .m MS acquisition method file
+    :type ms_method: str
+    :param column_type: Column type for RF injection (note for BLAZE mode, can be any value without effect)
+    :type column_type: str
+    :param sequence_name: Name of experimental sequence
+    :type sequence_name: str
+    :param plate_name: Name of plate to use
+    :type plate_name: str
+    :param cal_method: Calibration method to write into the .rfbat file (will not affect anything at runtime but will be recorded in file for future use)
+    :type cal_method: str
+    """
     
     rfcfg_tree = ET.parse(rfcfg_filename)
     rfcfg_data = rfcfg_tree.getroot()
@@ -109,23 +147,38 @@ def create_rfbat_file(rfmap_filename, rfcfg_filename, rfbat_filename, ms_method,
         output_file.write(output)
 
 def get_set_val(g, key):
+    """Helper method for getting a dictionary value at key while checking all values in g[key] are the same
+
+    :param g: Input dictionary
+    :type g: dict
+    :param key: Key value
+    :type key: str
+    :return:
+    :rtype: object
+    """
     s = set(g[f'{key}'].values)
     if len(s) != 1:
-        sys.exit(f"Error, {key} set = {s}")
+        sys.exit(f"Error - all values should be identical for key {key}, but got value set = {s}")
     return(s.pop())
 
 def create_rfcfg_file(in_xlsx, out_rfcfg, sheet_name = "rf_params"):
+    """Creates a RF .rfcfg file from an input experiment definition file
+
+    :param in_xlsx: Path to input experiment definition file
+    :type in_xlsx: str
+    :param out_rfcfg: Path to output RF method .rfcfg file
+    :type out_rfcfg: str
+    :param sheet_name: Sheet name in in_xlsx corresponding to the RF method params, defaults to "rf_params"
+    :type sheet_name: str, optional
+    """
     types_d = {"CycleNames" : "string", "CycleDurations" : "int", 
                "Pump1Composition" : "double", "Pump2Composition" : "double", 
                "Pump3Composition" : "double" }
-
     df = pd.read_excel(in_xlsx, sheet_name = sheet_name)
-
     # Create the XML structure
     root = ET.Element("RFConfig")
     root.set("xmlns:xsi", "http://www.w3.org/2001/XMLSchema-instance")
     root.set("xmlns:xsd", "http://www.w3.org/2001/XMLSchema")
-
     bool_params = ["StandByAfterRun","UsePlateHandler","UseBcodeScanner",
                    "MSStandbyAfterRun","Pump1Active","Pump2Active",
                    "Pump3Active","Pump4Active"]
@@ -147,7 +200,6 @@ def create_rfcfg_file(in_xlsx, out_rfcfg, sheet_name = "rf_params"):
                 # elem = ET.SubElement(parent, "double" if "." in value else "int")
                 elem = ET.SubElement(parent, types_d[param])
                 elem.text = value
-
     # Generate the XML string
     xml_string = ET.tostring(root, encoding="utf-8", method="xml").decode("utf-8")
     xml_string = '<?xml version="1.0" encoding="utf-8"?>\n' + xml_string
@@ -156,6 +208,15 @@ def create_rfcfg_file(in_xlsx, out_rfcfg, sheet_name = "rf_params"):
         print(prettify(root), file = f)
 
 def get_cal_method_xlsx(in_xlsx, sequence_name, sample_sheet = "samples"):
+    """Gets the MS method name to use as the calibration method name from input experiment definition file
+
+    :param in_xlsx: Path to input experiment definition file
+    :type in_xlsx: str
+    :param sequence_name: Name of sequence in experiment definition file to check
+    :type sequence_name: str
+    :param sample_sheet: Sample sheet name to check in experiment definition file, default "samples"
+    :type sample_sheet: str, optional
+    """
     df = pd.read_excel(in_xlsx, sheet_name = sample_sheet)
     df = df[df['Sequence'] == sequence_name]
     ms_method = get_set_val(df, "6560_Method")
@@ -166,14 +227,12 @@ def get_cal_method_xlsx(in_xlsx, sequence_name, sample_sheet = "samples"):
 
 
 def get_cal_method_rfbat(rfbat_file):
-    """
-    For a given .rfbat file, finds the .m file corresponding the 6560 acquisition parameters to be used for a calibrant line run
+    """For a given .rfbat file, finds the .m file corresponding the 6560 acquisition parameters to be used for a calibrant line run
 
-            Parameters:
-                    rfbat_file (str): Path to .rfbat file
-
-            Returns:
-                    calibration_method_text (str): Path to .m file corresponding to 6560 acquisition parameters
+    :param rfbat_file: Path to .rfbat file
+    :type rfbat_file: str
+    :return: Path to .m file corresponding to 6560 acquisition parameters
+    :rtype: str
     """
     tree = ET.parse(rfbat_file)
     root = tree.getroot()
@@ -187,71 +246,36 @@ def get_cal_method_rfbat(rfbat_file):
     return None
 
 def get_rfcfg_file_rfbat(rfbat_file):
+    """Gets the name of the RF method .rfcfg file in a given batch .rfbat file
+
+    :param rfbat_file: Path to .rfbat file
+    :type rfbat_file: str
+    :return: .rfcfg file name
+    :rtype: str
+    """
     tree = ET.parse(rfbat_file)
     root = tree.getroot()
     for elem in root.findall(".//CFGFILE"):
         rfcfg_file = elem.find("FileName")
         if rfcfg_file is not None:
-            return(rfcfg_file.text)
+            rfcfg_file_output = rfcfg_file.txt
+            return(rfcfg_file_output)
     sys.exit(f"Error - could not find a rfcfg file in {rfbat_file}")
 
 
-def find_latest_dir(base_path, sequence_name = None, start_year = 2021, path_convert = None):
-    if path_convert:
-        for old_s, new_s in path_convert.items():
-            base_path = base_path.replace(old_s, new_s)
-
-    base_path = Path(base_path)
-    latest_dir = None
-    latest_date = None
-
-    months = ['January', 'February', 'March', 'April', 'May', 'June', 
-              'July', 'August', 'September', 'October', 'November', 'December']
-
-
-    for year in range(start_year, datetime.datetime.now().year+1):  # Adjust the range as needed
-        for month in range(0, 12):  # All possible months
-            for day in range(1, 32):  # All possible days
-                try:
-                    dir_path = base_path / str(year) / months[month] / str(day)
-                    if dir_path.exists() and dir_path.is_dir():
-                        dir_date = datetime.datetime(year, month, day)
-                        # Get a list of all directories in the date_path
-                        dir_list = [os.path.join(dir_path, d) for d in os.listdir(dir_path) if os.path.isdir(os.path.join(dir_path, d))]
-                        
-                        # Sort the directories by creation time
-                        dir_list.sort(key=lambda d: os.path.getmtime(d), reverse=True)
-                        if sequence_name:
-                            dir_list_temp = []
-                            for dir_temp in dir_list:
-                                # print(dir_temp)
-                                rfdb_file = os.path.join(dir_temp, "RFDatabase.xml")
-                                if not os.path.exists(rfdb_file):
-                                    continue
-                                with open(rfdb_file, 'r') as f:
-                                    lines = f.read()
-                                if f"Barcode>{sequence_name}<" in lines:
-                                    dir_list_temp.append(dir_temp)
-                            dir_list = dir_list_temp
-                        if len(dir_list) > 0:
-                            dir_newest = dir_list[0]
-                            mtime = os.path.getmtime(dir_newest)
-                            dir_modified = mtime
-                            if latest_date is None or dir_modified > latest_date:
-                                latest_dir = dir_newest
-                                latest_date = mtime
-                except ValueError:
-                    # Ignore invalid dates, like February 30
-                    pass
-    return latest_dir
-
-
-
-
-
 def create_sequences(in_xlsx, out_dir, sample_sheet = "samples", rf_sheet = "rf_params"):
+    """Takes input experiment definition file, creates RF instrument files and output directories
+
+    :param in_xlsx: Path to input experiment definition file
+    :type in_xlsx: str
+    :param out_dir: Path to experiment output directory
+    :type out_dir: str
+    :param sample_sheet: Name of sheet in experiment definition xlsx file containing sequences/injections, defaults to "samples"
+    :type sample_sheet: str, optional
+    :param rf_sheet: Name of sheet in experiment definition xlsx file containing RF method parameters, defaults to "rf_params"
+    :type rf_sheet: str, optional
+    """
     df = pd.read_excel(in_xlsx, sheet_name = sample_sheet)
-    # os.system(f"mkdir -p {out_dir}")
     os.makedirs(f"{out_dir}", exist_ok = True)
     sequence_files = []
     for sequence_name, g in df.groupby("Sequence", sort = False):

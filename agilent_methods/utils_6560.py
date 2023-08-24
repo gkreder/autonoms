@@ -14,16 +14,14 @@ import shutil
 # Functions for individual actions in the MassHunter Data Acquisition Program
 ################################################################################################
 def initialize_app(search_str = "Agilent MassHunter Workstation Data Acquisition", backend = 'uia'):
-    """
-    Finds the (open) MassHunter Acquisition application and returns its handles
+    """Finds the (open) MassHunter Acquisition application and returns its handles
 
-            Parameters:
-                    search_str (str): Identifying application text to search for
-                    backend (str): pywinauto backend to use
-
-            Returns:
-                    app: pywinauto application corresponding to MassHunter Workstation Data Acquisition
-                    window: pywinauto window corresponding to MassHunter Workstation Data Acquisition
+    :param search_str: Identifying application text to search for, defaults to "Agilent MassHunter Workstation Data Acquisition"
+    :type search_str: str, optional
+    :param backend: pywinauto backend to use, defaults to "uia"
+    :type backend: str, optional
+    :return: Respectively the pywinauto application and pywinauto window corresponding to MassHunter Workstation Data Acquisition
+    :rtype: tuple
     """
     app = Application(backend = backend).connect(title_re = f".*{search_str}")
     window = app.window(title_re = f".*{search_str}")
@@ -34,12 +32,12 @@ def initialize_app(search_str = "Agilent MassHunter Workstation Data Acquisition
 
 
 def open_ms_method(window, method_name):
-    """
-    Loads an MS acquisition method by name
+    """Loads an MS acquisition method by name
 
-            Parameters:
-                    window: pywinauto window corresponding to MassHunter Workstation Data Acquisition
-                    method_name (str): Acquisition method name
+    :param window: pywinauto window corresponding to MassHunter Workstation Data Acquisition
+    :type window: `pywinauto.application.WindowSpecification`
+    :param method_name: Acquisition method name
+    :type method_name: str
     """
 
     open_method = window.child_window(auto_id = "openMethodBtn")
@@ -57,16 +55,16 @@ def open_ms_method(window, method_name):
 
 
 def set_calibration_output(window, sample_name, out_d_file_name):
-    """
-    Sets the output filename of a single-sample instrument run
+    """Sets the output filename of a single-sample instrument run
 
-            Parameters:
-                window: pywinauto window corresponding to MassHunter Workstation Data Acquisition
-                sample_name (str): Output metadata sample name
-                out_d_file_name (str): Output .d file name
-            
-            Returns:
-                op (str): Full path to the output .d file
+    :param window: pywinauto window corresponding to MassHunter Workstation Data Acquisition
+    :type window: `pywinauto.application.WindowSpecification`
+    :param sample_name: Output metadata sample name
+    :type sample_name: str
+    :param out_d_file_name: Output .d file name
+    :type out_d_file_name: str
+    :return: Full path to the output .d file
+    :rtype: str
     """
     sample_name_box = window.child_window(auto_id = "txtSampleName")
     sample_name_box.set_focus()
@@ -88,14 +86,12 @@ def set_calibration_output(window, sample_name, out_d_file_name):
 
 
 def get_instrument_state(window):
-    """
-    Function for monitoring the 6560 instrument state in the main MH Data Acquisition Window
+    """Function for monitoring the 6560 instrument state in the main MH Data Acquisition Window
 
-            Parameters:
-                window: pywinauto window corresponding to MassHunter Workstation Data Acquisition
-            
-            Returns:
-                current_state (str): Instrument state
+    :param window: pywinauto window corresponding to MassHunter Workstation Data Acquisition
+    :type window: `pywinauto.application.WindowSpecification`
+    :return: Instrument state
+    :rtype: str
     """
     state_colors = {"idle" : '#FF75C335', 'not ready' : "#FFFFBA00", "run" : "#FF4780EA", "prerun" : '#FF5F4AC9'}
     colors_state = {v : k for k,v in state_colors.items()}
@@ -107,13 +103,14 @@ def get_instrument_state(window):
     return(current_state)
 
 def wait_for_state(window, state, timeout_seconds):
-    """
-    Waits for 6560 to reach a given state by monitoring the main MH Data Acquisition window
+    """Waits for 6560 to reach a given state by monitoring the main MH Data Acquisition window
 
-            Parameters:
-                window: pywinauto window corresponding to MassHunter Workstation Data Acquisition
-                state (str): Desired state
-                timeout_seconds (float): Seconds to wait for instrument to reach state before erroring
+    :param window: pywinauto window corresponding to MassHunter Workstation Data Acquisition
+    :type window: `pywinauto.application.WindowSpecification`
+    :param state: Desired state (one of ["idle", "not read", "run", "prerun"])
+    :type state: str
+    :param timeout_seconds: Seconds to wait for instrument to reach state before erroring
+    :type timeout_seconds: float
     """
     # Green (idle) = '#FF75C335'
     # Yellow (not ready) = "#FFFFBA00"
@@ -134,12 +131,12 @@ def wait_for_state(window, state, timeout_seconds):
     print(f"Instrument reached state {state}")
 
 def start_sample_run(window, overwrite = True):
-    """
-    Starts a single sample run
+    """Starts a single sample run
 
-            Parameters:
-                window: pywinauto window corresponding to MassHunter Workstation Data Acquisition
-                overwite (bool): Overwrite existing output file
+    :param window: pywinauto window corresponding to MassHunter Workstation Data Acquisition
+    :type window: `pywinauto.application.WindowSpecification`
+    :param overwite: Overwrite existing output file, defaults to True
+    :type overwite: bool, optional
     """
     sample_run_pane = window.child_window(auto_id = "toolStrip1")
     run_button = sample_run_pane.child_window(title = "Run")
@@ -159,11 +156,10 @@ def start_sample_run(window, overwrite = True):
         overwrite_button.click_input()
 
 def stop_sample_run(window):
-    """
-    Stops a running single sample run
+    """Stops a running single sample run
 
-            Parameters: 
-                window: pywinauto window corresponding to MassHunter Workstation Data Acquisition
+    :param window: pywinauto window corresponding to MassHunter Workstation Data Acquisition
+    :type window: `pywinauto.application.WindowSpecification`
     """
     sample_run_pane = window.child_window(auto_id = "toolStrip1")
     stop_button = sample_run_pane.child_window(title = "Stop")
@@ -180,21 +176,24 @@ def stop_sample_run(window):
         ok_button.set_focus()
         ok_button.click_input()
 
-################################################################################################
-# Multi-step workflows
-################################################################################################
-def run_calibration_B(ms_method_name, output_d_filename_full, sample_name = "CalB", runtime = 30, manual_stop = True, overwrite = True, timeout_seconds = 900):
-    """
-    Runs calibrant line B using the specified MS method acquisition parameters and saves the output
 
-            Parameters:
-                    ms_method_name (str): Path to .m file for the MS acquisition method
-                    output_d_filename_full (str): Path to output .d file
-                    sample_name (str) : Sample name in metadata entry
-                    runtime (float) : Acquisition time (in seconds) 
-                    manual_stop (bool) : If true, leave to the user to close dialog boxes after run has stopped
-                    overwrite (bool) : If true, overwrite existing output file
-                    timeout_seconds (float) : Allowed wait time for instrument to reach ready and idle states
+def run_calibration_B(ms_method_name, output_d_filename_full, sample_name = "CalB", runtime = 30, manual_stop = True, overwrite = True, timeout_seconds = 900):
+    """Runs calibrant line B using the specified MS method acquisition parameters and saves the output
+
+    :param ms_method_name: Path to .m file for the MS acquisition method
+    :type ms_method_name: str
+    :param output_d_filename_full: Path to output .d file
+    :type output_d_filename_full: str
+    :param sample_name: Sample name in metadata entry, defaults to "CalB"
+    :type sample_name: str, optional
+    :param runtime: Acquisition time (in seconds), defaults to 30
+    :type runtime: float, optional
+    :param manual_stop: If true, leave to the user to close dialog boxes after run has stopped, defaults to True
+    :type manual_stop: bool, optional
+    :param overwrite: If true, overwrite existing output file, defaults to True
+    :type overwrite: bool, optional
+    :param timeout_seconds: Allowed wait time for instrument to reach ready and idle states, defaults to 900
+    :type timeout_seconds: float, optional
     """
     app, window = initialize_app()
     if os.path.exists(output_d_filename_full):

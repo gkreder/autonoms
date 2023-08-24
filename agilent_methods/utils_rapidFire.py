@@ -12,21 +12,16 @@ if sys.platform.startswith('win'):
 import re
 import shutil
 import glob
-import utils_plates as pu
-
 ################################################################################################
 # Functions for individual actions in the RapidFire UI
 ################################################################################################
 def initialize_app(search_str = "RapidFire :"):
-    """
-    Finds the (open) RapidFire UI application and returns its handles
+    """Finds the (open) RapidFire UI application and returns its handles
 
-            Parameters:
-                    search_str (str): Identifying application text to search for
-
-            Returns:
-                    app: pywinauto application corresponding to RapidFire UI
-                    window: pywinauto window corresponding to RapidFire UI
+    :param search_str: Identifying application text to search for, defaults to "RapidFire :"
+    :type search_str: str, optional
+    :return: Respectively the pywinauto application and pywinauto window corresponding to RapidFire UI
+    :rtype: tuple
     """
     app = Application(backend = 'uia').connect(title_re = f".*RapidFire : .*")
     window = app.window(title_re = f".*{search_str}.*")
@@ -35,12 +30,10 @@ def initialize_app(search_str = "RapidFire :"):
     return(app, window)
 
 def load_rf_method(window, rfcfg_file):
-    """
-    Loads a RF method (.rfcfg)
+    """Loads a RF method (.rfcfg)
 
-            Parameters:
-                window: pywinauto window corresponding to the RapidFire UI
-                rfcfg_file (str): Path to .rfcfg file (on RapidFire drive)
+    :param window: pywinauto window corresponding to the RapidFire UI
+    :type window: `pywinauto.application.Application`
     """
     # e.g. rfcfg_file = M:\\Projects\\Default\\Data\\Rapidfire\\methods\\BLAZE_B-C_5000_125.rfcfg
     file_menu_item = window.child_window(title ="File", control_type = "MenuItem")
@@ -60,12 +53,12 @@ def load_rf_method(window, rfcfg_file):
     open_button.click_input()
 
 def load_rf_batch(window, rfbat_file):
-    """
-    Loads a RF Batch (.rfbat)
+    """Loads a RF Batch (.rfbat)
 
-            Parameters:
-                window: pywinauto window corresponding to the RapidFire UI
-                rfbat_file (str): Path to .rfbat file (on RapidFire drive)
+    :param window: pywinauto window corresponding to the RapidFire UI
+    :type window: `pywinauto.application.Application`
+    :param rfbat_file: Path to .rfbat file (on RapidFire drive)
+    :type rfbat_file: str
     """
     # e.g. rfbat_file = '''M:\\Projects\\Default\\Data\\Rapidfire\\batches\\RapidFireMaintenance.rfbat'''
     file_menu_item = window.child_window(title ="File", control_type = "MenuItem")
@@ -87,12 +80,12 @@ def load_rf_batch(window, rfbat_file):
 
 
 def check_vac_pressure(window, level_check = -50):
-    """
-    Ensures the RF pump vacuum pressure is below a certain threshold level (meaning that the pump is on and functioning)
+    """Ensures the RF pump vacuum pressure is below a certain threshold level (meaning that the pump is on and functioning)
 
-            Parameters:
-                window: pywinauto window corresponding to the RapidFire UI
-                level_check (float): Pressure level (in kPa) above which error gets thrown (-60 kPa or below means pump is in good condition)
+    :param window: pywinauto window corresponding to the RapidFire UI
+    :type window: `pywinauto.application.WindowSpecification`
+    :param level_check: Pressure level (in kPa) above which error gets thrown (-60 kPa or below means pump is in good condition), defaults to -50
+    :type level_check: float, optional
     """
     vac_text = window.child_window(auto_id = "vacTxt")
     vac_pressure = float(vac_text.get_value())
@@ -101,12 +94,14 @@ def check_vac_pressure(window, level_check = -50):
 
 
 def open_log_view(window, app):
-    """
-    Opens the RapidFire System Log window
+    """Opens the RapidFire System Log window
 
-            Parameters:
-                app: pywinauto application corresponding to RapidFire UI
-                window: pywinauto window corresponding to RapidFire UI
+    :param window: pywinauto window corresponding to RapidFire UI
+    :type window: `pywinauto.application.WindowSpecification`
+    :param app: pywinauto application corresponding to RapidFire UI
+    :type app: `pywinauto.application.Application`
+    :return: The pywinauto window object corresponding to the RF log window
+    :rtype: `pywinauto.Application.WindowSpecification`
     """
     system_tools_menu = window.child_window(title = "System Tools", control_type = "MenuItem")
     system_tools_menu.set_focus()
@@ -119,12 +114,12 @@ def open_log_view(window, app):
     return(log_window)
 
 def set_run_mode(window, mode):
-    """
-    Sets the RF run mode (between plates and sequences)
+    """Sets the RF run mode (between plates and sequences)
 
-            Parameters:
-                window: pywinauto window corresponding to RapidFire UI
-                mode (str): Desired run mode
+    :param window: pywinauto window corresponding to RapidFire UI
+    :type window: `pywinauto.Application.WindowSpecification`
+    :mode: Desired run mode
+    :type mode: str
     """
     mode_d = {'Sequences' : "admeModeBtn", "Plates" : "htsModeBtn"}
     if mode not in mode_d.keys():
@@ -133,24 +128,24 @@ def set_run_mode(window, mode):
     radio.set_focus()
 
 def press_start_button(window):
-    """
-    Presses the start (run) button
+    """Presses the start (run) button
 
-            Parameters:
-                window: pywinauto window corresponding to RapidFire UI
+    :param window: pywinauto window corresponding to RapidFire UI
+    :type window: `pywinauto.Application.WindowSpecification`
     """
     run_button = window.child_window(auto_id = "runBtn")
     run_button.set_focus()
     run_button.click_input()
 
 def start_run(window, app, plate_timeout = 180):
-    """
-    Sets the RF run mode (between plates and sequences)
-
-            Parameters:
-                app: pywinauto application corresponding to RapidFire UI
-                window: pywinauto window corresponding to RapidFire UI
-                plate_timeout (float): Seconds to wait for plate run window to appear before erroring
+    """Sets the RF run mode (between plates and sequences)
+       
+    :param window: pywinauto window corresponding to RapidFire UI
+    :type window: `pywinauto.application.WindowSpecification`
+    :param app: pywinauto application corresponding to RapidFire UI
+    :type app: `pywinauto.application.Application`
+    :param plate_timeout: Seconds to wait for plate run window to appear before erroring, defaults to 180
+    :type plate_timeout: float, optional
     """
     check_vac_pressure(window)
     press_start_button(window)
@@ -167,11 +162,10 @@ def start_run(window, app, plate_timeout = 180):
 
 
 def stop_run(window):
-    """
-    Stops a run 
+    """Stops a run 
 
-            Parameters:
-                window: pywinauto window corresponding to RapidFire UI
+    :param window: pywinauto window corresponding to RapidFire UI
+    :type window: `pywinauto.application.WindowSpecification`
     """
     # Press the stop run botton and confirm run abortion
     stop_button = window.child_window(auto_id = "stopBtn")
@@ -184,14 +178,12 @@ def stop_run(window):
 
 
 def get_rf_output_dir(rf_cfg_file):
-    """
-    Checks the RapidFire output directory for a given RF configuration file
-
-            Parameters:
-                rf_cfg_file (str): Path to RF configuration file
-            
-            Returns:
-                sd (str): Path to the RF data output directory
+    """Checks the RapidFire output directory for a given RF configuration file
+        
+    :param rf_cfg_file: Path to RF configuration file
+    :type rf_cfg_file: str
+    :return: Path to the RF data output directory
+    :rtype: str
     """
     with open(rf_cfg_file, 'r') as f:
         lines = f.read()
@@ -201,68 +193,81 @@ def get_rf_output_dir(rf_cfg_file):
     sd = sd[0].split('=')[-1].strip().replace(';', '').split('"')[1].replace('"', '')
     return(sd)
 
+def find_latest_dir(base_path, sequence_name = None, start_year = 2021, path_convert = None):
+    """Gets the latest directory in the RapidFire data file tree
 
-def find_newest_rftime_dir(base_dir, min_depth = 4, max_depth=4):
+    :param base_path: Path to base RapidFire data directory
+    :type base_bath: str
+    :sequence_name: If provided, only check output directories containing data from RF sequence with given name, defaults to None
+    :type sequence_name: str
+    :param start_year: Starting year to look for in the RapidFire file tree, defaults to 2021
+    :type start_year: int
+    :param path_convert: If provided a dictionary of pathname swaps between the 6560 and RF computers on the shared drive
+    :type path_convert: dict
+    :return: Path to the latest-modified directory in the RF data file tree
+    :rtype: str
     """
-    Given a base RF directory to search, finds the directory containing the newest batch.rftime file
+    if path_convert:
+        for old_s, new_s in path_convert.items():
+            base_path = base_path.replace(old_s, new_s)
 
-            Parameters:
-                base_dir (str): Path to base directory to search
-                min_depth (int): Minimum searching depth
-                max_depth (int): Maximum searching depth
-            
-            Returns:
-                newest_dir (str): Directory name of the directory containing the newest batch.rftime file
-    """
-    newest_rftime = None
-    newest_rftime_path = None
+    base_path = Path(base_path)
+    latest_dir = None
+    latest_date = None
 
-    for depth in range(min_depth, max_depth + 1):
-        pattern = os.path.join(base_dir, *('*' * depth), 'batch.rftime')
-        for rftime_path in glob.glob(pattern):
-            # Skip directories that end with ".d"
-            if any(part.endswith('.d') for part in rftime_path.split(os.sep)):
-                continue
-
-            # Get the modification time of the file
-            rftime_mtime = os.path.getmtime(rftime_path)
-
-            # Check if this is the newest rftime file found so far
-            if newest_rftime is None or rftime_mtime > newest_rftime:
-                newest_rftime = rftime_mtime
-                newest_rftime_path = rftime_path
-    
-    if not newest_rftime: # still equals None
-        sys.exit(f'Error - I couldnt find any batch.rftime files in {base_dir} at depths {min_depth}-{max_depth}')
-    newest_dir = os.path.dirname(newest_rftime_path)
-    return(newest_dir)
+    months = ['January', 'February', 'March', 'April', 'May', 'June', 
+              'July', 'August', 'September', 'October', 'November', 'December']
 
 
-def find_latest_data_dir(rf_cfg_file):
-    """
-    Given a RF configuration file, finds the directory containing the newest batch.rftime file within the configuration's output directory
-
-            Parameters:
-                rf_cfg_file (str): Path to RF configuration file
-            
-            Returns:
-                newest_dir (str): Name of directory containing newest batch.rftime file
-    """
-    rf_data_dir = get_rf_output_dir(rf_cfg_file)
-    newest_dir = find_newest_rftime_dir(rf_data_dir)
-    return(newest_dir)
-
+    for year in range(start_year, datetime.datetime.now().year+1):  # Adjust the range as needed
+        for month in range(0, 12):  # All possible months
+            for day in range(1, 32):  # All possible days
+                try:
+                    dir_path = base_path / str(year) / months[month] / str(day)
+                    if dir_path.exists() and dir_path.is_dir():
+                        dir_date = datetime.datetime(year, month, day)
+                        # Get a list of all directories in the date_path
+                        dir_list = [os.path.join(dir_path, d) for d in os.listdir(dir_path) if os.path.isdir(os.path.join(dir_path, d))]
+                        
+                        # Sort the directories by creation time
+                        dir_list.sort(key=lambda d: os.path.getmtime(d), reverse=True)
+                        if sequence_name:
+                            dir_list_temp = []
+                            for dir_temp in dir_list:
+                                # print(dir_temp)
+                                rfdb_file = os.path.join(dir_temp, "RFDatabase.xml")
+                                if not os.path.exists(rfdb_file):
+                                    continue
+                                with open(rfdb_file, 'r') as f:
+                                    lines = f.read()
+                                if f"Barcode>{sequence_name}<" in lines:
+                                    dir_list_temp.append(dir_temp)
+                            dir_list = dir_list_temp
+                        if len(dir_list) > 0:
+                            dir_newest = dir_list[0]
+                            mtime = os.path.getmtime(dir_newest)
+                            dir_modified = mtime
+                            if latest_date is None or dir_modified > latest_date:
+                                latest_dir = dir_newest
+                                latest_date = mtime
+                except ValueError:
+                    # Ignore invalid dates, like February 30
+                    pass
+    return latest_dir
 
 def copy_last_run_output(out_dir, rf_cfg_file, overwrite = True):
-    """
-    Copies the newest RF run data to a new directory
+    """Copies the newest RF run data to a new directory
 
-            Parameters:
-                out_dir (str): Path to output directory
-                rf_cfg_file (str): Path to RF configuration file
-                overwrite (bool): Overwrite existing files
+    :param out_dir: Path to output directory
+    :type out_dir: str
+    :param rf_cfg_file: Path to RF configuration file
+    :type rf_cfg_file: str
+    :param overwrite: Overwrite existing files, defaults to True
+    :type overwrite: bool, optional
     """
-    rf_data_dir = find_latest_data_dir(rf_cfg_file)
+    rf_data_dir = get_rf_output_dir(rf_cfg_file)
+    rf_sequence_data_dir = find_latest_dir(rf_data_dir, path_convert = {"D:\\" : "M:\\"})
+
     if os.path.exists(out_dir):
         if overwrite:
             print(f"{out_dir} exists, removing to overwrite")
@@ -270,23 +275,21 @@ def copy_last_run_output(out_dir, rf_cfg_file, overwrite = True):
             shutil.rmtree(out_dir)
         else:
             sys.exit(f'{out_dir} exists, please set overwrite = True to overwrite')
-    print(rf_data_dir)
+    print(rf_sequence_data_dir)
     print(out_dir)
     # os.chmod(rf_data_dir, 0o777)
-    shutil.copytree(rf_data_dir, out_dir)
+    shutil.copytree(rf_sequence_data_dir, out_dir)
 
 
 def open_splitter_view(window, app):
-    """
-    Opens the file splitter dialogue in the RF UI
+    """Opens the file splitter dialogue in the RF UI
 
-            Parameters: 
-                app: pywinauto application corresponding to RapidFire UI
-                window: pywinauto window corresponding to RapidFire UI
-            
-            Returns:
-                splitter_window: pywinauto window corresponding to the file splitter dialogue
-                window: pywinauto window corresponding to RapidFire UI
+    :param window: pywinauto window corresponding to RapidFire UI
+    :type window: `pywinauto.application.WindowSpecification`
+    :param app: pywinauto application corresponding to RapidFire UI
+    :type app: `pywinauto.application.Application`
+    :return: pywinauto window corresponding to the file splitter dialogue
+    :rtype: `pywinauto.application.WindowSpecification`
     """
     file_menu_item = window.child_window(title = "File", control_type = "MenuItem")
     file_menu_item.set_focus()
@@ -301,12 +304,12 @@ def open_splitter_view(window, app):
     return(splitter_window)
 
 def set_splitter_autoconvert(splitter_window, state):
-    """
-    Sets the file splitter dialogue state for the auto conversion option
+    """Sets the file splitter dialogue state for the auto conversion option
 
-            Parameters:
-                splitter_window: pywinauto window corresponding to the file splitter dialogue
-                state (bool): auto conversion state
+    :param splitter_window: pywinauto window corresponding to the file splitter dialogue
+    :type splitter_window: `pywinauto.application.WindowSpecification`
+    :param state: desired auto conversion setting
+    :type state: bool
     """
     if state not in [True, False]:
         sys.exit(f"Error unrecognized auto split state {state}")
@@ -318,13 +321,14 @@ def set_splitter_autoconvert(splitter_window, state):
 
 
 def run_split(splitter_window, split_dir, multiple_injections = True):
-    """
-    Runs file splitting through the file splitter dialogue
+    """Runs file splitting through the file splitter dialogue
 
-            Parameters:
-                splitter_window: pywinauto window corresponding to the file splitter dialogue
-                split_dir: Path to directory containing RF sequence output to split. Output split files will be placed here as well
-                multiple_injections (bool): Run multiple splits at once in parallel
+    :param splitter_window: pywinauto window corresponding to the file splitter dialogue
+    :type splitter_window: `pywinauto.application.WindowSpecification`
+    :param split_dir: Path to directory containing RF sequence output to split. Output split files will be placed here as well
+    :type split_dir: str
+    :param multiple_injections: Run multiple splits at once in parallel, defaults to True
+    :type multiple_injections: bool, optional
     """
 
     data_path_box = [x for x in splitter_window.children() if x.automation_id() == "dataPathTextBox"][0]
@@ -351,21 +355,25 @@ def run_split(splitter_window, split_dir, multiple_injections = True):
 # Multi-step workflows
 ################################################################################################
 def remote_run_rfbat(test = False, *args, **kwargs):
-    """
-    Runs a sequence on the RF
+    """Runs a sequence on the RF
 
-            Parameters:
-                test (bool): Run in test mode
-                **rf_base_data_dir (str): Path to RF base data dir
-                **rfcfg_file (str): Path to RF .rfcfg method file
-                **rfbat_file (str): Path to RF .rfbat batch file
-                **timeout_seconds (float): Seconds to wait before erroring
-            
-            Returns:
-                data_dir (str): Path to directory containing run output files
+        :param test: Run in test mode, defaults to False
+        :type test: bool, optional
+        :param **rf_base_data_dir: Path to RF base data dir
+        :type  **rf_base_data_dir: str
+        :param **rfcfg_file: Path to RF .rfcfg method file
+        :type **rfcfg_file: str
+        :param **rfbat_file: Path to RF .rfbat batch file
+        :type **rfbat_file: str
+        :param **timeout_seconds: Seconds to wait before erroring
+        :type **timeout_seconds: float
+        :return: Path to directory containing run output files
+        :rtype: str
     """
+    print(f"Checking the rf data dir {kwargs['rf_base_data_dir']}...")
+    rf_base_data_dir = kwargs['rf_base_data_dir']
+    data_dir = find_latest_dir(rf_base_data_dir, path_convert = {'D:\\' : "M:\\"})
     if test:
-        data_dir = pu.find_latest_dir(kwargs['rf_base_data_dir'], path_convert={"D:\\" : "M:\\"})
         return(data_dir)
     # Must give it a rfbat_file
     app, window = initialize_app()
@@ -378,9 +386,6 @@ def remote_run_rfbat(test = False, *args, **kwargs):
     if not test:
         check_vac_pressure(window)
         start_run(window, app)
-    print(f"Checking the rf data dir {kwargs['rf_base_data_dir']}...")
-    rf_base_data_dir = kwargs['rf_base_data_dir']
-    data_dir = pu.find_latest_dir(rf_base_data_dir, path_convert = {'D:\\' : "M:\\"})
     print(f"Monitoring the batch.log file in directory {data_dir}...")
     log_file = os.path.join(data_dir, "batch.log")
     start_time = time.time()
@@ -396,13 +401,14 @@ def remote_run_rfbat(test = False, *args, **kwargs):
     return(data_dir)
 
 def remote_file_split(test = False, *args, **kwargs):
-    """
-    Runs file splitting through the file splitter dialogue
+    """Runs file splitting through the file splitter dialogue
 
-            Parameters:
-                test (bool): Run in test mode
-                **data_dir (str): Path to RF directory containing run output files
-                **timeout_seconds (float): Seconds to wait before erroring
+    :param test: Run in test mode, defaults to False
+    :type test: bool, optional
+    :param **data_dir: Path to RF directory containing run output files
+    :type **data_dir: str
+    :param **timeout_seconds: Seconds to wait before erroring
+    :type **timeout_seconds: float
     """
     data_dir = kwargs['data_dir']
     app, window = initialize_app()
