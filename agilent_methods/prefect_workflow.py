@@ -52,7 +52,7 @@ def create_rf_sequences(input_excel_file, output_dir):
     return(out_files)
 
 @task(tags = ["instrument_run"], timeout_seconds = 100000000)
-def run_calibration(seq_files_tuple, test = False):
+def run_6560_calibrant(seq_files_tuple, test = False):
     """
     Runs a Calibrant line (bottle B) run on the 6560 and saves the output
 

@@ -1,3 +1,6 @@
+################################################################################################
+# gk@reder.io
+################################################################################################
 import os
 import sys
 import time
@@ -5,12 +8,11 @@ if sys.platform.startswith('win'):
     # Import pywin libraries if we're running on windows
     from pywinauto import Application
     from pywinauto import Desktop
-import re
-import argparse
 import shutil
 
-
-
+################################################################################################
+# Functions for individual actions in the MassHunter Data Acquisition Program
+################################################################################################
 def initialize_app(search_str = "Agilent MassHunter Workstation Data Acquisition", backend = 'uia'):
     """
     Finds the (open) MassHunter Acquisition application and returns its handles
@@ -20,8 +22,8 @@ def initialize_app(search_str = "Agilent MassHunter Workstation Data Acquisition
                     backend (str): pywinauto backend to use
 
             Returns:
-                    app : pywinauto application corresponding to MassHunter Workstation Data Acquisition
-                    window : pywinauto window corresponding to MassHunter Workstation Data Acquisition
+                    app: pywinauto application corresponding to MassHunter Workstation Data Acquisition
+                    window: pywinauto window corresponding to MassHunter Workstation Data Acquisition
     """
     app = Application(backend = backend).connect(title_re = f".*{search_str}")
     window = app.window(title_re = f".*{search_str}")
@@ -32,6 +34,13 @@ def initialize_app(search_str = "Agilent MassHunter Workstation Data Acquisition
 
 
 def open_ms_method(window, method_name):
+    """
+    Loads an MS acquisition method by name
+
+            Parameters:
+                    window: pywinauto window corresponding to MassHunter Workstation Data Acquisition
+                    method_name (str): Acquisition method name
+    """
 
     open_method = window.child_window(auto_id = "openMethodBtn")
     open_method.set_focus()
@@ -48,10 +57,20 @@ def open_ms_method(window, method_name):
 
 
 def set_calibration_output(window, sample_name, out_d_file_name):
+    """
+    Sets the output filename of a single-sample instrument run
+
+            Parameters:
+                window: pywinauto window corresponding to MassHunter Workstation Data Acquisition
+                sample_name (str): Output metadata sample name
+                out_d_file_name (str): Output .d file name
+            
+            Returns:
+                op (str): Full path to the output .d file
+    """
     sample_name_box = window.child_window(auto_id = "txtSampleName")
     sample_name_box.set_focus()
     sample_name_box.set_edit_text("")
-    # sample_name.type_keys("")
     sample_name_box.type_keys(sample_name)
 
     output_name = window.child_window(auto_id = "txtSampleDataFileName")
@@ -61,19 +80,23 @@ def set_calibration_output(window, sample_name, out_d_file_name):
 
     output_path = window.child_window(auto_id = "txtSampleDataPath")
     output_path.set_focus()
-    # output_path.set_value("D:\Projects\Default\Data\6560\IM_Calibration")
 
     # Can change this later to just move the output file to the desired output directory
     op = output_path.legacy_properties()['Value']
-    return(os.path.join(op, out_d_file_name))
-
-    # if (os.path.join("D:", "\\Projects", "Default", "Data", "6560", "IM_calibration") != v):
-        # sys.exit(f"Error - please set the output directory path to match expected IM_calibration output folder")
-    # print(output_path.legacy_properties()['Value'] == '''D:\Projects\Default\Data\6560\IM_calibration''') # D:\Projects\Default\Data\6560\IM_calibration
-    # sys.exit(output_path)
+    out_path = os.path.join(op, out_d_file_name)
+    return(op)
 
 
 def get_instrument_state(window):
+    """
+    Function for monitoring the 6560 instrument state in the main MH Data Acquisition Window
+
+            Parameters:
+                window: pywinauto window corresponding to MassHunter Workstation Data Acquisition
+            
+            Returns:
+                current_state (str): Instrument state
+    """
     state_colors = {"idle" : '#FF75C335', 'not ready' : "#FFFFBA00", "run" : "#FF4780EA", "prerun" : '#FF5F4AC9'}
     colors_state = {v : k for k,v in state_colors.items()}
     status_bar = window.child_window(auto_id = "AutomationId.StatusBar.StateLabel")
@@ -84,6 +107,14 @@ def get_instrument_state(window):
     return(current_state)
 
 def wait_for_state(window, state, timeout_seconds):
+    """
+    Waits for 6560 to reach a given state by monitoring the main MH Data Acquisition window
+
+            Parameters:
+                window: pywinauto window corresponding to MassHunter Workstation Data Acquisition
+                state (str): Desired state
+                timeout_seconds (float): Seconds to wait for instrument to reach state before erroring
+    """
     # Green (idle) = '#FF75C335'
     # Yellow (not ready) = "#FFFFBA00"
     # Blue (run) = "#FF4780EA"
@@ -103,6 +134,13 @@ def wait_for_state(window, state, timeout_seconds):
     print(f"Instrument reached state {state}")
 
 def start_sample_run(window, overwrite = True):
+    """
+    Starts a single sample run
+
+            Parameters:
+                window: pywinauto window corresponding to MassHunter Workstation Data Acquisition
+                overwite (bool): Overwrite existing output file
+    """
     sample_run_pane = window.child_window(auto_id = "toolStrip1")
     run_button = sample_run_pane.child_window(title = "Run")
     run_button.set_focus()
@@ -121,6 +159,12 @@ def start_sample_run(window, overwrite = True):
         overwrite_button.click_input()
 
 def stop_sample_run(window):
+    """
+    Stops a running single sample run
+
+            Parameters: 
+                window: pywinauto window corresponding to MassHunter Workstation Data Acquisition
+    """
     sample_run_pane = window.child_window(auto_id = "toolStrip1")
     stop_button = sample_run_pane.child_window(title = "Stop")
     stop_button.set_focus()
@@ -136,13 +180,9 @@ def stop_sample_run(window):
         ok_button.set_focus()
         ok_button.click_input()
 
-def move_file(filename, output_name):
-    # output_name = os.path.join(output_dir, os.path.basename(filename))
-    # print(f"Moving file {filename} to {output_name}")
-    os.rename(filename, output_name)
-    # shutil.move(filename, output_name)
-
-
+################################################################################################
+# Multi-step complete workflows
+################################################################################################
 def run_calibration_B(ms_method_name, output_d_filename_full, sample_name = "CalB", runtime = 30, manual_stop = True, overwrite = True, timeout_seconds = 900):
     """
     Runs calibrant line B using the specified MS method acquisition parameters and saves the output
@@ -197,4 +237,4 @@ def run_calibration_B(ms_method_name, output_d_filename_full, sample_name = "Cal
 
     wait_for_state(window, 'idle', timeout_seconds = timeout_seconds)
     if agilent_output_file != output_d_filename_full:
-        move_file(agilent_output_file, output_d_filename_full)
+        os.rename(agilent_output_file, output_d_filename_full)

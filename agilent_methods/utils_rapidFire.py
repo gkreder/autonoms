@@ -1,3 +1,6 @@
+################################################################################################
+# gk@reder.io
+################################################################################################
 import sys
 import os
 import time
@@ -233,13 +236,6 @@ def remote_startup():
     app, window = initialize_app()
     open_log_view(window, app)
 
-# def remote_rf_maintenance_run(*args, **kwargs):
-#     app, window = initialize_app()    
-#     set_run_mode(window, "Sequences")
-#     check_vac_pressure(window)
-#     load_rf_batch(window, *args, **kwargs)
-#     start_run(window, app)
-
 def remote_touch_app():
     app, window = initialize_app()
     open_log_view(window, app)
@@ -276,18 +272,6 @@ def remote_run_rfbat(test = False, *args, **kwargs):
         with open(log_file, 'r') as f:
             log_lines = f.read()
         time.sleep(1)
-    # rf_splitter_log = os.path.join(data_dir, "RFFileSplitter.log")
-    # splitter_lines = ""
-    # print(f"Waiting for file splitting to start...")
-    # while not os.path.exists(rf_splitter_log) and ( (time.time() - start_time) < kwargs['timeout_seconds']):
-    #     time.sleep(1)
-    # print(f"...monitoring splitter file...")
-    # wells = pu.get_rfbat_wells(kwargs["rfbat_file"], path_convert = {"D:\\" : "M:\\"})
-    # # while ( len(re.findall(rf"Done writing file:.*-{wells[-1]}.d", splitter_lines)) == 0 ) and ( (time.time() - start_time) < kwargs['timeout_seconds']):
-    # while ( len(re.findall(rf"Done writing file:.*.d", splitter_lines)) != len(wells) ) and ( (time.time() - start_time) < kwargs['timeout_seconds']):
-    #     with open(rf_splitter_log, 'r') as f:
-    #         splitter_lines = f.read()
-    #     time.sleep(1)
     return(data_dir)
 
 def remote_file_split(test = False, *args, **kwargs):
@@ -312,38 +296,4 @@ def remote_file_split(test = False, *args, **kwargs):
 def test_fun(*args, **kwargs):
     app, window = initialize_app()
     load_rf_batch(window, *args, **kwargs)
-
-
-
-##################################################
-# Needs more work as the uia backend likely can't 
-# access properties that will update pump 
-# inidcator (or the checkbox)
-##################################################
-# def get_pump_status(window, pump_number):
-#     if pump_number not in [1,2,3,4]:
-#         sys.exit(f"Error - pump_number must be an integer 1-4")
-#     indicator = window.child_window(auto_id = f"pump{pump_number}Ind")
-#     indicator.set_focus()
-#     print(dir(indicator))
-#     print(vars(indicator))
-#     print(indicator.dump_tree())
-#     # rect = indicator.rectangle()
-#     # x = ( rect.right - rect.left ) / 2
-#     # y = ( rect.bottom - rect.top ) / 2
-#     # screenshot = pyautogui.screenshot()
-#     # pixel_color = screenshot.getpixel((x, y))
-#     # print(pixel_color)
-
-
-# app, window = initialize_app()
-# window.set_focus()
-
-
-
-# rf_cfg_file = '''C:\\Agilent\\RapidFire\\FIA_configs\\RapidFire.cfg'''
-# output_data_dir = find_latest_data_dir(rf_cfg_file)
-
-
-# copy_last_run_output('''M:\\test_output''', rf_cfg_file)
 
