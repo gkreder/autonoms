@@ -358,14 +358,14 @@ def remote_run_rfbat(test = False, *args, **kwargs):
 
         :param test: Run in test mode, defaults to False
         :type test: bool, optional
-        :param **rf_base_data_dir: Path to RF base data dir
-        :type  **rf_base_data_dir: str
-        :param **rfcfg_file: Path to RF .rfcfg method file
-        :type **rfcfg_file: str
-        :param **rfbat_file: Path to RF .rfbat batch file
-        :type **rfbat_file: str
-        :param **timeout_seconds: Seconds to wait before erroring
-        :type **timeout_seconds: float
+        :param rf_base_data_dir: Path to RF base data dir
+        :type  rf_base_data_dir: str
+        :param rfcfg_file: Path to RF .rfcfg method file
+        :type rfcfg_file: str
+        :param rfbat_file: Path to RF .rfbat batch file
+        :type rfbat_file: str
+        :param timeout_seconds: Seconds to wait before erroring
+        :type timeout_seconds: float
         :return: Path to directory containing run output files
         :rtype: str
     """
@@ -404,10 +404,10 @@ def remote_file_split(test = False, *args, **kwargs):
 
     :param test: Run in test mode, defaults to False
     :type test: bool, optional
-    :param **data_dir: Path to RF directory containing run output files
-    :type **data_dir: str
-    :param **timeout_seconds: Seconds to wait before erroring
-    :type **timeout_seconds: float
+    :param data_dir: Path to RF directory containing run output files
+    :type data_dir: str
+    :param timeout_seconds: Seconds to wait before erroring
+    :type timeout_seconds: float
     """
     data_dir = kwargs['data_dir']
     app, window = initialize_app()
