@@ -1,5 +1,14 @@
 # mocha-ms
-Mass Omics and Chemical Hardware Automation MS
+MOCHA - Mass Omics and Chemical Hardware Automation MS
+MOCHA - Modular Operations for Chemical Hardware Auotmation MS
+MOCHA - Molecular Omics with Chemical Hardware Automation MS
+MOCHA - Modular Operation Chemical Hardware Automation MS
+ARCADE - Automated Resrouce for Chemical Analysis and Data Examination
+MACAO - Molecular Analytical Chemistry & Automated Omics
+
+
+MOCHA - Molecular Observation with Chemical Hardware Automation MS
+
 
 # Current pipeline
 
