@@ -16,6 +16,7 @@ dependencies = [
     "scipy",
     "sphinx",
     "sphinx-rtd-theme",
+    "sphinx-copybutton",
     "rpyc",
     "pandas",
     "openpyxl",

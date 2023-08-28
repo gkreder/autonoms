@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="109.25816mm"
+   height="41.945702mm"
+   viewBox="0 0 109.25816 41.945702"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.2.2 (b0a84865, 2022-12-01)"
+   sodipodi:docname="logo.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.85333618"
+     inkscape:cx="186.91344"
+     inkscape:cy="169.33537"
+     inkscape:window-width="1920"
+     inkscape:window-height="1027"
+     inkscape:window-x="3432"
+     inkscape:window-y="25"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-81.378034,-30.182702)">
+    <rect
+       style="fill:#000000;stroke:#000000;stroke-width:0.938436;stroke-miterlimit:8.8;stroke-dasharray:none"
+       id="rect2675-8"
+       width="33.220974"
+       height="17.01329"
+       x="146.00992"
+       y="51.509331" />
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:1.094;stroke-miterlimit:8.8;stroke-dasharray:none"
+       id="rect2675"
+       width="97.228081"
+       height="23.002842"
+       x="81.925034"
+       y="48.514553" />
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:1.094;stroke-miterlimit:8.8;stroke-dasharray:none"
+       id="rect2675-85"
+       width="10.455953"
+       height="40.8517"
+       x="179.63324"
+       y="30.729702" />
+    <text
+       xml:space="preserve"
+       style="font-size:16.9333px;font-family:Helvetica;-inkscape-font-specification:'Helvetica, Normal';text-align:center;text-anchor:middle;fill:#000000;stroke:#000000;stroke-width:0;stroke-miterlimit:8.8;stroke-dasharray:none"
+       x="130.9624"
+       y="66.010361"
+       id="text243"><tspan
+         sodipodi:role="line"
+         id="tspan241"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:16.9333px;font-family:Avenir;-inkscape-font-specification:'Avenir, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0;stroke-dasharray:none"
+         x="130.9624"
+         y="66.010361">Autono <tspan
+   style="fill:#ffffff;stroke:#00ffff"
+   id="tspan2519">MS</tspan></tspan></text>
+  </g>
+</svg>

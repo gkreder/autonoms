@@ -12,7 +12,7 @@ Welcome to the AutonoMS documentation!
 
    intro
    installation
-   examples
+   usage
    modules
 
 
