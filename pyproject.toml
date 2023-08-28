@@ -18,6 +18,7 @@ dependencies = [
     "sphinx-rtd-theme",
     "rpyc",
     "pandas",
+    "openpyxl"
     "prefect",
     'pywinauto ; platform_system == "Windows"',
     "deimos @ git+https://github.com/pnnl/deimos.git"
