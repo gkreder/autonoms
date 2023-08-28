@@ -1,7 +1,7 @@
-agilent_methods
-===============
+mochams
+=======
 
 .. toctree::
    :maxdepth: 4
 
-   agilent_methods
+   mochams

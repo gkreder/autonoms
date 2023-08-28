@@ -1,13 +1,19 @@
-Welcome to RapidSky's documentation!
-====================================
+Welcome to the Mocha-MS documentation!
+=======================================
+
+.. automodule:: mochams
+   :members:
+   :undoc-members:
+   :show-inheritance:
 
 .. toctree::
    :maxdepth: 2
    :caption: Contents:
 
    intro
-   agilent_methods
+   installation
    examples
+   modules
 
 
 Indices and tables

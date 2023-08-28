@@ -528,6 +528,8 @@ def main_flow(args):
         skyline_res = skyline(sequence_dir, args.skyline_exe, args.sky_imsdb_file, args.sky_document_file, args.transition_list_file, args.sky_report_file)
 
 def main():
+    """Runs the main mocha-ms workflow from the command-line
+    """
     args = get_args()
     main_flow(args)
 

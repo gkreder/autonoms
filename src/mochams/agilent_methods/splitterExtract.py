@@ -9,6 +9,17 @@ import argparse
 
 
 def get_splits(splitterLog, RFDB, dFile):
+    """Extract split start and end times from the splitter log produced by RapidFire UI splitter output
+
+    :param splitterLog: Path to RapidFire UI splitter output log
+    :type splitterLog: str
+    :param RFDB: Path to RFDatabase.xml output file from RapidFire sequence on which UI splitter was run
+    :type RFDB: str
+    :param dFile: .d file on which splitter was run
+    :type dFile: str
+    :return: List of strings of individual well split start and end times
+    :rtype: list
+    """
     sequence = os.path.basename(dFile.lower()).replace(".demp.d", "").replace('.d', '').replace('sequence', '')
     tree = ET.parse(RFDB)
     root = tree.getroot()
@@ -43,14 +54,24 @@ def get_splits(splitterLog, RFDB, dFile):
         out_lines.append(t)
     return(out_lines)
 
-if __name__ == "__main__":
+def get_args():
+    """Helper function for initializing arguments on command line invocation
+    :return: Parameter arguments
+    :rtype: Namespace
+    """
     parser = argparse.ArgumentParser()
     parser.add_argument('--splitterLog', '-l', required = True)
     parser.add_argument('--dFile', '-d', required = True)
     parser.add_argument('--RFDB', '-b', required = True)
     args = parser.parse_args()
+    return(args)
+
+def main():
+    args = get_args()
     out_lines = get_splits(args.splitterLog, args.RFDB, args.dFile)
     for sd, outSuf, startTime_adjusted, endTime_adjusted in out_lines:
         print(f'{sd} {outSuf}.d {startTime_adjusted} {endTime_adjusted}')
 
-
+if __name__ == "__main__":
+    args = get_args()
+    main(args)

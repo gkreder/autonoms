@@ -1,6 +1,6 @@
 import rpyc
 from rpyc.utils.server import ThreadedServer
-from utils_rapidFire import *
+from mochams.agilent_methods.utils_rapidFire import *
 import sys
 
 class RapidFireService(rpyc.Service):
