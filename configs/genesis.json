@@ -1,0 +1,13 @@
+pnnl_path : C:\\"Program Files"\\PNNL-Preprocessor\\PNNL-PreProcessor.exe
+start_mh_rf_path : 
+
+# args.start_mh_rf_path = os.path.join("C:\\Agilent", "RapidFire Communicator", "RFMassHunter_NET", "bin", "Start_MassHunter_S.bat")
+# args.rapid_fire_data_dir = "D:\\Projects\\Default\\Data\\RapidFire"
+# args.mh_splitter_exe = "D:\\gkreder\\RapidFire_bin\\MHFileSplitter.exe"
+# args.msconvert_exe = os.path.join("C:\\Users\\admin\\AppData\\Local\\Apps", "ProteoWizard 3.0.22173.4a1045d 64-bit", "msconvert.exe")
+# args.tuneIons_file = "D:\\gkreder\\RapidSky\\transition_lists\\agilentTuneRestrictedDeimos_transitionList.csv"
+# args.skyline_exe = "C:\\Users\\admin\\Desktop\\SkylineCmd.exe.lnk"
+# args.sky_imsdb_file = "D:\\gkreder\\RapidSky\\skyline_documents\\ymdb.imsdb"
+# args.sky_document_file = "D:\\gkreder\\RapidSky\\skyline_documents\\ymdb_IMres30.sky"
+# args.transition_list_file = "D:\\gkreder\\RapidSky\\transition_lists\\ymdb_transition_list.csv"
+# args.sky_report_file = "D:\\gkreder\\RapidSky\\report_templates\\MoleculeReportShort.skyr"
