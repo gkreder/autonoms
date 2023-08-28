@@ -8,7 +8,6 @@ Welcome to the AutonoMS documentation!
 
 .. toctree::
    :maxdepth: 2
-   :caption: Contents:
 
    intro
    installation

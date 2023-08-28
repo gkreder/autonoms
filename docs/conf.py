@@ -20,3 +20,10 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 
 html_theme = 'alabaster'
 html_static_path = ['_static']
+html_logo = "_static/logo.svg"
+html_theme_options = {
+    'github_user' : 'gkreder',
+    'github_repo' : "autonoms",
+    'github_button' : True,
+    'logo_name' : False
+}
