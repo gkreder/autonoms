@@ -1,7 +1,7 @@
-mochams
-=======
+autonoms
+========
 
 .. toctree::
    :maxdepth: 4
 
-   mochams
+   autonoms

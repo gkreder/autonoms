@@ -3,7 +3,7 @@ requires = ["setuptools", "setuptools-scm"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "mochams"
+name = "autonoms"
 description = "Automated mass spectrometry instrument and data analysis"
 version = "0.0.1"
 requires-python = "==3.8.*"
@@ -28,5 +28,5 @@ dependencies = [
 where = ["src"]
 
 [project.scripts]
-mochams-run = "mochams.workflow_control:main"
+autonoms-run = "autonoms.workflow_control:main"
 

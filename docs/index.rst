@@ -1,7 +1,7 @@
-Welcome to the Mocha-MS documentation!
+Welcome to the AutonoMS documentation!
 =======================================
 
-.. automodule:: mochams
+.. automodule:: autonoms
    :members:
    :undoc-members:
    :show-inheritance:

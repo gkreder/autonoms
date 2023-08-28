@@ -13,10 +13,10 @@ import argparse
 from prefect import flow, task, Flow, Task
 from prefect.client import get_client
 from prefect.task_runners import SequentialTaskRunner
-import mochams.agilent_methods.utils_plates as pu
-import mochams.agilent_methods.utils_6560 as msu
-from mochams.agilent_methods.splitterExtract import get_splits
-from mochams.agilent_methods.CCSCal import ccs_cal
+import autonoms.agilent_methods.utils_plates as pu
+import autonoms.agilent_methods.utils_6560 as msu
+from autonoms.agilent_methods.splitterExtract import get_splits
+from autonoms.agilent_methods.CCSCal import ccs_cal
 ################################################################################################
 # Prefect Tasks
 ################################################################################################
@@ -528,7 +528,7 @@ def main_flow(args):
         skyline_res = skyline(sequence_dir, args.skyline_exe, args.sky_imsdb_file, args.sky_document_file, args.transition_list_file, args.sky_report_file)
 
 def main():
-    """Runs the main mocha-ms workflow from the command-line
+    """Runs the main autono-ms workflow from the command-line
     """
     args = get_args()
     main_flow(args)

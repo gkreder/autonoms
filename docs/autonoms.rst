@@ -1,5 +1,5 @@
-mochams package
-===============
+autonoms package
+================
 
 Subpackages
 -----------
@@ -7,15 +7,15 @@ Subpackages
 .. toctree::
    :maxdepth: 4
 
-   mochams.agilent_methods
+   autonoms.agilent_methods
 
 Submodules
 ----------
 
-mochams.workflow\_control module
---------------------------------
+autonoms.workflow\_control module
+---------------------------------
 
-.. automodule:: mochams.workflow_control
+.. automodule:: autonoms.workflow_control
    :members:
    :undoc-members:
    :show-inheritance:
@@ -23,7 +23,7 @@ mochams.workflow\_control module
 Module contents
 ---------------
 
-.. automodule:: mochams
+.. automodule:: autonoms
    :members:
    :undoc-members:
    :show-inheritance:

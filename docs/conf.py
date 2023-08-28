@@ -6,7 +6,7 @@ sys.path.insert(0, os.path.abspath('../src/mochams'))
 
 
 
-project = 'Mocha-MS'
+project = 'AutonoMS'
 copyright = '2023, Gabriel Reder'
 author = 'Gabriel Reder'
 release = '0.0.1'
