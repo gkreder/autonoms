@@ -3,6 +3,7 @@
 ################################################################################################
 import os
 import glob
+import toml
 import shutil
 import rpyc
 import sys
@@ -12,11 +13,10 @@ import argparse
 from prefect import flow, task
 from prefect.client import get_client
 from prefect.task_runners import SequentialTaskRunner
-import utils_plates as pu
-import utils_6560 as msu
-import utils_rapidFire as rfu
-from splitterExtract import get_splits
-from CCSCal import ccs_cal
+import agilent_methods.utils_plates as pu
+import agilent_methods.utils_6560 as msu
+from agilent_methods.splitterExtract import get_splits
+from agilent_methods.CCSCal import ccs_cal
 ################################################################################################
 # Prefect Tasks
 ################################################################################################
@@ -486,24 +486,20 @@ def get_args():
     """
     parser = argparse.ArgumentParser()
     parser.add_argument('--input_excel_file', required = True)
+    parser.add_argument('--configs_toml', required = True)
     parser.add_argument('--output_dir', required = True)
     parser.add_argument('--test', action = "store_true")
     args = parser.parse_args()
     args.input_excel_file = os.path.abspath(args.input_excel_file)
     args.output_dir = os.path.abspath(args.output_dir)
 
+    # Get executable locations from toml config file and data analysis parameters from experiment file
+    execs_d = toml.load(args.configs_toml)
+    df_analysis = pd.read_excel(args.input_excel_file, sheet_name = "data_analysis")
+    analysis_d = df_analysis.set_index("Parameter")["Value"].to_dict()
+    for k, v in {**execs_d, **analysis_d}.items():
+        setattr(args, k, v)
 
-    args.pnnl_path = '''C:\\"Program Files"\\PNNL-Preprocessor\\PNNL-PreProcessor.exe'''
-    args.start_mh_rf_path = os.path.join("C:\\Agilent", "RapidFire Communicator", "RFMassHunter_NET", "bin", "Start_MassHunter_S.bat")
-    args.rapid_fire_data_dir = "D:\\Projects\\Default\\Data\\RapidFire"
-    args.mh_splitter_exe = "D:\\gkreder\\RapidFire_bin\\MHFileSplitter.exe"
-    args.msconvert_exe = os.path.join("C:\\Users\\admin\\AppData\\Local\\Apps", "ProteoWizard 3.0.22173.4a1045d 64-bit", "msconvert.exe")
-    args.tuneIons_file = "D:\\gkreder\\RapidSky\\transition_lists\\agilentTuneRestrictedDeimos_transitionList.csv"
-    args.skyline_exe = "C:\\Users\\admin\\Desktop\\SkylineCmd.exe.lnk"
-    args.sky_imsdb_file = "D:\\gkreder\\RapidSky\\skyline_documents\\ymdb.imsdb"
-    args.sky_document_file = "D:\\gkreder\\RapidSky\\skyline_documents\\ymdb_IMres30.sky"
-    args.transition_list_file = "D:\\gkreder\\RapidSky\\transition_lists\\ymdb_transition_list.csv"
-    args.sky_report_file = "D:\\gkreder\\RapidSky\\report_templates\\MoleculeReportShort.skyr"
     return(args)
 
 @flow(task_runner = SequentialTaskRunner())
