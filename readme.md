@@ -2,6 +2,14 @@
 MOCHA-MS - Molecular Observation with Chemical Hardware Automation MS
 
 
+## Installation
+
+Start by installing pytables: conda install pytables
+may have to install hdf5 manually: conda install -c anaconda hdf5
+Same for lzo library: conda install -c anaconda lzo
+Same for Blosc: conda install -c anaconda blosc
+
+
 # Current pipeline
 
 

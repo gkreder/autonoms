@@ -1,0 +1,32 @@
+[build-system]
+requires = ["setuptools", "setuptools-scm"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mochams"
+description = "Automated mass spectrometry instrument and data analysis"
+version = "0.0.1"
+requires-python = "==3.8.*"
+authors = [
+    { name = "Gabriel Reder", email = "gk@reder.io" }
+]
+
+dependencies = [
+    "numpy",
+    "scipy",
+    "sphinx",
+    "sphinx-rtd-theme",
+    "rpyc",
+    "pandas",
+    "prefect",
+    'pywinauto ; platform_system == "Windows"',
+    "deimos @ git+https://github.com/pnnl/deimos.git"
+]
+
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[too.setuptools]
+packages = ["mochams"]
+
