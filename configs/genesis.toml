@@ -1,4 +1,4 @@
-pnnl_path = "C:\\\"Program Files\"\\PNNL-Preprocessor\\PNNL-PreProcessor.exe"
+pnnl_path = "C:\\Program Files\\PNNL-Preprocessor\\PNNL-PreProcessor.exe"
 start_mh_rf_path = "C:\\Agilent\\RapidFire Communicator\\RFMassHunter_NET\\bin\\Start_MassHunter_S.bat"
 rapid_fire_data_dir = "D:\\Projects\\Default\\Data\\RapidFire"
 mh_splitter_exe = "D:\\gkreder\\RapidFire_bin\\MHFileSplitter.exe"
