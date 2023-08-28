@@ -41,16 +41,16 @@ def open_ms_method(window, method_name):
     """
 
     open_method = window.child_window(auto_id = "openMethodBtn")
-    open_method.set_focus()
+    # open_method.set_focus()
     open_method.click_input()
 
     filename_input = window.child_window(auto_id = "txtFileName")
-    filename_input.set_focus()
+    # filename_input.set_focus()
     filename_input.set_edit_text("")
     filename_input.type_keys(method_name)
 
     open_button = window.child_window(auto_id = "btnOpenSaveFile")
-    open_button.set_focus()
+    # open_button.set_focus()
     open_button.click_input()
 
 
@@ -67,17 +67,17 @@ def set_calibration_output(window, sample_name, out_d_file_name):
     :rtype: str
     """
     sample_name_box = window.child_window(auto_id = "txtSampleName")
-    sample_name_box.set_focus()
+    # sample_name_box.set_focus()
     sample_name_box.set_edit_text("")
     sample_name_box.type_keys(sample_name)
 
     output_name = window.child_window(auto_id = "txtSampleDataFileName")
-    output_name.set_focus()
+    # output_name.set_focus()
     output_name.set_edit_text("")
     output_name.type_keys(out_d_file_name)
 
     output_path = window.child_window(auto_id = "txtSampleDataPath")
-    output_path.set_focus()
+    # output_path.set_focus()
 
     # Can change this later to just move the output file to the desired output directory
     op = output_path.legacy_properties()['Value']
@@ -140,7 +140,7 @@ def start_sample_run(window, overwrite = True):
     """
     sample_run_pane = window.child_window(auto_id = "toolStrip1")
     run_button = sample_run_pane.child_window(title = "Run")
-    run_button.set_focus()
+    # run_button.set_focus()
     run_button.click_input()
 
     check_overwrite_text = "Starting the run will overwrite the existing data file. Do you want to continue?"
@@ -152,7 +152,7 @@ def start_sample_run(window, overwrite = True):
             overwrite_button = window.child_window(auto_id = "btnNo")
             continued = False
             print(f"Existing output file name and overwrite was set to False - aborting")
-        overwrite_button.set_focus()
+        # overwrite_button.set_focus()
         overwrite_button.click_input()
 
 def stop_sample_run(window):
@@ -163,7 +163,7 @@ def stop_sample_run(window):
     """
     sample_run_pane = window.child_window(auto_id = "toolStrip1")
     stop_button = sample_run_pane.child_window(title = "Stop")
-    stop_button.set_focus()
+    # stop_button.set_focus()
     stop_button.click_input()
     time.sleep(5)
 
@@ -173,7 +173,7 @@ def stop_sample_run(window):
     while (not ok_button.exists()) and (time.time() - start_time) < 10:
         time.sleep(1)
     if ok_button.exists():
-        ok_button.set_focus()
+        # ok_button.set_focus()
         ok_button.click_input()
 
 
@@ -208,14 +208,14 @@ def run_calibration_B(ms_method_name, output_d_filename_full, sample_name = "Cal
     output_d_file_base = os.path.basename(output_d_filename_full)
     agilent_output_file = set_calibration_output(window, sample_name, output_d_file_base)
     reset_button = window.child_window(auto_id = "resetMethodBtn")
-    reset_button.set_focus()
+    # reset_button.set_focus()
     reset_button.click_input()
     yes_button = window.child_window(auto_id = "btnYes")
     start_time = time.time()
     while (not yes_button.exists()) and (time.time()- start_time) < 15:
         time.sleep(1)
     if yes_button.exists():
-        yes_button.set_focus()
+        # yes_button.set_focus()
         yes_button.click_input()
     wait_for_state(window, "idle", timeout_seconds = timeout_seconds)
     start_sample_run(window, overwrite = overwrite)
@@ -230,7 +230,7 @@ def run_calibration_B(ms_method_name, output_d_filename_full, sample_name = "Cal
         while (not ok_button.exists()) and (time.time() - start_time) < 15:
             time.sleep(1)
         if ok_button.exists():
-            ok_button.set_focus()
+            # ok_button.set_focus()
             ok_button.click_input()
         wait_for_state(window, "idle", timeout_seconds = timeout_seconds)
 

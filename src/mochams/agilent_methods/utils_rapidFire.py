@@ -36,19 +36,19 @@ def load_rf_method(window, rfcfg_file):
     """
     # e.g. rfcfg_file = M:\\Projects\\Default\\Data\\Rapidfire\\methods\\BLAZE_B-C_5000_125.rfcfg
     file_menu_item = window.child_window(title ="File", control_type = "MenuItem")
-    file_menu_item.set_focus()
+    # file_menu_item.set_focus()
     file_menu_item.click_input()
 
     load_rf_method = window.child_window(title = "Load RF Method", control_type = "MenuItem")
-    load_rf_method.set_focus()
+    # load_rf_method.set_focus()
     load_rf_method.click_input()
 
     file_name_input = window.child_window(title_re = f".*File name:", class_name = "Edit")
-    file_name_input.set_focus()
+    # file_name_input.set_focus()
     file_name_input.set_edit_text("")
     file_name_input.type_keys(f"{rfcfg_file}")
     open_button = window.child_window(title = "Open", class_name = "Button")
-    open_button.set_focus()
+    # open_button.set_focus()
     open_button.click_input()
 
 def load_rf_batch(window, rfbat_file):
@@ -61,20 +61,20 @@ def load_rf_batch(window, rfbat_file):
     """
     # e.g. rfbat_file = '''M:\\Projects\\Default\\Data\\Rapidfire\\batches\\RapidFireMaintenance.rfbat'''
     file_menu_item = window.child_window(title ="File", control_type = "MenuItem")
-    file_menu_item.set_focus()
+    # file_menu_item.set_focus()
     file_menu_item.click_input()
 
 
     load_rf_batch = [x for x in file_menu_item.descendants() if "Load RF Batch" in x.window_text()][0]
-    load_rf_batch.set_focus()
+    # load_rf_batch.set_focus()
     load_rf_batch.click_input()
 
     file_name_input = window.child_window(title_re = f".*File name:", class_name = "Edit")
-    file_name_input.set_focus()
+    # file_name_input.set_focus()
     file_name_input.set_edit_text("")
     file_name_input.type_keys(f"{rfbat_file}")
     open_button = window.child_window(title = "Open", class_name = "Button")
-    open_button.set_focus()
+    # open_button.set_focus()
     open_button.click_input()
 
 
@@ -103,10 +103,10 @@ def open_log_view(window, app):
     :rtype: `pywinauto.Application.WindowSpecification`
     """
     system_tools_menu = window.child_window(title = "System Tools", control_type = "MenuItem")
-    system_tools_menu.set_focus()
+    # system_tools_menu.set_focus()
     system_tools_menu.click_input()
     view_log_button = [x for x in system_tools_menu.descendants() if "View Log" in x.window_text()][0]
-    view_log_button.set_focus()
+    # view_log_button.set_focus()
     view_log_button.click_input()
     time.sleep(1)
     log_window = app.window(title_re = f".*RapidFire Log.*")
@@ -124,7 +124,8 @@ def set_run_mode(window, mode):
     if mode not in mode_d.keys():
         sys.exit(f"error - mode {mode} not found in available modes")
     radio = window.child_window(auto_id = mode_d[mode])
-    radio.set_focus()
+    # radio.set_focus()
+    radio.click_input()
 
 def press_start_button(window):
     """Presses the start (run) button
@@ -133,7 +134,7 @@ def press_start_button(window):
     :type window: `pywinauto.Application.WindowSpecification`
     """
     run_button = window.child_window(auto_id = "runBtn")
-    run_button.set_focus()
+    # run_button.set_focus()
     run_button.click_input()
 
 def start_run(window, app, plate_timeout = 180):
@@ -154,9 +155,9 @@ def start_run(window, app, plate_timeout = 180):
         plate_window.wait('visible', timeout = plate_timeout)  
     except TimeoutError:
         sys.exit(f"Error - The plate run window did not appear within {timeout} seconds.")
-    plate_window.set_focus()
+    # plate_window.set_focus()
     play_button = plate_window.child_window(auto_id = "playBtn")
-    play_button.set_focus()
+    # play_button.set_focus()
     play_button.click_input()
 
 
@@ -168,11 +169,11 @@ def stop_run(window):
     """
     # Press the stop run botton and confirm run abortion
     stop_button = window.child_window(auto_id = "stopBtn")
-    stop_button.set_focus()
+    # stop_button.set_focus()
     stop_button.click_input()
     time.sleep(1)
     yes_button = window.child_window(auto_id = "button1")
-    yes_button.set_focus()
+    # yes_button.set_focus()
     yes_button.click_input()
 
 
@@ -291,11 +292,11 @@ def open_splitter_view(window, app):
     :rtype: `pywinauto.application.WindowSpecification`
     """
     file_menu_item = window.child_window(title = "File", control_type = "MenuItem")
-    file_menu_item.set_focus()
+    # file_menu_item.set_focus()
     file_menu_item.click_input()
 
     open_splitter_button = [x for x in file_menu_item.descendants() if "Convert MS Data" in x.window_text()][0]
-    open_splitter_button.set_focus()
+    # open_splitter_button.set_focus()
     open_splitter_button.click_input()
     time.sleep(1)
 
@@ -331,12 +332,12 @@ def run_split(splitter_window, split_dir, multiple_injections = True):
     """
 
     data_path_box = [x for x in splitter_window.children() if x.automation_id() == "dataPathTextBox"][0]
-    data_path_box.set_focus()
+    # data_path_box.set_focus()
     data_path_box.set_edit_text("")
     data_path_box.type_keys(f"{split_dir}")
 
     output_path_box = [x for x in splitter_window.children() if x.automation_id() == "exportPathTextBox"][0]
-    output_path_box.set_focus()
+    # output_path_box.set_focus()
     output_path_box.set_edit_text("")
     output_path_box.type_keys(f"{split_dir}")
 
@@ -346,7 +347,7 @@ def run_split(splitter_window, split_dir, multiple_injections = True):
             multiple_inj_button.toggle()
 
     convert_button = [x for x in splitter_window.children() if x.automation_id() == "exportButton"][0]
-    convert_button.set_focus()
+    # convert_button.set_focus()
     convert_button.click_input()
     return(0)
 

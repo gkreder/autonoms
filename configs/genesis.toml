@@ -1,7 +1,14 @@
-# Executables
+rf_ip = "192.168.254.2"
 pnnl_path = "C:\\Program Files\\PNNL-Preprocessor\\PNNL-PreProcessor.exe"
 start_mh_rf_path = "C:\\Agilent\\RapidFire Communicator\\RFMassHunter_NET\\bin\\Start_MassHunter_S.bat"
 rapid_fire_data_dir = "D:\\Projects\\Default\\Data\\RapidFire"
 mh_splitter_exe = "D:\\gkreder\\RapidFire_bin\\MHFileSplitter.exe"
 msconvert_exe = "C:\\Users\\admin\\AppData\\Local\\Apps\\ProteoWizard 3.0.22173.4a1045d 64-bit\\msconvert.exe"
 skyline_exe = "C:\\Users\\admin\\Desktop\\SkylineCmd.exe.lnk"
+
+instrument_timeout_seconds = 50000
+data_analysis_timeout_seconds = 50000
+prep_timeout_seconds = 10000
+instrument_run_concurrent_tasks = 1
+preprocessing_concurrent_tasks = 4
+data_analysis_concurrent_tasks = 4
