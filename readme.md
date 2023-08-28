@@ -1,3 +1,5 @@
-# mocha-ms
-MOCHA-MS - Molecular Observation with Chemical Hardware Automation MS
+# AutoMS
+Autonomous mass spectrometry data collection and analysis
+
+
 
