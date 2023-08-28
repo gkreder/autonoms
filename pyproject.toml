@@ -18,16 +18,15 @@ dependencies = [
     "sphinx-rtd-theme",
     "rpyc",
     "pandas",
-    "openpyxl"
+    "openpyxl",
     "prefect",
     'pywinauto ; platform_system == "Windows"',
     "deimos @ git+https://github.com/pnnl/deimos.git"
 ]
 
-
 [tool.setuptools.packages.find]
 where = ["src"]
 
-[too.setuptools]
-packages = ["mochams"]
+[project.scripts]
+mochams-run = "mochams.prefect_workflow:main"
 

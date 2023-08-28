@@ -10,13 +10,13 @@ import sys
 import subprocess
 import pandas as pd
 import argparse
-from prefect import flow, task
+from prefect import flow, task, Flow, Task
 from prefect.client import get_client
 from prefect.task_runners import SequentialTaskRunner
-import agilent_methods.utils_plates as pu
-import agilent_methods.utils_6560 as msu
-from agilent_methods.splitterExtract import get_splits
-from agilent_methods.CCSCal import ccs_cal
+import mochams.agilent_methods.utils_plates as pu
+import mochams.agilent_methods.utils_6560 as msu
+from mochams.agilent_methods.splitterExtract import get_splits
+from mochams.agilent_methods.CCSCal import ccs_cal
 ################################################################################################
 # Prefect Tasks
 ################################################################################################
@@ -50,7 +50,7 @@ def create_rf_sequences(input_excel_file, output_dir):
         out_files.append((sequence_dir, rfbat_filename_full, rfcfg_filename_full, rfmap_filename_full))
     return(out_files)
 
-@task(tags = ["instrument_run"], timeout_seconds = instrument_timeout_seconds)
+@task(name = "run_6560_calibrant", tags = ["instrument_run"])
 def run_6560_calibrant(seq_files_tuple, test = False):
     """Runs a Calibrant line (bottle B) run on the 6560 and saves the output
 
@@ -161,7 +161,7 @@ def copy_ccs_calibration(uncalibrated_d_file, calibrated_d_file):
     copy_dir = os.path.join(uncalibrated_d_file, "AcqData")
     shutil.copy2(ccs_cal_file, copy_dir)
 
-@task(timeout_seconds = instrument_timeout_seconds, tags = ["instrument_run"])
+@task(name = "rf_call", tags = ["instrument_run"])
 def rf_call(rf_ip, rf_function, rf_port = 18861, *args,  **kwargs):
     """Calls a function from the utils_rapidFire module using the rpyc server running on the RapidFire computer. 
     Function is executed on the RapidFire computer itself. Function arguments are passed through *args and **kwargs
@@ -321,7 +321,7 @@ def rf_post_run_calibration(sequence_dir, demultiplexed_files, input_excel_file,
     copy_ccs_calibration.map(uncalibrated_files, calibrated_files)
     return(copy_pairs)
 
-@flow(task_runner=SequentialTaskRunner(), name = "rfbat_prep", timeout_seconds = prep_timeout_seconds)
+@flow(task_runner=SequentialTaskRunner(), name = "rfbat_prep")
 def rfbat_prep(input_excel_file, output_dir):
     """Creates instrument files and sequence directories given an input experiment definition file.
 
@@ -335,7 +335,7 @@ def rfbat_prep(input_excel_file, output_dir):
     sequence_files = create_rf_sequences.submit(input_excel_file, output_dir)
     return(sequence_files)   
 
-@flow(task_runner = SequentialTaskRunner(), name = "rf_plate_run", timeout_seconds = instrument_timeout_seconds)
+@flow(task_runner = SequentialTaskRunner(), name = "rf_plate_run")
 def rf_plate_run(rfbat_file, rfcfg_file, start_mh_rf_path, rapid_fire_data_dir, rf_ip, test = False, path_convert = {'D:\\' : "M:\\"}):
     """Runs a RapidFire-6560 run for given sequence given its instrument files
 
@@ -364,7 +364,7 @@ def rf_plate_run(rfbat_file, rfcfg_file, start_mh_rf_path, rapid_fire_data_dir, 
         rfcfg_file_rf = rfcfg_file_rf.replace(old_s, new_s)
     result = start_rf_ms_connection.submit(start_mh_rf_path)
     result.wait()
-    result = rf_call.submit(rf_ip, rf_function, test = test, rfcfg_file = rfcfg_file_rf, rfbat_file = rfbat_file_rf, rf_base_data_dir = rapid_fire_data_dir, timeout_seconds = instrument_timeout_seconds)
+    result = rf_call.submit(rf_ip, rf_function, test = test, rfcfg_file = rfcfg_file_rf, rfbat_file = rfbat_file_rf, rf_base_data_dir = rapid_fire_data_dir)
     result.wait()    
     return(result)
 
@@ -415,7 +415,7 @@ def rf_post_run_process(sequence_dir, rapid_fire_data_dir, mh_splitter_exe, pnnl
 
 
 
-@flow(task_runner = SequentialTaskRunner(), name = "skyline_analysis", tags = ["data_analysis"])
+@flow(task_runner = SequentialTaskRunner(), name = "skyline_analysis")
 def skyline(sequence_dir, skyline_exe, sky_imsdb_file, sky_document_file, transition_list_file, sky_report_file):
     """Runs Skyline data analysis
 
@@ -462,7 +462,6 @@ def skyline(sequence_dir, skyline_exe, sky_imsdb_file, sky_document_file, transi
     print(f"Running skyline command {cmd}")
     subprocess.call(arg_list, shell = True)
 
-
 def get_args():
     """Helper function for initializing arguments on command line invocation
     :return: Parameter arguments
@@ -484,12 +483,6 @@ def get_args():
     for k, v in {**execs_d, **analysis_d}.items():
         setattr(args, k, v)
     
-    global instrument_timeout_seconds, data_analysis_timeout_seconds, prep_timeout_seconds
-    instrument_timeout_seconds = args.instrument_timeout_seconds
-    data_analysis_timeout_seconds = args.data_analysis_timeout_seconds
-    prep_timeout_seconds = args.prep_timeout_seconds
-
-
     return(args)
 
 @flow(task_runner = SequentialTaskRunner())
@@ -516,6 +509,11 @@ def main_flow(args):
     client.create_concurrency_limit(tag = "instrument_run", concurrency_limit = args.instrument_run_concurrent_tasks)
     client.create_concurrency_limit(tag = "preprocessing", concurrency_limit = args.preprocessing_concurrent_tasks)
     client.create_concurrency_limit(tag = "data_analysis", concurrency_limit = args.data_analysis_concurrent_tasks)
+    rfbat_prep.timeout_seconds = args.prep_timeout_seconds
+    rf_plate_run.timeout_seconds = args.instrument_timeout_seconds
+    run_6560_calibrant.timeout_seconds = args.instrument_timeout_seconds
+    skyline.timeout_seconds = args.data_analysis_timeout_seconds
+
     sequence_files = rfbat_prep(args.input_excel_file, args.output_dir).result()
     rf_data_dirs = []
     for sequence_dir, rfbat_file, rfcfg_file, rfmap_file in sequence_files:
