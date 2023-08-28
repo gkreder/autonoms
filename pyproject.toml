@@ -12,7 +12,6 @@ authors = [
 ]
 
 dependencies = [
-    "git",
     "numpy",
     "scipy",
     "sphinx",
