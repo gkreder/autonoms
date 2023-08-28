@@ -162,7 +162,7 @@ def copy_ccs_calibration(uncalibrated_d_file, calibrated_d_file):
     shutil.copy2(ccs_cal_file, copy_dir)
 
 @task(name = "rf_call", tags = ["instrument_run"])
-def rf_call(rf_ip, rf_function, rf_port = 18861, *args,  **kwargs):
+def rf_call(rf_ip, rf_function, sync_timeout_request = 50000, rf_port = 18861, *args,  **kwargs):
     """Calls a function from the utils_rapidFire module using the rpyc server running on the RapidFire computer. 
     Function is executed on the RapidFire computer itself. Function arguments are passed through *args and **kwargs
 
@@ -170,12 +170,14 @@ def rf_call(rf_ip, rf_function, rf_port = 18861, *args,  **kwargs):
     :type rf_ip: str
     :param rf_function: Name of function from utils_rapidFire to call. Function arguments passed through *args and **kwargs
     :type rf_function: str
+    :param sync_timeout_request: Timeout seconds for rpyc function passing, defaults to 50000
+    :type sync_timeout_request: float, optional
     :param rf_port: Port number on which the rpyc server is accessible, defaults to 18861 
     :type rf_port: int, optional
     :result: Result from function call
     :rtype: object
     """
-    rpyc_configs = {"sync_request_timeout" : instrument_timeout_seconds}
+    rpyc_configs = {"sync_request_timeout" : sync_timeout_request}
     connection = rpyc.connect(rf_ip, rf_port, config = rpyc_configs)
     try:
         rf_service = connection.root
@@ -393,7 +395,7 @@ def rf_post_run_process(sequence_dir, rapid_fire_data_dir, mh_splitter_exe, pnnl
     for old_s, new_s in path_convert.items():
         latest_dir_rf = latest_dir_rf.replace(old_s, new_s)
     # latest_dir_rf = latest_dir.replace("D:\\", "M:\\")
-    remote_file_split_result = rf_call.submit(rf_ip, "remote_file_split", data_dir = latest_dir_rf, timeout_seconds = data_analysis_timeout_seconds).wait().result()
+    remote_file_split_result = rf_call.submit(rf_ip, "remote_file_split", data_dir = latest_dir_rf).wait().result()
     splitter_file = os.path.join(latest_dir, "RFFileSplitter.log")
     rfdb_file = os.path.join(latest_dir, "RFDatabase.xml")
     sequence_file = os.path.join(latest_dir, "sequence1.d")
@@ -471,6 +473,7 @@ def get_args():
     parser.add_argument('--input_excel_file', required = True)
     parser.add_argument('--configs_toml', required = True)
     parser.add_argument('--output_dir', required = True)
+    parser.add_argument('--no_checks', action = 'store_true')
     parser.add_argument('--test', action = "store_true")
     args = parser.parse_args()
     args.input_excel_file = os.path.abspath(args.input_excel_file)
@@ -494,7 +497,6 @@ def main_flow(args):
     :param args: main flow arguments
     :type args: Namespace
     """
-    test = args.test
     check_string = '''Running in live mode. Please ensure
     (1) MH Acq is set to autoLayout
     (2) RF Vacuum pump is turned on
@@ -503,8 +505,9 @@ def main_flow(args):
     
     Press Enter when ready...
     '''
-    if not test:
+    if not args.test and not args.no_checks:
         input(check_string)
+
     client = get_client()
     client.create_concurrency_limit(tag = "instrument_run", concurrency_limit = args.instrument_run_concurrent_tasks)
     client.create_concurrency_limit(tag = "preprocessing", concurrency_limit = args.preprocessing_concurrent_tasks)
@@ -517,14 +520,17 @@ def main_flow(args):
     sequence_files = rfbat_prep(args.input_excel_file, args.output_dir).result()
     rf_data_dirs = []
     for sequence_dir, rfbat_file, rfcfg_file, rfmap_file in sequence_files:
-        sequence_rf_data_dir = rf_plate_run(rfbat_file, rfcfg_file, args.start_mh_rf_path, args.rapid_fire_data_dir, args.rf_ip, test = test).result()
+        sequence_rf_data_dir = rf_plate_run(rfbat_file, rfcfg_file, args.start_mh_rf_path, args.rapid_fire_data_dir, args.rf_ip, test = args.test).result()
         rf_data_dirs.append(sequence_rf_data_dir)
     for i_seq, (sequence_dir, rfbat_file, rfcfg_file, rfmap_file) in enumerate(sequence_files):
         demultiplexed_files = rf_post_run_process(sequence_dir, args.rapid_fire_data_dir, args.mh_splitter_exe, args.pnnl_path, args.rf_ip)
         copy_ccs_pairs = rf_post_run_calibration(sequence_dir, demultiplexed_files, args.input_excel_file, args.tuneIons_file, args.msconvert_exe)
         skyline_res = skyline(sequence_dir, args.skyline_exe, args.sky_imsdb_file, args.sky_document_file, args.transition_list_file, args.sky_report_file)
 
-if __name__ == "__main__":
+def main():
     args = get_args()
     main_flow(args)
+
+if __name__ == "__main__":
+    main()
      

@@ -28,5 +28,5 @@ dependencies = [
 where = ["src"]
 
 [project.scripts]
-mochams-run = "mochams.prefect_workflow:main"
+mochams-run = "mochams.workflow_control:main"
 
