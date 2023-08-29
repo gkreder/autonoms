@@ -1,5 +1,5 @@
-Welcome to the AutonoMS documentation!
-=======================================
+Welcome to the AutonoMS!
+=========================
 
 .. automodule:: autonoms
    :members:
