@@ -10,6 +10,24 @@ Running rpyc server on RapidFire computer
 
 After installing the AutonoMS package, the rpyc server can be kept running on the RapidFire computer using the command
 
+.. code-block:: shell
+
+    autonoms-rpyc
+
+Note that this command should be launched from the RapidFire computer. The server can be kept running but must be restarted when there are changes to the codebase.
+
+Note on disconnected RapidFire usage
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Please see the installation instructions note on installing AutonoMS on a RapidFire computer that is not connected to the internet. If you 
+are using such a setup with a shared conda environment, the autonoms-rpyc executable may not run on the RapidFire computer. This will be the case
+if the shared drive has a different name on the RapidFire and 6560 computer (e.g. M:\\ vs D:\\ respectively). You can instead 
+run the rpyc server on the RapidFire computer using this command run from the top-level AutonoMS directory:
+
+.. code-block:: powershell
+
+    python .\src\autonoms\agilent_methods\rf_rpyc_server.py
+
 
 
 
