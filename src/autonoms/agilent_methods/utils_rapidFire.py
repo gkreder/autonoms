@@ -11,6 +11,8 @@ if sys.platform.startswith('win'):
     from pywinauto.controls.uia_controls import UIAElementInfo
 import re
 import shutil
+from pathlib import Path
+import datetime
 ################################################################################################
 # Functions for individual actions in the RapidFire UI
 ################################################################################################
@@ -370,22 +372,23 @@ def remote_run_rfbat(test = False, *args, **kwargs):
         :return: Path to directory containing run output files
         :rtype: str
     """
-    print(f"Checking the rf data dir {kwargs['rf_base_data_dir']}...")
-    rf_base_data_dir = kwargs['rf_base_data_dir']
-    data_dir = find_latest_dir(rf_base_data_dir, path_convert = {'D:\\' : "M:\\"})
-    if test:
-        return(data_dir)
     # Must give it a rfbat_file
     app, window = initialize_app()
     open_log_view(window, app)
     splitter_window = open_splitter_view(window, app)
     set_splitter_autoconvert(splitter_window, False)
+    window.set_focus()
     set_run_mode(window, "Sequences")
     load_rf_method(window, kwargs['rfcfg_file'])
     load_rf_batch(window, kwargs['rfbat_file'])
     if not test:
         check_vac_pressure(window)
         start_run(window, app)
+    print(f"Checking the rf data dir {kwargs['rf_base_data_dir']}...")
+    rf_base_data_dir = kwargs['rf_base_data_dir']
+    data_dir = find_latest_dir(rf_base_data_dir, path_convert = {'D:\\' : "M:\\"})
+    if test:
+        return(data_dir)
     print(f"Monitoring the batch.log file in directory {data_dir}...")
     log_file = os.path.join(data_dir, "batch.log")
     start_time = time.time()

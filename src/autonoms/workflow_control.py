@@ -15,6 +15,7 @@ from prefect.client import get_client
 from prefect.task_runners import SequentialTaskRunner
 import autonoms.agilent_methods.utils_plates as pu
 import autonoms.agilent_methods.utils_6560 as msu
+import autonoms.agilent_methods.utils_rapidFire as rfu
 from autonoms.agilent_methods.splitterExtract import get_splits
 from autonoms.agilent_methods.CCSCal import ccs_cal
 ################################################################################################
@@ -101,14 +102,17 @@ def demultiplex(d_file, pnnl_exe_path, overwrite = True, test = False, demux_MA 
     temp_out_dir = os.path.join(d_file_dir, f"{d_file_prefix}_temp_pnnl")
     os.makedirs(temp_out_dir, exist_ok = True)
     cmd = f'''{pnnl_exe_path} -demux=True -demuxMA={demux_MA} -demuxSignal={demux_min_percent} -mInt={demux_mInt} -frameComp=1 -compMode=Every -overwrite={overwrite} -out={temp_out_dir} -dataset="{d_file}"'''
+    cmd_subprocess = [f"{pnnl_exe_path}", "-demux=True", f"-demuxMA={demux_MA}", 
+                      f"-demuxSignal={demux_min_percent}", f"-mInt={demux_mInt}", "-frameComp=1",
+                      "-compMode=Every", f"-overwrite={overwrite}", f"-out={temp_out_dir}", f'-dataset={d_file}']
     print(f"demultiplexing {d_file}")
-    print(cmd)
+    print(cmd_subprocess)
     opref = os.path.splitext(d_file)[0]
     oname_final = opref + "_demultiplexed.d"
     if test:
         print('testing...not running command')
         return(oname_final)
-    os.system(cmd)
+    subprocess.run(cmd_subprocess)
     pnnl_out_files = glob.glob(os.path.join(temp_out_dir, "*.d"))
     newest_pnnl_file = max(pnnl_out_files, key = os.path.getmtime)
     oname = os.path.join(d_file_dir, os.path.basename(newest_pnnl_file))
@@ -220,7 +224,9 @@ def split_d_file(split_tuple, raw_data_dir, out_dir, mh_splitter_exe):
     out_log_file = os.path.join(out_dir, "splitter_log.txt")
     arg_list = [mh_splitter_exe, in_d_file, out_d_file, f"{start_time}", f"{end_time}", "0", "0", out_log_file]
     print(arg_list)
-    subprocess.call(arg_list)
+    # subprocess.run(arg_list)
+    res = subprocess.Popen(arg_list)
+    res.wait()
     return(out_d_file)
 
 @task(tags = ['postprocessing'])
@@ -338,7 +344,7 @@ def rfbat_prep(input_excel_file, output_dir):
     return(sequence_files)   
 
 @flow(task_runner = SequentialTaskRunner(), name = "rf_plate_run")
-def rf_plate_run(rfbat_file, rfcfg_file, start_mh_rf_path, rapid_fire_data_dir, rf_ip, test = False, path_convert = {'D:\\' : "M:\\"}):
+def rf_plate_run(rfbat_file, rfcfg_file, start_mh_rf_path, rapid_fire_data_dir, rf_ip, timeout_seconds, test = False, path_convert = {'D:\\' : "M:\\"}):
     """Runs a RapidFire-6560 run for given sequence given its instrument files
 
     :param rfbat_file: Path to sequence .rfbat RapidFire file
@@ -352,6 +358,8 @@ def rf_plate_run(rfbat_file, rfcfg_file, start_mh_rf_path, rapid_fire_data_dir, 
     :param rf_ip: RapidFire IP address on local network
     :type rf_ip: str
     :param test: Run in test mode, defaults to False
+    :param timeout_seconds: Time (in seconds) to wait for instrument/run timeout
+    :type timeout_seconds: float
     :type test: bool, optional
     :param path_convert: A dictionary of file path replacements between the 6560 and RapidFire shared drive (e.g. {"D:" : "M:"} means D: on 6560 corresponds to M: on RapidFire), defaults to {'D:\\' : "M:\\"}
     :type path_convert: dict, optional
@@ -366,12 +374,12 @@ def rf_plate_run(rfbat_file, rfcfg_file, start_mh_rf_path, rapid_fire_data_dir, 
         rfcfg_file_rf = rfcfg_file_rf.replace(old_s, new_s)
     result = start_rf_ms_connection.submit(start_mh_rf_path)
     result.wait()
-    result = rf_call.submit(rf_ip, rf_function, test = test, rfcfg_file = rfcfg_file_rf, rfbat_file = rfbat_file_rf, rf_base_data_dir = rapid_fire_data_dir)
+    result = rf_call.submit(rf_ip, rf_function, test = test, rfcfg_file = rfcfg_file_rf, rfbat_file = rfbat_file_rf, rf_base_data_dir = rapid_fire_data_dir, timeout_seconds = timeout_seconds)
     result.wait()    
     return(result)
 
 @flow(task_runner = SequentialTaskRunner(), name = "rf_post_run_process")
-def rf_post_run_process(sequence_dir, rapid_fire_data_dir, mh_splitter_exe, pnnl_exe, rf_ip, path_convert = {'D:\\' : "M:\\"}):
+def rf_post_run_process(sequence_dir, rapid_fire_data_dir, mh_splitter_exe, pnnl_exe, rf_ip, timeout_seconds, path_convert = {'D:\\' : "M:\\"}):
     """Runs post-acquisition file splitting and demultiplexing
 
     :param sequence_dir: Path to sequence directory
@@ -384,18 +392,20 @@ def rf_post_run_process(sequence_dir, rapid_fire_data_dir, mh_splitter_exe, pnnl
     :type pnnl_exe: str
     :param rf_ip: RapidFire IP address on local network
     :type rf_ip: str
+    :param timeout_seconds: Time (in seconds) to wait for instrument/run timeout
+    :type timeout_seconds: float
     :param path_convert: A dictionary of file path replacements between the 6560 and RapidFire shared drive (e.g. {"D:" : "M:"} means D: on 6560 corresponds to M: on RapidFire), defaults to {'D:\\' : "M:\\"}
     :type path_convert: dict, optional
     :return: File paths of output split demultiplexed files
     :rtype: list
     """
     sequence_name = os.path.basename(sequence_dir)
-    latest_dir = pu.find_latest_dir(rapid_fire_data_dir, sequence_name = sequence_name)
+    latest_dir = rfu.find_latest_dir(rapid_fire_data_dir, sequence_name = sequence_name)
     latest_dir_rf = latest_dir
     for old_s, new_s in path_convert.items():
         latest_dir_rf = latest_dir_rf.replace(old_s, new_s)
     # latest_dir_rf = latest_dir.replace("D:\\", "M:\\")
-    remote_file_split_result = rf_call.submit(rf_ip, "remote_file_split", data_dir = latest_dir_rf).wait().result()
+    remote_file_split_result = rf_call.submit(rf_ip, "remote_file_split", timeout_seconds = timeout_seconds, data_dir = latest_dir_rf).wait().result()
     splitter_file = os.path.join(latest_dir, "RFFileSplitter.log")
     rfdb_file = os.path.join(latest_dir, "RFDatabase.xml")
     sequence_file = os.path.join(latest_dir, "sequence1.d")
@@ -410,8 +420,8 @@ def rf_post_run_process(sequence_dir, rapid_fire_data_dir, mh_splitter_exe, pnnl
     injections_dir = os.path.join(sequence_dir, 'injections')
     os.makedirs(injections_dir, exist_ok = True)
     split_d_files = split_d_file.map(splits, latest_dir, injections_dir, mh_splitter_exe)
-    demultiplexed_files = demultiplex.map(split_d_files, pnnl_exe)
-    _ = rm_tree.map(split_d_files)
+    demultiplexed_files = demultiplex.map(split_d_files, pnnl_exe, wait_for = [split_d_files])
+    _ = rm_tree.map(split_d_files, wait_for = [demultiplexed_files])
     sequence_name = os.path.basename(sequence_dir)
     return(demultiplexed_files)
 
@@ -510,7 +520,8 @@ def main_flow(args):
 
     client = get_client()
     client.create_concurrency_limit(tag = "instrument_run", concurrency_limit = args.instrument_run_concurrent_tasks)
-    client.create_concurrency_limit(tag = "preprocessing", concurrency_limit = args.preprocessing_concurrent_tasks)
+    # client.create_concurrency_limit(tag = "preprocessing", concurrency_limit = args.preprocessing_concurrent_tasks)
+    client.create_concurrency_limit(tag = "preprocessing", concurrency_limit = 1)
     client.create_concurrency_limit(tag = "data_analysis", concurrency_limit = args.data_analysis_concurrent_tasks)
     rfbat_prep.timeout_seconds = args.prep_timeout_seconds
     rf_plate_run.timeout_seconds = args.instrument_timeout_seconds
@@ -520,10 +531,10 @@ def main_flow(args):
     sequence_files = rfbat_prep(args.input_excel_file, args.output_dir).result()
     rf_data_dirs = []
     for sequence_dir, rfbat_file, rfcfg_file, rfmap_file in sequence_files:
-        sequence_rf_data_dir = rf_plate_run(rfbat_file, rfcfg_file, args.start_mh_rf_path, args.rapid_fire_data_dir, args.rf_ip, test = args.test).result()
+        sequence_rf_data_dir = rf_plate_run(rfbat_file, rfcfg_file, args.start_mh_rf_path, args.rapid_fire_data_dir, args.rf_ip, timeout_seconds = args.instrument_timeout_seconds, test = args.test).result()
         rf_data_dirs.append(sequence_rf_data_dir)
     for i_seq, (sequence_dir, rfbat_file, rfcfg_file, rfmap_file) in enumerate(sequence_files):
-        demultiplexed_files = rf_post_run_process(sequence_dir, args.rapid_fire_data_dir, args.mh_splitter_exe, args.pnnl_path, args.rf_ip)
+        demultiplexed_files = rf_post_run_process(sequence_dir, args.rapid_fire_data_dir, args.mh_splitter_exe, args.pnnl_path, args.rf_ip, args.instrument_timeout_seconds)
         copy_ccs_pairs = rf_post_run_calibration(sequence_dir, demultiplexed_files, args.input_excel_file, args.tuneIons_file, args.msconvert_exe)
         skyline_res = skyline(sequence_dir, args.skyline_exe, args.sky_imsdb_file, args.sky_document_file, args.transition_list_file, args.sky_report_file)
 
