@@ -5,8 +5,6 @@ build:
   os: ubuntu-22.04
   tools:
     python: "3.8"
-    extra_requirements:
-      - sphinx-copybutton
     # You can also specify other tool versions:
     # nodejs: "19"
     # rust: "1.64"
