@@ -14,8 +14,11 @@ class RapidFireService(rpyc.Service):
         else:
             raise ValueError(f"Function '{function_name}' not found in utils_rapidFire.py")
         
-if __name__ == '__main__':
+def main():
     port = 18861
     server = ThreadedServer(RapidFireService, port = port, protocol_config = {"allow_puyblic_attrs":True})
     print(f"starting server on port {port}")
     server.start()
+        
+if __name__ == '__main__':
+    main()

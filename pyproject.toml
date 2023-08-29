@@ -30,4 +30,5 @@ where = ["src"]
 
 [project.scripts]
 autonoms-run = "autonoms.workflow_control:main"
+autonoms-rpyc = "autonoms.agilent_methods.rf_rpyc_server:main"
 
