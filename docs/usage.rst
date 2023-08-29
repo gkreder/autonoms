@@ -5,6 +5,12 @@ After installing the AutonoMS package and the Agilent workflow dependencies, dat
 can be run in the manner described in the manuscript by following the steps below: 
 
 
+Running rpyc server on RapidFire computer
+*******************************************
+
+After installing the AutonoMS package, the rpyc server can be kept running on the RapidFire computer using the command
+
+
 
 
 Creating a Skyline transition list
