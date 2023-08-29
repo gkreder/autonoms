@@ -1,5 +1,5 @@
-Welcome to the AutonoMS!
-=========================
+Welcome to AutonoMS!
+====================
 
 .. automodule:: autonoms
    :members:
