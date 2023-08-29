@@ -3,7 +3,7 @@ Installation
 
 AutonoMS Package Install
 **************************
-``autonoms`` is installed via setuptools, requiring only python 3.8.*, git, hdf5, lzo, blosc, and pytables.
+``autonoms`` is installed via setuptools, requiring python 3.8.*, git, hdf5, lzo, blosc, and pytables.
 It is highly recommended to do so in a conda environment or equivalent.
 Create a python 3.8 conda environment with the required libraries:
 
