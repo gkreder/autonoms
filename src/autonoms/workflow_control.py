@@ -480,11 +480,11 @@ def get_args():
     :rtype: Namespace
     """
     parser = argparse.ArgumentParser()
-    parser.add_argument('--input_excel_file', required = True)
-    parser.add_argument('--configs_toml', required = True)
-    parser.add_argument('--output_dir', required = True)
-    parser.add_argument('--no_checks', action = 'store_true')
-    parser.add_argument('--test', action = "store_true")
+    parser.add_argument('-i', '--input_excel_file', required = True)
+    parser.add_argument('-c', '--configs_toml', required = True)
+    parser.add_argument('-o', '--output_dir', required = True)
+    parser.add_argument('-n', '--no_checks', action = 'store_true')
+    parser.add_argument('-t', '--test', action = "store_true")
     args = parser.parse_args()
     args.input_excel_file = os.path.abspath(args.input_excel_file)
     args.output_dir = os.path.abspath(args.output_dir)
@@ -508,7 +508,7 @@ def main_flow(args):
     :type args: Namespace
     """
     check_string = '''Running in live mode. Please ensure
-    (1) MH Acq is set to autoLayout
+    (1) MH Data Acq is set to correct layout (e.g. "autoLayout")
     (2) RF Vacuum pump is turned on
     (3) The tune splitter is set to calibrant B inlet
     (4) You have tuned the 6560 

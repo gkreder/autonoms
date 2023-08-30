@@ -1,9 +1,11 @@
 Installation
 =============
 
+.. _autonoms-install:
+
 AutonoMS Package Install
 **************************
-.. _install:
+
 
 ``autonoms`` is installed via setuptools, requiring python 3.8.*, git, hdf5, lzo, blosc, and pytables.
 It is highly recommended to do so in a conda environment or equivalent.
@@ -33,39 +35,33 @@ Ensure the package installed by running
 
     autonoms-run
 
-To run the Agilent RapidFire-6560 workflow, you have additional dependencies installed and configured (see Dependencies section)
-
-
-Agilent Dependencies
-*********************
-
-``autonoms`` has the following core Python dependencies:
-
-* numpy
-* scipy
-* rpyc
-* pandas
-* prefect
-* pywinauto (for Agilent RF-6560 instrument control on Windows)
-
-Additionally, for running the Agilent RapidFire-6560 workflow, the following dependencies must be installed manually:
-
-* Agilent MassHunter Workstation Data Acquisition (version >= 11.0)
-* Pacific Northwest National Laboratory (PNNL) PreProcessor (version >= 3.0)
-* Agilent RapidFire UI (version >= 6.1.1.2114)
-* MSConvert (version >= 3.0.22173) available via ProteoWizard
-* Skyline (version >= 22.2.0.351)
+Note that to run the Agilent RapidFire-6560 workflow, you must have additional third-party dependencies installed and configured (:ref:`instructions <agilent-config>`)
 
 
 For Disconnected RapidFire Computer
 *************************************
 
-The standard Agilent hardware installation of the RapidFire may involve RapidFire computer that is disconnected from the internet
+The standard Agilent hardware installation of the RapidFire may involve a RapidFire computer that is disconnected from the internet
 (and connected solely to the MS control desktop via ethernet). This makes installing and running code dependencies trickier on the RapidFire computer.
 
 For purposes of using AutonoMS for the RapidFire - 6560 workflow described in the manuscript, it is recommended to connect your RapidFire computer to the internet
 if possible. If this is not possible, then the following steps are recommended for installing and deploying AutonoMS.
 
 Install (mini)conda to the shared RapidFire - 6560 networked drive (NOT the local 6560 drive). Follow the standard AutonoMS
-:ref:`installation instructions <install>` above on the 6560 computer (assumed to be connected to the internet). 
+:ref:`installation instructions <autonoms-install>` above on the 6560 computer (assumed to be connected to the internet). 
+
+Now we want to utilize the same conda installation and environment on the RapidFire computer. Note that this is not a recommended practice in general 
+but serves as a convenient workaround in this case. On the RapidFire computer, open a PowerShell instance and navigate to the Scripts folder inside conda environment 
+directory for example ``M:\miniconda3\envs\autonoms\Scripts``. From there run the command:
+
+.. code-block:: powershell
+
+    .\conda.exe init
+
+to give powershell access to the 6560 installation of conda. Restart PowerShell and activate the AutonoMS environment which should now have access to all the necessary dependencies.
+As noted in the :ref:`usage <rpycRF>` section, running the rpyc server in this configuration requires using a Python script call rather than the built in ``autonoms-rpyc`` function.
+
+
+
+
 

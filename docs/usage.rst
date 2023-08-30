@@ -4,6 +4,7 @@ AutonoMS Usage
 After installing the AutonoMS package and the Agilent workflow dependencies, data collection and analysis 
 can be run in the manner described in the manuscript by following the steps below: 
 
+.. _rpycRF:
 
 Running rpyc server on RapidFire computer
 *******************************************
@@ -158,4 +159,6 @@ Once the dependencies, installation, input file preparation, and configurations 
 
 .. code-block:: shell
 
-    autonoms-run --input_excel_file <experiment_definition_file.xlsx> --configs_toml <configuration_file.toml> --output_dir <run_output_dir>
+    autonoms-run -i exp.xlsx -c config.toml -o out_dir
+
+Note that the manual check message can be bypassed by passing the ``-n`` flag to the ``autonoms-run``. 

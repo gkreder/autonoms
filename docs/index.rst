@@ -11,6 +11,7 @@ Welcome to AutonoMS!
 
    intro
    installation
+   configuration
    usage
    modules
 
