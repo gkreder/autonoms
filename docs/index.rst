@@ -15,10 +15,6 @@ Welcome to AutonoMS!
    usage
    modules
 
-
-Indices and tables
-==================
-
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
