@@ -419,7 +419,7 @@ def remote_file_split(test = False, *args, **kwargs):
     set_splitter_autoconvert(splitter_window, False)
     run_split(splitter_window, split_dir = data_dir)
     progress_text = [x for x in splitter_window.children() if x.automation_id() == "exportProgressLabel"][0]
-    print(f"Waiting fo rfile splitting to start...")
+    print(f"Waiting for file splitting to start...")
     start_time = time.time()
     while ( "plate" not in [x.lower() for x in progress_text.texts()] ) and ( "Completed Successfully" not in progress_text.texts() ) and ( (time.time() - start_time) < kwargs['timeout_seconds']):
         time.sleep(1)
