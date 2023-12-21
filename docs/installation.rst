@@ -21,7 +21,7 @@ Then clone the ``autonoms`` GitHub repostiory:
 
     git clone https://github.com/gkreder/autonoms.git
 
-Change directories into the mocha-ms repository folder and install:
+Change directories into the autonoms repository folder and install:
 
 .. code-block:: shell
 
